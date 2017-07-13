@@ -1,4 +1,6 @@
 <?php
+namespace controllers;
+//use \controllers\HomepageController as HomepageController;
 
 class HomepageController
 {

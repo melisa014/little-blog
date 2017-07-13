@@ -12,18 +12,17 @@ class Router
     {
         switch ($action) {
         case 'archive':
-            $controller =  new ArchiveController(); 
+            $controller =  new \controllers\ArchiveController(); 
             $controller->run() ; // передаем управление
             break;
         case 'viewArticle':
-            $controller =  new ViewArticleController(); 
+            $controller =  new \controllers\ViewArticleController(); 
             $controller->run() ; // передаем управление
             break;
         default:
-            $controller =  new HomepageController(); 
+            $controller =  new \controllers\HomepageController(); 
             $controller->run() ; // передаем управление
         }
     }
     
 }
-
