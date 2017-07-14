@@ -3,6 +3,9 @@
 /**
  * Класс-маршрутизатор
  */
+
+use application\controllers as controllers;
+
 class Router
 {
     /**
@@ -12,15 +15,16 @@ class Router
     {
         switch ($action) {
         case 'archive':
-            $controller =  new \controllers\ArchiveController(); 
+            $controller =  new controllers\ArchiveController(); 
             $controller->run() ; // передаем управление
             break;
         case 'viewArticle':
-            $controller =  new \controllers\ViewArticleController(); 
+            $controller =  new controllers\ViewArticleController(); 
             $controller->run() ; // передаем управление
             break;
         default:
-            $controller =  new \controllers\HomepageController(); 
+            $controller =  new controllers\HomepageController(); 
+           // \DebugPrinter::debug($controller->template);
             $controller->run() ; // передаем управление
         }
     }
