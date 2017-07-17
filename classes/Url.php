@@ -10,7 +10,8 @@ class Url
      */
     public static function getAction()
     {
-        return isset( $_GET['action'] ) ? $_GET['action'] : "";
+        $act = isset( $_GET['action'] ) ? $_GET['action'] : "";
+        return $act;
     }
     
 }

@@ -4,10 +4,12 @@ require_once ("autoload.php"); // автозагрузка классов
 
 Config::debugReporting(); // включаем "строгое" отслеживание ошибок E_ALL
 
-echo Config::$db_username; // проверяем, загрузился ли Config
+//$obj = new PDO(Config::$db_dsn, Config::$db_username, Config::$db_password);
+//\DebugPrinter::debug($obj);
 
-DebugPrinter::debug(Config::$db_username); // проверяем, загрузился ли DebugPrinter
+//$conn = new \core\Model();
 
+//\DebugPrinter::debug($conn->pdo);
 
 $action = Url::getAction();
 $obj = new Router($action);

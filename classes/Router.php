@@ -15,6 +15,7 @@ class Router
     {
         switch ($action) {
         case 'archive':
+            
             $controller =  new controllers\ArchiveController(); 
             $controller->run() ; // передаем управление
             break;
@@ -24,7 +25,7 @@ class Router
             break;
         default:
             $controller =  new controllers\HomepageController(); 
-           // \DebugPrinter::debug($controller->template);
+           // \DebugPrinter::debug($controller->view);
             $controller->run() ; // передаем управление
         }
     }

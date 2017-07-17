@@ -2,7 +2,7 @@
 
 namespace core;
 /**
- * 
+ * Базовый класс для работы с конроллерами
  */
 class Controller 
 {
@@ -12,7 +12,7 @@ class Controller
     
     public function __construct() {
         $this->view = new View();
-       // \DebugPrinter::debug($this->template);
+       // \DebugPrinter::debug($this->view);
     }
     
     

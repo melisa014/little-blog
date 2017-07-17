@@ -1,2 +1,7 @@
-<h2><?= $text ?></h2>
 
+<?php
+
+?>
+
+<h2><?= $homepageTitle ?></h2>
+<p><?php DebugPrinter::debug($homepageArticles) ?></p>
