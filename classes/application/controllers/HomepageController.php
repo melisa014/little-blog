@@ -1,7 +1,6 @@
 <?php
 namespace application\controllers;
 use \application\models\Article as Article;
-use \core\Model as Model;
 
 class HomepageController extends \core\Controller
 {
@@ -10,13 +9,11 @@ class HomepageController extends \core\Controller
     /**
      * 
      */
-    public function run()
+    public function indexAction()
     {
-        $Model = new Model();
-        \DebugPrinter::debug($Model);
         $Article = new Article();
-        \DebugPrinter::debug($Article);
-        $homepageArticles = $Article->getById(1);
+//        \DebugPrinter::debug($Article);
+        $homepageArticles = $Article->getList();
            
         $this->view->addVar('homepageArticles', $homepageArticles);
         $this->view->addVar('homepageTitle', $this->homepageTitle);

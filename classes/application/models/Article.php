@@ -45,9 +45,11 @@ class Article extends \core\Model
     */
     public function __construct( $data=array() ) 
     {
-//        parent::__construct();
+        parent::__construct();
         $this->set_object_vars($this, $data);
         
+//        \DebugPrinter::debug($this, 'артикл констр');
+
         
 //        if ( isset( $data['id'] ) ) {$this->id = (int) $data['id'];}
 //        if ( isset( $data['publicationDate'] ) ) {$this->publicationDate = (string) $data['publicationDate'];}
@@ -64,9 +66,9 @@ class Article extends \core\Model
     {
         $has = get_object_vars($object);
         foreach ($has as $name => $oldValue) {
-            $object->$name = isset($vars[$name]) ? $vars[$name] : NULL;
+            $object->$name = isset($vars[$name]) ? $vars[$name] : $object->$name; // -- вот тут ты затираешь значение родителя. нужен фильтр. Вообще не очень это круто..
         }
-    }
+    } 
     
     public function insert()
     {

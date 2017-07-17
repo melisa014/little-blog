@@ -21,13 +21,8 @@ class Model
        $this->pdo = new \PDO(\Config::$db_dsn, \Config::$db_username,
                \Config::$db_password,
                array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
-       return $this->pdo;
-   }
-   
-   public function prepare($sql) 
-   {
-       return $this->pdo->prepare($sql);   
-       
+//       \DebugPrinter::debug($this, 'констр');
+//       echo ('Model constr!');
    }
    
     /**
@@ -44,7 +39,7 @@ class Model
 //      
         $modelClassName = static::class;
         
-        $st = $this->prepare($sql);
+        $st = $this->pdo->prepare($sql); 
 //        \DebugPrinter::debug($st);
         
         $st -> bindValue( ":id", $id, \PDO::PARAM_INT );
@@ -62,62 +57,57 @@ class Model
     * @param string Optional Столбц, по которому выполняется сортировка статей (по умолчанию = "publicationDate DESC")
     * @return Array|false Двух элементный массив: results => массив объектов Article; totalRows => общее количество строк
     */
-
-//            public static function getList( $numRows=1000000, $categoryId=null, $order="publicationDate DESC" ) {
-//                $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-//                $categoryClause = $categoryId ? "WHERE categoryId = :categoryId" : "";
-//                $sql = "SELECT SQL_CALC_FOUND_ROWS *, UNIX_TIMESTAMP(publicationDate) AS publicationDate
-//                        FROM articles $categoryClause
-//                        ORDER BY " . $conn->query($order) . " LIMIT :numRows";
-
-    public static function getList( $numRows=1000000, $categoryId=null, $order="publicationDate DESC" ) {
-        $conn = new PDO( DB_DSN, DB_USERNAME, DB_PASSWORD );
-        $categoryClause = $categoryId ? "WHERE categoryId = :categoryId" : "";
-        $sql = "SELECT SQL_CALC_FOUND_ROWS *, UNIX_TIMESTAMP(publicationDate) AS publicationDate
-                FROM articles $categoryClause
+        
+    public function getList( $numRows=1000000, $order="publicationDate DESC")
+    {
+        $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM $this->tableName
                 ORDER BY  $order  LIMIT :numRows";
 
-        $st = $conn->prepare( $sql );
-//                        echo "<pre>";
-//                        print_r($st);
-//                        echo "</pre>";
-//                        Здесь $st - текст предполагаемого SQL-запроса, причём переменные не отображаются
-        $st->bindValue( ":numRows", $numRows, PDO::PARAM_INT );
-        if ( $categoryId ) $st->bindValue( ":categoryId", $categoryId, PDO::PARAM_INT );
+        $modelClassName = static::class;
+        
+        $st = $this->pdo->prepare($sql);
+        $st->bindValue( ":numRows", $numRows, \PDO::PARAM_INT );
         $st->execute();
-//                        echo "<pre>";
-//                        print_r($st);
-//                        echo "</pre>";
-//                        Здесь $st - текст предполагаемого SQL-запроса, причём переменные не отображаются
         $list = array();
 
         while ( $row = $st->fetch() ) {
-            $article = new Article( $row );
+            $article = new $modelClassName( $row );
             $list[] = $article;
         }
 
-        // Получаем общее количество статей, которые соответствуют критерию
+//         Получаем общее количество статей, которые соответствуют критерию
         $sql = "SELECT FOUND_ROWS() AS totalRows";
-        $totalRows = $conn->query( $sql )->fetch();
-        $conn = null;
+        $totalRows = $this->pdo->query( $sql )->fetch();
         return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
     }
 
-    
-     public function storeFormValues ( $params ) {
-
+    /**
+    * Устанавливаем свойства с помощью значений формы редактирования записи в заданном массиве
+    *
+    * @param assoc Значения записи формы
+    */
+    public function storeFormValues ( $params ) 
+    {
         // Сохраняем все параметры
         $this->__construct( $params );
 
         // Разбираем и сохраняем дату публикации
-        if ( isset($params['publicationDate']) ) {
-            $publicationDate = explode ( '-', $params['publicationDate'] );
-
-            if ( count($publicationDate) == 3 ) {
-                list ( $y, $m, $d ) = $publicationDate;
-                $this->publicationDate = mktime ( 0, 0, 0, $m, $d, $y );
-            }
+        
+        $date = preg_match('#(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d#', $params['publicationDate'], $matches);
+        if (isset($matches)) {
+        \DebugPrinter::debug($matches);
         }
+        else {
+            echo "Формат даты неверный";
+        }
+//        if ( isset($params['publicationDate']) ) {
+//            $publicationDate = explode ( '-', $params['publicationDate'] );
+//
+//            if ( count($publicationDate) == 3 ) {
+//                list ( $y, $m, $d ) = $publicationDate;
+//                $this->publicationDate = mktime ( 0, 0, 0, $m, $d, $y );
+//            }
+//        }
     }
 }
 

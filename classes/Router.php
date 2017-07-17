@@ -4,8 +4,6 @@
  * Класс-маршрутизатор
  */
 
-use application\controllers as controllers;
-
 class Router
 {
     /**
@@ -13,21 +11,50 @@ class Router
      */
     public function __construct($action)
     {
-        switch ($action) {
-        case 'archive':
-            
-            $controller =  new controllers\ArchiveController(); 
-            $controller->run() ; // передаем управление
-            break;
-        case 'viewArticle':
-            $controller =  new controllers\ViewArticleController(); 
-            $controller->run() ; // передаем управление
-            break;
-        default:
-            $controller =  new controllers\HomepageController(); 
-           // \DebugPrinter::debug($controller->view);
-            $controller->run() ; // передаем управление
-        }
+
+        $controllersName = "application\\controllers\\". $this->getControllerClassName($action)."Controller";
+        $methodsName = $this->getControllerActionName($action);
+//        echo $controllersName;
+//        echo $methodsName;
+        $controller = new $controllersName();
+        $controller->$methodsName();
+        
     }
     
+    /**
+     * 
+     * @param type $action -- строка GET-параметр
+     */
+    public function getControllerClassName($action)
+    {
+        $result = 'Homepage';
+                
+        $urlFragments = explode('/', $action);
+        if (!empty($urlFragments[0])) {
+            
+            $firstletterToUp = ucwords($urlFragments[0]);
+            \DebugPrinter::debug($firstletterToUp);
+            
+            $result = $firstletterToUp; //. 'Controller'
+         } 
+         
+         return $result;
+    }
+    
+    /**
+     * 
+     * @param type $action -- строка GET-параметр
+     */
+    public function getControllerActionName($action)
+    {
+         $result =  'indexAction';
+         
+        $urlFragments = explode('/', $action);
+         if (!empty($urlFragments[1])) {
+             $result = $urlFragments[1] . 'Action' ;
+         } 
+         
+         return $result;
+         
+    }
 }

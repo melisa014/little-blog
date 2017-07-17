@@ -9,10 +9,10 @@ class ArchiveController extends \core\Controller
     /**
      * 
      */
-        public function run()
+    public function indexAction()
     {
-        
-        $archiveArticles = Article::getList(); //"Здесь должны быть все статьи, когда-либо созданные"
+        $Article = new Article();
+        $archiveArticles = $Article->getList(); //"Здесь должны быть все статьи, когда-либо созданные"
         
         
         $this->view->addVar('archiveArticles', $archiveArticles);
@@ -21,5 +21,6 @@ class ArchiveController extends \core\Controller
         $this->view->render('archive/index.php');
         
     }
+    
 }
 
