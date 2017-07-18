@@ -12,17 +12,17 @@ class Router
     public function __construct($action)
     {
 
-        $controllersName = "application\\controllers\\". $this->getControllerClassName($action)."Controller";
+        $controllersName = "application\\controllers\\". $this->getControllerClassName($action);
         $methodsName = $this->getControllerActionName($action);
-//        echo $controllersName;
-//        echo $methodsName;
+        echo $controllersName. "<br>";
+        echo $methodsName. "<br><br>";
         $controller = new $controllersName();
         $controller->$methodsName();
         
     }
     
     /**
-     * 
+     * Формирует имя конроллера по GET-параметру
      * @param type $action -- строка GET-параметр
      */
     public function getControllerClassName($action)
@@ -33,28 +33,28 @@ class Router
         if (!empty($urlFragments[0])) {
             
             $firstletterToUp = ucwords($urlFragments[0]);
-            \DebugPrinter::debug($firstletterToUp);
+//            \DebugPrinter::debug($firstletterToUp);
             
-            $result = $firstletterToUp; //. 'Controller'
-         } 
+            $result = $firstletterToUp;
+        } 
          
-         return $result;
+         return $result. "Controller";
     }
     
     /**
-     * 
+     * Формирует имя метода контроллера по GET-параметру
      * @param type $action -- строка GET-параметр
      */
     public function getControllerActionName($action)
     {
-         $result =  'indexAction';
+         $result =  'index';
          
         $urlFragments = explode('/', $action);
          if (!empty($urlFragments[1])) {
-             $result = $urlFragments[1] . 'Action' ;
+             $result = $urlFragments[1];
          } 
          
-         return $result;
+         return $result . 'Action';
          
     }
 }

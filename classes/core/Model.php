@@ -7,26 +7,32 @@ namespace core;
  */
 class Model 
 {
-   public $pdo;
-   
-   public $tableName = '';
-
-   /**
-    * Устанавливает соединение с БД
-    * 
-    * @return объект класса PDO для раборы с БД
-    */
-   public function __construct() 
-   {
-       $this->pdo = new \PDO(\Config::$db_dsn, \Config::$db_username,
-               \Config::$db_password,
-               array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
-//       \DebugPrinter::debug($this, 'констр');
-//       echo ('Model constr!');
-   }
+    /**
+     * @var object Хранит соединение с БД
+     */
+    public $pdo;
    
     /**
-     * Одна статья = одна строка таблицы
+     * @var string Имя обрабатываемой таблицы 
+     */
+    public $tableName = '';
+
+    /**
+     * Устанавливает соединение с БД
+     * 
+     * @return объект класса PDO для раборы с БД
+     */
+    public function __construct() 
+    {
+        $this->pdo = new \PDO(\Config::$db_dsn, \Config::$db_username,
+                \Config::$db_password,
+                array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
+ //       \DebugPrinter::debug($this, 'констр');
+ //       echo ('Model constr!');
+    }
+   
+    /**
+     * Получает из БД все поля одной строки таблицы, с соответствующим Id
      * Возвращает объект класса модели
      * 
      * @param int $id
@@ -108,6 +114,20 @@ class Model
 //                $this->publicationDate = mktime ( 0, 0, 0, $m, $d, $y );
 //            }
 //        }
+    }
+    
+    /**
+    * Удаляем текущий объект статьи из базы данных
+    */
+    public function delete() 
+    {
+        // Есть ли у объекта статьи ID?
+//        if ( is_null( $this->id ) ) trigger_error ( "Article::delete(): Attempt to delete an Article object that does not have its ID property set.", E_USER_ERROR );
+
+        // Удаляем статью
+        $st = $this->pdo->prepare ( "DELETE FROM articles WHERE id = :id LIMIT 1" );
+        $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
+        $st->execute();
     }
 }
 

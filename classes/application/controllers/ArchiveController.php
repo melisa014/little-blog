@@ -4,15 +4,18 @@ use \application\models\Article as Article;
 
 class ArchiveController extends \core\Controller
 {
+    /**
+     * @var string Название страницы
+     */
     public $archivePageTitle = "Архив";
     
     /**
-     * 
+     * Выводит на экран страницу "Архив"
      */
     public function indexAction()
     {
         $Article = new Article();
-        $archiveArticles = $Article->getList(); //"Здесь должны быть все статьи, когда-либо созданные"
+        $archiveArticles = $Article->getList();
         
         
         $this->view->addVar('archiveArticles', $archiveArticles);

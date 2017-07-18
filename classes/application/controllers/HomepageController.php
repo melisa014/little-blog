@@ -4,10 +4,13 @@ use \application\models\Article as Article;
 
 class HomepageController extends \core\Controller
 {
+    /**
+     * @var string Название страницы
+     */
     public $homepageTitle = "Домашняя страница";
     
     /**
-     * 
+     * Выводит на экран страницу "Домашняя страница"
      */
     public function indexAction()
     {

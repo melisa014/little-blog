@@ -13,7 +13,7 @@ foreach ($homepageArticles['results'] as $key => $value):?>
     <hr><br>    
 <?php endforeach; ?>
     
-    <a href="">+ Добавить статью</a>
+<a href="http://little-blog/index.php?action=article/add">+ Добавить статью</a>
     
 <a href="http://little-blog/index.php?action=archive/index">В архив</a>
 
