@@ -1,17 +1,22 @@
+<h2><?php echo $editArticleTitle ?>
+    <span>
+        <a href="/index.php?action=article/delete&id=<?= $_GET['id']; ?>">
+            [Удалить]</a>
+    </span>
+</h2>
 
-<form method="post" action="http://little-blog/index.php?action=article/edit&id=<?php echo $_GET['id']; ?>">
+<form method="post" action="/index.php?action=article/edit&id=<?php echo $_GET['id']; ?>">
     <h5>Введите название статьи</h5>
-    <input type="text" name="title" value="<?php echo $viewArticleTitle ?>"><br>
+    <input type="text" name="title" value="<?php echo $viewArticle->title ?>"><br>
     <h5>Выберите категорию статьи</h5>
-    <input type="text" name="category" value="<?php echo $viewArticleCategoryId ?>"><br>
+    <input type="text" name="category" value="<?php echo $viewArticle->categoryId ?>"><br>
     <h5>Краткое описание статьи</h5>
-    <textarea rows="5" cols="100" name="summary"><?php echo $viewArticleSummary ?></textarea><br>
+    <textarea rows="5" cols="100" name="summary"><?php echo $viewArticle->summary ?></textarea><br>
     <h5>Текст статьи</h5>
-    <textarea rows="20" cols="100" name="content"><?php echo $viewArticleContent ?></textarea><br>
+    <textarea rows="20" cols="100" name="content"><?php echo $viewArticle->content ?></textarea><br>
     <h5>Дата публикации</h5>
-    <input type="text" name="title" value="<?php echo $viewArticleDate ?>"><br><br>
-    <input type="submit" name="ok" value="Сохранить">
+    <input type="text" name="title" value="<?php echo $viewArticle->publicationDate ?>"><br><br>
+    <input type="submit" name="saveChanges" value="Сохранить">
     <input type="submit" name="cancel" value="Назад"><br>
 </form>
-<a href="http://little-blog/index.php?action=article/delete&id=<?php echo $viewArticleId; ?>">
-    [Удалить]</a>
+

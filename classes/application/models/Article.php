@@ -68,17 +68,19 @@ class Article extends \core\Model
      */
     public function insert()
     {
-        // Есть уже у объекта Article ID?
-        if ( !is_null( $this->id ) ) trigger_error ( "Article::insert(): Attempt to insert an Article object that already has its ID property set (to $this->id).", E_USER_ERROR );
+//         Есть уже у объекта Article ID?
+//        if ( !is_null( $this->id ) ) trigger_error ( "Article::insert(): Attempt to insert an Article object that already has its ID property set (to $this->id).", E_USER_ERROR );
 
         // Вставляем статью
-        $sql = "INSERT INTO articles ( publicationDate, categoryId, title, summary, content ) VALUES ( FROM_UNIXTIME(:publicationDate), :categoryId, :title, :summary, :content )";
+        $sql = "INSERT INTO $this->tableName ( publicationDate, categoryId, title, summary, content ) VALUES ( FROM_UNIXTIME(:publicationDate), :categoryId, :title, :summary, :content )";
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":publicationDate", $this->publicationDate, \PDO::PARAM_INT );
         $st->bindValue( ":categoryId", $this->categoryId, \PDO::PARAM_INT );
         $st->bindValue( ":title", $this->title, \PDO::PARAM_STR );
         $st->bindValue( ":summary", $this->summary, \PDO::PARAM_STR );
         $st->bindValue( ":content", $this->content, \PDO::PARAM_STR );
+        
+//        \DebugPrinter::debug($st->queryString);
         $st->execute();
         $this->id = $this->pdo->lastInsertId();
     }

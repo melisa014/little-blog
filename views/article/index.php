@@ -1,8 +1,12 @@
-<h2><?= $viewArticleTitle ?></h2> 
-<a href="http://little-blog/index.php?action=article/edit&id=<?php echo $viewArticleId; ?>">
-    [Редактировать]</a>
+<h2><?= $viewArticle->title ?>
+    <span>
+        <a href="/index.php?action=article/edit&id=<?php echo $viewArticle->id; ?>">
+            [Редактировать]</a>
+    </span>
+</h2> 
 
-<p><?= $viewArticleContent ?></p>
-<p>Эта статья была написана <?= $viewArticleDate ?></p>
-<a href="http://little-blog/index.php">На домашнюю страницу</a><br>
-<a href="http://little-blog/index.php?action=archive/index">В архив</a>
+<a href="/index.php">На домашнюю страницу</a>
+<a href="/index.php?action=archive/index">В архив</a><br>
+
+<p><?= $viewArticle->content ?></p>
+<p>Эта статья была написана <?= $viewArticle->publicationDate ?></p>

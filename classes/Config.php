@@ -22,6 +22,16 @@ class Config
     static public $db_password = "1234";
     
     /**
+     * Имя пользователя для входа на сайт
+     */
+    static public $admin_username = "admin";
+    
+    /**
+     * Пароль для входа на сайт
+     */
+    static public $admin_password = "mypass";
+    
+    /**
      * Установка строгого режима вывода ошибок, предупреждений и уведомлений для отладки
      */
     static function debugReporting()

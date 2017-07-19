@@ -19,7 +19,9 @@ class Controller
        // \DebugPrinter::debug($this->view);
     }
     
-    
+    public function header($path) {
+        header ("Location: $path");
+    }
     
 }
 

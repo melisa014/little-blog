@@ -1,5 +1,7 @@
-<form method="post" action="http://little-blog/index.php?action=article/delete&id=<?php echo $_GET['id']; ?>" >
-Вы больше никогда не сможете прочитать эту статью, Вы уверены, что хотите её удалить?
- <input type="submit" name="ok" value="Удалить">
- <input type="submit" name="ok" value="Вернуться"><br>
+<h2><?php echo $deleteArticleTitle ?></h2>
+
+<form method="post" action="/index.php?action=article/delete&id=<?php echo $_GET['id']; ?>" >
+    Вы уверены, что хотите удалить статью?
+    <input type="submit" name="deleteArticle" value="Удалить">
+    <input type="submit" name="cancel" value="Вернуться"><br>
 </form>

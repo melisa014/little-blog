@@ -13,26 +13,19 @@ class ArticleController extends \core\Controller
     
     public $viewArticleDate = "";
     
+    public $viewArticle = "";
+    
     /**
      * Выводит на экран страницу "Статья" для просмотра
      */
     public function indexAction()
     {
 
-        $Article = (new Article())->getById($_GET['id']);
+        $Article = new Article();
 
-//        \DebugPrinter::debug($Article);
-//        \DebugPrinter::debug($newArticle);
+        $this->viewArticle = $Article->getById($_GET['id']);
         
-        $this->viewArticleDate = $Article->publicationDate; //date('d M Y H:i:s');
-        $this->viewArticleTitle = $Article->title;
-        $this->viewArticleContent = $Article->content;
-        $this->viewArticleId = $Article->id;
-        
-        $this->view->addVar('viewArticleContent', $this->viewArticleContent);
-        $this->view->addVar('viewArticleTitle', $this->viewArticleTitle);
-        $this->view->addVar('viewArticleDate', $this->viewArticleDate);
-        $this->view->addVar('viewArticleId', $this->viewArticleId);
+        $this->view->addVar('viewArticle', $this->viewArticle);
         
         $this->view->render('article/index.php');
     }
@@ -42,14 +35,24 @@ class ArticleController extends \core\Controller
      */
     public function addAction()
     {
-        echo "Добавляю статью <br>";
-        
         if (!empty($_POST)) {
-            $Article = new Article();
-            $Article->insert();
-            echo "Статья добавлена";
-        } 
+            if ($_POST['saveNewArticle'] == 'Сохранить') {
+                $Article = new Article();
+                $newArticle = $Article->loadFromPost();
+                \DebugPrinter::debug($newArticle);
+                $newArticle->insert();
+                \DebugPrinter::debug($newArticle, 'после инсерта');
+                $this->header('/index.php?action=homepage/index');
+            
+            } 
+            elseif ($_POST['cancel'] == 'Назад') {
+                $this->header("/index.php?action=homepage/index");
+            }
+        }
         else {
+            $this->addArticleTitle = "Создание статьи";
+            $this->view->addVar('addArticleTitle', $this->addArticleTitle);
+            
             $this->view->render('article/add.php');
         }
     }
@@ -59,29 +62,31 @@ class ArticleController extends \core\Controller
      */
     public function editAction()
     {
+        $id = $_GET['id'];
+        
+//        \DebugPrinter::debug($_POST);
+//        \DebugPrinter::debug($id);
+        
         if (!empty($_POST)) {
-            $Article = new Article();
-            $Article->update();
-            unset($_POST);
-            $this->view->render('article/edit.php', 'Статья изменена');
-        } 
+            if ($_POST['saveChanges'] == 'Сохранить') {
+                $Article = new Article();
+                $newArticle = $Article->loadFromPost();
+                $newArticle->update();
+                $this->header("index.php?action=article/index&id=$id");
+            } 
+            elseif ($_POST['cancel'] == 'Назад') {
+                $this->header("index.php?action=article/index&id=$id");
+            }
+        }
         else {
-            $Article = (new Article())->getById($_GET['id']);
+            $Article = new Article();
+            $this->viewArticle = $Article->getById($id);
+            $this->editArticleTitle = "Редактирование статьи";
+//            \DebugPrinter::debug($this->viewArticle);
             
-            $this->viewArticleDate = $Article->publicationDate; //date('d M Y H:i:s');
-            $this->viewArticleTitle = $Article->title;
-            $this->viewArticleContent = $Article->content;
-            $this->viewArticleId = $Article->id;
-            $this->viewArticleSummary = $Article->summary;
-            $this->viewArticleCategoryId = $Article->categoryId;
-
-            $this->view->addVar('viewArticleContent', $this->viewArticleContent);
-            $this->view->addVar('viewArticleTitle', $this->viewArticleTitle);
-            $this->view->addVar('viewArticleDate', $this->viewArticleDate);
-            $this->view->addVar('viewArticleId', $this->viewArticleId);
-            $this->view->addVar('viewArticleSummary', $this->viewArticleSummary);
-            $this->view->addVar('viewArticleCategoryId', $this->viewArticleCategoryId);
-
+            $this->view->addVar('viewArticle', $this->viewArticle);
+            $this->view->addVar('editArticleTitle', $this->editArticleTitle);
+            
             $this->view->render('article/edit.php');   
         }
         
@@ -92,21 +97,24 @@ class ArticleController extends \core\Controller
      */
     public function deleteAction()
     {
-        echo "Удаляю статью <br>";
+        $id = $_GET['id'];
         
         if (!empty($_POST)) {
-            if ($_POST['ok'] == 'Удалить') {
+            if ($_POST['deleteArticle'] == 'Удалить') {
                 $Article = new Article();
-                $Article->delete();
-                $this->view->render('article/delete.php', 'Статья удалена');
+                $newArticle = $Article->loadFromPost();
+                $newArticle->delete();
+                $this->header('index.php?action=homepage/index');
               
             }
-            elseif ($_POST['ok'] == 'Вернуться') {
-                $id = $_GET['id'];
-                $this->view->render("article/index.php?action=article/edit&id=$id");
+            elseif ($_POST['cancel'] == 'Вернуться') {
+                $this->header("index.php?action=article/edit&id=$id");
             }
         }
         else {
+            $this->deleteArticleTitle = "Удаление статьи";
+            $this->view->addVar('deleteArticleTitle', $this->deleteArticleTitle);
+            
             $this->view->render('article/delete.php');
         }
     }

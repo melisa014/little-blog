@@ -14,8 +14,8 @@ class Router
 
         $controllersName = "application\\controllers\\". $this->getControllerClassName($action);
         $methodsName = $this->getControllerActionName($action);
-        echo $controllersName. "<br>";
-        echo $methodsName. "<br><br>";
+//        echo $controllersName. "<br>";
+//        echo $methodsName. "<br><br>";
         $controller = new $controllersName();
         $controller->$methodsName();
         

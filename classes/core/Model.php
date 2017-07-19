@@ -116,6 +116,13 @@ class Model
 //        }
     }
     
+    public function loadFromPost()
+    {
+        $modelClassName = static::class;
+//        \DebugPrinter::debug($_POST);
+        return new $modelClassName( $_POST );
+    }
+    
     /**
     * Удаляем текущий объект статьи из базы данных
     */
