@@ -31,9 +31,24 @@ class ArticleController extends \core\Controller
     }
     
     /**
-     * Выводит на экран форму для создания новой статьи
+     * Выводит на экран страницу "Статья" для просмотра Администратору
      */
-    public function addAction()
+    public function indexAdminAction()
+    {
+
+        $Article = new Article();
+
+        $this->viewArticle = $Article->getById($_GET['id']);
+        
+        $this->view->addVar('viewArticle', $this->viewArticle);
+        
+        $this->view->render('article/indexAdmin.php');
+    }
+    
+    /**
+     * Выводит на экран форму для создания новой статьи (только для Администратора)
+     */
+    public function addAdminAction()
     {
         if (!empty($_POST)) {
             if ($_POST['saveNewArticle'] == 'Сохранить') {
@@ -53,14 +68,14 @@ class ArticleController extends \core\Controller
             $this->addArticleTitle = "Создание статьи";
             $this->view->addVar('addArticleTitle', $this->addArticleTitle);
             
-            $this->view->render('article/add.php');
+            $this->view->render('article/addAdmin.php');
         }
     }
     
     /**
-     * Выводит на экран форму для редактирования статьи
+     * Выводит на экран форму для редактирования статьи (только для Администратора)
      */
-    public function editAction()
+    public function editAdminAction()
     {
         $id = $_GET['id'];
         
@@ -87,15 +102,15 @@ class ArticleController extends \core\Controller
             $this->view->addVar('viewArticle', $this->viewArticle);
             $this->view->addVar('editArticleTitle', $this->editArticleTitle);
             
-            $this->view->render('article/edit.php');   
+            $this->view->render('article/editAdmin.php');   
         }
         
     }
     
     /**
-     * Выводит на экран предупреждение об удалении данных
+     * Выводит на экран предупреждение об удалении данных (только для Администратора)
      */
-    public function deleteAction()
+    public function deleteAdminAction()
     {
         $id = $_GET['id'];
         
@@ -115,7 +130,7 @@ class ArticleController extends \core\Controller
             $this->deleteArticleTitle = "Удаление статьи";
             $this->view->addVar('deleteArticleTitle', $this->deleteArticleTitle);
             
-            $this->view->render('article/delete.php');
+            $this->view->render('article/deleteAdmin.php');
         }
     }
 }

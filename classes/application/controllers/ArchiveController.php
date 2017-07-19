@@ -1,6 +1,7 @@
 <?php
 namespace application\controllers;
 use \application\models\Article as Article;
+use \application\models\Category as Category;
 
 class ArchiveController extends \core\Controller
 {
@@ -22,6 +23,22 @@ class ArchiveController extends \core\Controller
         $this->view->addVar('archivePageTitle', $this->archivePageTitle);
         
         $this->view->render('archive/index.php');
+        
+    }
+    
+    /**
+     * Выводит на экран страницу "Архив" Администратора 
+     */
+     public function indexAdminAction()
+    {
+        $Article = new Article();
+        $archiveArticles = $Article->getList();
+        
+        
+        $this->view->addVar('archiveArticles', $archiveArticles);
+        $this->view->addVar('archivePageTitle', $this->archivePageTitle);
+        
+        $this->view->render('archive/indexAdmin.php');
         
     }
     

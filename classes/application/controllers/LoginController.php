@@ -1,6 +1,5 @@
 <?php
 namespace application\controllers;
-use \application\models\Article as Article;
 
 class LoginController extends \core\Controller
 {
@@ -14,15 +13,15 @@ class LoginController extends \core\Controller
      */
     public function indexAction()
     {
-        session_start();
-        If (!empty($_POST)) {
+        if (!empty($_POST)) {
             if (($_POST['username'] == \Config::$admin_username) && ($_POST['password'] == \Config::$admin_password)) {
-                $_SESSION['username'] = \Config::$admin_username;
-                $this->header('index.php?action=homepage/index');
-            }
+                    $_SESSION['username'] = \Config::$admin_username;
+                    \DebugPrinter::debug($_SESSION);
+                    $this->header('index.php?action=homepage/index');
+                }
             else {
-            $this->view->addVar('loginTitle', $this->loginTitle);
-            $this->view->render('login/index.php', "Неверное имя пользователя или пароль");
+                $this->view->addVar('loginTitle', $this->loginTitle);
+                $this->view->render('login/index.php', "Неверное имя пользователя или пароль");
             }
         }
         else {
@@ -34,7 +33,7 @@ class LoginController extends \core\Controller
     /**
      * Выход из системы
      */
-    public function logoutAction()
+    public function logoutAdminAction()
     {
         unset( $_SESSION['username'] );
         $this->header('index.php?action=login/index');

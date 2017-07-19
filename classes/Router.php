@@ -11,7 +11,9 @@ class Router
      */
     public function __construct($action)
     {
-
+//        \DebugPrinter::debug($_SESSION['username']);
+//        echo "<br>";
+        
         $controllersName = "application\\controllers\\". $this->getControllerClassName($action);
         $methodsName = $this->getControllerActionName($action);
 //        echo $controllersName. "<br>";
@@ -53,6 +55,9 @@ class Router
          if (!empty($urlFragments[1])) {
              $result = $urlFragments[1];
          } 
+         if (isset($_SESSION['username'])) {
+             $result .= 'Admin'; 
+         }
          
          return $result . 'Action';
          

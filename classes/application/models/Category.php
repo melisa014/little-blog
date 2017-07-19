@@ -1,7 +1,7 @@
 <?php
 namespace application\models;
 
-class Article extends \core\Model
+class Category extends \core\Model
 {
     /**
      * @var string Имя обрабатываемой таблицы 
@@ -9,34 +9,19 @@ class Article extends \core\Model
     public $tableName = 'articles';
     
     /**
-    * @var int ID статей из базы данны
+    * @var int ID категории из базы данны
     */
     public $id = null;
 
     /**
-    * @var int Дата первой публикации статьи
+    * @var string Название категории
     */
-    public $publicationDate = null;
+    public $name = null;
 
     /**
-    * @var string Полное название статьи
+    * @var string Описание категории
     */
-    public $title = null;
-
-     /**
-    * @var int ID категории статьи
-    */
-    public $categoryId = null;
-
-    /**
-    * @var string Краткое описание статьи
-    */
-    public $summary = null;
-
-    /**
-    * @var string HTML содержание статьи
-    */
-    public $content = null;
+    public $description = null;
             
 
     /**
@@ -72,13 +57,10 @@ class Article extends \core\Model
 //        if ( !is_null( $this->id ) ) trigger_error ( "Article::insert(): Attempt to insert an Article object that already has its ID property set (to $this->id).", E_USER_ERROR );
 
         // Вставляем статью
-        $sql = "INSERT INTO $this->tableName ( publicationDate, categoryId, title, summary, content ) VALUES ( FROM_UNIXTIME(:publicationDate), :categoryId, :title, :summary, :content )";
+        $sql = "INSERT INTO $this->tableName ( name, description ) VALUES ( :name, :description )";
         $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":publicationDate", $this->publicationDate, \PDO::PARAM_INT );
-        $st->bindValue( ":categoryId", $this->categoryId, \PDO::PARAM_INT );
-        $st->bindValue( ":title", $this->title, \PDO::PARAM_STR );
-        $st->bindValue( ":summary", $this->summary, \PDO::PARAM_STR );
-        $st->bindValue( ":content", $this->content, \PDO::PARAM_STR );
+        $st->bindValue( ":name", $this->name, \PDO::PARAM_STR );
+        $st->bindValue( ":description", $this->description, \PDO::PARAM_STR );
         
 //        \DebugPrinter::debug($st->queryString);
         $st->execute();
@@ -94,13 +76,10 @@ class Article extends \core\Model
 //        if ( is_null( $this->id ) ) trigger_error ( "Article::update(): Attempt to update an Article object that does not have its ID property set.", E_USER_ERROR );
 
         // Обновляем статью
-        $sql = "UPDATE $this->tableName SET publicationDate=FROM_UNIXTIME(:publicationDate), categoryId=:categoryId, title=:title, summary=:summary, content=:content WHERE id = :id";
+        $sql = "UPDATE $this->tableName SET name=:name, description=:description WHERE id = :id";
         $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":publicationDate", $this->publicationDate, \PDO::PARAM_INT );
-        $st->bindValue( ":categoryId", $this->categoryId, \PDO::PARAM_INT );
-        $st->bindValue( ":title", $this->title, \PDO::PARAM_STR );
-        $st->bindValue( ":summary", $this->summary, \PDO::PARAM_STR );
-        $st->bindValue( ":content", $this->content, \PDO::PARAM_STR );
+        $st->bindValue( ":name", $this->name, \PDO::PARAM_STR );
+        $st->bindValue( ":description", $this->description, \PDO::PARAM_STR );
         $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
         $st->execute();
     }
@@ -108,4 +87,5 @@ class Article extends \core\Model
 
     
 }
+
 

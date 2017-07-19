@@ -77,8 +77,8 @@ class Model
         $list = array();
 
         while ( $row = $st->fetch() ) {
-            $article = new $modelClassName( $row );
-            $list[] = $article;
+            $example = new $modelClassName( $row );
+            $list[] = $example;
         }
 
 //         Получаем общее количество статей, которые соответствуют критерию
@@ -86,36 +86,7 @@ class Model
         $totalRows = $this->pdo->query( $sql )->fetch();
         return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
     }
-
-    /**
-    * Устанавливаем свойства с помощью значений формы редактирования записи в заданном массиве
-    *
-    * @param assoc Значения записи формы
-    */
-    public function storeFormValues ( $params ) 
-    {
-        // Сохраняем все параметры
-        $this->__construct( $params );
-
-        // Разбираем и сохраняем дату публикации
-        
-        $date = preg_match('#(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d#', $params['publicationDate'], $matches);
-        if (isset($matches)) {
-        \DebugPrinter::debug($matches);
-        }
-        else {
-            echo "Формат даты неверный";
-        }
-//        if ( isset($params['publicationDate']) ) {
-//            $publicationDate = explode ( '-', $params['publicationDate'] );
-//
-//            if ( count($publicationDate) == 3 ) {
-//                list ( $y, $m, $d ) = $publicationDate;
-//                $this->publicationDate = mktime ( 0, 0, 0, $m, $d, $y );
-//            }
-//        }
-    }
-    
+  
     public function loadFromPost()
     {
         $modelClassName = static::class;
@@ -132,7 +103,7 @@ class Model
 //        if ( is_null( $this->id ) ) trigger_error ( "Article::delete(): Attempt to delete an Article object that does not have its ID property set.", E_USER_ERROR );
 
         // Удаляем статью
-        $st = $this->pdo->prepare ( "DELETE FROM articles WHERE id = :id LIMIT 1" );
+        $st = $this->pdo->prepare ( "DELETE FROM $this->tableName WHERE id = :id LIMIT 1" );
         $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
         $st->execute();
     }

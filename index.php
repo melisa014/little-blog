@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once ("autoload.php"); // автозагрузка классов
 
 Config::debugReporting(); // включаем "строгое" отслеживание ошибок E_ALL
@@ -10,6 +12,7 @@ Config::debugReporting(); // включаем "строгое" отслежив�
 //$conn = new \core\Model();
 
 //\DebugPrinter::debug($conn->pdo);
+
 
 $action = Url::getAction();
 $obj = new Router($action);
