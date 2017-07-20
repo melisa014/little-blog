@@ -42,5 +42,23 @@ class ArchiveController extends \core\Controller
         
     }
     
+    
+    /**
+     * Выводит на экран страницу "Архив. Категории" Администратора 
+     */
+     public function allCategoriesAdminAction()
+    {
+        $Category = new Category();
+        $archiveCategories = $Category->getList();
+        $this->archivePageTitle = "Список категорий";
+        
+        
+        $this->view->addVar('archiveCategories', $archiveCategories);
+        $this->view->addVar('archivePageTitle', $this->archivePageTitle);
+        
+        $this->view->render('archive/allCategoriesAdmin.php');
+        
+    }
+    
 }
 

@@ -27,8 +27,6 @@ class Model
         $this->pdo = new \PDO(\Config::$db_dsn, \Config::$db_username,
                 \Config::$db_password,
                 array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
- //       \DebugPrinter::debug($this, 'констр');
- //       echo ('Model constr!');
     }
    
     /**
@@ -41,17 +39,14 @@ class Model
     public function getById($id)
     {
         $sql = "SELECT * FROM $this->tableName where id = :id";
-//        \DebugPrinter::debug(self::$pdo);
 //      
         $modelClassName = static::class;
         
         $st = $this->pdo->prepare($sql); 
-//        \DebugPrinter::debug($st);
         
         $st -> bindValue( ":id", $id, \PDO::PARAM_INT );
         $st -> execute();
         $row = $st->fetch();
-//        echo $modelClassName;
         if ( $row ) { return new $modelClassName( $row );}
     }
    
@@ -64,10 +59,10 @@ class Model
     * @return Array|false Двух элементный массив: results => массив объектов Article; totalRows => общее количество строк
     */
         
-    public function getList( $numRows=1000000, $order="publicationDate DESC")
+    public function getList( $numRows=1000000)  
     {
         $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM $this->tableName
-                ORDER BY  $order  LIMIT :numRows";
+                ORDER BY  $this->orderBy LIMIT :numRows";
 
         $modelClassName = static::class;
         
@@ -75,7 +70,8 @@ class Model
         $st->bindValue( ":numRows", $numRows, \PDO::PARAM_INT );
         $st->execute();
         $list = array();
-
+        
+        
         while ( $row = $st->fetch() ) {
             $example = new $modelClassName( $row );
             $list[] = $example;
@@ -90,7 +86,6 @@ class Model
     public function loadFromPost()
     {
         $modelClassName = static::class;
-//        \DebugPrinter::debug($_POST);
         return new $modelClassName( $_POST );
     }
     

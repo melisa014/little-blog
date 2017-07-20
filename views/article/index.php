@@ -4,4 +4,4 @@
 <a href="/index.php?action=archive/index">В архив</a><br>
 
 <p><?= $viewArticle->content ?></p>
-<p>Эта статья была написана <?= $viewArticle->publicationDate ?></p>
+<p class="pubDate">Эта статья была написана <?= $viewArticle->publicationDate ?></p>

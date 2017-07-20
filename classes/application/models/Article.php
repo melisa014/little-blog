@@ -9,6 +9,11 @@ class Article extends \core\Model
     public $tableName = 'articles';
     
     /**
+     * @var string Критерий сортировки строк таблицы
+     */
+    public $orderBy = 'publicationDate DESC';
+    
+    /**
     * @var int ID статей из базы данны
     */
     public $id = null;
@@ -48,8 +53,6 @@ class Article extends \core\Model
     {
         parent::__construct();
         $this->set_object_vars($this, $data);
-      
-//        \DebugPrinter::debug($this, 'артикл констр');       
     }
     
     /**
@@ -79,8 +82,6 @@ class Article extends \core\Model
         $st->bindValue( ":title", $this->title, \PDO::PARAM_STR );
         $st->bindValue( ":summary", $this->summary, \PDO::PARAM_STR );
         $st->bindValue( ":content", $this->content, \PDO::PARAM_STR );
-        
-//        \DebugPrinter::debug($st->queryString);
         $st->execute();
         $this->id = $this->pdo->lastInsertId();
     }

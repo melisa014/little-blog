@@ -5,12 +5,12 @@ use \application\models\Category as Category;
 class CategoryController extends \core\Controller
 { 
     /**
-     * Выводит на экран страницу "Статья" для просмотра
+     * Выводит на экран страницу "Категория" для просмотра
      */
     public function indexAction()
     {
 
-        $Article = new Category();
+        $Category = new Category();
 
         $this->viewCategory = $Category->getById($_GET['id']);
         
@@ -20,12 +20,12 @@ class CategoryController extends \core\Controller
     }
     
     /**
-     * Выводит на экран страницу "Статья" для просмотра Администратору
+     * Выводит на экран страницу "Категоия" для просмотра Администратору
      */
     public function indexAdminAction()
     {
 
-        $Article = new Category();
+        $Category = new Category();
 
         $this->viewCategory = $Category->getById($_GET['id']);
         
@@ -85,7 +85,7 @@ class CategoryController extends \core\Controller
         else {
             $Category = new Category();
             $this->viewCategory = $Category->getById($id);
-            $this->editCategoryTitle = "Редактирование статьи";
+            $this->editCategoryTitle = "Редактирование категории";
 //            \DebugPrinter::debug($this->viewArticle);
             
             $this->view->addVar('viewCategory', $this->viewCategory);
@@ -115,7 +115,7 @@ class CategoryController extends \core\Controller
             }
         }
         else {
-            $this->deleteCategoryTitle = "Удаление статьи";
+            $this->deleteCategoryTitle = "Удаление категории";
             $this->view->addVar('deleteCategoryTitle', $this->deleteCategoryTitle);
             
             $this->view->render('category/deleteAdmin.php');

@@ -6,7 +6,12 @@ class Category extends \core\Model
     /**
      * @var string Имя обрабатываемой таблицы 
      */
-    public $tableName = 'articles';
+    public $tableName = 'categories';
+    
+    /**
+     * @var string Критерий сортировки строк таблицы
+     */
+    public $orderBy = 'name ASC';
     
     /**
     * @var int ID категории из базы данны
@@ -33,8 +38,6 @@ class Category extends \core\Model
     {
         parent::__construct();
         $this->set_object_vars($this, $data);
-      
-//        \DebugPrinter::debug($this, 'артикл констр');       
     }
     
     /**
@@ -62,7 +65,6 @@ class Category extends \core\Model
         $st->bindValue( ":name", $this->name, \PDO::PARAM_STR );
         $st->bindValue( ":description", $this->description, \PDO::PARAM_STR );
         
-//        \DebugPrinter::debug($st->queryString);
         $st->execute();
         $this->id = $this->pdo->lastInsertId();
     }

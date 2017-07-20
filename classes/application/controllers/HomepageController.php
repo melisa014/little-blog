@@ -17,7 +17,6 @@ class HomepageController extends \core\Controller
     {
         $Article = new Article();
         $Category = new Category();
-//        \DebugPrinter::debug($Article);
         $homepageArticles = $Article->getList();
         $homepageCategories = $Category->getList();
         
@@ -36,11 +35,9 @@ class HomepageController extends \core\Controller
     public function indexAdminAction()
     {
         $Article = new Article();
-//        \DebugPrinter::debug($Article);
         $Category = new Category();
         $homepageArticles = $Article->getList();
         $homepageCategories = $Category->getList();
-        \DebugPrinter::debug($homepageCategories);
            
         $this->view->addVar('homepageArticles', $homepageArticles);
         $this->view->addVar('homepageCategories', $homepageCategories);
