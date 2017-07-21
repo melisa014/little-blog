@@ -31,6 +31,7 @@ class CategoryController extends \core\Controller
         
         $this->view->addVar('viewCategory', $this->viewCategory);
         
+        $this->view->headerFilePath = 'headerAdmin.php';
         $this->view->render('category/indexAdmin.php');
     }
     
@@ -57,6 +58,7 @@ class CategoryController extends \core\Controller
             $this->addCategoryTitle = "Создание категории";
             $this->view->addVar('addCategoryTitle', $this->addCategoryTitle);
             
+            $this->view->headerFilePath = 'headerAdmin.php';
             $this->view->render('category/addAdmin.php');
         }
     }
@@ -91,6 +93,7 @@ class CategoryController extends \core\Controller
             $this->view->addVar('viewCategory', $this->viewCategory);
             $this->view->addVar('editCategoryTitle', $this->editCategoryTitle);
             
+            $this->view->headerFilePath = 'headerAdmin.php';
             $this->view->render('category/editAdmin.php');   
         }
     }
@@ -118,6 +121,7 @@ class CategoryController extends \core\Controller
             $this->deleteCategoryTitle = "Удаление категории";
             $this->view->addVar('deleteCategoryTitle', $this->deleteCategoryTitle);
             
+            $this->view->headerFilePath = 'headerAdmin.php';
             $this->view->render('category/deleteAdmin.php');
         }
     }

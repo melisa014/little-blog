@@ -38,11 +38,13 @@ class HomepageController extends \core\Controller
         $Category = new Category();
         $homepageArticles = $Article->getList();
         $homepageCategories = $Category->getList();
-           
+//        \DebugPrinter::debug($homepageArticles);   
+        
         $this->view->addVar('homepageArticles', $homepageArticles);
         $this->view->addVar('homepageCategories', $homepageCategories);
         $this->view->addVar('homepageTitle', $this->homepageTitle);
         
+        $this->view->headerFilePath = 'headerAdmin.php';
         $this->view->render('homepage/indexAdmin.php');
         
         

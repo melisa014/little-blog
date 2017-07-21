@@ -1,9 +1,6 @@
 <h2><?= $archivePageTitle ?></h2>
 
 <a href="/index.php?action=category/add">+ Добавить категорию</a>
-<a href="/index.php?action=archive/index">В архив</a>
-<a href="/index.php?action=login/logout">Выйти</a>
-
 
 <?php 
 foreach ($archiveCategories['results'] as $k => $v):?>

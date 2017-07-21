@@ -16,6 +16,7 @@ class LoginController extends \core\Controller
         if (!empty($_POST)) {
             if (($_POST['username'] == \Config::$admin_username) && ($_POST['password'] == \Config::$admin_password)) {
                     $_SESSION['username'] = \Config::$admin_username;
+                    $_SESSION['like'] = 0;
                     \DebugPrinter::debug($_SESSION);
                     $this->header('index.php?action=homepage/index');
                 }
@@ -26,6 +27,7 @@ class LoginController extends \core\Controller
         }
         else {
             $this->view->addVar('loginTitle', $this->loginTitle);
+            
             $this->view->render('login/index.php');
         }
     }
@@ -35,7 +37,8 @@ class LoginController extends \core\Controller
      */
     public function logoutAdminAction()
     {
-        unset( $_SESSION['username'] );
+        unset($_SESSION['username']);
+        unset($_SESSION['like']);
         $this->header('index.php?action=login/index');
     }
 }

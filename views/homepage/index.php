@@ -1,9 +1,5 @@
 <h2><?php echo $homepageTitle ?></h2>
 
-<a href="/index.php?action=archive/index">В архив</a>
-<a href="/index.php?action=login/index">Войти под своим именем</a>
-
-
 <?php 
 foreach ($homepageArticles['results'] as $key => $value):?>
     
@@ -24,9 +20,11 @@ foreach ($homepageArticles['results'] as $key => $value):?>
     
     <p><?php echo $homepageArticles['results'][$key]->summary; ?></p>
     <p class="pubDate"><?php echo $homepageArticles['results'][$key]->publicationDate; ?></p>
+    <img src="/images/like1.png" height="20px" width="20px">
     <hr><br>    
 <?php endforeach; ?>
     
+
 
 
 

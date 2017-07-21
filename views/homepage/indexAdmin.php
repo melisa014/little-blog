@@ -1,12 +1,5 @@
 <h2><?php echo $homepageTitle ?></h2>
 
-<a href="/index.php?action=article/add">+ Добавить статью</a>
-<a href="/index.php?action=category/add">+ Добавить категорию</a>
-<a href="/index.php?action=archive/index">В архив</a>
-<a href="/index.php?action=login/logout">Выйти</a>
-
-
-
     <?php 
     foreach ($homepageArticles['results'] as $key => $value):?>
 
@@ -27,6 +20,12 @@
 
         <p><?php echo $homepageArticles['results'][$key]->summary; ?></p>
         <p class="pubDate"><?php echo $homepageArticles['results'][$key]->publicationDate; ?></p>
+        <img src="/images/like1.png" height="20px" width="20px" data-articleId="<?= $homepageArticles['results'][$key]->id?>">
+        <span class="<?= $homepageArticles['results'][$key]->id?>">
+                <?= $homepageArticles['results'][$key]->likes ?>
+        </span>
         <hr><br>    
     <?php endforeach; ?>
+
+    
     

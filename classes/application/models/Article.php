@@ -14,6 +14,11 @@ class Article extends \core\Model
     public $orderBy = 'publicationDate DESC';
     
     /**
+    * @var int Количество лайков
+    */
+    public $likes = 0;
+    
+    /**
     * @var int ID статей из базы данны
     */
     public $id = null;
@@ -75,15 +80,19 @@ class Article extends \core\Model
 //        if ( !is_null( $this->id ) ) trigger_error ( "Article::insert(): Attempt to insert an Article object that already has its ID property set (to $this->id).", E_USER_ERROR );
 
         // Вставляем статью
-        $sql = "INSERT INTO $this->tableName ( publicationDate, categoryId, title, summary, content ) VALUES ( FROM_UNIXTIME(:publicationDate), :categoryId, :title, :summary, :content )";
+        $sql = "INSERT INTO $this->tableName (publicationDate, categoryId, title, summary, content, likes) VALUES ( :publicationDate, :categoryId, :title, :summary, :content, :likes)"; //   :publicationDate,
         $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":publicationDate", $this->publicationDate, \PDO::PARAM_INT );
+        $st->bindValue( ":publicationDate", (new \DateTime('NOW'))->format('Y-m-d H:i:s'), \PDO::PARAM_STMT);
         $st->bindValue( ":categoryId", $this->categoryId, \PDO::PARAM_INT );
         $st->bindValue( ":title", $this->title, \PDO::PARAM_STR );
         $st->bindValue( ":summary", $this->summary, \PDO::PARAM_STR );
         $st->bindValue( ":content", $this->content, \PDO::PARAM_STR );
+        $st->bindValue( ":likes", 0, \PDO::PARAM_INT );
         $st->execute();
         $this->id = $this->pdo->lastInsertId();
+        $this->publicationDate = new \DateTime('NOW');
+//        $this->likes = 0;
+        \DebugPrinter::debug($this);
     }
 
     /**
@@ -95,14 +104,15 @@ class Article extends \core\Model
 //        if ( is_null( $this->id ) ) trigger_error ( "Article::update(): Attempt to update an Article object that does not have its ID property set.", E_USER_ERROR );
 
         // Обновляем статью
-        $sql = "UPDATE $this->tableName SET publicationDate=FROM_UNIXTIME(:publicationDate), categoryId=:categoryId, title=:title, summary=:summary, content=:content WHERE id = :id";
+        $sql = "UPDATE $this->tableName SET publicationDate=:publicationDate, categoryId=:categoryId, title=:title, summary=:summary, content=:content, likes=:likes WHERE id = :id";  
         $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":publicationDate", $this->publicationDate, \PDO::PARAM_INT );
+        $st->bindValue( ":publicationDate", (new \DateTime('NOW'))->format('Y-m-d H:i:s'), \PDO::PARAM_INT );
         $st->bindValue( ":categoryId", $this->categoryId, \PDO::PARAM_INT );
         $st->bindValue( ":title", $this->title, \PDO::PARAM_STR );
         $st->bindValue( ":summary", $this->summary, \PDO::PARAM_STR );
         $st->bindValue( ":content", $this->content, \PDO::PARAM_STR );
         $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
+        $st->bindValue( ":likes", $this->likes, \PDO::PARAM_INT );
         $st->execute();
     }
 

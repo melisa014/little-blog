@@ -38,6 +38,8 @@ class ArchiveController extends \core\Controller
         $this->view->addVar('archiveArticles', $archiveArticles);
         $this->view->addVar('archivePageTitle', $this->archivePageTitle);
         
+        $this->view->headerFilePath = 'headerAdmin.php';
+        
         $this->view->render('archive/indexAdmin.php');
         
     }
@@ -55,6 +57,8 @@ class ArchiveController extends \core\Controller
         
         $this->view->addVar('archiveCategories', $archiveCategories);
         $this->view->addVar('archivePageTitle', $this->archivePageTitle);
+        
+        $this->view->headerFilePath = 'headerAdmin.php';
         
         $this->view->render('archive/allCategoriesAdmin.php');
         

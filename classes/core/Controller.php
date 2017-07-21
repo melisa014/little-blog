@@ -19,7 +19,7 @@ class Controller
        // \DebugPrinter::debug($this->view);
     }
     
-    public function header($path) {
+    public function header($path) { // 302 редирет
         header ("Location: $path");
     }
     

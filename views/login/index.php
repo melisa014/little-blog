@@ -1,5 +1,4 @@
 <h2><?= $loginTitle ?></h2>
-<a href="/index.php">На домашнюю страницу</a><br>
 
 <form method="post" action="/index.php?action=login/index">
     <h5>Введите имя пользователя</h5>

@@ -42,6 +42,7 @@ class ArticleController extends \core\Controller
         
         $this->view->addVar('viewArticle', $this->viewArticle);
         
+        $this->view->headerFilePath = 'headerAdmin.php';
         $this->view->render('article/indexAdmin.php');
     }
     
@@ -54,9 +55,9 @@ class ArticleController extends \core\Controller
             if ($_POST['saveNewArticle'] == 'Сохранить') {
                 $Article = new Article();
                 $newArticle = $Article->loadFromPost();
-                \DebugPrinter::debug($newArticle);
-                $newArticle->insert();
-                \DebugPrinter::debug($newArticle, 'после инсерта');
+//                \DebugPrinter::debug($newArticle);
+                $newArticle->insert(); //  -- это работат. Что?
+//                \DebugPrinter::debug($newArticle, 'после инсерта');
                 $this->header('/index.php?action=homepage/index');
             
             } 
@@ -68,6 +69,7 @@ class ArticleController extends \core\Controller
             $this->addArticleTitle = "Создание статьи";
             $this->view->addVar('addArticleTitle', $this->addArticleTitle);
             
+            $this->view->headerFilePath = 'headerAdmin.php';
             $this->view->render('article/addAdmin.php');
         }
     }
@@ -79,21 +81,29 @@ class ArticleController extends \core\Controller
     {
         $id = $_GET['id'];
         
-//        \DebugPrinter::debug($_POST);
-//        \DebugPrinter::debug($id);
+//        \DebugPrinter::debug($_POST); 
+//        \DebugPrinter::debug($id); 
         
-        if (!empty($_POST)) {
+        if (!empty($_POST)) { // это выполняется нормально.
+            
             if ($_POST['saveChanges'] == 'Сохранить') {
+//                \DebugPrinter::debug('$_POST'); 
                 $Article = new Article();
                 $newArticle = $Article->loadFromPost();
+//                \DebugPrinter::debug($newArticle);
+//                \DebugPrinter::debug($id);
                 $newArticle->update();
+//                \DebugPrinter::debug($newArticle, 'после апдейт');
                 $this->header("index.php?action=article/index&id=$id");
+                 
             } 
             elseif ($_POST['cancel'] == 'Назад') {
+//                \DebugPrinter::debug("Отмена операции");
                 $this->header("index.php?action=article/index&id=$id");
             }
         }
         else {
+//            \DebugPrinter::debug("Только загрузка формы");
             $Article = new Article();
             $this->viewArticle = $Article->getById($id);
             $this->editArticleTitle = "Редактирование статьи";
@@ -102,6 +112,7 @@ class ArticleController extends \core\Controller
             $this->view->addVar('viewArticle', $this->viewArticle);
             $this->view->addVar('editArticleTitle', $this->editArticleTitle);
             
+            $this->view->headerFilePath = 'headerAdmin.php';
             $this->view->render('article/editAdmin.php');   
         }
         
@@ -116,20 +127,30 @@ class ArticleController extends \core\Controller
         
         if (!empty($_POST)) {
             if ($_POST['deleteArticle'] == 'Удалить') {
+                \DebugPrinter::debug('$_POST');
                 $Article = new Article();
                 $newArticle = $Article->loadFromPost();
                 $newArticle->delete();
+                
                 $this->header('index.php?action=homepage/index');
               
             }
             elseif ($_POST['cancel'] == 'Вернуться') {
+                \DebugPrinter::debug("Отмена операции");
                 $this->header("index.php?action=article/edit&id=$id");
             }
         }
         else {
-            $this->deleteArticleTitle = "Удаление статьи";
-            $this->view->addVar('deleteArticleTitle', $this->deleteArticleTitle);
             
+            $Article = new Article();
+            $deletedArticle = $Article->getById($id);
+            $this->deleteArticleTitle = "Удаление статьи";
+            \DebugPrinter::debug($deletedArticle); 
+            
+            $this->view->addVar('deleteArticleTitle', $this->deleteArticleTitle);
+            $this->view->addVar('deletedArticle', $deletedArticle);
+            
+            $this->view->headerFilePath = 'headerAdmin.php';
             $this->view->render('article/deleteAdmin.php');
         }
     }

@@ -27,6 +27,7 @@ class Model
         $this->pdo = new \PDO(\Config::$db_dsn, \Config::$db_username,
                 \Config::$db_password,
                 array(\PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
+        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
    
     /**
@@ -98,9 +99,14 @@ class Model
 //        if ( is_null( $this->id ) ) trigger_error ( "Article::delete(): Attempt to delete an Article object that does not have its ID property set.", E_USER_ERROR );
 
         // Удаляем статью
-        $st = $this->pdo->prepare ( "DELETE FROM $this->tableName WHERE id = :id LIMIT 1" );
-        $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
-        $st->execute();
+//        try{
+            $st = $this->pdo->prepare ( "DELETE FROM $this->tableName WHERE id = :id LIMIT 1" );
+            $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
+            $st->execute();
+//        }
+//        catch(\PDOException $ex){
+//            die($ex->getMessage); 
+//        }
     }
 }
 
