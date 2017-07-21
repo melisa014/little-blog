@@ -3,7 +3,7 @@ namespace application\controllers;
 
 class LoginController extends \core\Controller
 {
-    /**
+    /** 
      * @var string Название страницы
      */
     public $loginTitle = "Регистрация/Вход в систему";
