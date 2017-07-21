@@ -14,6 +14,7 @@ class LoginController extends \core\Controller
     public function indexAction()
     {
         if (!empty($_POST)) {
+            $user = \core\User::get();
             if (($_POST['username'] == \Config::$admin_username) && ($_POST['password'] == \Config::$admin_password)) {
                     $_SESSION['username'] = \Config::$admin_username;
                     $_SESSION['like'] = 0;

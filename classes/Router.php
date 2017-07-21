@@ -15,11 +15,12 @@ class Router
 //        echo "<br>";
         
         $controllersName = "application\\controllers\\". $this->getControllerClassName($action);
-        $methodsName = $this->getControllerActionName($action);
+       // $methodsName = $this->getControllerActionName($action);
 //        echo $controllersName. "<br>";
 //        echo $methodsName. "<br><br>";
         $controller = new $controllersName();
-        $controller->$methodsName();
+        $controller->callAction($action);
+        // $controller->$methodsName();
         
     }
     
@@ -43,23 +44,5 @@ class Router
          return $result. "Controller";
     }
     
-    /**
-     * Формирует имя метода контроллера по GET-параметру
-     * @param type $action -- строка GET-параметр
-     */
-    public function getControllerActionName($action)
-    {
-         $result =  'index';
-         
-        $urlFragments = explode('/', $action);
-         if (!empty($urlFragments[1])) {
-             $result = $urlFragments[1];
-         } 
-         if (isset($_SESSION['username'])) {
-             $result .= 'Admin'; 
-         }
-         
-         return $result . 'Action';
-         
-    }
+
 }

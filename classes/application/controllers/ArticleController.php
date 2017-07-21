@@ -15,6 +15,11 @@ class ArticleController extends \core\Controller
     
     public $viewArticle = "";
     
+    protected $rules = [
+        'delete' => 'admin'
+    ];
+
+
     /**
      * Выводит на экран страницу "Статья" для просмотра
      */
