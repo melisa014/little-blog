@@ -1,11 +1,11 @@
 <h2><?php echo $editCategoryTitle ?>
     <span>
-        <a href="/index.php?action=category/delete&id=<?= $_GET['id']; ?>">
+        <a href="<?php Url::link("category/delete&id=". $_GET['id']) ?>"
             [Удалить]</a>
     </span>
 </h2>
 
-<form method="post" action="/index.php?action=category/edit&id=<?php echo $_GET['id']; ?>">
+<form method="post" action="<?php Url::link("category/edit&id=" . $_GET['id']) ?>"
     <h5>Введите название категории</h5>
     <input type="text" name="name" value="<?php echo $viewCategory->name ?>"><br>
     <h5>Краткое описание категории</h5>

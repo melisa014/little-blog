@@ -13,10 +13,9 @@
        <hr></hr>
        
        <a href="/index.php">На домашнюю страницу</a>
-       <a href="/index.php?action=archive/index">В архив</a>
-       <a href="/index.php?action=archive/allCategories">В архив(Категории)</a><br>
-       <a href="/index.php?action=login/index">Войти под своим именем</a>
+       <!--<a href="<?php \Url::link("archive/index")?>">В архив</a>-->
+       <a href="/index.php?route=archive/index">В архив</a>
+       <a href="<?= \Url::link("login/index")?>">Войти под своим именем</a>
               
        <div id="container">
            
-    

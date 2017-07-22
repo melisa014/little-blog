@@ -47,11 +47,11 @@ class CategoryController extends \core\Controller
                 \DebugPrinter::debug($newCategory);
                 $newCategory->insert();
                 \DebugPrinter::debug($newCategory, 'после инсерта');
-                $this->header('/index.php?action=homepage/index');
+                $this->header(\Url::link("homepage/index"));
             
             } 
             elseif ($_POST['cancel'] == 'Назад') {
-                $this->header("/index.php?action=homepage/index");
+                $this->header(\Url::link("homepage/index"));
             }
         }
         else {
@@ -78,10 +78,10 @@ class CategoryController extends \core\Controller
                 $Category = new Category();
                 $newCategory = $Category->loadFromPost();
                 $newCategory->update();
-                $this->header("index.php?action=category/index&id=$id");
+                $this->header(\Url::link("category/index&id=$id"));
             } 
             elseif ($_POST['cancel'] == 'Назад') {
-                $this->header("index.php?action=category/index&id=$id");
+                $this->header(\Url::link("category/index&id=$id"));
             }
         }
         else {
@@ -110,11 +110,11 @@ class CategoryController extends \core\Controller
                 $Category = new Category();
                 $newCategory = $Category->loadFromPost();
                 $newCategory->delete();
-                $this->header('index.php?action=homepage/index');
+                $this->header(\Url::link("homepage/index"));
               
             }
             elseif ($_POST['cancel'] == 'Вернуться') {
-                $this->header("index.php?action=category/edit&id=$id");
+                $this->header(\Url::link("category/edit&id=$id"));
             }
         }
         else {

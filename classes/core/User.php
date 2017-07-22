@@ -15,12 +15,13 @@ namespace core;
  */
 class User extends Session
 {
-    //put your code here
-    
+       
    public $role = null;
+   public $userName = null;
+
 
    
-   /**
+    /**
     * Вернёт объект юзера
     * 
     * @staticvar type $instance
@@ -35,15 +36,40 @@ class User extends Session
         }
         return $instance;
     }
-/*скрываем конструктор
- - для того чтобы класс нельзя было создать в обход getInstance */
+    
+    /*скрываем конструктор
+    - для того чтобы класс нельзя было создать в обход getInstance */
     protected function __construct()
     {
+        // Session::get()->session::get()->session['user']
+        if (!empty(Session::get()->session['user']['role'])
+                && !empty(Session::get()->session['user']['userName'])) {
+            $this->role =  Session::get()->session['user']['role'];
+            $this->userName =  Session::get()->session['user']['userName'];
+        }
     }
     
     private function init()
     {
         
         $this->role =  Session::get()->session['user']['role'];
+    }
+    
+    /**
+     * 
+     * @param type $userName
+     * @param type $pass
+     * @return boolean
+     */
+    public function login($userName, $pass)
+    {
+        
+        return true;
+    }
+    
+    public function logout()
+    {
+        
+        return true;
     }
 }

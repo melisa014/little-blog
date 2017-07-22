@@ -63,11 +63,11 @@ class ArticleController extends \core\Controller
 //                \DebugPrinter::debug($newArticle);
                 $newArticle->insert(); //  -- это работат. Что?
 //                \DebugPrinter::debug($newArticle, 'после инсерта');
-                $this->header('/index.php?action=homepage/index');
+                $this->header(\Url::link("homepage/index"));
             
             } 
             elseif ($_POST['cancel'] == 'Назад') {
-                $this->header("/index.php?action=homepage/index");
+                $this->header(Url::link("homepage/index"));
             }
         }
         else {
@@ -99,12 +99,12 @@ class ArticleController extends \core\Controller
 //                \DebugPrinter::debug($id);
                 $newArticle->update();
 //                \DebugPrinter::debug($newArticle, 'после апдейт');
-                $this->header("index.php?action=article/index&id=$id");
+                $this->header(\Url::link("article/index&id=$id"));
                  
             } 
             elseif ($_POST['cancel'] == 'Назад') {
 //                \DebugPrinter::debug("Отмена операции");
-                $this->header("index.php?action=article/index&id=$id");
+                $this->header(\Url::link("article/index&id=$id"));
             }
         }
         else {
@@ -137,12 +137,12 @@ class ArticleController extends \core\Controller
                 $newArticle = $Article->loadFromPost();
                 $newArticle->delete();
                 
-                $this->header('index.php?action=homepage/index');
+                $this->header(\Url::link("homepage/index"));
               
             }
             elseif ($_POST['cancel'] == 'Вернуться') {
                 \DebugPrinter::debug("Отмена операции");
-                $this->header("index.php?action=article/edit&id=$id");
+                $this->header(\Url::link("article/edit&id=$id"));
             }
         }
         else {

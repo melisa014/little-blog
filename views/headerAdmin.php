@@ -15,13 +15,15 @@
        <hr></hr>
        
         <a href="/index.php">На домашнюю страницу</a>
-        <a href="/index.php?action=archive/index">В архив</a>
-        <a href="/index.php?action=archive/allCategories">В архив(Категории)</a><br>
-        <a href="/index.php?action=article/add">+ Добавить статью</a>
-        <a href="/index.php?action=category/add">+ Добавить категорию</a>
-        <a href="/index.php?action=login/logout">Выйти</a>
+        <a href="<?php \Url::link("archive/index")?>">В архив</a>
+        <a href="<?php \Url::link("archive/allCategories")?>">В архив(Категории)</a>
+        <a href="<?php \Url::link("article/add")?>">+ Добавить статью</a>
+        <a href="<?php \Url::link("category/add")?>">+ Добавить категорию</a>
+        
+        <p><?= $_SESSION['username']. ' ' ?><a href="<?php \Url::link("login/logout")?>">Выйти</a></p>
+        
 
 
-        <div>Вам понравилось: <?= $_SESSION['like']; ?></div>
+        <p>Вам понравилось: <?= $_SESSION['like']; ?></p>
               
        <div id="container">

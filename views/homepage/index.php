@@ -3,7 +3,7 @@
 <?php 
 foreach ($homepageArticles['results'] as $key => $value):?>
     
-    <a href="/index.php?action=article/index&id=<?php echo $homepageArticles['results'][$key]->id; ?>">
+    <a href="<?php \Url::link("article/index&id=\$homepageArticles['results'][\$key]->id")?>">
         <h4><?php echo $homepageArticles['results'][$key]->title; ?></h4>
     </a>
 
@@ -11,7 +11,7 @@ foreach ($homepageArticles['results'] as $key => $value):?>
         $categoryId = $homepageArticles['results'][$key]->categoryId;
         foreach ($homepageCategories['results'] as $k => $v) {
             if ($homepageCategories['results'][$k]->id == $categoryId) : ?>
-                <a href="/index.php?action=category/index&id=<?php echo $homepageCategories['results'][$k]->id; ?>">
+                <a href="<?php \Url::link("category/index&id= \$homepageCategories['results'][\$k]->id")?>">
                     <?php echo $homepageCategories['results'][$k]->name; ?>
                 </a>
             <?php endif;

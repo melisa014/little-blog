@@ -8,11 +8,18 @@ class Url
     /**
      * Получаем URL
      */
-    public static function getAction()
+    public static function getRoute()
     {
-        $act = isset( $_GET['action'] ) ? $_GET['action'] : "";
+        $act = isset( $_GET['route'] ) ? $_GET['route'] : "";
         return $act;
     }
     
+   
+            
+    public static function link($route)
+    {
+        $path = "/index.php?route=$route"; 
+        return $path;
+    }
 }
 

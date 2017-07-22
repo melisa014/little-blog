@@ -29,26 +29,7 @@ class Controller
     
     
     
-    
-    /**
-     * Формирует имя метода контроллера по GET-параметру
-     * @param type $action -- строка GET-параметр
-     */
-    public function getControllerActionName($action)
-    {
-         $result =  'index';
-         
-        $urlFragments = explode('/', $action);
-         if (!empty($urlFragments[1])) {
-             $result = $urlFragments[1];
-         } 
-         if (isset($_SESSION['username'])) {
-             $result .= 'Admin'; 
-         }
-         
-         return $result . 'Action';
-         
-    }
+   
     
 }
 

@@ -19,7 +19,7 @@ class LoginController extends \core\Controller
                     $_SESSION['username'] = \Config::$admin_username;
                     $_SESSION['like'] = 0;
                     \DebugPrinter::debug($_SESSION);
-                    $this->header('index.php?action=homepage/index');
+                    $this->header(\Url::link('homepage/index'));
                 }
             else {
                 $this->view->addVar('loginTitle', $this->loginTitle);
@@ -40,7 +40,7 @@ class LoginController extends \core\Controller
     {
         unset($_SESSION['username']);
         unset($_SESSION['like']);
-        $this->header('index.php?action=login/index');
+        $this->header(\Url::link("login/index"));
     }
 }
 

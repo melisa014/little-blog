@@ -9,30 +9,30 @@ class Router
     /**
      * Передаёт управление разным контроллерам в зависимости от URL
      */
-    public function __construct($action)
+    public function __construct($route)
     {
 //        \DebugPrinter::debug($_SESSION['username']);
 //        echo "<br>";
         
-        $controllersName = "application\\controllers\\". $this->getControllerClassName($action);
+        $controllersName = "application\\controllers\\". $this->getControllerClassName($route);
        // $methodsName = $this->getControllerActionName($action);
 //        echo $controllersName. "<br>";
 //        echo $methodsName. "<br><br>";
         $controller = new $controllersName();
-        $controller->callAction($action);
+        $controller->callAction($route);
         // $controller->$methodsName();
         
     }
     
     /**
      * Формирует имя конроллера по GET-параметру
-     * @param type $action -- строка GET-параметр
+     * @param type $route -- строка GET-параметр
      */
-    public function getControllerClassName($action)
+    public function getControllerClassName($route)
     {
         $result = 'Homepage';
                 
-        $urlFragments = explode('/', $action);
+        $urlFragments = explode('/', $route);
         if (!empty($urlFragments[0])) {
             
             $firstletterToUp = ucwords($urlFragments[0]);
@@ -41,7 +41,7 @@ class Router
             $result = $firstletterToUp;
         } 
          
-         return $result. "Controller";
+        return $result. "Controller";
     }
     
 

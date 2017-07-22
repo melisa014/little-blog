@@ -15,6 +15,7 @@ class Config
      */
     static public $db_username = "root";
     
+    
     /**
      * Пароль для соединения с Базой данных
      * @var mixed
@@ -30,6 +31,20 @@ class Config
      * Пароль для входа на сайт
      */
     static public $admin_password = "mypass";
+    
+    
+    static public $users = [
+        'admin' => [
+            'role' => 'admin',
+            'pass' => 'mypass'
+        ],
+        'user1' => [
+            'role' => 'auth_user',
+            'pass' => 'rf34rq34t'
+        ],
+        
+    ];
+    
     
     /**
      * Установка строгого режима вывода ошибок, предупреждений и уведомлений для отладки

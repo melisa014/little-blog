@@ -1,22 +1,16 @@
 <?php
 
-session_start();
 
 require_once ("autoload.php"); // автозагрузка классов
 
+
 Config::debugReporting(); // включаем "строгое" отслеживание ошибок E_ALL
 
-//$obj = new PDO(Config::$db_dsn, Config::$db_username, Config::$db_password);
-//\DebugPrinter::debug($obj);
+\core\Session::get();
 
-//$conn = new \core\Model();
+$route = Url::getRoute();
 
-//\DebugPrinter::debug($conn->pdo);
+\DebugPrinter::debug($route, 'путь, найденный URL--ом, передаваемый в Router');
+\DebugPrinter::debug($_SESSION);
 
-
-$action = Url::getAction();
-$obj = new Router($action);
-
-
-
-
+$obj = new Router($route);
