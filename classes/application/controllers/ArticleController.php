@@ -16,7 +16,10 @@ class ArticleController extends \core\Controller
     public $viewArticle = "";
     
     protected $rules = [
-        'delete' => 'admin'
+        'delete' => 'admin',
+        'delete' => 'edit',
+        'add' => 'admin, authUser',
+        
     ];
 
 
@@ -35,33 +38,33 @@ class ArticleController extends \core\Controller
         $this->view->render('article/index.php');
     }
     
-    /**
-     * Выводит на экран страницу "Статья" для просмотра Администратору
-     */
-    public function indexAdminAction()
-    {
-
-        $Article = new Article();
-
-        $this->viewArticle = $Article->getById($_GET['id']);
-        
-        $this->view->addVar('viewArticle', $this->viewArticle);
-        
-        $this->view->headerFilePath = 'headerAdmin.php';
-        $this->view->render('article/indexAdmin.php');
-    }
+//    /**
+//     * Выводит на экран страницу "Статья" для просмотра Администратору
+//     */
+//    public function indexAdminAction()
+//    {
+//
+//        $Article = new Article();
+//
+//        $this->viewArticle = $Article->getById($_GET['id']);
+//        
+//        $this->view->addVar('viewArticle', $this->viewArticle);
+//        
+//        $this->view->headerFilePath = 'headerAdmin.php';
+//        $this->view->render('article/indexAdmin.php');
+//    }
     
     /**
      * Выводит на экран форму для создания новой статьи (только для Администратора)
      */
-    public function addAdminAction()
+    public function addAction()
     {
         if (!empty($_POST)) {
             if ($_POST['saveNewArticle'] == 'Сохранить') {
                 $Article = new Article();
                 $newArticle = $Article->loadFromPost();
 //                \DebugPrinter::debug($newArticle);
-                $newArticle->insert(); //  -- это работат. Что?
+                $newArticle->insert(); 
 //                \DebugPrinter::debug($newArticle, 'после инсерта');
                 $this->header(\Url::link("homepage/index"));
             
@@ -82,7 +85,7 @@ class ArticleController extends \core\Controller
     /**
      * Выводит на экран форму для редактирования статьи (только для Администратора)
      */
-    public function editAdminAction()
+    public function editAction()
     {
         $id = $_GET['id'];
         
@@ -126,13 +129,13 @@ class ArticleController extends \core\Controller
     /**
      * Выводит на экран предупреждение об удалении данных (только для Администратора)
      */
-    public function deleteAdminAction()
+    public function deleteAction()
     {
         $id = $_GET['id'];
         
         if (!empty($_POST)) {
             if ($_POST['deleteArticle'] == 'Удалить') {
-                \DebugPrinter::debug('$_POST');
+//                \DebugPrinter::debug('$_POST');
                 $Article = new Article();
                 $newArticle = $Article->loadFromPost();
                 $newArticle->delete();
@@ -141,7 +144,7 @@ class ArticleController extends \core\Controller
               
             }
             elseif ($_POST['cancel'] == 'Вернуться') {
-                \DebugPrinter::debug("Отмена операции");
+//                \DebugPrinter::debug("Отмена операции");
                 $this->header(\Url::link("article/edit&id=$id"));
             }
         }
@@ -150,7 +153,7 @@ class ArticleController extends \core\Controller
             $Article = new Article();
             $deletedArticle = $Article->getById($id);
             $this->deleteArticleTitle = "Удаление статьи";
-            \DebugPrinter::debug($deletedArticle); 
+//            \DebugPrinter::debug($deletedArticle); 
             
             $this->view->addVar('deleteArticleTitle', $this->deleteArticleTitle);
             $this->view->addVar('deletedArticle', $deletedArticle);

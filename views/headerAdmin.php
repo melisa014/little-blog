@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,10 +13,10 @@
        <hr></hr>
        
         <a href="/index.php">На домашнюю страницу</a>
-        <a href="<?php \Url::link("archive/index")?>">В архив</a>
-        <a href="<?php \Url::link("archive/allCategories")?>">В архив(Категории)</a>
-        <a href="<?php \Url::link("article/add")?>">+ Добавить статью</a>
-        <a href="<?php \Url::link("category/add")?>">+ Добавить категорию</a>
+        <a href="<?= \Url::link("archive/index")?>">В архив</a>
+        <a href="<?= \Url::link("archive/allCategories")?>">В архив(Категории)</a>
+        <a href="<?= \Url::link("article/add")?>">+ Добавить статью</a>
+        <a href="<?= \Url::link("category/add")?>">+ Добавить категорию</a>
         
         <p><?= $_SESSION['username']. ' ' ?><a href="<?php \Url::link("login/logout")?>">Выйти</a></p>
         

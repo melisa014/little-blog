@@ -30,11 +30,7 @@ class Session
     - для того чтобы класс нельзя было создать в обход getInstance */
     protected function __construct()
     {   
-        
         session_start();
-        
-        $sessionpath = session_save_path();
-        echo substr(sprintf('%o', fileperms($sessionpath)), -4);
         $this->session = $_SESSION;
     }
     

@@ -10,11 +10,7 @@ class HomepageController extends \core\Controller
      */
     public $homepageTitle = "Домашняя страница";
     
-    protected $rules = [
-        'index' => 'user',
-        'index' => 'admin',
-        'index' => 'authUser'
-    ];
+    protected $rules = [];
     
     /**
      * Выводит на экран страницу "Домашняя страница"

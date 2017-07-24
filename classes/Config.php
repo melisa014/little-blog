@@ -21,18 +21,10 @@ class Config
      * @var mixed
      */
     static public $db_password = "1234";
-    
+   
     /**
-     * Имя пользователя для входа на сайт
+     * Авторизационные данные пользователей
      */
-    static public $admin_username = "admin";
-    
-    /**
-     * Пароль для входа на сайт
-     */
-    static public $admin_password = "mypass";
-    
-    
     static public $users = [
         'admin' => [
             'role' => 'admin',
@@ -41,6 +33,10 @@ class Config
         'user1' => [
             'role' => 'auth_user',
             'pass' => 'rf34rq34t'
+        ],
+        'user2' => [
+            'role' => 'auth_user',
+            'pass' => '76543'
         ],
         
     ];

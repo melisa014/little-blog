@@ -14,17 +14,14 @@ class LoginController extends \core\Controller
     public function indexAction()
     {
         if (!empty($_POST)) {
+            $login = $_POST['userName'];
+            $pass = $_POST['password'];
             $user = \core\User::get();
-            if (($_POST['username'] == \Config::$admin_username) && ($_POST['password'] == \Config::$admin_password)) {
-                    $_SESSION['username'] = \Config::$admin_username;
-                    $_SESSION['like'] = 0;
-                    \DebugPrinter::debug($_SESSION);
-                    $this->header(\Url::link('homepage/index'));
-                }
-            else {
-                $this->view->addVar('loginTitle', $this->loginTitle);
-                $this->view->render('login/index.php', "Неверное имя пользователя или пароль");
-            }
+            $user->login($login, $pass);
+            
+            $_SESSION['test'] = "я пишусь";
+            
+            $this->header(\Url::link("homepage/index"));
         }
         else {
             $this->view->addVar('loginTitle', $this->loginTitle);
@@ -36,10 +33,10 @@ class LoginController extends \core\Controller
     /**
      * Выход из системы
      */
-    public function logoutAdminAction()
+    public function logoutAction()
     {
-        unset($_SESSION['username']);
-        unset($_SESSION['like']);
+        $user = \core\User::get();
+        $user->logout();
         $this->header(\Url::link("login/index"));
     }
 }

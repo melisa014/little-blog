@@ -1,9 +1,15 @@
+<?php 
+    \DebugPrinter::debug($_SESSION, '$_SESSION');
+    \DebugPrinter::debug(\core\Session::get()->session, 'св-во session'); 
+    \DebugPrinter::debug(\core\User::get()->role, 'роль Userа'); 
+?>
+
 <h2><?php echo $homepageTitle ?></h2>
 
 <?php 
 foreach ($homepageArticles['results'] as $key => $value):?>
     
-    <a href="<?php \Url::link("article/index&id=\$homepageArticles['results'][\$key]->id")?>">
+    <a href="<?= \Url::link("article/index&id=" . $homepageArticles['results'][$key]->id)?>">
         <h4><?php echo $homepageArticles['results'][$key]->title; ?></h4>
     </a>
 
@@ -11,7 +17,7 @@ foreach ($homepageArticles['results'] as $key => $value):?>
         $categoryId = $homepageArticles['results'][$key]->categoryId;
         foreach ($homepageCategories['results'] as $k => $v) {
             if ($homepageCategories['results'][$k]->id == $categoryId) : ?>
-                <a href="<?php \Url::link("category/index&id= \$homepageCategories['results'][\$k]->id")?>">
+                <a href="<?= \Url::link("category/index&id=" . $homepageCategories['results'][$k]->id)?>">
                     <?php echo $homepageCategories['results'][$k]->name; ?>
                 </a>
             <?php endif;
