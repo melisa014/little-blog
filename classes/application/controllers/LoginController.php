@@ -19,8 +19,6 @@ class LoginController extends \core\Controller
             $user = \core\User::get();
             $user->login($login, $pass);
             
-            $_SESSION['test'] = "я пишусь";
-            
             $this->header(\Url::link("homepage/index"));
         }
         else {

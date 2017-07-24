@@ -48,14 +48,11 @@ class User extends Session
     {
         if ($this->checkAuthData($login, $pass)) {
             
-            $role = $this->getRoleByUserName($login); //работает, возвращает роль
-            $this->role =  $role; // работает, присваивает значение свойству Userа
+            $role = $this->getRoleByUserName($login); 
+            $this->role =  $role; 
             $this->userName = $login;
-            Session::get()->session['user']['role'] = $role; // не работает
-            Session::get()->session['user']['userName'] = $login; // не работает
-            Session::get()->session['тест3'] = $login;  // не работает
-            $_SESSION['тест2'] = $login;
-            $_SESSION['роль в $_SESSION'] = $this->role;
+            Session::get()->session['user']['role'] = $role; 
+            Session::get()->session['user']['userName'] = $login; 
         }
         return true;
     }
@@ -95,10 +92,12 @@ class User extends Session
      */
     public function logout()
     {
+        
         $this->role = "";
         $this->userName = ""; 
         Session::get()->session['user']['role'] = "";
         Session::get()->session['user']['userName'] = "";
+//        session_destroy();
         return true;
     }
     
@@ -109,8 +108,9 @@ class User extends Session
     public static function isAllowed()
     {
         // — использовать его во вью для вывода элементов меню
-        if ($this->role = 'admin' || $this->role = 'authUser') {
-            return true;
+       
+        if (in_array($this->role, $this->rules)) {
+            include (\view\headerAdmin.php);
         }
         else return false;
     }

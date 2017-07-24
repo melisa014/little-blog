@@ -17,8 +17,8 @@ class ArticleController extends \core\Controller
     
     protected $rules = [
         'delete' => 'admin',
-        'delete' => 'edit',
-        'add' => 'admin, authUser',
+        'delete' => 'admin',
+        'add' => 'admin, auth_user',
         
     ];
 

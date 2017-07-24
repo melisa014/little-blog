@@ -31,7 +31,7 @@ class Session
     protected function __construct()
     {   
         session_start();
-        $this->session = $_SESSION;
+        $this->session = &$_SESSION;
     }
     
 }

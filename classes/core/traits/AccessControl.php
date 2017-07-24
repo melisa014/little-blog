@@ -25,11 +25,11 @@ trait AccessControl {
     public function callAction($route) 
     {
         $actionName = $this->getControllerActionName($route);
-        \DebugPrinter::debug($actionName, 'actionName (callAction)');
+//        \DebugPrinter::debug($actionName, 'actionName (callAction)');
         
         if ($this->isEnabled($actionName)) {
             $methodName =  $this->getControllerMethodName($actionName);
-            \DebugPrinter::debug($methodName, 'methodName (callAction)');
+//            \DebugPrinter::debug($methodName, 'methodName (callAction)');
             $this->$methodName();
         } else {
             throw  new \Exception("Доступ запрещен");
@@ -43,8 +43,8 @@ trait AccessControl {
     {
         $result = true;
         if ($this->isInRules($actionName) 
-                && (User::get()->role != $this->rules[$actionName]))
-//                && null !== (strpos(User::get()->role, $this->rules[$actionName])))
+//                && (User::get()->role != $this->rules[$actionName]))
+                &&  (in_array(\core\User::get()->role, $this->rules[$actionName])))
         {
             $result  = false;
         }
