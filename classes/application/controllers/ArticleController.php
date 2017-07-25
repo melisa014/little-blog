@@ -21,6 +21,24 @@ class ArticleController extends \core\Controller
         'add' => 'admin, auth_user',
         
     ];
+    
+//    protected $rules = [   // вариант 1: удобно писать, неудобно читать программно, если deny -- то остальные правила можно считать разрешающим, 
+//                           // если же 'all' => 'allow' то остальные правила можно считать запрещающими
+//        'all' => 'deny',
+//        'delete' => 'admin',
+//        'delete' => 'admin',
+//        'add' => 'admin, auth_user',
+//        
+//    ];
+//    
+//    protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
+//        'all' => 'deny',
+//        'delete' => ['allow' => ['admin'], 'deny' => ['popkadurak']],
+//        'add' => ['allow' => ['admin', 'auth_user']],
+//        
+//    ];
+    
+
 
 
     /**
