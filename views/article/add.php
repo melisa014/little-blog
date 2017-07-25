@@ -1,7 +1,7 @@
 
 <h2><?= $addArticleTitle ?></h2>
 
-<form method="post" action="<?php \Url::link("article/add")?>"> 
+<form method="post" action="<?= \Url::link("article/add")?>"> 
     <h5>Введите название статьи</h5>
     <input type="text" name="title" value="*название статьи*"><br>
     <h5>Выберите категорию статьи</h5>

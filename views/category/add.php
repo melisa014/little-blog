@@ -1,6 +1,6 @@
-<h2><?php echo $addCategoryTitle ?></h2>
+<h2><?= $addCategoryTitle ?></h2>
 
-<form method="post" action="<?php \Url::link("category/add")?>"> <!--&id=<?php echo $_GET['id']; ?>-->
+<form method="post" action="<?= \Url::link("category/add")?>"> <!--&id=<?php echo $_GET['id']; ?>-->
     <h5>Введите название категории</h5>
     <input type="text" name="name" value="*название категории*"><br>
     <h5>Краткое описание категории</h5>

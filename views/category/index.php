@@ -1,6 +1,6 @@
 <h2><?= $viewCategory->name ?>
     <span>
-        <a href="<?php \Url::link("category/edit&id=". $viewCategory->id)?>">
+        <a href="<?= \Url::link("category/edit&id=". $viewCategory->id)?>">
             [Редактировать]</a>
     </span>
 </h2> 

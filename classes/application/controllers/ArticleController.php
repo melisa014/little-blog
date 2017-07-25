@@ -15,12 +15,14 @@ class ArticleController extends \core\Controller
     
     public $viewArticle = "";
     
-    protected $rules = [
-        'delete' => 'admin',
-        'delete' => 'admin',
-        'add' => 'admin, auth_user',
-        
-    ];
+//    protected $rules = [
+//        'delete' => ['admin'],
+//        'delete' => ['admin'],
+//        'add' => [
+//            'allow' => 'admin',
+//            'deny' => 'auth_user'],
+//        
+//    ];
 
 
     /**

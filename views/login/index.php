@@ -1,6 +1,6 @@
 <h2><?= $loginTitle ?></h2>
 
-<form method="post" action="<?=\Url::link('login/index')?>">
+<form method="post" action="<?= \Url::link('login/index')?>">
     <h5>Введите имя пользователя</h5>
     <input type="text" name="userName" value=""><br>
     <h5>Введите пароль</h5>

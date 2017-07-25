@@ -42,9 +42,11 @@ trait AccessControl {
     public function isEnabled($actionName)
     {
         $result = true;
+        $condition = in_array(\core\User::get()->role, $this->rules[$actionName]);
+        \DebugPrinter::debug($condition, 'Есть ли роль в рулз?');
         if ($this->isInRules($actionName) 
 //                && (User::get()->role != $this->rules[$actionName]))
-                &&  (strpos(\core\User::get()->role, $this->rules[$actionName])))
+                &&  ($condition))
         {
             $result  = false;
         }
