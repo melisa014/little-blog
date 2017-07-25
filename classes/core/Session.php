@@ -32,6 +32,9 @@ class Session
     {   
         session_start();
         $this->session = &$_SESSION;
+//        $this->session['user']['role'] = 'guest';
+//        $this->session['user']['userName'] = 'guest';
+        
     }
     
 }

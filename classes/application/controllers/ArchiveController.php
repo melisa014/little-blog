@@ -6,6 +6,15 @@ use \application\models\Category as Category;
 class ArchiveController extends \core\Controller
 {
     /**
+     * Список правил, ограничивающих доступ пользователей с разными ролями
+     * @var type array
+     */
+     protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
+        'all' => ['allow' => ['admin', 'auth_user', 'guest']], // общее правило
+        'allCategories' => ['deny' => ['guest']], //исключения
+    ];
+    
+    /**
      * @var string Название страницы
      */
     public $archivePageTitle = "Архив";
@@ -29,7 +38,7 @@ class ArchiveController extends \core\Controller
     /**
      * Выводит на экран страницу "Архив. Категории" Администратора 
      */
-     public function allCategoriesAction()
+    public function allCategoriesAction()
     {
         $Category = new Category();
         $archiveCategories = $Category->getList();

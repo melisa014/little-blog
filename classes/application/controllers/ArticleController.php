@@ -15,35 +15,25 @@ class ArticleController extends \core\Controller
     
     public $viewArticle = "";
     
+    
+//    protected $rules = [
+//        'delete' => ['admin' => 'allow', 'auth_user' => 'deny', 'guest' => 'deny'],
+//        'edit' => ['admin' => 'allow', 'auth_user' => 'allow', 'guest' => 'deny'],
+//        'add' => ['admin' => 'allow', 'auth_user' => 'allow', 'guest' => 'deny'],
+//    ];
 
-    protected $rules = [
-        'delete' => ['admin'],
-        'delete' => ['admin'],
-        'add' => [
-            'allow' => 'admin',
-            'deny' => 'auth_user'],
+    /**
+     * Список правил, ограничивающих доступ пользователей с разными ролями
+     * @var type array
+     */
+    protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
+        'all' => ['allow' => ['admin', 'guest']], // общее правило , 'deny' => ['guest']
+        'delete' => ['deny' => ['auth_user', 'guest']], //исключения
+        'edit' => ['allow' => ['auth_user']], 
+        'add' => ['allow' => ['auth_user']],
         
     ];
     
-//    protected $rules = [   // вариант 1: удобно писать, неудобно читать программно, если deny -- то остальные правила можно считать разрешающим, 
-//                           // если же 'all' => 'allow' то остальные правила можно считать запрещающими
-//        'all' => 'deny',
-//        'delete' => 'admin',
-//        'delete' => 'admin',
-//        'add' => 'admin, auth_user',
-//        
-//    ];
-//    
-//    protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
-//        'all' => 'deny',
-//        'delete' => ['allow' => ['admin'], 'deny' => ['popkadurak']],
-//        'add' => ['allow' => ['admin', 'auth_user']],
-//        
-//    ];
-    
-
-
-
     /**
      * Выводит на экран страницу "Статья" для просмотра
      */

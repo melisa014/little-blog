@@ -1,4 +1,4 @@
-<?php 
+ <?php 
     \DebugPrinter::debug($_SESSION, '$_SESSION');
     \DebugPrinter::debug(\core\Session::get()->session, 'св-во session'); 
     \DebugPrinter::debug(\core\User::get()->role, 'роль Userа'); 

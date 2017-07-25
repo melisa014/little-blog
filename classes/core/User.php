@@ -32,8 +32,14 @@ class User extends Session
     {
         if (!empty(Session::get()->session['user']['role'])
                 && !empty(Session::get()->session['user']['userName'])) {
-            $this->role =  Session::get()->session['user']['role'];
-            $this->userName =  Session::get()->session['user']['userName'];
+            $this->role = Session::get()->session['user']['role'];
+            $this->userName = Session::get()->session['user']['userName'];
+        }
+        else {
+            Session::get()->session['user']['role'] = 'guest';
+            Session::get()->session['user']['userName'] = 'guest';
+            $this->role = 'guest';
+            $this->userName = 'guest';
         }
     }
         

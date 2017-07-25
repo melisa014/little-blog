@@ -16,11 +16,7 @@
        <a href="<?= \Url::link("archive/index")?>">В архив</a>
        <a href="<?= \Url::link("login/index")?>">Войти под своим именем</a>
        
-      <!-- <?= \core\User::get()->isAllowed($_GET['route'])?>
-       
-       <a href="<?= \Url::link("archive/allCategories")?>">В архив(Категории)</a>
-        <a href="<?= \Url::link("article/add")?>">+ Добавить статью</a>
-        <a href="<?= \Url::link("category/add")?>">+ Добавить категорию</a>-->
+      
        
        <p><?= \core\User::get()->userName . ' ' ?><a href="<?= \Url::link("login/logout")?>">Выйти</a></p>
                      

@@ -27,7 +27,7 @@ trait AccessControl {
         $actionName = $this->getControllerActionName($route);
 //        \DebugPrinter::debug($actionName, 'actionName (callAction)');
         
-        if ($this->isEnabled($actionName)) {
+        if ($this->isEnabled($route, $actionName)) {
             $methodName =  $this->getControllerMethodName($actionName);
 //            \DebugPrinter::debug($methodName, 'methodName (callAction)');
             $this->$methodName();
@@ -36,34 +36,125 @@ trait AccessControl {
         }
     }
     
+    public function IsEnabled($route, $actionName)
+    {
+        if ($this->isRules($route)) {
+            
+            $rules = $this->rules;
+            
+            \DebugPrinter::debug($actionName, 'Действие ');
+            \DebugPrinter::debug(\core\User::get()->role, 'Роль');
+            \DebugPrinter::debug($rules, 'Правила в данном контроллере есть');
+            
+            foreach ($rules as $action => $rule) {
+                if ($action == $actionName) {
+                    foreach ($rule as $status => $userRole) {
+                        if ($status == 'deny') {
+                            foreach ($userRole as $k => $role) {
+                                if (\core\User::get()->role == $role) {
+                                    return false;
+                                }
+                            }
+                        }   
+                        elseif ($status == 'allow') {
+                            foreach ($userRole as $k => $role) {
+                                if (\core\User::get()->role == $role) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            foreach ($rules as $action => $rule) {
+                if ($action == 'all') {
+                    foreach ($rule as $status => $userRole) {
+                        if ($status == 'deny') {
+                            foreach ($userRole as $k => $role) {
+                                if (\core\User::get()->role == $role) {
+                                    return false;
+                                }
+                            }
+                        }   
+                        elseif ($status == 'allow') {
+                            foreach ($userRole as $k => $role) {
+                                if (\core\User::get()->role == $role) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            
+        }
+        else {
+            echo "В данном контроллере правил нет";
+            return true;
+        }
+    }
+    
    /**
     * Есть ли у данного пользователя разрешение на это действие 
     */
-    public function isEnabled($actionName)
-    {
-        $result = true;
-        $condition = in_array(\core\User::get()->role, $this->rules[$actionName]);
-        \DebugPrinter::debug($condition, 'Есть ли роль в рулз?');
-        if ($this->isInRules($actionName) 
-//                && (User::get()->role != $this->rules[$actionName]))
-                &&  ($condition))
-        {
-            $result  = false;
-        }
-
-        return $result;
-    }
-
+//    public function isEnabled($actionName)
+//    {
+//        $result = true;
+//        $condition = in_array(\core\User::get()->role, $this->rules[$actionName]);
+//        \DebugPrinter::debug($condition, 'Есть ли роль в рулз?');
+//        if ($this->isInRules($actionName) 
+////                && (User::get()->role != $this->rules[$actionName]))
+//                &&  ($condition))
+//        {
+//            $result  = false;
+//        }
+//
+//        return $result;
+//    }
+    
     /**
-     * Упоминается ли действие в правилах
+     * Есть ли правила в данном контроллере
      */
-    private function isInRules($actionName)
+    private function isRules($route)
     {
-        if (isset($rules[$actionName])) {
+        $controllerClassName = "application\\controllers\\" . \Router::getControllerClassName($route);
+        $controller = new $controllerClassName();
+        if (!empty($controller->rules)) {
             return true;
         }
         return false;
     }
+    
+    /**
+     * Получить правило по роли
+     */
+//    public function getRuleByRole($role)
+//    {
+//        ...
+//        if ((\core\User::get()->role == $role)
+//                && ($status = 'allow')) {
+//            return true;
+//        }
+//        elseif ((\core\User::get()->role == $role)
+//                && ($status = 'deny')) {
+//            return false;
+//        }
+//    }
+
+    /**
+     * Есть ли частное правило для данного действия
+     */
+//    private function isInRules($actionName)
+//    {
+//        $rules = $this->rules;
+//        foreach ($rules as $action => $rule) {
+//            if ($action == $actionName) {
+//                return true;
+//            }
+//            else return false;
+//        }
+//    }
     
     /**
      * Формирует полное имя метода контроллера по GET-параметру

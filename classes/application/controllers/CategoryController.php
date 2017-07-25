@@ -5,6 +5,18 @@ use \application\models\Category as Category;
 class CategoryController extends \core\Controller
 { 
     /**
+     * Список правил, ограничивающих доступ пользователей с разными ролями
+     * @var type array
+     */
+    protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
+        'all' => ['allow' => ['admin'], 'deny' => ['guest']], // общее правило
+        'delete' => ['deny' => ['auth_user']], //исключения
+        'edit' => ['allow' => ['auth_user']], 
+        'add' => ['allow' => ['auth_user']],
+        
+    ];
+    
+    /**
      * Выводит на экран страницу "Категория" для просмотра
      */
     public function indexAction()

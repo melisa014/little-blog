@@ -25,3 +25,7 @@
         <p>Вам понравилось: <?= $_SESSION['like']; ?></p>
               
        <div id="container">
+           
+           
+           
+           

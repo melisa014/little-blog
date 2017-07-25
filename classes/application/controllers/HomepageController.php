@@ -10,14 +10,14 @@ class HomepageController extends \core\Controller
      */
     public $homepageTitle = "Домашняя страница";
     
-    protected $rules = [];
-    
+        
     /**
      * Выводит на экран страницу "Домашняя страница"
      */
     public function indexAction()
     {
         $Article = new Article();
+        
         $Category = new Category();
         $homepageArticles = $Article->getList();
         $homepageCategories = $Category->getList();
