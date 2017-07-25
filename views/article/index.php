@@ -1,5 +1,9 @@
-<h2><?= $viewArticle->title ?></h2> 
-
+<h2><?= $viewArticle->title ?>
+    <span>
+        <a href="<?php \Url::link("article/edit&id=" . $viewArticle->id) ?>">
+            [Редактировать]</a>
+    </span>
+</h2> 
 
 <p><?= $viewArticle->content ?></p>
 <p class="pubDate">Эта статья была написана <?= $viewArticle->publicationDate ?></p>

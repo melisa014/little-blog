@@ -38,22 +38,6 @@ class ArticleController extends \core\Controller
         $this->view->render('article/index.php');
     }
     
-//    /**
-//     * Выводит на экран страницу "Статья" для просмотра Администратору
-//     */
-//    public function indexAdminAction()
-//    {
-//
-//        $Article = new Article();
-//
-//        $this->viewArticle = $Article->getById($_GET['id']);
-//        
-//        $this->view->addVar('viewArticle', $this->viewArticle);
-//        
-//        $this->view->headerFilePath = 'headerAdmin.php';
-//        $this->view->render('article/indexAdmin.php');
-//    }
-    
     /**
      * Выводит на экран форму для создания новой статьи (только для Администратора)
      */
@@ -77,8 +61,7 @@ class ArticleController extends \core\Controller
             $this->addArticleTitle = "Создание статьи";
             $this->view->addVar('addArticleTitle', $this->addArticleTitle);
             
-            $this->view->headerFilePath = 'headerAdmin.php';
-            $this->view->render('article/addAdmin.php');
+            $this->view->render('article/add.php');
         }
     }
     
@@ -120,8 +103,7 @@ class ArticleController extends \core\Controller
             $this->view->addVar('viewArticle', $this->viewArticle);
             $this->view->addVar('editArticleTitle', $this->editArticleTitle);
             
-            $this->view->headerFilePath = 'headerAdmin.php';
-            $this->view->render('article/editAdmin.php');   
+            $this->view->render('article/edit.php');   
         }
         
     }
@@ -158,8 +140,7 @@ class ArticleController extends \core\Controller
             $this->view->addVar('deleteArticleTitle', $this->deleteArticleTitle);
             $this->view->addVar('deletedArticle', $deletedArticle);
             
-            $this->view->headerFilePath = 'headerAdmin.php';
-            $this->view->render('article/deleteAdmin.php');
+            $this->view->render('article/delete.php');
         }
     }
 }

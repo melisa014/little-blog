@@ -1,6 +1,6 @@
 <h2><?php echo $deleteArticleTitle ?></h2>
 
-<form method="post" action="/index.php?action=article/delete&id=<?php echo $_GET['id']; ?>" >
+<form method="post" action="<?php \Url::link("article/delete&id=". $_GET['id'])?>" >
     Вы уверены, что хотите удалить статью?
     
     <input type="hidden" name="id" value="<?= $deletedArticle->id ?>">

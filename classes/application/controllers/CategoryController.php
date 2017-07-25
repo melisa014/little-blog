@@ -22,23 +22,23 @@ class CategoryController extends \core\Controller
     /**
      * Выводит на экран страницу "Категоия" для просмотра Администратору
      */
-    public function indexAdminAction()
-    {
-
-        $Category = new Category();
-
-        $this->viewCategory = $Category->getById($_GET['id']);
-        
-        $this->view->addVar('viewCategory', $this->viewCategory);
-        
-        $this->view->headerFilePath = 'headerAdmin.php';
-        $this->view->render('category/indexAdmin.php');
-    }
+//    public function indexAdminAction()
+//    {
+//
+//        $Category = new Category();
+//
+//        $this->viewCategory = $Category->getById($_GET['id']);
+//        
+//        $this->view->addVar('viewCategory', $this->viewCategory);
+//        
+//        $this->view->headerFilePath = 'headerAdmin.php';
+//        $this->view->render('category/indexAdmin.php');
+//    }
     
     /**
      * Выводит на экран форму для создания новой статьи (только для Администратора)
      */
-    public function addAdminAction()
+    public function addAction()
     {
         if (!empty($_POST)) {
             if ($_POST['saveNewCategory'] == 'Сохранить') {
@@ -58,15 +58,14 @@ class CategoryController extends \core\Controller
             $this->addCategoryTitle = "Создание категории";
             $this->view->addVar('addCategoryTitle', $this->addCategoryTitle);
             
-            $this->view->headerFilePath = 'headerAdmin.php';
-            $this->view->render('category/addAdmin.php');
+            $this->view->render('category/add.php');
         }
     }
     
     /**
      * Выводит на экран форму для редактирования статьи (только для Администратора)
      */
-    public function editAdminAction()
+    public function editAction()
     {
         $id = $_GET['id'];
         
@@ -93,15 +92,14 @@ class CategoryController extends \core\Controller
             $this->view->addVar('viewCategory', $this->viewCategory);
             $this->view->addVar('editCategoryTitle', $this->editCategoryTitle);
             
-            $this->view->headerFilePath = 'headerAdmin.php';
-            $this->view->render('category/editAdmin.php');   
+            $this->view->render('category/edit.php');   
         }
     }
     
     /**
      * Выводит на экран предупреждение об удалении данных (только для Администратора)
      */
-    public function deleteAdminAction()
+    public function deleteAction()
     {
         $id = $_GET['id'];
         
@@ -121,8 +119,7 @@ class CategoryController extends \core\Controller
             $this->deleteCategoryTitle = "Удаление категории";
             $this->view->addVar('deleteCategoryTitle', $this->deleteCategoryTitle);
             
-            $this->view->headerFilePath = 'headerAdmin.php';
-            $this->view->render('category/deleteAdmin.php');
+            $this->view->render('category/delete.php');
         }
     }
 }

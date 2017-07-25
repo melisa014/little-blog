@@ -1,11 +1,11 @@
 <h2><?= $editArticleTitle ?>
     <span>
-        <a href="/index.php?action=article/delete&id=<?= $_GET['id']; ?>">
+        <a href="<?php \Url::link("article/delete&id=" . $_GET['id'])?>">
             [Удалить]</a>
     </span>
 </h2>
 
-<form method="post" action="/index.php?action=article/edit&id=<?= $_GET['id']; ?>">
+<form method="post" action="<?php \Url::link("article/edit&id=" . $_GET['id'])?>">
     <h5>Введите название статьи</h5>
     <input type="text" name="title" value="<?= $viewArticle->title ?>"><br>
     <h5>Выберите категорию статьи</h5>

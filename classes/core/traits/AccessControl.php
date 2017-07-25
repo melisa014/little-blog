@@ -44,7 +44,7 @@ trait AccessControl {
         $result = true;
         if ($this->isInRules($actionName) 
 //                && (User::get()->role != $this->rules[$actionName]))
-                &&  (in_array(\core\User::get()->role, $this->rules[$actionName])))
+                &&  (strpos(\core\User::get()->role, $this->rules[$actionName])))
         {
             $result  = false;
         }
@@ -90,4 +90,15 @@ trait AccessControl {
         return $action . 'Action';
     }
     
+    /**
+     * Возвращает массив с правилами данного контроллера 
+     * @return array['action'] = 'user'
+     */
+    public function getControllerRules()
+    {
+//        $controllerClassName = static::class;
+//        $obj = new $controllerClassName;
+        return $this->rules;
     }
+}
+    

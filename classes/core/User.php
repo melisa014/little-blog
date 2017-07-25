@@ -2,8 +2,7 @@
 namespace core;
 
 /**
- * Description of User
- *
+ * Класс для работы с данными пользователя
  * @author qwe
  */
 class User extends Session
@@ -62,7 +61,7 @@ class User extends Session
      * @param type $userName
      * @return type
      */
-    public function getRoleByUserName($userName)
+    private function getRoleByUserName($userName)
     {
         $siteAuthData = \Config::$users;
         if (isset($siteAuthData[$userName])) {
@@ -105,23 +104,38 @@ class User extends Session
      * 
      * @param type $route
      */
-    public static function isAllowed()
+    public function isAllowed($route)
     {
-        // — использовать его во вью для вывода элементов меню
-       
-        if (in_array($this->role, $this->rules)) {
-            include (\view\headerAdmin.php);
+        $result = 'нельзя';
+        $controllerClassName = "application\\controllers\\" . \Router::getControllerClassName($route);
+        $controller = new $controllerClassName();
+        $rules = $controller->getControllerRules();
+        $action = $controller->getControllerActionName($route);
+        echo "<br>" .  $controllerClassName . " Действие: " . $action;
+        if ($controller->isEnabled($action)) {
+            $result = 'можно';
         }
-        else return false;
+        echo "<br>Результат: " . $result;
+        
+        // — использовать его во вью для вывода элементов меню
+//       $a = strpos($this->role, $this->rules[$route]);
+//        if (!in_array($this->rules[$route] == )) {
+//            return true;
+//        }
+//        else return false;
     }
-    
+ 
     /**
      * 
      * @param type $route
      * @param type $elementHTML
      */
-    public static function returnIfAllowed($route, $elementHTML) 
+    public function returnIfAllowed($route, $elementHTML) 
     {
+        if($this->isAllowed($route)) {
+            return $elementHTML;
+            }
+        else return "";
           /*
              * если нельзя возвращает пустую строку.
              - А в строку можно какой-нить якорь, куда надо вствить ссылку 

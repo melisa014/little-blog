@@ -14,7 +14,7 @@ class Router
 //        \DebugPrinter::debug($_SESSION['username']);
 //        echo "<br>";
         
-        $controllersName = "application\\controllers\\". $this->getControllerClassName($route);
+        $controllersName = "application\\controllers\\". self::getControllerClassName($route);
        // $methodsName = $this->getControllerActionName($action);
 //        echo $controllersName. "<br>";
 //        echo $methodsName. "<br><br>";
@@ -28,7 +28,7 @@ class Router
      * Формирует имя конроллера по GET-параметру
      * @param type $route -- строка GET-параметр
      */
-    public function getControllerClassName($route)
+    public static function getControllerClassName($route)
     {
         $result = 'Homepage';
                 
@@ -44,5 +44,4 @@ class Router
         return $result. "Controller";
     }
     
-
 }
