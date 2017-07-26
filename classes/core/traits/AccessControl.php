@@ -46,47 +46,39 @@ trait AccessControl {
             \DebugPrinter::debug(\core\User::get()->role, 'Роль');
             \DebugPrinter::debug($rules, 'Правила в данном контроллере есть');
             
-            foreach ($rules as $action => $rule) {
-                if ($action == $actionName) {
-                    foreach ($rule as $status => $userRole) {
-                        if ($status == 'deny') {
-                            foreach ($userRole as $k => $role) {
-                                if (\core\User::get()->role == $role) {
-                                    return false;
-                                }
-                            }
-                        }   
-                        elseif ($status == 'allow') {
-                            foreach ($userRole as $k => $role) {
-                                if (\core\User::get()->role == $role) {
-                                    return true;
-                                }
-                            }
+            if (!empty($rules[$actionName])) {
+                if (!empty($rules[$actionName]['deny'])) {
+                    foreach ($rules[$actionName]['deny'] as $k => $role) {
+                        if (\core\User::get()->role == $role) {
+                            return false;
                         }
                     }
-                }
-            }
-            foreach ($rules as $action => $rule) {
-                if ($action == 'all') {
-                    foreach ($rule as $status => $userRole) {
-                        if ($status == 'deny') {
-                            foreach ($userRole as $k => $role) {
-                                if (\core\User::get()->role == $role) {
-                                    return false;
-                                }
-                            }
-                        }   
-                        elseif ($status == 'allow') {
-                            foreach ($userRole as $k => $role) {
-                                if (\core\User::get()->role == $role) {
-                                    return true;
-                                }
-                            }
+                }   
+                elseif (!empty($rules[$actionName]['allow'])) {
+                    foreach ($rules[$actionName]['allow'] as $k => $role) {
+                        if (\core\User::get()->role == $role) {
+                            return true;
                         }
                     }
                 }
             }
             
+            if (!empty($rules['all'])) {
+                if (!empty($rules['all']['deny'])) {
+                    foreach ($rules['all']['deny'] as $k => $role) {
+                        if (\core\User::get()->role == $role) {
+                            return false;
+                        }
+                    }
+                }   
+                elseif (!empty($rules['all']['allow'])) {
+                    foreach ($rules['all']['allow'] as $k => $role) {
+                        if (\core\User::get()->role == $role) {
+                            return true;
+                        }
+                    }
+                }
+            }
             
         }
         else {
@@ -94,24 +86,6 @@ trait AccessControl {
             return true;
         }
     }
-    
-   /**
-    * Есть ли у данного пользователя разрешение на это действие 
-    */
-//    public function isEnabled($actionName)
-//    {
-//        $result = true;
-//        $condition = in_array(\core\User::get()->role, $this->rules[$actionName]);
-//        \DebugPrinter::debug($condition, 'Есть ли роль в рулз?');
-//        if ($this->isInRules($actionName) 
-////                && (User::get()->role != $this->rules[$actionName]))
-//                &&  ($condition))
-//        {
-//            $result  = false;
-//        }
-//
-//        return $result;
-//    }
     
     /**
      * Есть ли правила в данном контроллере
@@ -124,6 +98,15 @@ trait AccessControl {
             return true;
         }
         return false;
+    }
+    
+    /**
+     * Возвращает массив с правилами данного контроллера 
+     * @return array['action'] = 'user'
+     */
+    public function getControllerRules()
+    {
+        return $this->rules;
     }
     
     /**
@@ -143,20 +126,6 @@ trait AccessControl {
 //    }
 
     /**
-     * Есть ли частное правило для данного действия
-     */
-//    private function isInRules($actionName)
-//    {
-//        $rules = $this->rules;
-//        foreach ($rules as $action => $rule) {
-//            if ($action == $actionName) {
-//                return true;
-//            }
-//            else return false;
-//        }
-//    }
-    
-    /**
      * Формирует полное имя метода контроллера по GET-параметру
      * @param type $route -- строка GET-параметр
      */
@@ -173,7 +142,6 @@ trait AccessControl {
          
     }
     
-        
     /**
      * Формирует имя метода контроллера по GET-параметру
      * @param type $action -- строка GET-параметр
@@ -183,15 +151,6 @@ trait AccessControl {
         return $action . 'Action';
     }
     
-    /**
-     * Возвращает массив с правилами данного контроллера 
-     * @return array['action'] = 'user'
-     */
-    public function getControllerRules()
-    {
-//        $controllerClassName = static::class;
-//        $obj = new $controllerClassName;
-        return $this->rules;
-    }
+
 }
     

@@ -15,22 +15,15 @@ class ArticleController extends \core\Controller
     
     public $viewArticle = "";
     
-    
-//    protected $rules = [
-//        'delete' => ['admin' => 'allow', 'auth_user' => 'deny', 'guest' => 'deny'],
-//        'edit' => ['admin' => 'allow', 'auth_user' => 'allow', 'guest' => 'deny'],
-//        'add' => ['admin' => 'allow', 'auth_user' => 'allow', 'guest' => 'deny'],
-//    ];
-
     /**
      * Список правил, ограничивающих доступ пользователей с разными ролями
      * @var type array
      */
     protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
-        'all' => ['allow' => ['admin', 'guest']], // общее правило , 'deny' => ['guest']
+        'all' => ['allow' => ['admin', 'auth_user', 'guest']], // общее правило , 'deny' => ['guest']
         'delete' => ['deny' => ['auth_user', 'guest']], //исключения
-        'edit' => ['allow' => ['auth_user']], 
-        'add' => ['allow' => ['auth_user']],
+        'edit' => ['allow' => ['auth_user'], 'deny' => ['guest']], 
+        'add' => ['allow' => ['auth_user'], 'deny' => ['guest']],
         
     ];
     
