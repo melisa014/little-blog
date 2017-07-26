@@ -1,7 +1,8 @@
 <h2><?= $editArticleTitle ?>
     <span>
-        <a href="<?= \Url::link("article/delete&id=" . $_GET['id'])?>">
-            [Удалить]</a>
+        <?= \core\User::get()->returnIfAllowed("article/delete", 
+            "<a href=" . \Url::link("article/delete&id=" . $_GET['id']) 
+            . ">[Удалить]</a>");?>
     </span>
 </h2>
 

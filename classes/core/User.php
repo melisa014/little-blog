@@ -112,23 +112,20 @@ class User extends Session
      */
     public function isAllowed($route)
     {
-        $result = 'нельзя';
+        $result = false;
         $controllerClassName = "application\\controllers\\" . \Router::getControllerClassName($route);
         $controller = new $controllerClassName();
         $rules = $controller->getControllerRules();
         $action = $controller->getControllerActionName($route);
-        echo "<br>" .  $controllerClassName . " Действие: " . $action;
-        if ($controller->isEnabled($action)) {
-            $result = 'можно';
-        }
-        echo "<br>Результат: " . $result;
         
-        // — использовать его во вью для вывода элементов меню
-//       $a = strpos($this->role, $this->rules[$route]);
-//        if (!in_array($this->rules[$route] == )) {
-//            return true;
-//        }
-//        else return false;
+//        echo "<br>Контроллер: " .  $controllerClassName . "<br> Действие: " . $action;
+        
+        if ($controller->isEnabled($route, $action)) {
+            $result = true;
+        }
+        
+//        echo "<br>Результат: " . $result;
+        return $result;
     }
  
     /**
@@ -139,9 +136,9 @@ class User extends Session
     public function returnIfAllowed($route, $elementHTML) 
     {
         if($this->isAllowed($route)) {
-            return $elementHTML;
+            echo $elementHTML;
             }
-        else return "";
+        else echo "";
           /*
              * если нельзя возвращает пустую строку.
              - А в строку можно какой-нить якорь, куда надо вствить ссылку 

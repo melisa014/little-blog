@@ -42,9 +42,9 @@ trait AccessControl {
             
             $rules = $this->rules;
             
-            \DebugPrinter::debug($actionName, 'Действие ');
-            \DebugPrinter::debug(\core\User::get()->role, 'Роль');
-            \DebugPrinter::debug($rules, 'Правила в данном контроллере есть');
+//            \DebugPrinter::debug($actionName, 'Действие ');
+//            \DebugPrinter::debug(\core\User::get()->role, 'Роль');
+//            \DebugPrinter::debug($rules, 'Правила в данном контроллере есть');
             
             if (!empty($rules[$actionName])) {
                 if (!empty($rules[$actionName]['deny'])) {
@@ -82,10 +82,61 @@ trait AccessControl {
             
         }
         else {
-            echo "В данном контроллере правил нет";
+//            echo "В данном контроллере правил нет";
             return true;
         }
     }
+    
+//        public function IsEnabled($route, $actionName)
+//    {
+//        if ($this->isRules($route)) {
+//            
+//            $rules = $this->rules;
+//            
+////            \DebugPrinter::debug($actionName, 'Действие ');
+////            \DebugPrinter::debug(\core\User::get()->role, 'Роль');
+////            \DebugPrinter::debug($rules, 'Правила в данном контроллере есть');
+//            
+//            if (!empty($rules[$actionName])) {
+//                if (!empty($rules[$actionName]['deny'])) {
+//                    foreach ($rules[$actionName]['deny'] as $k => $role) {
+//                        if (\core\User::get()->role == $role) {
+//                            return false;
+//                        }
+//                    }
+//                }   
+//                elseif (!empty($rules[$actionName]['allow'])) {
+//                    foreach ($rules[$actionName]['allow'] as $k => $role) {
+//                        if (\core\User::get()->role == $role) {
+//                            return true;
+//                        }
+//                    }
+//                }
+//            }
+//            
+//            if (!empty($rules['all'])) {
+//                if (!empty($rules['all']['deny'])) {
+//                    foreach ($rules['all']['deny'] as $k => $role) {
+//                        if (\core\User::get()->role == $role) {
+//                            return false;
+//                        }
+//                    }
+//                }   
+//                elseif (!empty($rules['all']['allow'])) {
+//                    foreach ($rules['all']['allow'] as $k => $role) {
+//                        if (\core\User::get()->role == $role) {
+//                            return true;
+//                        }
+//                    }
+//                }
+//            }
+//            
+//        }
+//        else {
+////            echo "В данном контроллере правил нет";
+//            return true;
+//        }
+//    }
     
     /**
      * Есть ли правила в данном контроллере

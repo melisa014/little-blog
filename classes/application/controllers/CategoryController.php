@@ -9,10 +9,10 @@ class CategoryController extends \core\Controller
      * @var type array
      */
     protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
-        'all' => ['allow' => ['admin'], 'deny' => ['guest']], // общее правило
-        'delete' => ['deny' => ['auth_user']], //исключения
-        'edit' => ['allow' => ['auth_user']], 
-        'add' => ['allow' => ['auth_user']],
+        'all' => ['allow' => ['admin', 'auth_user', 'guest']], // общее правило
+        'delete' => ['deny' => ['auth_user', 'guest']], //исключения
+        'edit' => ['deny' => ['guest']], 
+        'add' => ['deny' => ['guest']],
         
     ];
     
@@ -21,7 +21,6 @@ class CategoryController extends \core\Controller
      */
     public function indexAction()
     {
-
         $Category = new Category();
 
         $this->viewCategory = $Category->getById($_GET['id']);
@@ -75,20 +74,22 @@ class CategoryController extends \core\Controller
     }
     
     /**
-     * Выводит на экран форму для редактирования статьи (только для Администратора)
+     * Выводит на экран форму для редактирования категории (только для Администратора)
      */
     public function editAction()
     {
         $id = $_GET['id'];
-        
+        \DebugPrinter::debug($_POST);
 //        \DebugPrinter::debug($_POST);
 //        \DebugPrinter::debug($id);
         
         if (!empty($_POST)) {
             if ($_POST['saveChanges'] == 'Сохранить') {
+                \DebugPrinter::debug("Привет)");
                 $Category = new Category();
                 $newCategory = $Category->loadFromPost();
                 $newCategory->update();
+                \DebugPrinter::debug($newCategory, 'после апдейта');
                 $this->header(\Url::link("category/index&id=$id"));
             } 
             elseif ($_POST['cancel'] == 'Назад') {

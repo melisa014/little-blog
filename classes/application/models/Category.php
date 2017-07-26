@@ -86,8 +86,19 @@ class Category extends \core\Model
         $st->execute();
     }
 
-
-    
+    public function articleUpdate()
+    {
+        $sql = "UPDATE $this->tableName SET publicationDate=:publicationDate, categoryId=:categoryId, title=:title, summary=:summary, content=:content, likes=:likes WHERE id = :id";  
+        $st = $this->pdo->prepare ( $sql );
+        $st->bindValue( ":publicationDate", (new \DateTime('NOW'))->format('Y-m-d H:i:s'), \PDO::PARAM_INT );
+        $st->bindValue( ":categoryId", $this->categoryId, \PDO::PARAM_INT );
+        $st->bindValue( ":title", $this->title, \PDO::PARAM_STR );
+        $st->bindValue( ":summary", $this->summary, \PDO::PARAM_STR );
+        $st->bindValue( ":content", $this->content, \PDO::PARAM_STR );
+        $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
+        $st->bindValue( ":likes", $this->likes, \PDO::PARAM_INT );
+        $st->execute();
+    }
 }
 
 

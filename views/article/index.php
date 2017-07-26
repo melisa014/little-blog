@@ -1,7 +1,8 @@
 <h2><?= $viewArticle->title ?>
     <span>
-        <a href="<?= \Url::link("article/edit&id=" . $viewArticle->id) ?>">
-            [Редактировать]</a>
+        <?= \core\User::get()->returnIfAllowed("article/edit", 
+            "<a href=" . \Url::link("article/edit&id=". $viewArticle->id) 
+            . ">[Редактировать]</a>");?>
     </span>
 </h2> 
 

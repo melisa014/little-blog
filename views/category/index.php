@@ -1,7 +1,8 @@
 <h2><?= $viewCategory->name ?>
     <span>
-        <a href="<?= \Url::link("category/edit&id=". $viewCategory->id)?>">
-            [Редактировать]</a>
+        <?= \core\User::get()->returnIfAllowed("category/edit", 
+            "<a href=" . \Url::link("category/edit&id=". $viewCategory->id) 
+            . ">[Редактировать]</a>");?>
     </span>
 </h2> 
 

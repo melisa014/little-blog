@@ -1,7 +1,5 @@
 <h2><?= $archivePageTitle ?></h2>
 
-<a href="<?= \Url::link("category/add")?>">+ Добавить категорию</a>
-
 <?php 
 foreach ($archiveCategories['results'] as $k => $v):?>
     

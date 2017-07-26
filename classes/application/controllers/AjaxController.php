@@ -1,8 +1,22 @@
 <?php
+namespace application\controllers;
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Класс для работы с ajax-запросами
  */
+class AjaxController extends core\Controller
+{
+    /**
+     * Подгрузка "лайков"
+     */
+    public function likesAction()
+    {
+        $newLikeCount = $_GET['likeCount'] + 1;
+        //echo "Привет";
+        echo $newLikeCount;
+        //echo $_GET['id'];
+    }
+    
+    
+}
 

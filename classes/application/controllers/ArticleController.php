@@ -17,6 +17,8 @@ class ArticleController extends \core\Controller
     
     /**
      * Список правил, ограничивающих доступ пользователей с разными ролями
+     * По общему правилу всем разрешено всё. 
+     * Частные правила иллюстрируют исключения, и они более приоритетны
      * @var type array
      */
     protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
@@ -26,6 +28,15 @@ class ArticleController extends \core\Controller
         'add' => ['allow' => ['auth_user'], 'deny' => ['guest']],
         
     ];
+    
+//    Вариант с @ и общим правилом = deny
+//    protected $rules = [
+//        'all' => ['deny' => ['auth_user', 'guest'], 'allow' => ['admin']],
+//        'delete' => ['deny' => ['auth_user', 'guest']], //исключения
+//        'edit' => ['allow' => ['auth_user'], 'deny' => ['guest']], 
+//        'add' => ['allow' => ['auth_user'], 'deny' => ['guest']],
+//        'index' => ['allow' => '@'],
+//    ];
     
     /**
      * Выводит на экран страницу "Статья" для просмотра
