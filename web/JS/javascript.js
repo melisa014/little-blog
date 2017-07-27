@@ -8,24 +8,24 @@ $(function(){
 function like()
 {
     $('img').on('click', function(){
+//        showLoaderIdentity();
         var articleId = $(this).attr('data-articleId');
-        var likes = $('span.' + articleId).text();
         $.ajax({
-            url:'/web/ajaxHandler.php', 
-            data: {likeCount : likes},
+            url: '/index.php?route=ajax/likes', 
+            data: {id : articleId},
             dataType: 'text',
-//            method: 'POST'
+            method: 'POST'
         })
         .done (function(obj){
+//            hideLoaderIdentity();    
             console.log('Ответ получен');
     
     
             $('span.' + articleId).text(obj); 
-//            $('span.' + articleId).append('<hr/>');
-//            $_SESSION['like']++;
             
         })
         .fail(function(){
+//            hideLoaderIdentity();
             console.log('Ошибка соединения с сервером');
         });
     });

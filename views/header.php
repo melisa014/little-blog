@@ -5,7 +5,7 @@
         <title>Little-blog</title>
         <link rel="stylesheet" type="text/css" href="/web/style.css">
         <script src="/web/JS/jquery-3.2.1.js"></script>
-        <!--<script src="web/loaderIdentity.js"></script>-->
+        <script src="web/loaderIdentity.js"></script>
         <script src="/web/JS/javascript.js"></script>
     </head>
     <body>

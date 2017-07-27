@@ -14,11 +14,15 @@ class Router
 //        \DebugPrinter::debug($_SESSION['username']);
 //        echo "<br>";
         
-        $controllersName = "application\\controllers\\". self::getControllerClassName($route);
+        // тут тоже относительный адрес пространства был -- спасало только то, что сам класс в корневом пространстве
+        $controllersName = "\\application\\controllers\\". self::getControllerClassName($route);
        // $methodsName = $this->getControllerActionName($action);
 //        echo $controllersName. "<br>";
 //        echo $methodsName. "<br><br>";
+        
+       // echo $controllersName;   die();
         $controller = new $controllersName();
+       // die();
         $controller->callAction($route);
         // $controller->$methodsName();
         
