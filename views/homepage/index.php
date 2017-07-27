@@ -26,12 +26,9 @@
 
         <p><?= $homepageArticles['results'][$key]->summary; ?></p>
         <p class="pubDate"><?= $homepageArticles['results'][$key]->publicationDate; ?></p>
-       
-        <?= \DebugPrinter::debug($homepageArticles['results'][$key]);?>
-        
         <img src="/images/like1.png" height="20px" width="20px" data-articleId="<?= $homepageArticles['results'][$key]->id?>">
         <span class="<?= $homepageArticles['results'][$key]->id?>">
-                <?= $homepageArticles['results'][$key]->getLikes($homepageArticles['results'][$key]->id) ?>
+                <?= $homepageArticles['results'][$key]->getArticleLikes($homepageArticles['results'][$key]->id) ?>
         </span>
         <img id="loader-identity" src="/images/ajax-loader.gif" alt="gif">
         <hr><br>    

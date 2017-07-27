@@ -14,8 +14,14 @@ class AjaxController extends \core\Controller
     {
         $Article = new Article;
         $Article->likesUpper($_GET['id']);
+        \core\Session::get()->session['user']['userSessionLikesCount']++;
          
-        echo $Article->getLikes($_GET['id']);
+        echo $Article->getArticleLikes($_GET['id']);
+    }
+    
+    public function sessionLikesCountAction()
+    {
+        echo \core\Session::get()->session['user']['userSessionLikesCount'];
     }
         
 }

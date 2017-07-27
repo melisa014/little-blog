@@ -25,7 +25,12 @@
                "<a href=" . \Url::link("category/add") . ">+ Добавить категорию</a>");
         ?>
        
-       <p><?= \core\User::get()->userName . ' ' ?><a href="<?= \Url::link("login/logout")?>">Выйти</a></p>
+        <p>
+            <?= \core\User::get()->userName . ' ' ?><br>
+            <span id="sessionLikesCount"></span><br>
+            <a href="<?= \Url::link("login/logout")?>">Выйти</a>
+            <?= \DebugPrinter::debug((new \application\models\Article)->getLikes()) ?>
+        </p>
                      
        <div id="container">
         

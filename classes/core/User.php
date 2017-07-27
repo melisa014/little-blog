@@ -8,7 +8,12 @@ namespace core;
 class User extends Session
 {
     public $role = null;
+    
     public $userName = null;
+    
+    public $startSessionLikesCount;
+    
+    public $userLikesCount;
 
     /**
     * Вернёт объект юзера
@@ -26,7 +31,7 @@ class User extends Session
     }
     
     /** 
-     * скрываем конструктор для того чтобы класс нельзя было создать в обход getInstance 
+     * Скрываем конструктор для того чтобы класс нельзя было создать в обход getInstance 
      */
     protected function __construct()
     {
@@ -58,6 +63,10 @@ class User extends Session
             $this->userName = $login;
             Session::get()->session['user']['role'] = $role; 
             Session::get()->session['user']['userName'] = $login; 
+            Session::get()->session['user']['userSessionLikesCount'] = 0; 
+            
+            
+//            Session::get()->session['user']['startSessionLikesCount'] = (new \application\models\Article)->getAllLikesCount();
         }
         return true;
     }
@@ -99,9 +108,8 @@ class User extends Session
     {
         
         $this->role = "";
-        $this->userName = ""; 
-        Session::get()->session['user']['role'] = "";
-        Session::get()->session['user']['userName'] = "";
+        $this->userName = "";
+        Session::get()->session['user'] = null;
 //        session_destroy();
         return true;
     }
@@ -123,7 +131,6 @@ class User extends Session
         if ($controller->isEnabled($route, $action)) {
             $result = true;
         }
-        
 //        echo "<br>Результат: " . $result;
         return $result;
     }
@@ -137,18 +144,8 @@ class User extends Session
     {
         if($this->isAllowed($route)) {
             echo $elementHTML;
-            }
+        }
         else echo "";
-          /*
-             * если нельзя возвращает пустую строку.
-             - А в строку можно какой-нить якорь, куда надо вствить ссылку 
-             * сформированыю на основе html если у юзера есть права на маршрут.
-           * типа   User::get->returnIfAllowed( 'article/add', 
-           *                '"<a htrf="::link::"> добавить статью</a>")
-           * 
-           * — это бы позволило полностью инкапсулировать вывод элемента 
-           * управления в зависимости от роли пользователя.
-             */
     }
     
 }

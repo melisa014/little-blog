@@ -123,12 +123,42 @@ class Article extends \core\Model
         $articleData->update();
     }
     
-    public function getLikes($id)
+    public function getArticleLikes($id)
     {
         $articleData = $this->getById($id);
         return $articleData->likes;
     }
     
+    public function getAllLikesCount() // переписать 1 SQL запросом
+    {
+        $articles = $this->getList();
+        $likesCount = 0;
+        foreach ($articles['results'] as $k =>$v) {
+            $likesCount += $articles['results'][$k]->likes;
+        }
+        return $likesCount;
+    }
     
+    public function getLikes()
+    {
+        
+        $sql = "SELECT likes FROM $this->tableName";
+        $st = $this->pdo->prepare ( $sql );
+        $st->execute();        
+        
+
+        // Обновляем статью
+//        $sql = "UPDATE $this->tableName SET publicationDate=:publicationDate, categoryId=:categoryId, title=:title, summary=:summary, content=:content, likes=:likes WHERE id = :id";  
+//        $st = $this->pdo->prepare ( $sql );
+//        $st->bindValue( ":publicationDate", (new \DateTime('NOW'))->format('Y-m-d H:i:s'), \PDO::PARAM_INT );
+//        $st->bindValue( ":categoryId", $this->categoryId, \PDO::PARAM_INT );
+//        $st->bindValue( ":title", $this->title, \PDO::PARAM_STR );
+//        $st->bindValue( ":summary", $this->summary, \PDO::PARAM_STR );
+//        $st->bindValue( ":content", $this->content, \PDO::PARAM_STR );
+//        $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
+//        $st->bindValue( ":likes", $this->likes, \PDO::PARAM_INT );
+//        $st->execute();
+    }
+   
 }
 
