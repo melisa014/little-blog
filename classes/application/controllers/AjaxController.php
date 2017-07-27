@@ -12,20 +12,11 @@ class AjaxController extends \core\Controller
      */
     public function likesAction()
     {
-//        echo "Привет";
         $Article = new Article;
-        $articleData = $Article->getById($_GET['id']);
-        $articleData->likes++;
-        $articleData->update();
-        $result = json_encode($articleData->likes);
-        echo $result;
-        
-        
-//        $newLikeCount = $_GET['likeCount'] + 1;
-//        echo $newLikeCount;
-        //echo $_GET['id'];
+        $Article->likesUpper($_GET['id']);
+         
+        echo $Article->getLikes($_GET['id']);
     }
-    
-    
+        
 }
 

@@ -8,4 +8,8 @@
 
 <p><?= $viewArticle->content ?></p>
 <p class="pubDate">Эта статья была написана <?= $viewArticle->publicationDate ?></p>
-<img src="/images/like1.png" height="20px" width="20px">
+<img src="/images/like1.png" height="20px" width="20px" data-articleId="<?= $viewArticle->id ?>">
+<span class="<?= $viewArticle->id?>">
+    <?= $viewArticle->getlikes($viewArticle->id) ?>
+</span>
+<img id="loader-identity" src="/images/ajax-loader.gif" alt="gif">

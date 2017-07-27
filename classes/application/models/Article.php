@@ -16,7 +16,7 @@ class Article extends \core\Model
     /**
     * @var int Количество лайков
     */
-    public $likes = 0;
+    private $likes = 0;
     
     /**
     * @var int ID статей из базы данны
@@ -115,8 +115,20 @@ class Article extends \core\Model
         $st->bindValue( ":likes", $this->likes, \PDO::PARAM_INT );
         $st->execute();
     }
-
-
+    
+    public function likesUpper($id)
+    {
+        $articleData = $this->getById($id);
+        $articleData->likes++;
+        $articleData->update();
+    }
+    
+    public function getLikes($id)
+    {
+        $articleData = $this->getById($id);
+        return $articleData->likes;
+    }
+    
     
 }
 
