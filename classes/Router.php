@@ -29,8 +29,7 @@ class Router
     }
     
     /**
-     * Формирует имя конроллера по GET-параметру
-     * @param type $route -- строка GET-параметр
+     * Простой вариант поиска имени класса
      */
 //    public static function getControllerClassName($route)
 //    {
@@ -47,8 +46,6 @@ class Router
 //         
 //        return $result. "Controller";
 //    }
-//    /admin/adminusers/add - путь передаваемый в ф-цию
-//    массив после explode = admin, adminusers, add
     
     
     
@@ -58,9 +55,6 @@ class Router
                 
         $urlFragments = explode('/', $route);
         
-//        \DebugPrinter::debug($urlFragments, 'массив разбитого пути');
-//        die();
-        
         if (!empty($urlFragments[0])) {
             
             $result = "";
@@ -68,19 +62,16 @@ class Router
             $classNameIndex = count($urlFragments)-2;
             $className = $urlFragments[$classNameIndex];
             $firstletterToUp = ucwords($className); // поднимаем первую букву в имени класса
-            if (count($urlFragments) > 2) {
-//                $result .= "\\";
+            if (count($urlFragments) > 2) {  // следовательно присутствует доп подпространство внутри кcontrollers
                 $i = 0;
                 while($i < $classNameIndex) {
-                    $result .= $urlFragments[$i] . "\\";
+                    $result .= $urlFragments[$i] . "\\"; //прибавляем подпространство к имени класса
                     $i++;
                 }
             }
-               
             $result .= $firstletterToUp;
 //            \DebugPrinter::debug($result, 'результат после сложения неймспейса и имени контроллера');
         } 
-         
         return $result. "Controller";
     }
     

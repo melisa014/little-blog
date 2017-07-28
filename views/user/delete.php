@@ -1,9 +1,9 @@
-<h2><?= $deleteArticleTitle ?></h2>
+<h2><?= $deleteAdminusersTitle ?></h2>
 
-<form method="post" action="<?= \Url::link("article/delete&id=". $_GET['id'])?>" >
+<form method="post" action="<?= \Url::link("admin/adminusers/delete&id=". $_GET['id'])?>" >
     Вы уверены, что хотите удалить статью?
     
-    <input type="hidden" name="id" value="<?= $deletedArticle->id ?>">
-    <input type="submit" name="deleteArticle" value="Удалить">
+    <input type="hidden" name="id" value="<?= $deletedAdminusers->id ?>">
+    <input type="submit" name="deleteUser" value="Удалить">
     <input type="submit" name="cancel" value="Вернуться"><br>
 </form>

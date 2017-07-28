@@ -59,7 +59,7 @@ class ArticleController extends \core\Controller
     public function addAction()
     {
         if (!empty($_POST)) {
-            if ($_POST['saveNewArticle'] == 'Сохранить') {
+            if (!empty($_POST['saveNewArticle'])) {
                 $Article = new Article();
                 $newArticle = $Article->loadFromPost();
 //                \DebugPrinter::debug($newArticle);
@@ -68,8 +68,8 @@ class ArticleController extends \core\Controller
                 $this->header(\Url::link("homepage/index"));
             
             } 
-            elseif ($_POST['cancel'] == 'Назад') {
-                $this->header(Url::link("homepage/index"));
+            elseif (!empty($_POST['cancel'])) {
+                $this->header(\Url::link("homepage/index"));
             }
         }
         else {
@@ -92,7 +92,7 @@ class ArticleController extends \core\Controller
         
         if (!empty($_POST)) { // это выполняется нормально.
             
-            if ($_POST['saveChanges'] == 'Сохранить') {
+            if (!empty($_POST['saveChanges'])) {
 //                \DebugPrinter::debug('$_POST'); 
                 $Article = new Article();
                 $newArticle = $Article->loadFromPost();
@@ -103,7 +103,7 @@ class ArticleController extends \core\Controller
                 $this->header(\Url::link("article/index&id=$id"));
                  
             } 
-            elseif ($_POST['cancel'] == 'Назад') {
+            elseif (!empty($_POST['cancel'])) {
 //                \DebugPrinter::debug("Отмена операции");
                 $this->header(\Url::link("article/index&id=$id"));
             }
@@ -131,7 +131,7 @@ class ArticleController extends \core\Controller
         $id = $_GET['id'];
         
         if (!empty($_POST)) {
-            if ($_POST['deleteArticle'] == 'Удалить') {
+            if (!empty($_POST['deleteArticle'])) {
 //                \DebugPrinter::debug('$_POST');
                 $Article = new Article();
                 $newArticle = $Article->loadFromPost();
@@ -140,7 +140,7 @@ class ArticleController extends \core\Controller
                 $this->header(\Url::link("homepage/index"));
               
             }
-            elseif ($_POST['cancel'] == 'Вернуться') {
+            elseif (!empty($_POST['cancel'])) {
 //                \DebugPrinter::debug("Отмена операции");
                 $this->header(\Url::link("article/edit&id=$id"));
             }

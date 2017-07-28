@@ -9,10 +9,10 @@ class AdminusersController extends \core\Controller
 {
     
      protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
-        'all' => ['allow' => ['admin', 'auth_user', 'guest']], // общее правило , 'deny' => ['guest']
-        'delete' => ['deny' => ['auth_user', 'guest']], //исключения
-        'edit' => ['allow' => ['auth_user'], 'deny' => ['guest']], 
-        'add' => ['allow' => ['auth_user'], 'deny' => ['guest']],
+        'all' => ['allow' => ['admin'], 'deny' => ['auth_user', 'guest']] // общее правило , 'deny' => ['guest']
+//        'delete' => ['deny' => ['auth_user', 'guest']], //исключения
+//        'edit' => ['deny' => ['auth_user', 'guest']], 
+//        'add' => ['deny' => ['auth_user', 'guest']],
         
     ];
     
@@ -21,6 +21,7 @@ class AdminusersController extends \core\Controller
         $Adminusers = new Adminusers();
 
         $this->viewAdminusers = $Adminusers->getById($_GET['id']);
+        \DebugPrinter::debug($this->viewAdminusers);
         
         $this->view->addVar('viewAdminusers', $this->viewAdminusers);
         
@@ -34,7 +35,7 @@ class AdminusersController extends \core\Controller
     public function addAction()
     {
         if (!empty($_POST)) {
-            if ($_POST['saveNewUser'] == 'Сохранить') {
+            if (!empty($_POST['saveNewUser'])) {
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromPost();
 //                \DebugPrinter::debug($newArticle);
@@ -43,8 +44,8 @@ class AdminusersController extends \core\Controller
                 $this->header(\Url::link("archive/allUsers"));
             
             } 
-            elseif ($_POST['cancel'] == 'Назад') {
-                $this->header(Url::link("archive/allUsers"));
+            elseif (!empty($_POST['cancel'])) {
+                $this->header(\Url::link("archive/allUsers"));
             }
         }
         else {
@@ -67,33 +68,33 @@ class AdminusersController extends \core\Controller
         
         if (!empty($_POST)) { // это выполняется нормально.
             
-            if ($_POST['saveChanges'] == 'Сохранить') {
+            if (!empty($_POST['saveChanges'] )) {
 //                \DebugPrinter::debug('$_POST'); 
-                $Article = new Article();
-                $newArticle = $Article->loadFromPost();
+                $Adminusers = new Adminusers();
+                $newAdminusers = $Adminusers->loadFromPost();
 //                \DebugPrinter::debug($newArticle);
 //                \DebugPrinter::debug($id);
-                $newArticle->update();
+                $newAdminusers->update();
 //                \DebugPrinter::debug($newArticle, 'после апдейт');
-                $this->header(\Url::link("article/index&id=$id"));
+                $this->header(\Url::link("admin/adminusers/index&id=$id"));
                  
             } 
-            elseif ($_POST['cancel'] == 'Назад') {
+            elseif (!empty($_POST['cancel'])) {
 //                \DebugPrinter::debug("Отмена операции");
-                $this->header(\Url::link("article/index&id=$id"));
+                $this->header(\Url::link("admin/adminusers/index&id=$id"));
             }
         }
         else {
 //            \DebugPrinter::debug("Только загрузка формы");
-            $Article = new Article();
-            $this->viewArticle = $Article->getById($id);
-            $this->editArticleTitle = "Редактирование статьи";
+            $Adminusers = new Adminusers();
+            $this->viewAdminusers = $Adminusers->getById($id);
+            $this->editAdminusersTitle = "Редактирование данных пользователя";
 //            \DebugPrinter::debug($this->viewArticle);
             
-            $this->view->addVar('viewArticle', $this->viewArticle);
-            $this->view->addVar('editArticleTitle', $this->editArticleTitle);
+            $this->view->addVar('viewAdminusers', $this->viewAdminusers);
+            $this->view->addVar('editAdminusersTitle', $this->editAdminusersTitle);
             
-            $this->view->render('article/edit.php');   
+            $this->view->render('user/edit.php');   
         }
         
     }
@@ -106,31 +107,31 @@ class AdminusersController extends \core\Controller
         $id = $_GET['id'];
         
         if (!empty($_POST)) {
-            if ($_POST['deleteArticle'] == 'Удалить') {
+            if (!empty($_POST['deleteUser'])) {
 //                \DebugPrinter::debug('$_POST');
-                $Article = new Article();
-                $newArticle = $Article->loadFromPost();
-                $newArticle->delete();
+                $Adminusers = new Adminusers();
+                $newAdminusers = $Adminusers->loadFromPost();
+                $newAdminusers->delete();
                 
-                $this->header(\Url::link("homepage/index"));
+                $this->header(\Url::link("archive/allUsers"));
               
             }
-            elseif ($_POST['cancel'] == 'Вернуться') {
+            elseif (!empty($_POST['cancel'])) {
 //                \DebugPrinter::debug("Отмена операции");
-                $this->header(\Url::link("article/edit&id=$id"));
+                $this->header(\Url::link("admin/adminusers/edit&id=$id"));
             }
         }
         else {
             
-            $Article = new Article();
-            $deletedArticle = $Article->getById($id);
-            $this->deleteArticleTitle = "Удаление статьи";
+            $Adminusers = new Adminusers();
+            $deletedAdminusers = $Adminusers->getById($id);
+            $this->deleteAdminusersTitle = "Удаление статьи";
 //            \DebugPrinter::debug($deletedArticle); 
             
-            $this->view->addVar('deleteArticleTitle', $this->deleteArticleTitle);
-            $this->view->addVar('deletedArticle', $deletedArticle);
+            $this->view->addVar('deleteAdminusersTitle', $this->deleteAdminusersTitle);
+            $this->view->addVar('deletedAdminusers', $deletedAdminusers);
             
-            $this->view->render('article/delete.php');
+            $this->view->render('user/delete.php');
         }
     }
 }

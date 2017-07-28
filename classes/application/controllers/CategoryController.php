@@ -31,28 +31,12 @@ class CategoryController extends \core\Controller
     }
     
     /**
-     * Выводит на экран страницу "Категоия" для просмотра Администратору
-     */
-//    public function indexAdminAction()
-//    {
-//
-//        $Category = new Category();
-//
-//        $this->viewCategory = $Category->getById($_GET['id']);
-//        
-//        $this->view->addVar('viewCategory', $this->viewCategory);
-//        
-//        $this->view->headerFilePath = 'headerAdmin.php';
-//        $this->view->render('category/indexAdmin.php');
-//    }
-    
-    /**
      * Выводит на экран форму для создания новой статьи (только для Администратора)
      */
     public function addAction()
     {
         if (!empty($_POST)) {
-            if ($_POST['saveNewCategory'] == 'Сохранить') {
+            if (!empty($_POST['saveNewCategory'])) {
                 $Category = new Category();
                 $newCategory = $Category->loadFromPost();
                 \DebugPrinter::debug($newCategory);
@@ -61,7 +45,7 @@ class CategoryController extends \core\Controller
                 $this->header(\Url::link("homepage/index"));
             
             } 
-            elseif ($_POST['cancel'] == 'Назад') {
+            elseif (!empty($_POST['cancel'])) {
                 $this->header(\Url::link("homepage/index"));
             }
         }
@@ -79,12 +63,9 @@ class CategoryController extends \core\Controller
     public function editAction()
     {
         $id = $_GET['id'];
-        \DebugPrinter::debug($_POST);
-//        \DebugPrinter::debug($_POST);
-//        \DebugPrinter::debug($id);
         
         if (!empty($_POST)) {
-            if ($_POST['saveChanges'] == 'Сохранить') {
+            if (!empty($_POST['saveChanges'])) {
                 \DebugPrinter::debug("Привет)");
                 $Category = new Category();
                 $newCategory = $Category->loadFromPost();
@@ -92,7 +73,7 @@ class CategoryController extends \core\Controller
                 \DebugPrinter::debug($newCategory, 'после апдейта');
                 $this->header(\Url::link("category/index&id=$id"));
             } 
-            elseif ($_POST['cancel'] == 'Назад') {
+            elseif (!empty($_POST['cancel'])) {
                 $this->header(\Url::link("category/index&id=$id"));
             }
         }
@@ -117,14 +98,14 @@ class CategoryController extends \core\Controller
         $id = $_GET['id'];
         
         if (!empty($_POST)) {
-            if ($_POST['deleteCategory'] == 'Удалить') {
+            if (!empty($_POST['deleteCategory'])) {
                 $Category = new Category();
                 $newCategory = $Category->loadFromPost();
                 $newCategory->delete();
                 $this->header(\Url::link("homepage/index"));
               
             }
-            elseif ($_POST['cancel'] == 'Вернуться') {
+            elseif (!empty($_POST['cancel'])) {
                 $this->header(\Url::link("category/edit&id=$id"));
             }
         }

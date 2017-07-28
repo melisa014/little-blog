@@ -39,12 +39,7 @@ trait AccessControl {
     public function IsEnabled($route, $actionName)
     {
         if ($this->isRules($route)) {
-            
             $rules = $this->rules;
-            
-//            \DebugPrinter::debug($actionName, 'Действие ');
-//            \DebugPrinter::debug(\core\User::get()->role, 'Роль');
-//            \DebugPrinter::debug($rules, 'Правила в данном контроллере есть');
             
             if (!empty($rules[$actionName])) {
                 if (!empty($rules[$actionName]['deny'])) {
@@ -54,7 +49,7 @@ trait AccessControl {
                         }
                     }
                 }   
-                elseif (!empty($rules[$actionName]['allow'])) {
+                if (!empty($rules[$actionName]['allow'])) {
                     foreach ($rules[$actionName]['allow'] as $k => $role) {
                         if (\core\User::get()->role == $role) {
                             return true;
@@ -71,7 +66,7 @@ trait AccessControl {
                         }
                     }
                 }   
-                elseif (!empty($rules['all']['allow'])) {
+                if (!empty($rules['all']['allow'])) {
                     foreach ($rules['all']['allow'] as $k => $role) {
                         if (\core\User::get()->role == $role) {
                             return true;
@@ -79,7 +74,6 @@ trait AccessControl {
                     }
                 }
             }
-            
         }
         else {
 //            echo "В данном контроллере правил нет";
@@ -92,7 +86,7 @@ trait AccessControl {
      */
     private function isRules($route)
     {
-        $controllerClassName = "application\\controllers\\" . \Router::getControllerClassName($route);
+        $controllerClassName = "\\application\\controllers\\" . \Router::getControllerClassName($route);
         $controller = new $controllerClassName();
         if (!empty($controller->rules)) {
             return true;
@@ -109,23 +103,6 @@ trait AccessControl {
         return $this->rules;
     }
     
-    /**
-     * Формирует полное имя метода контроллера по GET-параметру
-     * @param type $route -- строка GET-параметр
-     */
-//    public function getControllerActionName($route)
-//    {
-//         $result =  'index';
-//         
-//        $urlFragments = explode('/', $route);
-//         if (!empty($urlFragments[1])) {
-//             $result = $urlFragments[1];
-//         } 
-//         
-//         return $result;
-//         
-//    }
-    
      /**
      * Формирует полное имя метода контроллера по GET-параметру
      * @param type $route -- строка GET-параметр
@@ -141,7 +118,6 @@ trait AccessControl {
         } 
          
          return $result;
-         
     }
     
     

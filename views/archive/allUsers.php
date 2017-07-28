@@ -2,11 +2,11 @@
 
 <?php 
 foreach ($archiveAdminusers['results'] as $k => $v):?>
-    
-    <a href="<?= \Url::link("user/index&id=". $archiveAdminusers['results'][$k]->id)?>">
-        <h4><?= $archiveAdminusers['results'][$k]->login; ?></h4>
-    </a>
-    <!--<p><?= $archiveAdminusers['results'][$k]->email; ?></p>-->
-    <p><?= $archiveAdminusers['results'][$k]->timestamp; ?></p>
+    <h4>
+        <a href="<?= \Url::link("admin/adminusers/index&id=". $archiveAdminusers['results'][$k]->id)?>">
+            <?= $archiveAdminusers['results'][$k]->login; ?>
+        </a>
+        Зарегистрирован: <?= $archiveAdminusers['results'][$k]->timestamp; ?>
+    </h4>
     <hr><br>    
 <?php endforeach; ?>

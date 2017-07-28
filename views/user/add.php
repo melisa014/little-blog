@@ -2,16 +2,12 @@
 <h2><?= $addAdminusersTitle ?></h2>
 
 <form method="post" action="<?= \Url::link("admin/adminusers/add")?>"> 
-    <h5>Введите название статьи</h5>
-    <input type="text" name="title" value="*название статьи*"><br>
-    <h5>Выберите категорию статьи</h5>
-    <input type="text" name="categoryId" value="1"><br>
-    <h5>Краткое описание статьи</h5>
-    <textarea rows="5" cols="100" name="summary">*краткое описание*</textarea><br>
-    <h5>Текст статьи</h5>
-    <textarea rows="20" cols="100" name="content">*текст статьи*</textarea><br>
-    <!--<h5>Дата публикации</h5>-->
-    <!--<input type="text" name="publicationDate" value="<?= date('d M Y H:i:s'); ?>"><br><br>-->
+    <h5>Введите имя пользователя</h5>
+    <input type="text" name="login" value="*имя пользователя*"><br>
+    <h5>Введите пароль</h5>
+    <input type="text" name="pass" value="*пароль*"><br>
+    <h5>Введите e-mail</h5>
+    <input type="text" name="email" value="*email*"><br>
     <input type="submit" name="saveNewUser" value="Сохранить">
     <input type="submit" name="cancel" value="Назад"><br>
 </form>

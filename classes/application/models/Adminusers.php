@@ -39,6 +39,11 @@ class Adminusers extends \core\Model
      */
     public $id = null;
     
+    /**
+     * @var type 
+     */
+    public $timestamp = null;
+    
      /**
     * Устанавливаем свойства с помощью значений в заданном массиве
     *
@@ -74,8 +79,8 @@ class Adminusers extends \core\Model
         $st->bindValue( ":email", $this->email, \PDO::PARAM_STR );
         $st->execute();
         $this->id = $this->pdo->lastInsertId();
-        \DebugPrinter::debug($this);
-        $this->timestamp = new \DateTime('NOW');
+//        \DebugPrinter::debug($this);
+//        $this->timestamp = new \DateTime('NOW');
     }
 
     /**
