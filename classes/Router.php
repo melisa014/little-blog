@@ -32,17 +32,53 @@ class Router
      * Формирует имя конроллера по GET-параметру
      * @param type $route -- строка GET-параметр
      */
+//    public static function getControllerClassName($route)
+//    {
+//        $result = 'Homepage';
+//                
+//        $urlFragments = explode('/', $route);
+//        if (!empty($urlFragments[0])) {
+//            
+//            $firstletterToUp = ucwords($urlFragments[0]);
+////            \DebugPrinter::debug($firstletterToUp);
+//            
+//            $result = $firstletterToUp;
+//        } 
+//         
+//        return $result. "Controller";
+//    }
+//    /admin/adminusers/add - путь передаваемый в ф-цию
+//    массив после explode = admin, adminusers, add
+    
+    
+    
     public static function getControllerClassName($route)
     {
         $result = 'Homepage';
                 
         $urlFragments = explode('/', $route);
+        
+//        \DebugPrinter::debug($urlFragments, 'массив разбитого пути');
+//        die();
+        
         if (!empty($urlFragments[0])) {
             
-            $firstletterToUp = ucwords($urlFragments[0]);
-//            \DebugPrinter::debug($firstletterToUp);
+            $result = "";
             
-            $result = $firstletterToUp;
+            $classNameIndex = count($urlFragments)-2;
+            $className = $urlFragments[$classNameIndex];
+            $firstletterToUp = ucwords($className); // поднимаем первую букву в имени класса
+            if (count($urlFragments) > 2) {
+//                $result .= "\\";
+                $i = 0;
+                while($i < $classNameIndex) {
+                    $result .= $urlFragments[$i] . "\\";
+                    $i++;
+                }
+            }
+               
+            $result .= $firstletterToUp;
+//            \DebugPrinter::debug($result, 'результат после сложения неймспейса и имени контроллера');
         } 
          
         return $result. "Controller";

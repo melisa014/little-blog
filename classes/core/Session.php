@@ -32,6 +32,7 @@ class Session
     {   
         session_start();
         $this->session = &$_SESSION;
+        
     }
     
 }

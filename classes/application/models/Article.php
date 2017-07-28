@@ -91,8 +91,7 @@ class Article extends \core\Model
         $st->execute();
         $this->id = $this->pdo->lastInsertId();
         $this->publicationDate = new \DateTime('NOW');
-//        $this->likes = 0;
-        \DebugPrinter::debug($this);
+//        \DebugPrinter::debug($this);
     }
 
     /**
@@ -143,7 +142,7 @@ class Article extends \core\Model
     {
         
         $sql = "SELECT likes FROM $this->tableName";
-        $st = $this->pdo->prepare ( $sql );
+        $st = $this->pdo->prepare ( $sql ) or die("запрос с ошибкой");
         $st->execute();        
         
 

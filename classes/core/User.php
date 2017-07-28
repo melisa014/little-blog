@@ -11,10 +11,6 @@ class User extends Session
     
     public $userName = null;
     
-    public $startSessionLikesCount;
-    
-    public $userLikesCount;
-
     /**
     * Вернёт объект юзера
     * 
@@ -45,6 +41,7 @@ class User extends Session
             Session::get()->session['user']['userName'] = 'guest';
             $this->role = 'guest';
             $this->userName = 'guest';
+            Session::get()->session['user']['userSessionLikesCount'] = 0;
         }
     }
         

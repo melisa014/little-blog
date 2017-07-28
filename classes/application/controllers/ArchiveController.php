@@ -2,6 +2,7 @@
 namespace application\controllers;
 use \application\models\Article as Article;
 use \application\models\Category as Category;
+use \application\models\Adminusers as Adminusers;
 
 class ArchiveController extends \core\Controller
 {
@@ -12,6 +13,7 @@ class ArchiveController extends \core\Controller
      protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
         'all' => ['allow' => ['admin', 'auth_user', 'guest']], // общее правило
         'allCategories' => ['deny' => ['guest']], //исключения
+        'allUsers' => ['deny' => ['guest', 'auth_user']], //исключения
     ];
     
     /**
@@ -36,7 +38,7 @@ class ArchiveController extends \core\Controller
     }  
     
     /**
-     * Выводит на экран страницу "Архив. Категории" Администратора 
+     * Выводит на экран страницу "Архив. Категории" 
      */
     public function allCategoriesAction()
     {
@@ -49,6 +51,23 @@ class ArchiveController extends \core\Controller
         $this->view->addVar('archivePageTitle', $this->archivePageTitle);
         
         $this->view->render('archive/allCategories.php');
+        
+    }
+    
+    /**
+     * Выводит на экран страницу "Архив. Пользователи" 
+     */
+    public function allUsersAction()
+    {
+        $Adminusers = new Adminusers();
+        $archiveAdminusers = $Adminusers->getList();
+        $this->archivePageTitle = "Список пользователей";
+        
+        
+        $this->view->addVar('archiveAdminusers', $archiveAdminusers);
+        $this->view->addVar('archivePageTitle', $this->archivePageTitle);
+        
+        $this->view->render('archive/allUsers.php');
         
     }
     
