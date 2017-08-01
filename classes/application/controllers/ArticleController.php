@@ -1,6 +1,7 @@
 <?php
 namespace application\controllers;
 use \application\models\Article as Article;
+use \application\models\Category as Category;
 
 class ArticleController extends \core\Controller
 {
@@ -73,9 +74,14 @@ class ArticleController extends \core\Controller
             }
         }
         else {
+            $Category = new Category();
+            $this->changeCategory = $Category->getList();
+            
+            
             $this->addArticleTitle = "Создание статьи";
             $this->view->addVar('addArticleTitle', $this->addArticleTitle);
-            
+            $this->view->addVar('changeCategory', $this->changeCategory);
+                        
             $this->view->render('article/add.php');
         }
     }

@@ -61,9 +61,6 @@ class User extends Session
             Session::get()->session['user']['role'] = $role; 
             Session::get()->session['user']['userName'] = $login; 
             Session::get()->session['user']['userSessionLikesCount'] = 0; 
-            
-            
-//            Session::get()->session['user']['startSessionLikesCount'] = (new \application\models\Article)->getAllLikesCount();
         }
         return true;
     }

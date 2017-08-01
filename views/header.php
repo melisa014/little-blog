@@ -33,15 +33,8 @@
        
         <p>
             <?= \core\User::get()->userName . ' ' ?><br>
-            <span id="sessionLikesCount"></span><br>
+            <span id="sessionLikesCount">Понравилось: <?= \core\Session::get()->session['user']['userSessionLikesCount']?></span><br>
             <a href="<?= \Url::link("login/logout")?>">Выйти</a>
-            <?php $likes = (new \application\models\Article)->getLikes();
-            if (is_array($likes) || is_object($likes)) {
-                foreach ($likes as $k) {
-                    echo $value;
-                }
-            }       
-            else echo "likes не объект и не массив";?>
         </p>
                      
        <div id="container">

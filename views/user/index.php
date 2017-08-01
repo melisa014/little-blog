@@ -6,7 +6,5 @@
     </span>
 </h2> 
 
-
 <p>Зарегистрирован <?= $viewAdminusers->timestamp ?></p>
-<p>Пароль: <?= $viewAdminusers->pass ?></p>
-<p>E-mail: <?= $viewAdminusers->email ?></p>
+<p>E-mail: <?= $viewAdminusers->myemail ?></p>

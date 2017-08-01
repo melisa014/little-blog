@@ -26,6 +26,11 @@ class Adminusers extends \core\Model
     public $login = null;
     
     /**
+     * Логин пользователя
+     * @var type 
+     */
+    public $salt = null;
+    /**
      * @var type 
      */
     public $pass = null;
@@ -33,7 +38,7 @@ class Adminusers extends \core\Model
     /**
      * @var type 
      */
-    public $email = null;
+    public $myemail = null;
     
     /**
      * @var type 
@@ -72,16 +77,24 @@ class Adminusers extends \core\Model
     public function insert()
     {
         
-        $sql = "INSERT INTO $this->tableName (timestamp, login, pass, email) VALUES (:timestamp, :login, :pass, :email)"; 
+        $sql = "INSERT INTO $this->tableName (timestamp, login, salt, pass, email) VALUES (:timestamp, :login, :salt, :pass, :email)"; 
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":timestamp", (new \DateTime('NOW'))->format('Y-m-d H:i:s'), \PDO::PARAM_STMT);
         $st->bindValue( ":login", $this->login, \PDO::PARAM_STR );
-        $st->bindValue( ":pass", $this->pass, \PDO::PARAM_STR );
-        $st->bindValue( ":email", $this->email, \PDO::PARAM_STR );
+        
+        //Хеширование пароля
+        $this->salt = rand(0,1000000);
+        $st->bindValue( ":salt", $this->salt, \PDO::PARAM_STR );
+//        \DebugPrinter::debug($this->salt);
+        
+        $this->pass .= $this->salt;
+        $hashPass = password_hash($this->pass, PASSWORD_BCRYPT);
+//        \DebugPrinter::debug($hashPass);
+        $st->bindValue( ":pass", $hashPass, \PDO::PARAM_STR );
+        
+        $st->bindValue( ":email", $this->myemail, \PDO::PARAM_STR );
         $st->execute();
         $this->id = $this->pdo->lastInsertId();
-//        \DebugPrinter::debug($this);
-//        $this->timestamp = new \DateTime('NOW');
     }
 
     /**
@@ -93,13 +106,17 @@ class Adminusers extends \core\Model
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":timestamp", (new \DateTime('NOW'))->format('Y-m-d H:i:s'), \PDO::PARAM_STMT);
         $st->bindValue( ":login", $this->login, \PDO::PARAM_STR );
-        $st->bindValue( ":pass", $this->pass, \PDO::PARAM_STR );
-        $st->bindValue( ":email", $this->email, \PDO::PARAM_STR );
+        
+        // Хеширование пароля
+        $this->salt = rand(0,1000000);
+        $st->bindValue( ":salt", $this->salt, \PDO::PARAM_STR );
+        $this->pass .= $this->salt;
+        $hashPass = password_hash($this->pass, PASSWORD_BCRYPT);
+        $st->bindValue( ":pass", $hashPass, \PDO::PARAM_STR );
+        
+        $st->bindValue( ":email", $this->myemail, \PDO::PARAM_STR );
         $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
         $st->execute();
     }
-    
-    
-    
     
 }

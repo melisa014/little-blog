@@ -5,7 +5,6 @@
 ?>-->
 
 <h2><?php echo $homepageTitle ?></h2>
-
     <?php 
     foreach ($homepageArticles['results'] as $key => $value):?>
 

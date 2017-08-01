@@ -10,7 +10,7 @@
     <h5>Введите имя пользователя</h5>
     <input type="text" name="login" value="<?= $viewAdminusers->login ?>"><br>
     <h5>Введите пароль</h5>
-    <input type="text" name="pass" value="<?= $viewAdminusers->pass ?>"><br>
+    <input type="text" name="pass" value="Новый пароль"><br>
     <h5>Введите e-mail</h5>
     <input type="text" name="myemail" value="<?= $viewAdminusers->email ?>"><br>
     

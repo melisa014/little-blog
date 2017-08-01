@@ -1,11 +1,16 @@
 
 <h2><?= $addArticleTitle ?></h2>
-
 <form method="post" action="<?= \Url::link("article/add")?>"> 
     <h5>Введите название статьи</h5>
     <input type="text" name="title" value="*название статьи*"><br>
     <h5>Выберите категорию статьи</h5>
-    <input type="text" name="categoryId" value="1"><br>
+    <select name="categoryId">
+         <?php  
+        foreach ($changeCategory['results'] as $k => $value) : ?>
+            <option><?= $changeCategory['results'][$k]->name; ?></option>
+        <?php endforeach; ?>
+    </select>
+        <br>
     <h5>Краткое описание статьи</h5>
     <textarea rows="5" cols="100" name="summary">*краткое описание*</textarea><br>
     <h5>Текст статьи</h5>

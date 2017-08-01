@@ -128,35 +128,39 @@ class Article extends \core\Model
         return $articleData->likes;
     }
     
-    public function getAllLikesCount() // переписать 1 SQL запросом
-    {
-        $articles = $this->getList();
-        $likesCount = 0;
-        foreach ($articles['results'] as $k =>$v) {
-            $likesCount += $articles['results'][$k]->likes;
-        }
-        return $likesCount;
-    }
+    /**
+     * Получить сумму всех лайков форума с помощью метода getList()
+     * @return type
+     */
+//    public function getAllLikesCount() // переписать 1 SQL запросом
+//    {
+//        $articles = $this->getList();
+//        $likesCount = 0;
+//        foreach ($articles['results'] as $k =>$v) {
+//            $likesCount += $articles['results'][$k]->likes;
+//        }
+//        return $likesCount;
+//    }
     
-    public function getLikes()
+    /**
+     * Получить сумму всех лайков форума напрямую из базы
+     * @return type
+     */
+    public function getAllLikesCount()
     {
         
         $sql = "SELECT likes FROM $this->tableName";
-        $st = $this->pdo->prepare ( $sql ) or die("запрос с ошибкой");
-        $st->execute();        
         
-
-        // Обновляем статью
-//        $sql = "UPDATE $this->tableName SET publicationDate=:publicationDate, categoryId=:categoryId, title=:title, summary=:summary, content=:content, likes=:likes WHERE id = :id";  
-//        $st = $this->pdo->prepare ( $sql );
-//        $st->bindValue( ":publicationDate", (new \DateTime('NOW'))->format('Y-m-d H:i:s'), \PDO::PARAM_INT );
-//        $st->bindValue( ":categoryId", $this->categoryId, \PDO::PARAM_INT );
-//        $st->bindValue( ":title", $this->title, \PDO::PARAM_STR );
-//        $st->bindValue( ":summary", $this->summary, \PDO::PARAM_STR );
-//        $st->bindValue( ":content", $this->content, \PDO::PARAM_STR );
-//        $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
-//        $st->bindValue( ":likes", $this->likes, \PDO::PARAM_INT );
-//        $st->execute();
+        $st = $this->pdo->prepare ( $sql );
+        $st->execute();
+        
+        $row = $st->fetchAll();
+        $likesCount = 0;
+        
+        foreach ($row as $k => $v) {
+            $likesCount += $row[$k]['likes'];
+        }
+                return $likesCount;
     }
    
 }

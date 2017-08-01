@@ -21,7 +21,7 @@ class AdminusersController extends \core\Controller
         $Adminusers = new Adminusers();
 
         $this->viewAdminusers = $Adminusers->getById($_GET['id']);
-//        \DebugPrinter::debug($this->viewAdminusers);
+        \DebugPrinter::debug($this->viewAdminusers);
         
         $this->view->addVar('viewAdminusers', $this->viewAdminusers);
         
@@ -36,11 +36,15 @@ class AdminusersController extends \core\Controller
     {
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewUser'])) {
+//                \DebugPrinter::debug($_POST['myemail']);
+                
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromPost();
-//                \DebugPrinter::debug($newArticle);
+//                \DebugPrinter::debug($newAdminusers);
+//                die();
                 $newAdminusers->insert(); 
-//                \DebugPrinter::debug($newArticle, 'после инсерта');
+//                \DebugPrinter::debug($newAdminusers, 'после инсерта');
+//                die();
                 $this->header(\Url::link("archive/allUsers"));
             
             } 
@@ -88,6 +92,7 @@ class AdminusersController extends \core\Controller
 //            \DebugPrinter::debug("Только загрузка формы");
             $Adminusers = new Adminusers();
             $this->viewAdminusers = $Adminusers->getById($id);
+            
             $this->editAdminusersTitle = "Редактирование данных пользователя";
 //            \DebugPrinter::debug($this->viewArticle);
             

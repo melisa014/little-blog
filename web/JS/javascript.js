@@ -1,6 +1,6 @@
 
 $(function(){
-    
+    $('img').css('cursor', 'pointer');
     hideLoaderIdentity();
     actionLike();
     sessionLikesScore();
