@@ -1,10 +1,13 @@
 
 $(function(){
+    
     hideLoaderIdentity();
     actionLike();
     sessionLikesScore();
-    
+    formValidationOn()
 });
+
+
 
 function actionLike()
 {
@@ -50,5 +53,25 @@ function sessionLikesScore()
         });
     }, 5000);
 }
-
+    
+function formValidationOn()
+{
+    $("#addUser").validate({
+        rules: {
+            myemail: {
+                required: true,
+                email: true
+            }
+        }
+    });
+    
+    $("#editUser").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true
+            }
+        }
+    });
+}
 

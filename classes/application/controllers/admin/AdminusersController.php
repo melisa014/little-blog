@@ -21,7 +21,7 @@ class AdminusersController extends \core\Controller
         $Adminusers = new Adminusers();
 
         $this->viewAdminusers = $Adminusers->getById($_GET['id']);
-        \DebugPrinter::debug($this->viewAdminusers);
+//        \DebugPrinter::debug($this->viewAdminusers);
         
         $this->view->addVar('viewAdminusers', $this->viewAdminusers);
         

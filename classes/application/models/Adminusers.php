@@ -20,7 +20,8 @@ class Adminusers extends \core\Model
     public $orderBy = 'timestamp DESC';
     
     /**
-     * @var type Логин пользователя
+     * Логин пользователя
+     * @var type 
      */
     public $login = null;
     
