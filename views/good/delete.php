@@ -4,6 +4,6 @@
     Вы уверены, что хотите удалить данный товар?
     
     <input type="hidden" name="id" value="<?= $deletedGood->id ?>">
-    <input type="submit" name="deleteUser" value="Удалить">
+    <input type="submit" name="deleteGood" value="Удалить">
     <input type="submit" name="cancel" value="Вернуться"><br>
 </form>

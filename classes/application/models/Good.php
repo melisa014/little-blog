@@ -96,7 +96,7 @@ class Good extends \core\Model
 //        if ( is_null( $this->id ) ) trigger_error ( "Good::update(): Attempt to update an Good object that does not have its ID property set.", E_USER_ERROR );
 
         // Обновляем статью
-        $sql = "UPDATE $this->tableName SET publicationDate=:publicationDate, categoryId=:categoryId, title=:title, summary=:summary, content=:content, likes=:likes WHERE id = :id";  
+        $sql = "UPDATE $this->tableName SET description=:description, price=:price, name=:name, available=:available, likes=:likes, likes=:likes WHERE id = :id";  
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":description", $this->description, \PDO::PARAM_STR );
         $st->bindValue( ":price", $this->price, \PDO::PARAM_INT );

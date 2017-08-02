@@ -6,11 +6,11 @@
     </span>
 </h2> 
 
-<p>Описание: <?= $archiveGood['results'][$k]->description; ?></p>
-<p>Цена: <?= $archiveGood['results'][$k]->price; ?></p>
-<p>В наличии:  <?= $archiveGood['results'][$k]->available; ?> шт.</p>
-<img src="/images/like1.png" height="20px" width="20px" data-articleId="<?= $viewGood->id ?>">
+<p>Описание: <?= $viewGood->description; ?></p>
+<p>Цена: <?= $viewGood->price; ?></p>
+<p>В наличии:  <?= $viewGood->available; ?> шт.</p>
+<img src="/images/like1.png" height="20px" width="20px" data-modelId="<?= $viewGood->id ?>">
 <span class="<?= $viewGood->id?>">
-    <?= $viewGood->getArticlelikes($viewGood->id) ?>
+    <?= $viewGood->getModellikes($viewGood->id) ?>
 </span>
 <img id="loader-identity" src="/images/ajax-loader.gif" alt="gif">

@@ -46,11 +46,11 @@ class GoodController extends \core\Controller
 //                \DebugPrinter::debug($newGood);
                 $newGood->insert(); 
 //                \DebugPrinter::debug($newGood, 'после инсерта');
-                $this->header(\Url::link("admin/allGoods/index"));
+                $this->header(\Url::link("archive/allGoods"));
             
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\Url::link("admin/allGoods/index"));
+                $this->header(\Url::link("arcive/allGoods"));
             }
         }
         else {
@@ -110,15 +110,18 @@ class GoodController extends \core\Controller
     public function deleteAction()
     {
         $id = $_GET['id'];
+//        \DebugPrinter::debug("Hello");
         
         if (!empty($_POST)) {
+            
             if (!empty($_POST['deleteGood'])) {
 //                \DebugPrinter::debug('$_POST');
+//                die();
                 $Good = new Good();
                 $newGood = $Good->loadFromPost();
                 $newGood->delete();
                 
-                $this->header(\Url::link("admin/allGoods/index"));
+                $this->header(\Url::link("archive/allGoods"));
               
             }
             elseif (!empty($_POST['cancel'])) {

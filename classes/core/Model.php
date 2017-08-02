@@ -116,7 +116,7 @@ class Model
         $modelData->update();
     }
     
-    public function getModelLikes($id)
+    public function getModelLikes($id, $tableName) //метод не узнаёт какая именно модель
     {
         $modelData = $this->getById($id);
         return $modelData->likes;

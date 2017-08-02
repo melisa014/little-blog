@@ -5,7 +5,7 @@
         <title>Little-blog</title>
         <link rel="stylesheet" type="text/css" href="/web/style.css">
         <script src="/web/JS/jquery-3.2.1.js"></script>
-        <script src="/web/JS/jQueryValidation/dist/jquery.validate.js"></script>
+        <script src="/web/JS/jquery.validate.js"></script>
         <script src="web/JS/loaderIdentity.js"></script>
         <script src="/web/JS/javascript.js"></script>
     </head>
@@ -38,7 +38,7 @@
             <?= \core\User::get()->userName . ' ' ?><br>
             <span id="sessionLikesCount">Понравилось: <?= \core\Session::get()->session['user']['userSessionLikesCount']?></span><br>
             <a href="<?= \Url::link("login/logout")?>">Выйти</a>
-        </p>e
+        </p>
                      
        <div id="container">
         
