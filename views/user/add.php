@@ -6,6 +6,13 @@
     <input type="text" name="login" value="имя пользователя"><br>
     <h5>Введите пароль</h5>
     <input type="text" name="pass" value="пароль"><br>
+       
+    <h5>Права доступа</h5>
+    <select name="role"> 
+        <option value="admin">Администратор</option>
+        <option value="auth_user">Зарегистрированный пользователь</option>
+    </select>
+    
     <h5>Введите e-mail</h5>
     <input type="text" name="myemail" value="email"><br>
     <input type="submit" name="saveNewUser" value="Сохранить">

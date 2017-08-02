@@ -7,7 +7,7 @@
     <select name="categoryId">
          <?php  
         foreach ($changeCategory['results'] as $k => $value) : ?>
-            <option><?= $changeCategory['results'][$k]->name; ?></option>
+            <option value="<?= $changeCategory['results'][$k]->name?>"><?= $changeCategory['results'][$k]->name; ?></option>
         <?php endforeach; ?>
     </select>
         <br>

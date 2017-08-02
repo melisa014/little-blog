@@ -50,6 +50,11 @@ class Adminusers extends \core\Model
      */
     public $timestamp = null;
     
+    /**
+     * @var type 
+     */
+    public $role = null;
+    
      /**
     * Устанавливаем свойства с помощью значений в заданном массиве
     *
@@ -77,7 +82,7 @@ class Adminusers extends \core\Model
     public function insert()
     {
         
-        $sql = "INSERT INTO $this->tableName (timestamp, login, salt, pass, email) VALUES (:timestamp, :login, :salt, :pass, :email)"; 
+        $sql = "INSERT INTO $this->tableName (timestamp, login, salt, pass, role, email) VALUES (:timestamp, :login, :salt, :pass, :role, :email)"; 
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":timestamp", (new \DateTime('NOW'))->format('Y-m-d H:i:s'), \PDO::PARAM_STMT);
         $st->bindValue( ":login", $this->login, \PDO::PARAM_STR );
@@ -92,6 +97,7 @@ class Adminusers extends \core\Model
 //        \DebugPrinter::debug($hashPass);
         $st->bindValue( ":pass", $hashPass, \PDO::PARAM_STR );
         
+        $st->bindValue( ":role", $this->role, \PDO::PARAM_STR );
         $st->bindValue( ":email", $this->myemail, \PDO::PARAM_STR );
         $st->execute();
         $this->id = $this->pdo->lastInsertId();
@@ -102,7 +108,7 @@ class Adminusers extends \core\Model
     */
     public function update()
     {
-        $sql = "UPDATE $this->tableName SET timestamp=:timestamp, login=:login, pass=:pass, email=:email  WHERE id = :id";  
+        $sql = "UPDATE $this->tableName SET timestamp=:timestamp, login=:login, pass=:pass, role=:role, email=:email  WHERE id = :id";  
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":timestamp", (new \DateTime('NOW'))->format('Y-m-d H:i:s'), \PDO::PARAM_STMT);
         $st->bindValue( ":login", $this->login, \PDO::PARAM_STR );
@@ -114,6 +120,7 @@ class Adminusers extends \core\Model
         $hashPass = password_hash($this->pass, PASSWORD_BCRYPT);
         $st->bindValue( ":pass", $hashPass, \PDO::PARAM_STR );
         
+        $st->bindValue( ":role", $this->role, \PDO::PARAM_STR );
         $st->bindValue( ":email", $this->myemail, \PDO::PARAM_STR );
         $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
         $st->execute();

@@ -83,9 +83,10 @@ CREATE TABLE `users` (
   `timestamp` date NOT NULL,
   `email` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `salt` int(11) NOT NULL,
+  `role` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,7 +95,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (25,'имя пользователя111','$2y$10$/yyzDu4KFyDa9z9gJa6ShOWEVi8eQjcprqqi9uzNqk/wquaiHxtDy','2017-08-01','email@we',33546),(26,'Mery','$2y$10$YyvPebNkLg90fkx1w/NIdOF62nJ.LgOU5VhcL4LPDd/hvXmOg0NKG','2017-08-01','email@rrt',426915);
+INSERT INTO `users` VALUES (25,'имя пользователя111','$2y$10$/yyzDu4KFyDa9z9gJa6ShOWEVi8eQjcprqqi9uzNqk/wquaiHxtDy','2017-08-01','email@we',33546,''),(26,'Mery','$2y$10$YyvPebNkLg90fkx1w/NIdOF62nJ.LgOU5VhcL4LPDd/hvXmOg0NKG','2017-08-01','email@rrt',426915,''),(27,'admin','$2y$10$X4jIhBcKVBhdr/UPc0wWg.uuH8gswcTTesvMw9OsNugYnfUMw/yQO','2017-08-02','email@email',86362,'admin');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -107,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-01 21:11:15
+-- Dump completed on 2017-08-02 10:05:23
