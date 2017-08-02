@@ -108,5 +108,18 @@ class Model
 //            die($ex->getMessage); 
 //        }
     }
+    
+    public function likesUpper($id)
+    {
+        $modelData = $this->getById($id);
+        $modelData->likes++;
+        $modelData->update();
+    }
+    
+    public function getModelLikes($id)
+    {
+        $modelData = $this->getById($id);
+        return $modelData->likes;
+    }
 }
 

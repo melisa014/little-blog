@@ -13,16 +13,16 @@ function actionLike()
 {
     $('img').on('click', function(){
         showLoaderIdentity();
-        var articleId = $(this).attr('data-articleId');
+        var modelId = $(this).attr('data-modelId');
         $.ajax({
             url: '/index.php?route=ajax/likes', 
-            data: {id : articleId},
+            data: {id : modelId},
             dataType: 'text',
         })
         .done (function(obj){
             hideLoaderIdentity();    
             console.log('Ответ получен');
-            $('span.' + articleId).text(obj); 
+            $('span.' + modelId).text(obj); 
             
         })
         .fail(function(){

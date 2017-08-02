@@ -1,6 +1,5 @@
 <?php
 namespace application\controllers;
-use \application\models\Article as Article;
 
 /**
  * Класс для работы с ajax-запросами
@@ -8,15 +7,17 @@ use \application\models\Article as Article;
 class AjaxController extends \core\Controller 
 {
     /**
-     * Подгрузка "лайков"
+     * Подгрузка "лайков" статей или товаров
      */
     public function likesAction()
     {
-        $Article = new Article;
-        $Article->likesUpper($_GET['id']);
+        $modelClassName = static::class;
+        
+        $Model = new $modelClassName();
+        $Model->likesUpper($_GET['id']);
         \core\Session::get()->session['user']['userSessionLikesCount']++;
          
-        echo $Article->getArticleLikes($_GET['id']);
+        echo $Model->getModelLikes($_GET['id']);
     }
     
     public function sessionLikesCountAction()

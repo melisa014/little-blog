@@ -3,6 +3,7 @@ namespace application\controllers;
 use \application\models\Article as Article;
 use \application\models\Category as Category;
 use \application\models\Adminusers as Adminusers;
+use \application\models\Good as Good;
 
 class ArchiveController extends \core\Controller
 {
@@ -61,6 +62,22 @@ class ArchiveController extends \core\Controller
         $this->view->addVar('archivePageTitle', $archivePageTitle);
         
         $this->view->render('archive/allUsers.php');
+        
+    }
+    
+    /**
+     * Выводит на экран страницу "Архив. Товары" 
+     */
+    public function allGoodsAction()
+    {
+        $Good = new Good();
+        $archiveGood = $Good->getList();
+        $archivePageTitle = "Список товаров";
+        
+        $this->view->addVar('archiveGood', $archiveGood);
+        $this->view->addVar('archivePageTitle', $archivePageTitle);
+        
+        $this->view->render('archive/allGoods.php');
         
     }
     

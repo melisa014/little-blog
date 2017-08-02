@@ -28,14 +28,17 @@
                "<a href=" . \Url::link("category/add") . ">+ Добавить категорию</a>");
             \core\User::get()->returnIfAllowed("admin/adminusers/add", 
                "<a href=" . \Url::link("admin/adminusers/add") . ">+ Добавить пользователя</a>");
-            
+            \core\User::get()->returnIfAllowed("archive/allGoods", 
+               "<a href=" . \Url::link("archive/allGoods") . ">В архив(Товары)</a>");
+            \core\User::get()->returnIfAllowed("admin/good/add", 
+               "<a href=" . \Url::link("admin/good/add") . ">+ Добавить товар</a>");
         ?>
        
         <p>
             <?= \core\User::get()->userName . ' ' ?><br>
             <span id="sessionLikesCount">Понравилось: <?= \core\Session::get()->session['user']['userSessionLikesCount']?></span><br>
             <a href="<?= \Url::link("login/logout")?>">Выйти</a>
-        </p>
+        </p>e
                      
        <div id="container">
         

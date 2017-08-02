@@ -16,7 +16,7 @@ class Article extends \core\Model
     /**
     * @var int Количество лайков
     */
-    private $likes = 0;
+    public $likes = 0;
     
     /**
     * @var int ID статей из базы данны
@@ -115,18 +115,18 @@ class Article extends \core\Model
         $st->execute();
     }
     
-    public function likesUpper($id)
-    {
-        $articleData = $this->getById($id);
-        $articleData->likes++;
-        $articleData->update();
-    }
-    
-    public function getArticleLikes($id)
-    {
-        $articleData = $this->getById($id);
-        return $articleData->likes;
-    }
+//    public function likesUpper($id)
+//    {
+//        $articleData = $this->getById($id);
+//        $articleData->likes++;
+//        $articleData->update();
+//    }
+//    
+//    public function getArticleLikes($id)
+//    {
+//        $articleData = $this->getById($id);
+//        return $articleData->likes;
+//    }
     
     /**
      * Получить сумму всех лайков форума с помощью метода getList()
