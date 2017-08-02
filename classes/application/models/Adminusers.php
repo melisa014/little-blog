@@ -38,7 +38,7 @@ class Adminusers extends \core\Model
     /**
      * @var type 
      */
-    public $myemail = null;
+    public $email = null;
     
     /**
      * @var type 
@@ -98,7 +98,7 @@ class Adminusers extends \core\Model
         $st->bindValue( ":pass", $hashPass, \PDO::PARAM_STR );
         
         $st->bindValue( ":role", $this->role, \PDO::PARAM_STR );
-        $st->bindValue( ":email", $this->myemail, \PDO::PARAM_STR );
+        $st->bindValue( ":email", $this->email, \PDO::PARAM_STR );
         $st->execute();
         $this->id = $this->pdo->lastInsertId();
     }
@@ -121,7 +121,7 @@ class Adminusers extends \core\Model
         $st->bindValue( ":pass", $hashPass, \PDO::PARAM_STR );
         
         $st->bindValue( ":role", $this->role, \PDO::PARAM_STR );
-        $st->bindValue( ":email", $this->myemail, \PDO::PARAM_STR );
+        $st->bindValue( ":email", $this->email, \PDO::PARAM_STR );
         $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
         $st->execute();
     }

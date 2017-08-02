@@ -30,15 +30,6 @@ class ArticleController extends \core\Controller
         
     ];
     
-//    Вариант с @ и общим правилом = deny
-//    protected $rules = [
-//        'all' => ['deny' => ['auth_user', 'guest'], 'allow' => ['admin']],
-//        'delete' => ['deny' => ['auth_user', 'guest']], //исключения
-//        'edit' => ['allow' => ['auth_user'], 'deny' => ['guest']], 
-//        'add' => ['allow' => ['auth_user'], 'deny' => ['guest']],
-//        'index' => ['allow' => '@'],
-//    ];
-    
     /**
      * Выводит на экран страницу "Статья" для просмотра
      */
@@ -47,9 +38,9 @@ class ArticleController extends \core\Controller
 
         $Article = new Article();
 
-        $this->viewArticle = $Article->getById($_GET['id']);
+        $viewArticle = $Article->getById($_GET['id']);
         
-        $this->view->addVar('viewArticle', $this->viewArticle);
+        $this->view->addVar('viewArticle', $viewArticle);
         
         $this->view->render('article/index.php');
     }
@@ -75,12 +66,11 @@ class ArticleController extends \core\Controller
         }
         else {
             $Category = new Category();
-            $this->changeCategory = $Category->getList();
+            $changeCategory = $Category->getList();
+            $addArticleTitle = "Создание статьи";
             
-            
-            $this->addArticleTitle = "Создание статьи";
-            $this->view->addVar('addArticleTitle', $this->addArticleTitle);
-            $this->view->addVar('changeCategory', $this->changeCategory);
+            $this->view->addVar('addArticleTitle', $addArticleTitle);
+            $this->view->addVar('changeCategory', $changeCategory);
                         
             $this->view->render('article/add.php');
         }
@@ -115,14 +105,13 @@ class ArticleController extends \core\Controller
             }
         }
         else {
-//            \DebugPrinter::debug("Только загрузка формы");
             $Article = new Article();
-            $this->viewArticle = $Article->getById($id);
-            $this->editArticleTitle = "Редактирование статьи";
+            $viewArticle = $Article->getById($id);
+            $editArticleTitle = "Редактирование статьи";
 //            \DebugPrinter::debug($this->viewArticle);
             
-            $this->view->addVar('viewArticle', $this->viewArticle);
-            $this->view->addVar('editArticleTitle', $this->editArticleTitle);
+            $this->view->addVar('viewArticle', $viewArticle);
+            $this->view->addVar('editArticleTitle', $editArticleTitle);
             
             $this->view->render('article/edit.php');   
         }
@@ -155,10 +144,10 @@ class ArticleController extends \core\Controller
             
             $Article = new Article();
             $deletedArticle = $Article->getById($id);
-            $this->deleteArticleTitle = "Удаление статьи";
+            $deleteArticleTitle = "Удаление статьи";
 //            \DebugPrinter::debug($deletedArticle); 
             
-            $this->view->addVar('deleteArticleTitle', $this->deleteArticleTitle);
+            $this->view->addVar('deleteArticleTitle', $deleteArticleTitle);
             $this->view->addVar('deletedArticle', $deletedArticle);
             
             $this->view->render('article/delete.php');

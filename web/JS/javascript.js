@@ -58,7 +58,7 @@ function formValidationOn()
 {
     $("#addUser").validate({
         rules: {
-            myemail: {
+            email: {
                 required: true,
                 email: true
             }

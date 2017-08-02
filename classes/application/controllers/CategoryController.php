@@ -23,9 +23,9 @@ class CategoryController extends \core\Controller
     {
         $Category = new Category();
 
-        $this->viewCategory = $Category->getById($_GET['id']);
+        $viewCategory = $Category->getById($_GET['id']);
         
-        $this->view->addVar('viewCategory', $this->viewCategory);
+        $this->view->addVar('viewCategory', $viewCategory);
         
         $this->view->render('category/index.php');
     }
@@ -50,8 +50,8 @@ class CategoryController extends \core\Controller
             }
         }
         else {
-            $this->addCategoryTitle = "Создание категории";
-            $this->view->addVar('addCategoryTitle', $this->addCategoryTitle);
+            $addCategoryTitle = "Создание категории";
+            $this->view->addVar('addCategoryTitle', $addCategoryTitle);
             
             $this->view->render('category/add.php');
         }
@@ -79,12 +79,12 @@ class CategoryController extends \core\Controller
         }
         else {
             $Category = new Category();
-            $this->viewCategory = $Category->getById($id);
-            $this->editCategoryTitle = "Редактирование категории";
+            $viewCategory = $Category->getById($id);
+            $editCategoryTitle = "Редактирование категории";
 //            \DebugPrinter::debug($this->viewArticle);
             
-            $this->view->addVar('viewCategory', $this->viewCategory);
-            $this->view->addVar('editCategoryTitle', $this->editCategoryTitle);
+            $this->view->addVar('viewCategory', $viewCategory);
+            $this->view->addVar('editCategoryTitle', $editCategoryTitle);
             
             $this->view->render('category/edit.php');   
         }
@@ -110,8 +110,8 @@ class CategoryController extends \core\Controller
             }
         }
         else {
-            $this->deleteCategoryTitle = "Удаление категории";
-            $this->view->addVar('deleteCategoryTitle', $this->deleteCategoryTitle);
+            $deleteCategoryTitle = "Удаление категории";
+            $this->view->addVar('deleteCategoryTitle', $deleteCategoryTitle);
             
             $this->view->render('category/delete.php');
         }

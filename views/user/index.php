@@ -7,4 +7,4 @@
 </h2> 
 
 <p>Зарегистрирован <?= $viewAdminusers->timestamp ?></p>
-<p>E-mail: <?= $viewAdminusers->myemail ?></p>
+<p>E-mail: <?= $viewAdminusers->email ?></p>

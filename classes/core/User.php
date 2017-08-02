@@ -61,8 +61,9 @@ class User extends Session
             Session::get()->session['user']['role'] = $role; 
             Session::get()->session['user']['userName'] = $login; 
             Session::get()->session['user']['userSessionLikesCount'] = 0; 
+            return true;
         }
-        return true;
+        else return false;
     }
     
     /**
@@ -72,9 +73,17 @@ class User extends Session
      */
     private function getRoleByUserName($userName)
     {
-        $siteAuthData = \Config::$users;
-        if (isset($siteAuthData[$userName])) {
-            return $siteAuthData[$userName]['role'];
+        $pdo = new Model();
+        $sql = "SELECT role FROM users WHERE login = :login";
+        $st = $pdo->pdo->prepare($sql);
+        $st->bindValue( ":login", $userName, \PDO::PARAM_STR);
+        $st->execute();
+        
+        $siteAuthData = $st->fetch();
+//        \DebugPrinter::debug($siteAuthData);
+//        die();
+        if (isset($siteAuthData['role'])) {
+            return $siteAuthData['role'];
         }
     }
     
@@ -86,9 +95,23 @@ class User extends Session
     private function checkAuthData($login, $pass)
     {
         $result = false;
-        $siteAuthData = \Config::$users;
-        if (isset($siteAuthData[$login])) {
-            if ($siteAuthData[$login]['pass'] == $pass) {
+        
+        $pdo = new Model();
+        $sql = "SELECT salt, pass FROM users WHERE login = :login";
+        $st = $pdo->pdo->prepare($sql);
+        $st->bindValue( ":login", $login, \PDO::PARAM_STR);
+        $st->execute();
+        $siteAuthData = $st->fetch();
+//        \DebugPrinter::debug($siteAuthData);
+//        die();
+        
+        $pass .= $siteAuthData['salt'];
+        $passForCheck = password_verify($pass, $siteAuthData['pass']);
+//        \DebugPrinter::debug($passForCheck);
+//        die();
+        
+        if (isset($siteAuthData['pass'])) {
+            if ($passForCheck) {
                 $result = true;
             }
         }

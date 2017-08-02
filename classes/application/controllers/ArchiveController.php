@@ -17,21 +17,16 @@ class ArchiveController extends \core\Controller
     ];
     
     /**
-     * @var string Название страницы
-     */
-    public $archivePageTitle = "Архив";
-    
-    /**
      * Выводит на экран страницу "Архив"
      */
     public function indexAction()
     {
         $Article = new Article();
         $archiveArticles = $Article->getList();
-        
+        $archivePageTitle = "Архив";
         
         $this->view->addVar('archiveArticles', $archiveArticles);
-        $this->view->addVar('archivePageTitle', $this->archivePageTitle);
+        $this->view->addVar('archivePageTitle', $archivePageTitle);
         
         $this->view->render('archive/index.php');
         
@@ -44,11 +39,10 @@ class ArchiveController extends \core\Controller
     {
         $Category = new Category();
         $archiveCategories = $Category->getList();
-        $this->archivePageTitle = "Список категорий";
-        
+        $archivePageTitle = "Список категорий";
         
         $this->view->addVar('archiveCategories', $archiveCategories);
-        $this->view->addVar('archivePageTitle', $this->archivePageTitle);
+        $this->view->addVar('archivePageTitle', $archivePageTitle);
         
         $this->view->render('archive/allCategories.php');
         
@@ -61,11 +55,10 @@ class ArchiveController extends \core\Controller
     {
         $Adminusers = new Adminusers();
         $archiveAdminusers = $Adminusers->getList();
-        $this->archivePageTitle = "Список пользователей";
-        
+        $archivePageTitle = "Список пользователей";
         
         $this->view->addVar('archiveAdminusers', $archiveAdminusers);
-        $this->view->addVar('archivePageTitle', $this->archivePageTitle);
+        $this->view->addVar('archivePageTitle', $archivePageTitle);
         
         $this->view->render('archive/allUsers.php');
         

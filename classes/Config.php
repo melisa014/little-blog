@@ -23,26 +23,6 @@ class Config
     static public $db_password = "1234";
    
     /**
-     * Авторизационные данные пользователей
-     */
-    static public $users = [
-        'admin' => [
-            'role' => 'admin',
-            'pass' => 'mypass'
-        ],
-        'user1' => [
-            'role' => 'auth_user',
-            'pass' => 'rf34rq34t'
-        ],
-        'user2' => [
-            'role' => 'auth_user',
-            'pass' => '76543'
-        ],
-       
-    ];
-    
-    
-    /**
      * Установка строгого режима вывода ошибок, предупреждений и уведомлений для отладки
      */
     static function debugReporting()

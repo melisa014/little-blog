@@ -14,7 +14,7 @@
     </select>
     
     <h5>Введите e-mail</h5>
-    <input type="text" name="myemail" value="email"><br>
+    <input type="text" name="email" value="email"><br>
     <input type="submit" name="saveNewUser" value="Сохранить">
     <input type="submit" name="cancel" value="Назад"><br>
 </form>

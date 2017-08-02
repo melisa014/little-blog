@@ -17,9 +17,12 @@ class LoginController extends \core\Controller
             $login = $_POST['userName'];
             $pass = $_POST['password'];
             $user = \core\User::get();
-            $user->login($login, $pass);
-            
-            $this->header(\Url::link("homepage/index"));
+            if($user->login($login, $pass)) {
+                $this->header(\Url::link("homepage/index"));
+            }
+            else {
+                $this->header(\Url::link("login/index&auth=deny"));
+            }
         }
         else {
             $this->view->addVar('loginTitle', $this->loginTitle);

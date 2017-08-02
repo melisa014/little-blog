@@ -10,25 +10,19 @@ class AdminusersController extends \core\Controller
     
      protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
         'all' => ['allow' => ['admin'], 'deny' => ['auth_user', 'guest']] // общее правило , 'deny' => ['guest']
-//        'delete' => ['deny' => ['auth_user', 'guest']], //исключения
-//        'edit' => ['deny' => ['auth_user', 'guest']], 
-//        'add' => ['deny' => ['auth_user', 'guest']],
-        
     ];
     
     public function indexAction()
     {
         $Adminusers = new Adminusers();
 
-        $this->viewAdminusers = $Adminusers->getById($_GET['id']);
-        \DebugPrinter::debug($this->viewAdminusers);
+        $viewAdminusers = $Adminusers->getById($_GET['id']);
         
-        $this->view->addVar('viewAdminusers', $this->viewAdminusers);
+        $this->view->addVar('viewAdminusers', $viewAdminusers);
         
         $this->view->render('user/index.php');
     }
-    
-    
+
     /**
      * Выводит на экран форму для создания новой статьи (только для Администратора)
      */
@@ -36,25 +30,18 @@ class AdminusersController extends \core\Controller
     {
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewUser'])) {
-//                \DebugPrinter::debug($_POST['myemail']);
-                
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromPost();
-//                \DebugPrinter::debug($newAdminusers);
-//                die();
                 $newAdminusers->insert(); 
-//                \DebugPrinter::debug($newAdminusers, 'после инсерта');
-//                die();
                 $this->header(\Url::link("archive/allUsers"));
-            
             } 
             elseif (!empty($_POST['cancel'])) {
                 $this->header(\Url::link("archive/allUsers"));
             }
         }
         else {
-            $this->addAdminusersTitle = "Регистрация пользователя";
-            $this->view->addVar('addAdminusersTitle', $this->addAdminusersTitle);
+            $addAdminusersTitle = "Регистрация пользователя";
+            $this->view->addVar('addAdminusersTitle', $addAdminusersTitle);
             
             $this->view->render('user/add.php');
         }
@@ -67,37 +54,26 @@ class AdminusersController extends \core\Controller
     {
         $id = $_GET['id'];
         
-//        \DebugPrinter::debug($_POST); 
-//        \DebugPrinter::debug($id); 
-        
         if (!empty($_POST)) { // это выполняется нормально.
             
             if (!empty($_POST['saveChanges'] )) {
-//                \DebugPrinter::debug('$_POST'); 
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromPost();
-//                \DebugPrinter::debug($newArticle);
-//                \DebugPrinter::debug($id);
                 $newAdminusers->update();
-//                \DebugPrinter::debug($newArticle, 'после апдейт');
                 $this->header(\Url::link("admin/adminusers/index&id=$id"));
-                 
             } 
             elseif (!empty($_POST['cancel'])) {
-//                \DebugPrinter::debug("Отмена операции");
                 $this->header(\Url::link("admin/adminusers/index&id=$id"));
             }
         }
         else {
-//            \DebugPrinter::debug("Только загрузка формы");
             $Adminusers = new Adminusers();
-            $this->viewAdminusers = $Adminusers->getById($id);
+            $viewAdminusers = $Adminusers->getById($id);
             
-            $this->editAdminusersTitle = "Редактирование данных пользователя";
-//            \DebugPrinter::debug($this->viewArticle);
+            $editAdminusersTitle = "Редактирование данных пользователя";
             
-            $this->view->addVar('viewAdminusers', $this->viewAdminusers);
-            $this->view->addVar('editAdminusersTitle', $this->editAdminusersTitle);
+            $this->view->addVar('viewAdminusers', $viewAdminusers);
+            $this->view->addVar('editAdminusersTitle', $editAdminusersTitle);
             
             $this->view->render('user/edit.php');   
         }
@@ -113,7 +89,6 @@ class AdminusersController extends \core\Controller
         
         if (!empty($_POST)) {
             if (!empty($_POST['deleteUser'])) {
-//                \DebugPrinter::debug('$_POST');
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromPost();
                 $newAdminusers->delete();
@@ -122,7 +97,6 @@ class AdminusersController extends \core\Controller
               
             }
             elseif (!empty($_POST['cancel'])) {
-//                \DebugPrinter::debug("Отмена операции");
                 $this->header(\Url::link("admin/adminusers/edit&id=$id"));
             }
         }
@@ -130,10 +104,9 @@ class AdminusersController extends \core\Controller
             
             $Adminusers = new Adminusers();
             $deletedAdminusers = $Adminusers->getById($id);
-            $this->deleteAdminusersTitle = "Удаление статьи";
-//            \DebugPrinter::debug($deletedArticle); 
+            $deleteAdminusersTitle = "Удаление статьи";
             
-            $this->view->addVar('deleteAdminusersTitle', $this->deleteAdminusersTitle);
+            $this->view->addVar('deleteAdminusersTitle', $deleteAdminusersTitle);
             $this->view->addVar('deletedAdminusers', $deletedAdminusers);
             
             $this->view->render('user/delete.php');

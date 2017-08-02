@@ -12,7 +12,7 @@
     <h5>Введите пароль</h5>
     <input type="text" name="pass" value="Новый пароль"><br>
     <h5>Введите e-mail</h5>
-    <input type="text" name="myemail" value="<?= $viewAdminusers->email ?>"><br>
+    <input type="text" name="email" value="<?= $viewAdminusers->email ?>"><br>
     
     <input type="hidden" name="id" value="<?= $_GET['id']; ?>">
     <input type="submit" name="saveChanges" value="Сохранить">

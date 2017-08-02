@@ -1,6 +1,13 @@
 <h2><?= $loginTitle ?></h2>
 
 <form method="post" action="<?= \Url::link('login/index')?>">
+    
+    <?php 
+    if (!empty($_GET['auth'])) {
+        echo "Неверное имя пользователя или пароль";
+    }
+    ?>
+    
     <h5>Введите имя пользователя</h5>
     <input type="text" name="userName" value=""><br>
     <h5>Введите пароль</h5>
