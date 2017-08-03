@@ -14,9 +14,11 @@ function actionLike()
     $('img').on('click', function(){
         showLoaderIdentity();
         var modelId = $(this).attr('data-modelId');
+        var table = $(this).attr('data-tableName');
         $.ajax({
             url: '/index.php?route=ajax/likes', 
-            data: {id : modelId},
+            data: {id : modelId,
+                   tableName : table},
             dataType: 'text',
         })
         .done (function(obj){

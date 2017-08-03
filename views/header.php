@@ -32,6 +32,8 @@
                "<a href=" . \Url::link("archive/allGoods") . ">В архив(Товары)</a>");
             \core\User::get()->returnIfAllowed("admin/good/add", 
                "<a href=" . \Url::link("admin/good/add") . ">+ Добавить товар</a>");
+            \core\User::get()->returnIfAllowed("goodSearch/index", 
+               "<a href=" . \Url::link("goodSearch/index") . ">Поиск по товарам</a>");
         ?>
        
         <p>

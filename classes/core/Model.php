@@ -37,9 +37,10 @@ class Model
      * @param int $id
      * @return obgect
      */
-    public function getById($id)
+    public function getById($id, $tableName)
     {
-        $sql = "SELECT * FROM $this->tableName where id = :id";
+        $tableName = isset($tableName) ? $tableName : $this->tableName;
+        $sql = "SELECT * FROM $tableName where id = :id";
 //      
         $modelClassName = static::class;
         
@@ -109,16 +110,16 @@ class Model
 //        }
     }
     
-    public function likesUpper($id)
+    public function likesUpper($id,$tableName)
     {
-        $modelData = $this->getById($id);
+        $modelData = $this->getById($id, $tableName);
         $modelData->likes++;
         $modelData->update();
     }
     
     public function getModelLikes($id, $tableName) //метод не узнаёт какая именно модель
     {
-        $modelData = $this->getById($id);
+        $modelData = $this->getById($id, $tableName);
         return $modelData->likes;
     }
 }

@@ -7,10 +7,10 @@
 </h2> 
 
 <p>Описание: <?= $viewGood->description; ?></p>
-<p>Цена: <?= $viewGood->price; ?></p>
+<p>Цена: <?= $viewGood->price; ?></p> р.
 <p>В наличии:  <?= $viewGood->available; ?> шт.</p>
-<img src="/images/like1.png" height="20px" width="20px" data-modelId="<?= $viewGood->id ?>">
+<img src="/images/like1.png" height="20px" width="20px" data-modelId="<?= $viewGood->id ?>" data-tableName='goodss'>
 <span class="<?= $viewGood->id?>">
-    <?= $viewGood->getModellikes($viewGood->id) ?>
+    <?= $viewGood->getModellikes($viewGood->id, 'goods') ?>
 </span>
 <img id="loader-identity" src="/images/ajax-loader.gif" alt="gif">

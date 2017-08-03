@@ -14,10 +14,10 @@ class AjaxController extends \core\Controller
         $modelClassName = static::class;
         
         $Model = new $modelClassName();
-        $Model->likesUpper($_GET['id']);
+        $Model->likesUpper($_GET['id'], $_GET['tableName']);
         \core\Session::get()->session['user']['userSessionLikesCount']++;
          
-        echo $Model->getModelLikes($_GET['id']);
+        echo $Model->getModelLikes($_GET['id'], $_GET['tableName']);
     }
     
     public function sessionLikesCountAction()
