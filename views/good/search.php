@@ -2,17 +2,16 @@
 
 
 
-<form method='post' action='<?= \Url::link("goodSearch/index")?>'>
+<form action='<?= \Url::link("goodSearch/index")?>'>
     <span>Наименование товара</span>
-    <input type="text" name="name">
-    <span>Описание товара</span>
-    <input type="text" name="description">
-    <span>В наличии на складе</span>
-    <input type="text" name="available">
+    <input type="text" name="name" placeholder="введите название товара">
+    <span>Количество</span>
+    <input type="text" name="available" placeholder="сколько единиц товара требуется">
     <span>Цена товара</span>
-    <input type="text" name="price">
-    <span>Понравилось</span>
-    <input type="text" name="likes">
+    <input type="text" name="price_from" placeholder="от" >
+    <input type="text" name="price_to"   placeholder="до">
+    <input type='submit' name='search' value='Поиск'>
+    <input type='hidden' name='route' value='goodSearch/index'>
 </form>
 <?php foreach ($searchGood['results'] as $k => $v):?>
     <h4>

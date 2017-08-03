@@ -24,6 +24,11 @@ class AjaxController extends \core\Controller
     {
         echo \core\Session::get()->session['user']['userSessionLikesCount'];
     }
+    
+    public function searchGoods()
+    {
+        
+    }
           
 }
 

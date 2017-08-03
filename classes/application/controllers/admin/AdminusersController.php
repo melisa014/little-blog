@@ -31,7 +31,7 @@ class AdminusersController extends \core\Controller
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewUser'])) {
                 $Adminusers = new Adminusers();
-                $newAdminusers = $Adminusers->loadFromPost();
+                $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->insert(); 
                 $this->header(\Url::link("archive/allUsers"));
             } 
@@ -58,7 +58,7 @@ class AdminusersController extends \core\Controller
             
             if (!empty($_POST['saveChanges'] )) {
                 $Adminusers = new Adminusers();
-                $newAdminusers = $Adminusers->loadFromPost();
+                $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->update();
                 $this->header(\Url::link("admin/adminusers/index&id=$id"));
             } 
@@ -90,7 +90,7 @@ class AdminusersController extends \core\Controller
         if (!empty($_POST)) {
             if (!empty($_POST['deleteUser'])) {
                 $Adminusers = new Adminusers();
-                $newAdminusers = $Adminusers->loadFromPost();
+                $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->delete();
                 
                 $this->header(\Url::link("archive/allUsers"));

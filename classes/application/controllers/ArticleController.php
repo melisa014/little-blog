@@ -53,7 +53,7 @@ class ArticleController extends \core\Controller
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewArticle'])) {
                 $Article = new Article();
-                $newArticle = $Article->loadFromPost();
+                $newArticle = $Article->loadFromArray($_POST);
 //                \DebugPrinter::debug($newArticle);
                 $newArticle->insert(); 
 //                \DebugPrinter::debug($newArticle, 'после инсерта');
@@ -91,7 +91,7 @@ class ArticleController extends \core\Controller
             if (!empty($_POST['saveChanges'])) {
 //                \DebugPrinter::debug('$_POST'); 
                 $Article = new Article();
-                $newArticle = $Article->loadFromPost();
+                $newArticle = $Article->loadFromArray($_POST);
 //                \DebugPrinter::debug($newArticle);
 //                \DebugPrinter::debug($id);
                 $newArticle->update();
@@ -129,7 +129,7 @@ class ArticleController extends \core\Controller
             if (!empty($_POST['deleteArticle'])) {
 //                \DebugPrinter::debug('$_POST');
                 $Article = new Article();
-                $newArticle = $Article->loadFromPost();
+                $newArticle = $Article->loadFromArray($_POST);
                 $newArticle->delete();
                 
                 $this->header(\Url::link("homepage/index"));

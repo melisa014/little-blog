@@ -85,10 +85,10 @@ class Model
         return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
     }
   
-    public function loadFromPost()
+    public function loadFromArray($arr)
     {
         $modelClassName = static::class;
-        return new $modelClassName( $_POST );
+        return new $modelClassName($arr);
     }
     
     /**

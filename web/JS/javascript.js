@@ -77,3 +77,7 @@ function formValidationOn()
     });
 }
 
+function searchGoods()
+{
+    
+}

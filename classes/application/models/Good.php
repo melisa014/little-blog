@@ -37,6 +37,16 @@ class Good extends \core\Model
     * @var int Цена товара
     */
     public $price = null;
+    
+    /**
+    * @var int Цена товара
+    */
+    public $price_from = null;
+    
+    /**
+    * @var int Цена товара
+    */
+    public $price_to = null;
 
     /**
     * @var int Количество лайков)
@@ -71,10 +81,6 @@ class Good extends \core\Model
      */
     public function insert()
     {
-//         Есть уже у объекта Good ID?
-//        if ( !is_null( $this->id ) ) trigger_error ( "Good::insert(): Attempt to insert an Good object that already has its ID property set (to $this->id).", E_USER_ERROR );
-
-        // Вставляем статью
         $sql = "INSERT INTO $this->tableName (description, price, name, available, likes) VALUES ( :description, :price, :name, :available, :likes)"; 
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":description", $this->description, \PDO::PARAM_STR );
@@ -88,15 +94,11 @@ class Good extends \core\Model
     }
 
     /**
-    * Обновляем текущий объект статьи в базе данных
+    * Обновляем текущий объект товара в базе данных
     */
     public function update()
     {
-        // Есть ли у объекта Good ID?
-//        if ( is_null( $this->id ) ) trigger_error ( "Good::update(): Attempt to update an Good object that does not have its ID property set.", E_USER_ERROR );
-
-        // Обновляем статью
-        $sql = "UPDATE $this->tableName SET description=:description, price=:price, name=:name, available=:available, likes=:likes, likes=:likes WHERE id = :id";  
+        $sql = "UPDATE $this->tableName SET description=:description, price=:price, name=:name, available=:available, likes=:likes, WHERE id = :id";  
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":description", $this->description, \PDO::PARAM_STR );
         $st->bindValue( ":price", $this->price, \PDO::PARAM_INT );
@@ -106,6 +108,63 @@ class Good extends \core\Model
         $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
         $st->execute();
     }
+    
+     /**
+    * Ищем товар в базе данных
+    * return array Возвращает массив Id элементов, соответствующих условиям, заданным пользователем
+    */
+    public function search()
+    {
+        $sql = "SELECT id FROM $this->tableName WHERE";
+        
+        $whereOptions = [
+            'price_from' => [
+                'sql' => "price >= :price_from",
+                'type' => \PDO::PARAM_INT],
+            'price_to' => [
+                'sql' => "price <= :price_to",
+                'type' => \PDO::PARAM_INT],
+            'name' => [
+                'sql' => "name = :name",
+                'type' => \PDO::PARAM_STR],
+            'available' => [
+                'sql' => "available >= :available",
+                'type' => \PDO::PARAM_INT]
+            
+        ];
+        
+//        \DebugPrinter::debug($_GET);
+//        die();
+        foreach ($_GET as $key => $value) { // Составляем массив из параметров WHERE (в зависимости от того, что ввёл пользователь)
+            if (isset($whereOptions[$key])){
+                $sql_arr[] = $whereOptions[$key]['sql'];
+            }
+        }
+        
+        $sql_str = implode(' AND ', $sql_arr); // Составляем строку из параметров WHERE
+//        \DebugPrinter::debug($sql_str);
+//        die();
+        $sql .= " ". $sql_str . " ORDER BY likes"; // Собираем SQL-запрос
+        \DebugPrinter::debug($sql);
+        echo "<br><br>";
+//        die();
+        $st = $this->pdo->prepare ( $sql );
+        
+        foreach ($_GET as $key => $value) {
+            if (isset($whereOptions[$key])) {
+                echo ":" . $key, $this->$key, $whereOptions[$key]['type'] . "<br>";
+                $st->bindValue(":" . $key, $this->$key, $whereOptions[$key]['type']);
+            }
+        }
+        
+        $st->execute();
+        $result = $st->fetchAll();
+        \DebugPrinter::debug($result);
+        die();
+        return $result;
+        
+    }
+    
 //    
 //        public function likesUpper($id)
 //    {

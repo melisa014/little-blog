@@ -38,7 +38,7 @@ class CategoryController extends \core\Controller
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewCategory'])) {
                 $Category = new Category();
-                $newCategory = $Category->loadFromPost();
+                $newCategory = $Category->loadFromArray($_POST);
                 \DebugPrinter::debug($newCategory);
                 $newCategory->insert();
                 \DebugPrinter::debug($newCategory, 'после инсерта');
@@ -68,7 +68,7 @@ class CategoryController extends \core\Controller
             if (!empty($_POST['saveChanges'])) {
                 \DebugPrinter::debug("Привет)");
                 $Category = new Category();
-                $newCategory = $Category->loadFromPost();
+                $newCategory = $Category->loadFromArray($_POST);
                 $newCategory->update();
                 \DebugPrinter::debug($newCategory, 'после апдейта');
                 $this->header(\Url::link("category/index&id=$id"));
@@ -100,7 +100,7 @@ class CategoryController extends \core\Controller
         if (!empty($_POST)) {
             if (!empty($_POST['deleteCategory'])) {
                 $Category = new Category();
-                $newCategory = $Category->loadFromPost();
+                $newCategory = $Category->loadFromArray($_POST);
                 $newCategory->delete();
                 $this->header(\Url::link("homepage/index"));
               

@@ -11,14 +11,28 @@ class GoodSearchController extends \core\Controller
     
     public function indexAction()
     {
-        $Good = new Good();
-        $searchGood = $Good->getList();
-        $searchPageTitle = "Поиск товаров";
         
-        $this->view->addVar('searchGood', $searchGood);
-        $this->view->addVar('searchPageTitle', $searchPageTitle);
+            if(!empty($_GET['search'])) {
+                $Good = new Good();
+                $newGood = $Good->loadFromArray($_GET);
+                \DebugPrinter::debug($newGood);
+//                die();
+                $goodsId = $newGood->search();
+                \DebugPrinter::debug($goodsId, 'после поиска');
+                die();
+//                $this->header(\Url::link("good/search"));
+            } 
         
-        $this->view->render('good/search.php');
+        else {
+            $Good = new Good();
+            $searchGood = $Good->getList();
+            $searchPageTitle = "Поиск товаров";
+
+            $this->view->addVar('searchGood', $searchGood);
+            $this->view->addVar('searchPageTitle', $searchPageTitle);
+
+            $this->view->render('good/search.php');
+        }
     }
     
 }

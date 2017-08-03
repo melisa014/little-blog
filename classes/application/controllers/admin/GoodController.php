@@ -42,7 +42,7 @@ class GoodController extends \core\Controller
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewGood'])) {
                 $Good = new Good();
-                $newGood = $Good->loadFromPost();
+                $newGood = $Good->loadFromArray($_POST);
 //                \DebugPrinter::debug($newGood);
                 $newGood->insert(); 
 //                \DebugPrinter::debug($newGood, 'после инсерта');
@@ -77,7 +77,7 @@ class GoodController extends \core\Controller
             if (!empty($_POST['saveChanges'])) {
 //                \DebugPrinter::debug('$_POST'); 
                 $Good = new Good();
-                $newGood = $Good->loadFromPost();
+                $newGood = $Good->loadFromArray($_POST);
 //                \DebugPrinter::debug($newGood);
 //                \DebugPrinter::debug($id);
                 $newGood->update();
@@ -118,7 +118,7 @@ class GoodController extends \core\Controller
 //                \DebugPrinter::debug('$_POST');
 //                die();
                 $Good = new Good();
-                $newGood = $Good->loadFromPost();
+                $newGood = $Good->loadFromArray($_POST);
                 $newGood->delete();
                 
                 $this->header(\Url::link("archive/allGoods"));
