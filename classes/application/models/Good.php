@@ -11,7 +11,7 @@ class Good extends \core\Model
     /**
      * @var string Критерий сортировки строк таблицы
      */
-    public $orderBy = 'likes DESC';
+    public $orderBy = 'id';
     
     /**
     * @var int ID из базы данны
@@ -111,11 +111,11 @@ class Good extends \core\Model
     
      /**
     * Ищем товар в базе данных
-    * return array Возвращает массив Id элементов, соответствующих условиям, заданным пользователем
+    * return array Возвращает массив объектов - товаров, соответствующих условиям, заданным пользователем
     */
     public function search()
     {
-        $sql = "SELECT id FROM $this->tableName WHERE";
+        $sql = "SELECT * FROM $this->tableName WHERE";
         
         $whereOptions = [
             'price_from' => [
@@ -125,47 +125,61 @@ class Good extends \core\Model
                 'sql' => "price <= :price_to",
                 'type' => \PDO::PARAM_INT],
             'name' => [
-                'sql' => "name = :name",
-                'type' => \PDO::PARAM_STR],
+                'sql' => "name LIKE :name",
+                'type' => \PDO::PARAM_STR,
+                'wrap' => "%"],
             'available' => [
                 'sql' => "available >= :available",
                 'type' => \PDO::PARAM_INT]
             
         ];
         
-//        \DebugPrinter::debug($_GET);
-//        die();
         foreach ($_GET as $key => $value) { // Составляем массив из параметров WHERE (в зависимости от того, что ввёл пользователь)
-            if (isset($whereOptions[$key])){
-                $sql_arr[] = $whereOptions[$key]['sql'];
+            if (!empty($_GET[$key])) {
+                if (isset($whereOptions[$key])){
+                    $sql_arr[] = $whereOptions[$key]['sql'];
+                }
             }
         }
-        
-        $sql_str = implode(' AND ', $sql_arr); // Составляем строку из параметров WHERE
-//        \DebugPrinter::debug($sql_str);
+//        \DebugPrinter::debug($sql_arr);
 //        die();
-        $sql .= " ". $sql_str . " ORDER BY likes"; // Собираем SQL-запрос
-        \DebugPrinter::debug($sql);
-        echo "<br><br>";
-//        die();
-        $st = $this->pdo->prepare ( $sql );
-        
-        foreach ($_GET as $key => $value) {
-            if (isset($whereOptions[$key])) {
-                echo ":" . $key, $this->$key, $whereOptions[$key]['type'] . "<br>";
-                $st->bindValue(":" . $key, $this->$key, $whereOptions[$key]['type']);
+        if (!empty($sql_arr)) {
+            $sql_str = implode(' AND ', $sql_arr); // Составляем строку из параметров WHERE
+            $sql .= " ". $sql_str . " ORDER BY likes"; // Собираем SQL-запрос
+//            \DebugPrinter::debug($sql);
+//            die();
+            echo "<br>";
+            $st = $this->pdo->prepare ( $sql );
+
+            foreach ($_GET as $key => $value) { // Подставляем в подготовленный запрос значения на места переменных
+                if (!empty($_GET[$key]) 
+                        && isset($whereOptions[$key])) {
+//                    \DebugPrinter::debug($_GET[$key]);
+//                    \DebugPrinter::debug($whereOptions[$key]);
+//                    die();
+                    if (!empty($whereOptions[$key]['wrap'])) {
+                        $st->bindValue(":" . $key, $whereOptions[$key]['wrap'] . $this->$key . $whereOptions[$key]['wrap'], $whereOptions[$key]['type']);
+                    } else {
+                        $st->bindValue(":" . $key, $this->$key, $whereOptions[$key]['type']);
+                    }
+                }
             }
+            $st->execute(); // Выполняем SQL-запрос
+
+            while ( $row = $st->fetch() ) { // Заполняем массив $list объектами товаров
+                $example = new Good( $row );
+                $list[] = $example;
+            }
+    //        \DebugPrinter::debug($list);
+    //        die();
+            $totalRows = count($list);
+            if ($totalRows !== 0) {
+                return (array ("results" => $list, "totalRows" => $totalRows));
+            } else return false;
         }
-        
-        $st->execute();
-        $result = $st->fetchAll();
-        \DebugPrinter::debug($result);
-        die();
-        return $result;
-        
+        else return false;
     }
     
-//    
 //        public function likesUpper($id)
 //    {
 //        $goodData = $this->getById($id);

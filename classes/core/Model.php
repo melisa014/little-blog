@@ -84,6 +84,29 @@ class Model
         $totalRows = $this->pdo->query( $sql )->fetch();
         return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
     }
+    
+    public function getPage($pageNumber = 1, $limit = 5)
+    {
+        $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM $this->tableName
+                ORDER BY  $this->orderBy LIMIT :limit OFFSET :offset";
+
+        $modelClassName = static::class;
+        $offset = ($pageNumber - 1)*5;
+        
+        $st = $this->pdo->prepare($sql);
+        $st->bindValue( ":limit", $limit, \PDO::PARAM_INT );
+        $st->bindValue( ":offset", $offset, \PDO::PARAM_INT );
+        $st->execute();
+        
+        while ( $row = $st->fetch() ) {
+            $example = new $modelClassName( $row );
+            $list[] = $example;
+        }
+       // Получаем общее количество статей, которые соответствуют критерию
+        $sql = "SELECT FOUND_ROWS() AS totalRows";
+        $totalRows = $this->pdo->query( $sql )->fetch();
+        return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
+    }
   
     public function loadFromArray($arr)
     {
@@ -96,9 +119,6 @@ class Model
     */
     public function delete() 
     {
-        // Есть ли у объекта статьи ID?
-//        if ( is_null( $this->id ) ) trigger_error ( "Article::delete(): Attempt to delete an Article object that does not have its ID property set.", E_USER_ERROR );
-
         // Удаляем статью
 //        try{
             $st = $this->pdo->prepare ( "DELETE FROM $this->tableName WHERE id = :id LIMIT 1" );

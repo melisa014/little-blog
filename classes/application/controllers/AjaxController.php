@@ -29,6 +29,11 @@ class AjaxController extends \core\Controller
     {
         
     }
+    
+    public function ()
+    {
+        
+    }
           
 }
 

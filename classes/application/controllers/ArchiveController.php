@@ -71,13 +71,15 @@ class ArchiveController extends \core\Controller
     public function allGoodsAction()
     {
         $Good = new Good();
-        $archiveGood = $Good->getList();
+        $pageNumber = isset($_GET['pageNumber']) ? $_GET['pageNumber'] : 1;
+        \DebugPrinter::debug($pageNumber);
+        $archiveGood = $Good->getPage($pageNumber);
         $archivePageTitle = "Список товаров";
         
         $this->view->addVar('archiveGood', $archiveGood);
         $this->view->addVar('archivePageTitle', $archivePageTitle);
         
-        $this->view->render('archive/allGoods.php');
+        $this->view->render('archive/allGoods.php'); //?pageNumber=' . $pageNumber
         
     }
     

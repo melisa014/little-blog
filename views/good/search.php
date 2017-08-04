@@ -13,19 +13,27 @@
     <input type='submit' name='search' value='Поиск'>
     <input type='hidden' name='route' value='goodSearch/index'>
 </form>
-<?php foreach ($searchGood['results'] as $k => $v):?>
-    <h4>
-        <a href="<?= \Url::link("admin/good/index&id=". $searchGood['results'][$k]->id)?>">
-            <?= $searchGood['results'][$k]->name; ?>
-        </a>
-    </h4>
-    <p>Цена товара: <?= $searchGood['results'][$k]->price; ?> р.
-     В наличии: <?= $searchGood['results'][$k]->available; ?> штук</p>
-    <img src="/images/like1.png" height="20px" width="20px" data-modelId="<?= $searchGood['results'][$k]->id?>" data-tableName='goods'>
-    <span class="<?= $searchGood['results'][$k]->id?>">
-        <?= $searchGood['results'][$k]->getModelLikes($searchGood['results'][$k]->id, 'goods') ?>
-    </span>
-    <img id="loader-identity" src="/images/ajax-loader.gif" alt="gif">
-    <hr><br>    
-<?php endforeach; ?>
+<?php
 
+if (!empty($_GET['total'])) {
+    echo "По Вашему запросу товаров не найдено";
+}
+else {
+    echo "Найдено " . $searchGood['totalRows'] . ": <br>"; 
+
+    foreach ($searchGood['results'] as $k => $v):?>
+        <h4>
+            <a href="<?= \Url::link("admin/good/index&id=". $searchGood['results'][$k]->id)?>">
+                <?= $searchGood['results'][$k]->name; ?>
+            </a>
+        </h4>
+        <p>Цена товара: <?= $searchGood['results'][$k]->price; ?> р.
+         В наличии: <?= $searchGood['results'][$k]->available; ?> штук</p>
+        <img src="/images/like1.png" height="20px" width="20px" data-modelId="<?= $searchGood['results'][$k]->id?>" data-tableName='goods'>
+        <span class="<?= $searchGood['results'][$k]->id?>">
+            <?= $searchGood['results'][$k]->getModelLikes($searchGood['results'][$k]->id, 'goods') ?>
+        </span>
+        <img id="loader-identity" src="/images/ajax-loader.gif" alt="gif">
+        <hr><br>    
+    <?php endforeach; 
+}?>

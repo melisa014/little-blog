@@ -1,6 +1,18 @@
 
 <h2><?= $archivePageTitle ?></h2>
 
+ <div class="page">Страница
+    <?php 
+    $pagesCount = $archiveGood['totalRows']/5;
+    if ($pagesCount !== (int)$pagesCount) {
+        $pagesCount++;
+    }
+    $page = 1;
+    while ($page <= $pagesCount) { ?>
+        <span><a href="<?= \Url::link("archive/allGoods&pageNumber=$page") ?>"><?= $page ?></a></span>
+        <?php $page++;
+    } ?></div>
+
 <?php 
 foreach ($archiveGood['results'] as $k => $v):?>
     <h4>
@@ -18,3 +30,16 @@ foreach ($archiveGood['results'] as $k => $v):?>
     <hr><br>    
 <?php endforeach; ?>
 
+    <div class="page">Страница
+    <?php 
+    $pagesCount = $archiveGood['totalRows']/5;
+    if ($pagesCount !== (int)$pagesCount) {
+        $pagesCount++;
+    }
+    $page = 1;
+    while ($page <= $pagesCount) { ?>
+        <span><a href="<?= \Url::link("archive/allGoods&pageNumber=$page") ?>"><?= $page ?></a></span>
+        <?php $page++;
+    } ?></div>
+    
+        
