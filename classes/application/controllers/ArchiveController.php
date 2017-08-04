@@ -72,14 +72,16 @@ class ArchiveController extends \core\Controller
     {
         $Good = new Good();
         $pageNumber = isset($_GET['pageNumber']) ? $_GET['pageNumber'] : 1;
-        \DebugPrinter::debug($pageNumber);
-        $archiveGood = $Good->getPage($pageNumber);
+        $limit = 5;
+//        \DebugPrinter::debug($pageNumber);
+        $archiveGood = $Good->getPage($pageNumber, $limit);
         $archivePageTitle = "Список товаров";
         
+        $this->view->addVar('limit', $limit);
         $this->view->addVar('archiveGood', $archiveGood);
         $this->view->addVar('archivePageTitle', $archivePageTitle);
         
-        $this->view->render('archive/allGoods.php'); //?pageNumber=' . $pageNumber
+        $this->view->render('archive/allGoods.php');
         
     }
     

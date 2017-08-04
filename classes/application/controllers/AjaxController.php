@@ -30,9 +30,9 @@ class AjaxController extends \core\Controller
         
     }
     
-    public function ()
+    public function showScrollingPage()
     {
-        
+        echo "Привет!";
     }
           
 }

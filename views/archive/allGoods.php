@@ -1,9 +1,9 @@
 
 <h2><?= $archivePageTitle ?></h2>
 
- <div class="page">Страница
+<div class="page">Страница
     <?php 
-    $pagesCount = $archiveGood['totalRows']/5;
+    $pagesCount = $archiveGood['totalRows']/$limit;
     if ($pagesCount !== (int)$pagesCount) {
         $pagesCount++;
     }
@@ -11,8 +11,10 @@
     while ($page <= $pagesCount) { ?>
         <span><a href="<?= \Url::link("archive/allGoods&pageNumber=$page") ?>"><?= $page ?></a></span>
         <?php $page++;
-    } ?></div>
+    } ?>
+ </div>
 
+<div>
 <?php 
 foreach ($archiveGood['results'] as $k => $v):?>
     <h4>
@@ -29,10 +31,12 @@ foreach ($archiveGood['results'] as $k => $v):?>
         <img id="loader-identity" src="/images/ajax-loader.gif" alt="gif">
     <hr><br>    
 <?php endforeach; ?>
-
-    <div class="page">Страница
+</div>
+    
+    
+<div class="page">Страница
     <?php 
-    $pagesCount = $archiveGood['totalRows']/5;
+    $pagesCount = $archiveGood['totalRows']/$limit;
     if ($pagesCount !== (int)$pagesCount) {
         $pagesCount++;
     }
@@ -40,6 +44,20 @@ foreach ($archiveGood['results'] as $k => $v):?>
     while ($page <= $pagesCount) { ?>
         <span><a href="<?= \Url::link("archive/allGoods&pageNumber=$page") ?>"><?= $page ?></a></span>
         <?php $page++;
-    } ?></div>
+    } ?>
+</div>
     
-        
+<!-- Это скрытый элемент для хранения данных, необходимых для реализайии загрузки при скроллинге страницы -->
+<div style="display: none"
+     id="loader-manager"
+     data-url="/index.php?route=ajax/scrollingPage"
+     data-limit="$limit"
+     data-offset="0"
+
+     data-parent-id="{$ParentId}"
+     data-year="{$ProjectsLoadYear}" 
+     data-parent-path="{$ParentPath}">
+    <a href="#" class="link-new wide">тут можно что-то написать, если управлять по клику, но у нас элемент невидимый</a>
+</div>
+
+<div id='projects-container'></div>

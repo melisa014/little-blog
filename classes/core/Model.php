@@ -91,7 +91,7 @@ class Model
                 ORDER BY  $this->orderBy LIMIT :limit OFFSET :offset";
 
         $modelClassName = static::class;
-        $offset = ($pageNumber - 1)*5;
+        $offset = ($pageNumber - 1)*$limit;
         
         $st = $this->pdo->prepare($sql);
         $st->bindValue( ":limit", $limit, \PDO::PARAM_INT );
