@@ -30,9 +30,14 @@ class AjaxController extends \core\Controller
         
     }
     
-    public function showScrollingPage()
+    public function showOnScrollingPageAction()
     {
-        echo "Привет!";
+        $Good = new \application\models\Good();
+        $archiveGood = $Good->getList();
+        
+        $this->view->addVar('archiveGood', $archiveGood);
+        
+        $this->view->renderPartition('archive/allGoodsAjax.php');
     }
           
 }

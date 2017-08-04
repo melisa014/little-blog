@@ -50,9 +50,9 @@ foreach ($archiveGood['results'] as $k => $v):?>
 <!-- Это скрытый элемент для хранения данных, необходимых для реализайии загрузки при скроллинге страницы -->
 <div style="display: none"
      id="loader-manager"
-     data-url="/index.php?route=ajax/scrollingPage"
-     data-limit="$limit"
-     data-offset="0"
+     data-url="/index.php?route=ajax/showOnScrollingPage"
+     data-limit="<?= $limit?>"
+     data-offset="5"
 
      data-parent-id="{$ParentId}"
      data-year="{$ProjectsLoadYear}" 

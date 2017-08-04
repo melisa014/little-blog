@@ -23,7 +23,7 @@ var loadAjax = false;
 function actionLike()
 {
     $('img').on('click', function(){
-        showLoaderIdentity();
+//        showLoaderIdentity();
         var modelId = $(this).attr('data-modelId');
         var table = $(this).attr('data-tableName');
         $.ajax({
@@ -33,13 +33,13 @@ function actionLike()
             dataType: 'text',
         })
         .done (function(obj){
-            hideLoaderIdentity();    
+//            hideLoaderIdentity();    
             console.log('Ответ получен');
             $('span.' + modelId).text(obj); 
             
         })
         .fail(function(){
-            hideLoaderIdentity();
+//            hideLoaderIdentity();
             console.log('Ошибка соединения с сервером');
         });
     });
@@ -143,35 +143,48 @@ function initScrollingLoad()
 
 function sendAjax(url, data)
 {
-    showLoaderIdenity(); //  показываем идентификатор загрузки
+//    showLoaderIdenity(); //  показываем идентификатор загрузки
     $.ajax({ //  сам запрос
     type: 'POST',
     url: url,
     data: data, // данные которые передаём  серверу
-    dataType: "text" //"json" // предполоижтельный формат ответа сервера
+    dataType: "html" //"json" // предполоижтельный формат ответа сервера
     }).done(function(res) { // если успешно
-        hideLoaderIdenity(); // скрываем идентификатор загрузки
+//        hideLoaderIdenity(); // скрываем идентификатор загрузки
 
-        appendHtml(res.html) // добавляем скаченные данные в конец ленты
-
-        if (res.finished) { // если получили признак завершения прокрутки
-            stopLoadTrying();
-        }
+        appendHtml(res) // добавляем скаченные данные в конец ленты
+        stopLoadTrying();
+//        if (res.finished) { // если получили признак завершения прокрутки
+//           
+//        }
 
         loadAjax = false; // укажем, что данный цикл загрузки завершён
         console.log('Ответ получен: ', res);
 
-        if (res.success) { // если все хорошо
-            console.log('ОК!)');
+//        if (res.success) { // если все хорошо
+//            console.log('ОК!)');
+//
+//        } else { // если не нравится результат
+//            console.log('Пришли не те данные!');
+//            alert(res.message);
+//        }
+    }).fail(function(xhr, status, error){
+        $('.holder-loader').removeClass('open');
 
-        } else { // если не нравится результат
-            console.log('Пришли не те данные!');
-            alert(res.message);
-        }
-    }).fail(function() { // если ошибка передачи
-        hideLoaderIdenity();
-        loadAjax = false;
-        console.log('Ошибка выполнения запроса!');
+        console.log('ajaxError xhr:', xhr); // выводим значения переменных
+        console.log('ajaxError status:', status);
+        console.log('ajaxError error:', error);
+
+        // соберем самое интересное в переменную
+        var errorInfo = 'Ошибка выполнения запроса: '
+                + '\n[' + xhr.status + ' ' + status   + ']'
+                +  ' ' + error + ' \n '
+                + xhr.responseText
+                + '<br>'
+                + xhr.responseJSON;
+
+        console.log('ajaxError:', errorInfo); // в консоль
+        alert(errorInfo); // если требуется и то на экран
     });
 }
 

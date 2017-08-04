@@ -67,6 +67,19 @@ class View
         
     }
     
+    /**
+     * Формирует частичную печать страницы. Собирает базовый HTML
+     * и индивидуальный для каждой страницы
+     * 
+     * @param string Путь к целевой странице
+     */
+    public function renderPartition($path)
+    {
+        extract($this->vars);
+                
+        include($this->templateBasepath . $path);
+        
+    }
     
     
 }
