@@ -120,16 +120,17 @@ function initScrollingLoad()
                 var pageNumber  =  $loadManager.data('page-number');
                 var pageCount  =  $loadManager.data('page-count');
 
-                $loadManager.data('page-number', pageNumber + 1);
+                pageNumber++;
+                $loadManager.data('page-number', pageNumber);
                 
                 var loadOptions = {
                     'limit':   limit ,
                     'page-number': pageNumber,
                     'page-count' : pageCount,
                }
-
-                sendAjax(url, loadOptions); // передаём необходимые данные функции отправки запроса
-
+                if (pageNumber < pageCount) {
+                    sendAjax(url, loadOptions); // передаём необходимые данные функции отправки запроса
+                }
             }, 30);
 
         }  
@@ -148,10 +149,8 @@ function sendAjax(url, data)
 //        hideLoaderIdenity(); // скрываем идентификатор загрузки
 
         appendHtml(res) // добавляем скаченные данные в конец ленты
-        
-//        if (data['pageNumber'] == data['pageCount']) {
-//            stopLoadTrying();
-//        }
+        $('div.page').attr('style', 'display : none');
+       
 //        if (res.finished) { // если получили признак завершения прокрутки
 //           
 //        }
