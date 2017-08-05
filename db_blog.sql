@@ -70,6 +70,35 @@ INSERT INTO `categories` VALUES (1,'Первый сорт','Это первая 
 UNLOCK TABLES;
 
 --
+-- Table structure for table `corrections`
+--
+
+DROP TABLE IF EXISTS `corrections`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `corrections` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_orders` int(11) NOT NULL,
+  `id_goods` smallint(6) NOT NULL,
+  `number` mediumint(9) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_orders` (`id_orders`),
+  KEY `id_goods` (`id_goods`),
+  CONSTRAINT `corrections_ibfk_1` FOREIGN KEY (`id_orders`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `corrections_ibfk_2` FOREIGN KEY (`id_goods`) REFERENCES `goods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `corrections`
+--
+
+LOCK TABLES `corrections` WRITE;
+/*!40000 ALTER TABLE `corrections` DISABLE KEYS */;
+/*!40000 ALTER TABLE `corrections` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `goods`
 --
 
@@ -161,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-05 19:34:45
+-- Dump completed on 2017-08-05 19:51:13
