@@ -35,8 +35,10 @@ class AjaxController extends \core\Controller
         $Good = new \application\models\Good();
         
         \DebugPrinter::debug($_POST);
+//        \DebugPrinter::debug($_GET);
         
         $archiveGood = $Good->getPage($_POST['page-number'], $_POST['limit']); 
+//        $archiveGood = $Good->getPage($_GET['page-number'], $_GET['limit']); 
         
 //        \DebugPrinter::debug($archiveGood);
         $this->view->addVar('archiveGood', $archiveGood);

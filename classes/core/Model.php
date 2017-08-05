@@ -100,7 +100,7 @@ class Model
         $st->bindValue( ":offset", $offset, \PDO::PARAM_INT );
        // echo('<pre>'); $st->debugDumpParams(); echo('</pre>');
         $st->execute();
-        echo('<pre>'); $st->debugDumpParams(); echo('</pre>');
+//        echo('<pre>'); $st->debugDumpParams(); echo('</pre>');
         
         while ( $row = $st->fetch() ) {
             $example = new $modelClassName( $row );
