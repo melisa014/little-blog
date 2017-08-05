@@ -96,8 +96,8 @@ class Model
         
         //echo($limit); echo($offset);// die();
         $st = $this->pdo->prepare($sql);
-        $st->bindValue( ":limit", $limit, \PDO::PARAM_INT );
-        $st->bindValue( ":offset", $offset, \PDO::PARAM_INT );
+        $st->bindValue( ":limit", intval($limit), \PDO::PARAM_INT );
+        $st->bindValue( ":offset", intval($offset), \PDO::PARAM_INT );
        // echo('<pre>'); $st->debugDumpParams(); echo('</pre>');
         $st->execute();
         echo('<pre>'); $st->debugDumpParams(); echo('</pre>');
