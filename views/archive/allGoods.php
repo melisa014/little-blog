@@ -40,6 +40,8 @@ foreach ($archiveGood['results'] as $k => $v):?>
     if ($pagesCount !== (int)$pagesCount) {
         $pagesCount++;
     }
+    \DebugPrinter::debug($pagesCount);
+    \DebugPrinter::debug((int)$pagesCount);
     $page = 1;
     while ($page <= $pagesCount) { ?>
         <span><a href="<?= \Url::link("archive/allGoods&pageNumber=$page") ?>"><?= $page ?></a></span>
@@ -52,12 +54,10 @@ foreach ($archiveGood['results'] as $k => $v):?>
      id="loader-manager"
      data-url="/index.php?route=ajax/showOnScrollingPage"
      data-limit="<?= $limit?>"
-     data-offset="5"
-
-     data-parent-id="{$ParentId}"
-     data-year="{$ProjectsLoadYear}" 
-     data-parent-path="{$ParentPath}">
-    <a href="#" class="link-new wide">тут можно что-то написать, если управлять по клику, но у нас элемент невидимый</a>
+     data-page-number="<?= $pageNumber ?>"
+     data-page-count="<?= $pagesCount ?>"
+     
+     <a href="#" class="link-new wide">тут можно что-то написать, если управлять по клику, но у нас элемент невидимый</a>
 </div>
 
 <div id='projects-container'></div>

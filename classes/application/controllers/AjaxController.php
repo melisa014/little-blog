@@ -33,8 +33,12 @@ class AjaxController extends \core\Controller
     public function showOnScrollingPageAction()
     {
         $Good = new \application\models\Good();
-        $archiveGood = $Good->getList();
         
+        \DebugPrinter::debug($_POST);
+        
+        $archiveGood = $Good->getPage($_POST['page-number'], $_POST['limit']); 
+        
+//        \DebugPrinter::debug($archiveGood);
         $this->view->addVar('archiveGood', $archiveGood);
         
         $this->view->renderPartition('archive/allGoodsAjax.php');

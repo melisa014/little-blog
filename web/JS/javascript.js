@@ -117,20 +117,15 @@ function initScrollingLoad()
 
                 var url =  $loadManager.data('url');
                 var limit  =  $loadManager.data('limit');
-                var offset  =  $loadManager.data('offset');
+                var pageNumber  =  $loadManager.data('page-number');
+                var pageCount  =  $loadManager.data('page-count');
+
+                $loadManager.data('page-number', pageNumber + 1);
                 
-                var year  =  $loadManager.data('year');
-                var parentPath   = $loadManager.data('parent-path');
-                var parentId   = $loadManager.data('parent-id');
-
-                $loadManager.data('offset', offset + limit); // сразу выставляем новое смещение для следующего запроса 
-
                 var loadOptions = {
                     'limit':   limit ,
-                    'offset': offset,
-                    'year':  year,
-                    'parent-path': parentPath,
-                    'parent-id':  parentId
+                    'page-number': pageNumber,
+                    'page-count' : pageCount,
                }
 
                 sendAjax(url, loadOptions); // передаём необходимые данные функции отправки запроса
@@ -153,7 +148,10 @@ function sendAjax(url, data)
 //        hideLoaderIdenity(); // скрываем идентификатор загрузки
 
         appendHtml(res) // добавляем скаченные данные в конец ленты
-        stopLoadTrying();
+        
+//        if (data['pageNumber'] == data['pageCount']) {
+//            stopLoadTrying();
+//        }
 //        if (res.finished) { // если получили признак завершения прокрутки
 //           
 //        }

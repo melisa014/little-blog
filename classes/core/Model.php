@@ -85,7 +85,7 @@ class Model
         return ( array ( "results" => $list, "totalRows" => $totalRows[0] ) );
     }
     
-    public function getPage($pageNumber = 1, $limit = 5)
+    public function getPage($pageNumber = 1, $limit = 2)
     {
         $sql = "SELECT SQL_CALC_FOUND_ROWS * FROM $this->tableName
                 ORDER BY  $this->orderBy LIMIT :limit OFFSET :offset";
@@ -93,10 +93,14 @@ class Model
         $modelClassName = static::class;
         $offset = ($pageNumber - 1)*$limit;
         
+        
+        //echo($limit); echo($offset);// die();
         $st = $this->pdo->prepare($sql);
         $st->bindValue( ":limit", $limit, \PDO::PARAM_INT );
         $st->bindValue( ":offset", $offset, \PDO::PARAM_INT );
+       // echo('<pre>'); $st->debugDumpParams(); echo('</pre>');
         $st->execute();
+        echo('<pre>'); $st->debugDumpParams(); echo('</pre>');
         
         while ( $row = $st->fetch() ) {
             $example = new $modelClassName( $row );
