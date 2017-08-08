@@ -39,6 +39,8 @@
         <p>
             <?= \core\User::get()->userName . ' ' ?><br>
             <span id="sessionLikesCount">Понравилось: <?= \core\Session::get()->session['user']['userSessionLikesCount']?></span><br>
+            <span>Ваш заказ: <?= \core\Session::get()->session['user']['order']?> шт.</span><br>
+            
             <a href="<?= \Url::link("login/logout")?>">Выйти</a>
         </p>
                      

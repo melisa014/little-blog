@@ -16,15 +16,16 @@ class Router
         
         // тут тоже относительный адрес пространства был -- спасало только то, что сам класс в корневом пространстве
         $controllersName = "\\application\\controllers\\". self::getControllerClassName($route);
-       // $methodsName = $this->getControllerActionName($action);
-//        echo $controllersName. "<br>";
-//        echo $methodsName. "<br><br>";
         
-       // echo $controllersName;   die();
+       // $methodsName = $this->getControllerActionName($action);
+
+//        echo $controllersName;   
+        
         $controller = new $controllersName();
+        
+//        \DebugPrinter::debug($controller);
        // die();
         $controller->callAction($route);
-        // $controller->$methodsName();
         
     }
     

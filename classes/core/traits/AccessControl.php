@@ -12,13 +12,8 @@ trait AccessControl {
     * @var array 
     */ 
    protected $rules = [];
-    
-   function __construct()
-   {
-       //$this->user = new \core\User();
-   }
-   
-    /**
+
+   /**
      * Запускает метод класса ***Controller полученный через GET-параметр
      * @param type 
      */

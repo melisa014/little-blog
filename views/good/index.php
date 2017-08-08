@@ -7,7 +7,7 @@
 </h2> 
 
 <p>Описание: <?= $viewGood->description; ?></p>
-<p>Цена: <?= $viewGood->price; ?></p> р.
+<p>Цена: <?= $viewGood->price; ?>р.</p> 
 <p>В наличии:  <?= $viewGood->available; ?> шт.</p>
 <img src="/images/like1.png" height="20px" width="20px" data-modelId="<?= $viewGood->id ?>" data-tableName='goodss'>
 <span class="<?= $viewGood->id?>">

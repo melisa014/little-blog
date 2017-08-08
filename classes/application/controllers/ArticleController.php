@@ -38,7 +38,7 @@ class ArticleController extends \core\Controller
 
         $Article = new Article();
 
-        $viewArticle = $Article->getById($_GET['id']);
+        $viewArticle = $Article->getById($_GET['id'], $Article->tableName);
         
         $this->view->addVar('viewArticle', $viewArticle);
         
