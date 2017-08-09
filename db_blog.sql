@@ -82,11 +82,11 @@ CREATE TABLE `corrections` (
   `id_goods` smallint(6) NOT NULL,
   `number` mediumint(9) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_orders` (`id_orders`),
+  UNIQUE KEY `my_order` (`id_orders`,`id_goods`),
   KEY `id_goods` (`id_goods`),
   CONSTRAINT `corrections_ibfk_1` FOREIGN KEY (`id_orders`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `corrections_ibfk_2` FOREIGN KEY (`id_goods`) REFERENCES `goods` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,6 +95,7 @@ CREATE TABLE `corrections` (
 
 LOCK TABLES `corrections` WRITE;
 /*!40000 ALTER TABLE `corrections` DISABLE KEYS */;
+INSERT INTO `corrections` VALUES (37,28,1,4),(39,28,2,7),(40,28,3,3);
 /*!40000 ALTER TABLE `corrections` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,6 +113,7 @@ CREATE TABLE `goods` (
   `price` int(11) NOT NULL,
   `id` smallint(6) NOT NULL AUTO_INCREMENT,
   `likes` mediumint(9) DEFAULT '0',
+  `reserve` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -122,7 +124,7 @@ CREATE TABLE `goods` (
 
 LOCK TABLES `goods` WRITE;
 /*!40000 ALTER TABLE `goods` DISABLE KEYS */;
-INSERT INTO `goods` VALUES ('Бутылка кефира','Студент может 2 дня жить',345,45,1,0),('Полбатона','Лучше только целый ',1,32,2,0),('Общая тетрадь','Толстая тетрадь, подойдёт для всех предметов сразу',7848,51,3,0),('Сумка','Страшная разорванная в нескольких местах сумка через плечо',2013,250,4,0),('Шариковая ручка','Застрахована от протекания в карманы',14288,8,5,0),('Наушники','Чтобы заткнуть уши с утра, когда едешь к первой паре ',5678,350,6,0),('Наушники \"spy\"','Незаменимая вещь на зачёте или экзамене',1258113,1500,7,0),('Гитара','Внимание! Если Вас заинтересовал данный товар, зайдите на наш сайт www.vsyo-dlya-turista.com',23,2350,8,0);
+INSERT INTO `goods` VALUES ('Бутылка кефира','Студент может 2 дня жить',118,45,1,0,4),('Полбатона','Лучше только целый ',6,32,2,0,7),('Общая тетрадь','Толстая тетрадь, подойдёт для всех предметов сразу',7830,51,3,0,3),('Сумка','Страшная разорванная в нескольких местах сумка через плечо',2013,250,4,0,0),('Шариковая ручка','Застрахована от протекания в карманы',14281,8,5,0,0),('Наушники','Чтобы заткнуть уши с утра, когда едешь к первой паре ',5678,350,6,0,0),('Наушники \"spy\"','Незаменимая вещь на зачёте или экзамене',1258113,1500,7,0,0),('Гитара','Внимание! Если Вас заинтересовал данный товар, зайдите на наш сайт www.vsyo-dlya-turista.com',23,2350,8,0,0);
 /*!40000 ALTER TABLE `goods` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,7 +141,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`id`),
   KEY `id_users` (`id_users`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +150,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (8,27),(9,27);
+INSERT INTO `orders` VALUES (28,28),(29,28),(30,28),(31,28),(32,28);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -191,4 +193,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-08 18:34:45
+-- Dump completed on 2017-08-09 18:59:04

@@ -23,9 +23,11 @@ foreach ($archiveGood['results'] as $k => $v):?>
         </a>
     </h4>
     <p>Цена товара: <?= $archiveGood['results'][$k]->price; ?> р.
-    В наличии: <?= $archiveGood['results'][$k]->available; ?> штук</p>
+    В наличии: <?= $archiveGood['results'][$k]->available; ?> шт.</p>
     
     <form method="post" action="<?= \Url::link('order/manage')?>">
+    <!--    <?= \DebugPrinter::debug($archiveGood['results'][$k]->id); ?>
+        <?= \DebugPrinter::debug((new \core\Model)->getUserId()); ?> -->
         <input type="hidden" name="id_goods" value=" <?= $archiveGood['results'][$k]->id ?>">
         <input type="hidden" name="id_users" value=" <?= (new \core\Model)->getUserId() ?>">
         Количество: <input type="text" name="number" placeholder="0">

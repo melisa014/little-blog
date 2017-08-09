@@ -159,7 +159,7 @@ class Model
 //            die();
             return $row['id']; 
         }
-        else throw new \Exception("Пользователь не зарегистрирован!");
+        //else throw new \Exception("Пользователь не зарегистрирован!");
         
     }
     

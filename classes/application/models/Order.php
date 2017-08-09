@@ -57,17 +57,9 @@ class Order extends \core\Model
     }
 
     /**
-    * Обновляем текущий объект заказа в базе данных
-    */
-    public function update()
-    {
-        $sql = "UPDATE $this->tableName SET id_users=:id_users WHERE id = :id";  
-        $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":id_users", $this->id_users, \PDO::PARAM_INT );
-        $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
-        $st->execute();
-    }
-    
+     * Получает Id заказа по id пользователя
+     * @return type integer 
+     */
     public function getUserOrderId()
     {
         $sql = "SELECT id FROM $this->tableName WHERE id_users = :id_users ";  
@@ -76,6 +68,17 @@ class Order extends \core\Model
         $st->execute();
         $id = $st->fetch();
         return $id['id'];
+    }
+    
+    public function isUserOrder()
+    {
+        $sql = "SELECT id FROM $this->tableName WHERE id_users = :id_users ";  
+        $st = $this->pdo->prepare ( $sql );
+        $st->bindValue( ":id_users", (new \core\Model)->getUserId(), \PDO::PARAM_INT );
+        $st->execute();
+        $id = $st->fetch();
+        if (!empty($id)) return true;
+        else return false;
     }
     
 }

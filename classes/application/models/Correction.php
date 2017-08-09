@@ -28,6 +28,8 @@ class Correction extends \core\Model
      */
     public $number = null;
     
+    public $id_users = null;
+    
     /**
     * Устанавливаем свойства с помощью значений в заданном массиве
     *
@@ -56,7 +58,10 @@ class Correction extends \core\Model
      */
     public function insert()
     {
-        $sql = "INSERT INTO corrections (id_goods, number, id_orders) VALUES (:id_goods. :number, :id_orders)"; 
+        
+        $sql = "INSERT INTO $this->tableName SET id_goods=:id_goods, number=:number, id_orders=:id_orders 
+                    ON DUPLICATE KEY UPDATE number = number + :number";
+//        $sql = "INSERT INTO $this->tableName (id_goods, number, id_orders) VALUES (:id_goods, :number, :id_orders)"; 
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":id_goods", $this->id_goods, \PDO::PARAM_INT );
         $st->bindValue( ":id_orders", $this->id_orders, \PDO::PARAM_INT );
@@ -66,17 +71,53 @@ class Correction extends \core\Model
     }
 
     /**
-    * Обновляем текущий объект заказа в базе данных
-    */
-    public function update()
+     * Транзакция полной покупки товара
+     */
+    public function goodOrderTransaction()
     {
-        $sql = "UPDATE $this->tableName SET id_goods=:id_goods, id_orders=:id_orders, number=:number WHERE id = :id";  
+        $sql = "BEGIN;"
+                . "INSERT INTO orders (id_users) VALUES (:id_users);"
+//                . "SAVE TRANSACTION StartOrder;"
+                . "INSERT INTO corrections SET id_goods=:id_goods, number=:number, id_orders=:id_orders 
+                    ON DUPLICATE KEY UPDATE number = number + :number;"
+//                . "IF @@ERROR <> 0 ROLLBACK TRANSACTION StartOrder;"
+                . "UPDATE goods SET reserve = reserve + :number, available = available - :number WHERE id = :id_goods;"
+//                . "IF @@ERROR <> 0 ROLLBACK TRANSACTION StartOrder;"
+                . "COMMIT";
         $st = $this->pdo->prepare ( $sql );
+        
+        $st->bindValue( ":id_users", $this->id_users, \PDO::PARAM_INT );
+        
         $st->bindValue( ":id_goods", $this->id_goods, \PDO::PARAM_INT );
         $st->bindValue( ":id_orders", $this->id_orders, \PDO::PARAM_INT );
         $st->bindValue( ":number", $this->number, \PDO::PARAM_INT );
-        $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
+        
         $st->execute();
+        
+    }
+    
+    /**
+     * Транзакция полной покупки товара (добавление)
+     */
+    public function updateGoodOrderTransaction()
+    {
+        $sql = "BEGIN;"
+                . "INSERT INTO corrections SET id_goods=:id_goods, number=:number, id_orders=:id_orders 
+                    ON DUPLICATE KEY UPDATE number = number + :number;"
+//                . "SAVE TRANSACTION StartOrder;"
+                . "UPDATE goods SET reserve = reserve + :number, available = available - :number WHERE id = :id_goods;"
+//                . "IF @@ERROR <> 0 ROLLBACK TRANSACTION StartOrder;"
+                . "COMMIT";
+        $st = $this->pdo->prepare ( $sql );
+        
+        $st->bindValue( ":id_users", $this->id_users, \PDO::PARAM_INT );
+        
+        $st->bindValue( ":id_goods", $this->id_goods, \PDO::PARAM_INT );
+        $st->bindValue( ":id_orders", $this->id_orders, \PDO::PARAM_INT );
+        $st->bindValue( ":number", $this->number, \PDO::PARAM_INT );
+        
+        $st->execute();
+        
     }
     
 }

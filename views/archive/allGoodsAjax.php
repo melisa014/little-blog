@@ -8,9 +8,9 @@ foreach ($archiveGood['results'] as $k => $v):?>
     <p>Цена товара: <?= $archiveGood['results'][$k]->price; ?> р.
      В наличии: <?= $archiveGood['results'][$k]->available; ?> штук</p>
     
-    <form method="post" action="order/add">
-        <input type="hidden" name="id" value="<?= $archiveGood['results'][$k]->id ?>">
-        <input type="hidden" name="id_user" value="<?= $archiveGood['results'][$k]->id ?>">
+    <form method="post" action="<?= \Url::link('order/manage')?>">
+        <input type="hidden" name="id_goods" value=" <?= $archiveGood['results'][$k]->id ?>">
+        <input type="hidden" name="id_users" value=" <?= (new \core\Model)->getUserId() ?>">
         Количество: <input type="text" name="number" placeholder="0">
         <input type="submit" name="addToTheOrder" value="Добавить в корзину">
     </form>

@@ -2,6 +2,7 @@
 namespace application\controllers;
 use \application\models\Order as Order;
 use \application\models\Correction as Correction;
+use \application\models\Good as Good;
 
 /**
  *
@@ -28,38 +29,31 @@ class OrderController extends \core\Controller
     
     public function manageAction() 
     {
-//        \DebugPrinter::debug(\core\Session::get()->session['user']['order']);
         $Order = new Order();
-        $Correction = new Correction();
-        $newOrder = $Order->loadFromArray($_POST);
-        $newCorrection = $Correction->loadFromArray($_POST);
+        $newOrder = $Order->loadFromArray($_POST); 
 //        \DebugPrinter::debug($newOrder);
-        if (!empty(\core\Session::get()->session['user']['order'])) {
-            $newOrder->update();
-            
-            $id_orders = $Order->getUserOrderId();
-//            \DebugPrinter::debug($newCorrection);
-            $newCorrection->id_orders = $id_orders;
-//            \DebugPrinter::debug($newCorrection);
-//            die();
-            $newCorrection->update();
-            
-            \core\Session::get()->session['user']['order']++;
-            $this->header(\Url::link("archive/allGoods"));
-        }
-        else {
+//        \DebugPrinter::debug(!$newOrder->isUserOrder());
+//        die();
+        
+        if (!$newOrder->isUserOrder()){
             $newOrder->insert();
+            echo "Hello!";
             
-            $id_orders = $Order->getUserOrderId();
-//            \DebugPrinter::debug($newCorrection);
-            $newCorrection->id_orders = $id_orders;
-//            \DebugPrinter::debug($newCorrection);
-//            die();
-            $newCorrection->insert();
-            
-            \core\Session::get()->session['user']['order'] = 1;
-            $this->header(\Url::link("archive/allGoods"));
         }
+//        \DebugPrinter::debug($newOrder);
+        
+        $Correction = new Correction();
+        $newCorrection = $Correction->loadFromArray($_POST);
+        $id_orders = $Order->getUserOrderId();
+        $newCorrection->id_orders = $id_orders;
+//        \DebugPrinter::debug($newOrder);
+//        \DebugPrinter::debug($id_orders);
+//        \DebugPrinter::debug($newOrder->id);
+//        die();
+//        
+        $newCorrection->goodOrderTransaction();
+        \core\Session::get()->session['user']['order']++; // Увеличиваем счётчик коррекций
+        $this->header(\Url::link("archive/allGoods"));
     }
     
 }
