@@ -43,7 +43,7 @@ class Order extends \core\Model
     
     
     /**
-     * Добавляет данные в таблицу БД
+     * Добавляет данные в таблицу БД (ПРОДУБЛИРОВАННА В ТРАНЗАКЦИИ $Correction->updateGoodOrderTransaction())
      */
     public function insert()
     {
@@ -77,6 +77,8 @@ class Order extends \core\Model
         $st->bindValue( ":id_users", (new \core\Model)->getUserId(), \PDO::PARAM_INT );
         $st->execute();
         $id = $st->fetch();
+//        \DebugPrinter::debug($id);
+//        die();
         if (!empty($id)) return true;
         else return false;
     }

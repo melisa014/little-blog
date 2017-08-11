@@ -194,30 +194,12 @@ class Good extends \core\Model
 //    }
     
     /**
-     * Переносим $goodCount товаров из "В наличии" в "Резерв"
+     * Переносим $goodCount товаров из "В наличии" в "Резерв" (ПРОДУБЛИРОВАННА В ТРАНЗАКЦИИ $Correction->updateGoodOrderTransaction())
      * @param type $goodId integer
      * @param type $goodCount integer
      */
     public function reserve($goodId, $goodCount)
     {
-//        
-//        $sql = "SELECT available FROM $this->tableName WHERE id=:id"; // Получаем товары в наличии
-//        $st = $this->pdo->prepare ( $sql );
-//        $st->bindValue( ":id", $goodId, \PDO::PARAM_INT );
-//        $st->execute();
-//        $result = $st->fetch();
-//        $available = $result['available']; 
-//        \DebugPrinter::debug($available); 
-////        die();
-//        
-//        $sql = "SELECT reserve FROM $this->tableName WHERE id=:id"; // Получаем товары в резерве
-//        $st = $this->pdo->prepare ( $sql );
-//        $st->bindValue( ":id", $goodId, \PDO::PARAM_INT );
-//        $st->execute();
-//        $result = $st->fetch();
-//        $reserve = $result['reserve']; 
-//        \DebugPrinter::debug($reserve); 
-//        die();
         
         $sql = "UPDATE $this->tableName SET reserve = reserve + :reserve, available = available - :reserve WHERE id = :id";  
         $st = $this->pdo->prepare ( $sql );

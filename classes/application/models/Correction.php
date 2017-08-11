@@ -54,7 +54,7 @@ class Correction extends \core\Model
     
     
     /**
-     * Добавляет данные в таблицу БД
+     * Добавляет данные в таблицу БД (ПРОДУБЛИРОВАННА В ТРАНЗАКЦИИ $Correction->updateGoodOrderTransaction())
      */
     public function insert()
     {
@@ -71,18 +71,14 @@ class Correction extends \core\Model
     }
 
     /**
-     * Транзакция полной покупки товара
+     * Транзакция полной покупки товара (добавление)
      */
-    public function goodOrderTransaction()
+    public function updateGoodOrderTransaction()
     {
-        $sql = "BEGIN;"
-                . "INSERT INTO orders (id_users) VALUES (:id_users);"
-//                . "SAVE TRANSACTION StartOrder;"
+        $sql = "START TRANSACTION;"
                 . "INSERT INTO corrections SET id_goods=:id_goods, number=:number, id_orders=:id_orders 
                     ON DUPLICATE KEY UPDATE number = number + :number;"
-//                . "IF @@ERROR <> 0 ROLLBACK TRANSACTION StartOrder;"
-                . "UPDATE goods SET reserve = reserve + :number, available = available - :number WHERE id = :id_goods;"
-//                . "IF @@ERROR <> 0 ROLLBACK TRANSACTION StartOrder;"
+                . "UPDATE  goods SET reserve = reserve + :number, available = available - :number WHERE id = :id_goods;"
                 . "COMMIT";
         $st = $this->pdo->prepare ( $sql );
         
@@ -97,27 +93,31 @@ class Correction extends \core\Model
     }
     
     /**
-     * Транзакция полной покупки товара (добавление)
+     * Возвращает все товары, найденные в данном заказе
      */
-    public function updateGoodOrderTransaction()
+    public function getGoodsIdByOrderId($orderId)
     {
-        $sql = "BEGIN;"
-                . "INSERT INTO corrections SET id_goods=:id_goods, number=:number, id_orders=:id_orders 
-                    ON DUPLICATE KEY UPDATE number = number + :number;"
-//                . "SAVE TRANSACTION StartOrder;"
-                . "UPDATE goods SET reserve = reserve + :number, available = available - :number WHERE id = :id_goods;"
-//                . "IF @@ERROR <> 0 ROLLBACK TRANSACTION StartOrder;"
-                . "COMMIT";
+        $sql = "SELECT id_goods FROM $this->tableName WHERE id_orders = :id_orders ";  
         $st = $this->pdo->prepare ( $sql );
-        
-        $st->bindValue( ":id_users", $this->id_users, \PDO::PARAM_INT );
-        
-        $st->bindValue( ":id_goods", $this->id_goods, \PDO::PARAM_INT );
-        $st->bindValue( ":id_orders", $this->id_orders, \PDO::PARAM_INT );
-        $st->bindValue( ":number", $this->number, \PDO::PARAM_INT );
-        
+        $st->bindValue( ":id_orders", $orderId, \PDO::PARAM_INT );
         $st->execute();
-        
+        $goodsId = $st->fetchAll();
+//        \DebugPrinter::debug($id);
+//        die();
+        return $goodsId;
+    }
+    
+    public function getUsersGoodsCount($goodId)
+    {
+        $sql = "SELECT id_goods, number FROM $this->tableName WHERE id_goods = :id_goods AND id_orders = :id_orders ";  
+        $st = $this->pdo->prepare ( $sql );
+        $st->bindValue( ":id_goods", $goodId, \PDO::PARAM_INT );
+        $st->bindValue( ":id_goods", (new \application\models\Order())->getUserOrderId(), \PDO::PARAM_INT );
+        $st->execute();
+        $goodsCount = $st->fetchAll();
+//        \DebugPrinter::debug($id);
+//        die();
+        return $goodsCount;
     }
     
 }

@@ -34,12 +34,18 @@
                "<a href=" . \Url::link("admin/good/add") . ">+ Добавить товар</a>");
             \core\User::get()->returnIfAllowed("goodSearch/index", 
                "<a href=" . \Url::link("goodSearch/index") . ">Поиск по товарам</a>");
+            
         ?>
        
         <p>
             <?= \core\User::get()->userName . ' ' ?><br>
             <span id="sessionLikesCount">Понравилось: <?= \core\Session::get()->session['user']['userSessionLikesCount']?></span><br>
-            <span>Ваш заказ: <?= \core\Session::get()->session['user']['order']?> шт.</span><br>
+            <span>
+                <?= \core\User::get()->returnIfAllowed("order/index", "<a href=" . \Url::link("order/index") . ">Мой заказ</a>");?>
+                    
+                
+                (<?= \core\Session::get()->session['user']['order']?> шт.)
+            </span><br>
             
             <a href="<?= \Url::link("login/logout")?>">Выйти</a>
         </p>

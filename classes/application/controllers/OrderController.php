@@ -18,10 +18,26 @@ class OrderController extends \core\Controller
     public function indexAction() 
     {
         $Order = new Order();
+        $Correction = new Correction();
+        $Good = new Good();
         
-        $viewOrder = $Order->getById($_POST['id']);
+//        $viewOrder = $Order->getById($_POST['id'], orders);
+        $userOrder = $Order->getUserOrderId(); // Получаем номер заказа данного пользователя
+        $goodsInOrder = $Correction->getGoodsIdByOrderId($userOrder); // Получаем все ID товаров, зафиксированных в данном заказе
+//        \DebugPrinter::debug($goodsInOrder);
+        foreach ($goodsInOrder as $goodId) {
+//            \DebugPrinter::debug($goodId);
+             $viewOrder[] = $Good->getById($goodId['id_goods'], 'goods');
+//             $usersGoodsCount[] = $Correction->getUsersGoodsCount($goodId['id_goods']);
+        }
+//        \DebugPrinter::debug($usersGoodsCount);
+//        die();
+        
+        $orderTitle = "Ваш заказ";
         
         $this->view->addVar('viewOrder', $viewOrder);
+        $this->view->addVar('usersGoodsCount', $usersGoodsCount);
+        $this->view->addVar('orderTitle', $orderTitle);
         
         $this->view->render('order/index.php');
         
@@ -31,27 +47,18 @@ class OrderController extends \core\Controller
     {
         $Order = new Order();
         $newOrder = $Order->loadFromArray($_POST); 
-//        \DebugPrinter::debug($newOrder);
-//        \DebugPrinter::debug(!$newOrder->isUserOrder());
-//        die();
         
         if (!$newOrder->isUserOrder()){
             $newOrder->insert();
-            echo "Hello!";
-            
+                       
         }
-//        \DebugPrinter::debug($newOrder);
         
         $Correction = new Correction();
         $newCorrection = $Correction->loadFromArray($_POST);
         $id_orders = $Order->getUserOrderId();
         $newCorrection->id_orders = $id_orders;
-//        \DebugPrinter::debug($newOrder);
-//        \DebugPrinter::debug($id_orders);
-//        \DebugPrinter::debug($newOrder->id);
-//        die();
 //        
-        $newCorrection->goodOrderTransaction();
+        $newCorrection->updateGoodOrderTransaction();
         \core\Session::get()->session['user']['order']++; // Увеличиваем счётчик коррекций
         $this->header(\Url::link("archive/allGoods"));
     }
