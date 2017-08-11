@@ -24,3 +24,5 @@ function autoload($className)
  
 // регистрируем функцию автозагрузки
 spl_autoload_register('autoload'); 
+
+//require_once  __DIR__ . '/vendor/autoload.php';

@@ -20,6 +20,7 @@ class Controller
      */
     public function __construct() {
         $this->view = new View();
+        // $this->view = new \ItForFree\PhpExamples\MVC\SimpleView();
        // \DebugPrinter::debug($this->view);
     }
     
