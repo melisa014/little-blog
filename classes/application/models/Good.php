@@ -194,21 +194,60 @@ class Good extends \core\Model
 //    }
     
     /**
-     * Переносим $goodCount товаров из "В наличии" в "Резерв" (ПРОДУБЛИРОВАННА В ТРАНЗАКЦИИ $Correction->updateGoodOrderTransaction())
-     * @param type $goodId integer
-     * @param type $goodCount integer
+     * Возвращает число товаров с данным Id, находящихся в наличии
      */
-    public function reserve($goodId, $goodCount)
+    public function getAvailableGoodById($goodId)
     {
-        
-        $sql = "UPDATE $this->tableName SET reserve = reserve + :reserve, available = available - :reserve WHERE id = :id";  
+        $sql = "SELECT available FROM $this->tableName WHERE id = :goodId ";  
         $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":reserve", $goodCount, \PDO::PARAM_INT );
-        $st->bindValue( ":id", $goodId, \PDO::PARAM_INT );
+        $st->bindValue( ":goodId", $goodId, \PDO::PARAM_INT );
         $st->execute();
-        
+        $available = $st->fetch();
+        return $available['available'];
     }
     
+    /**
+     * Снимает резерв данного товара, заказанный данным пользователем (при отмене заказа)
+     */
+    public function closeUserGoodReserve($goodId)
+    {
+        $sql = "UPDATE $this->tableName SET reserve = reserve - :reserve, available = available + :reserve WHERE id = :id";
+       
+        $Correction = new Correction();
+        $reserve = $Correction->getUsersGoodCount($goodId);
+//        \DebugPrinter::debug($reserve);
+//        die();
+        
+        $st = $this->pdo->prepare ( $sql );
+        $st->bindValue( ":reserve", $reserve['number'], \PDO::PARAM_INT );
+        $st->bindValue( ":id", $goodId, \PDO::PARAM_INT );
+        $st->execute();
+    }
+    
+    /**
+     * Списывает резерв данного товара, заказанный данным пользователем (при подтверждении заказа)
+     */
+    public function approveUserGoodReserve($goodId)
+    {
+        $sql = "UPDATE $this->tableName SET reserve = reserve - :reserve WHERE id = :id";
+       
+        $Correction = new Correction();
+        $reserve = $Correction->getUsersGoodCount($goodId);
+        
+        $st = $this->pdo->prepare ( $sql );
+        $st->bindValue( ":reserve", $reserve['number'], \PDO::PARAM_INT );
+        $st->bindValue( ":id", $goodId, \PDO::PARAM_INT );
+        $st->execute();
+    }
+    
+    
+    /**
+     * 
+     */
+    public function approveUserOrder()
+    {
+        
+    }
 
     
 }

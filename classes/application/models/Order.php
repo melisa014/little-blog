@@ -83,5 +83,16 @@ class Order extends \core\Model
         else return false;
     }
     
+    /**
+     * Закрывает заказ при подтверждении пользователем
+     */
+    public function closeUserOrder() 
+    {
+        $sql = "DELETE FROM $this->tableName WHERE id_users = :id_users ";  
+        $st = $this->pdo->prepare ( $sql );
+        $st->bindValue( ":id_users", (new \core\Model)->getUserId(), \PDO::PARAM_INT );
+        $st->execute();
+    }
+    
 }
 

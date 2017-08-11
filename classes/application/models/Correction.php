@@ -93,11 +93,13 @@ class Correction extends \core\Model
     }
     
     /**
-     * Возвращает все товары, найденные в данном заказе
+     * Возвращает id товаров, найденных в данном заказе
      */
-    public function getGoodsIdByOrderId($orderId)
+    public function getGoodsIdByOrderId()
     {
         $sql = "SELECT id_goods FROM $this->tableName WHERE id_orders = :id_orders ";  
+        
+        $orderId = (new Order())->getUserOrderId();
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":id_orders", $orderId, \PDO::PARAM_INT );
         $st->execute();
@@ -107,17 +109,30 @@ class Correction extends \core\Model
         return $goodsId;
     }
     
-    public function getUsersGoodsCount($goodId)
+    /**
+     * Возвращает количество данного товара, заказанного пользователем
+     * @param type $goodId
+     */
+    public function getUsersGoodCount($goodId)
     {
-        $sql = "SELECT id_goods, number FROM $this->tableName WHERE id_goods = :id_goods AND id_orders = :id_orders ";  
+        $sql = "SELECT number FROM $this->tableName WHERE id_goods = :id_goods AND id_orders = :id_orders ";  
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":id_goods", $goodId, \PDO::PARAM_INT );
-        $st->bindValue( ":id_goods", (new \application\models\Order())->getUserOrderId(), \PDO::PARAM_INT );
+        $st->bindValue( ":id_orders", (new \application\models\Order())->getUserOrderId(), \PDO::PARAM_INT );
         $st->execute();
-        $goodsCount = $st->fetchAll();
-//        \DebugPrinter::debug($id);
+        $goodsCount = $st->fetch();
+//        \DebugPrinter::debug($goodsCount);
 //        die();
         return $goodsCount;
     }
-    
+
+    /**
+     * Возвращает количество наименований товаров, заказанных пользователем
+     */
+    public function getUsersAllGoodsCount()
+    {
+        $goodsCountArray = $this->getGoodsIdByOrderId();
+        return count($goodsCountArray);
+            
+    }       
 }
