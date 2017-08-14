@@ -8,6 +8,7 @@
         <script src="/web/JS/jquery.validate.js"></script>
         <script src="web/JS/loaderIdentity.js"></script>
         <script src="/web/JS/javascript.js"></script>
+        <script src="/web/JS/order.js"></script>
     </head>
     <body>
         <h1>Самый лучший сайт</h1>
@@ -49,7 +50,7 @@
             <span>
                 <?= \core\User::get()->returnIfAllowed("order/index", 
                         "<a href=" . \Url::link("order/index") 
-                        . ">Мой заказ</a> (" . (new \application\models\Correction())->getUsersAllGoodsCount() . ")");?>
+                        . ">Мой заказ</a> <span  id='myOrder'>(" . (new \application\models\Correction())->getUsersAllGoodsCount() . ")</span>");?>
             </span><br>
 
             <a href="<?= \Url::link("login/logout")?>">Выйти</a>

@@ -25,7 +25,7 @@ class AjaxController extends \core\Controller
         echo \core\Session::get()->session['user']['userSessionLikesCount'];
     }
     
-    public function searchGoods()
+    public function searchGoodsAction()
     {
         
     }
@@ -44,6 +44,34 @@ class AjaxController extends \core\Controller
         $this->view->addVar('archiveGood', $archiveGood);
         
         $this->view->renderPartition('archive/allGoodsAjax.php');
+    }
+    
+    public function addGoodToOrderAction()
+    {
+       $Order = new \application\models\Order();
+        $Correction = new \application\models\Correction();
+        $Good = new \application\models\Good();
+        
+        $newOrder = $Order->loadFromArray($_GET); 
+//        \DebugPrinter::debug($newOrder);
+//        die();
+
+//        if($_POST['number'] <= $Good->getAvailableGoodById($_POST['id_goods'])){
+            if (!$newOrder->isUserOrder()){
+                $newOrder->insert();
+
+            }
+            $newCorrection = $Correction->loadFromArray($_GET);
+            
+            $id_orders = $Order->getUserOrderId();
+            $newCorrection->id_orders = $id_orders;
+            \DebugPrinter::debug($newCorrection);
+//        die();
+            
+            $newCorrection->updateGoodOrderTransaction();
+            echo "(" . (new \application\models\Correction())->getUsersAllGoodsCount() . ")";
+//        }
+//        else echo "Недостаточно товаров на складе!";
     }
           
 }

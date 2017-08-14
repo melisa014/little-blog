@@ -141,10 +141,10 @@ function sendAjax(url, data)
 {
 //    showLoaderIdenity(); //  показываем идентификатор загрузки
     $.ajax({ //  сам запрос
-    type: 'POST',
-    url: url,
-    data: data, // данные которые передаём  серверу
-    dataType: "html" //"json" // предполоижтельный формат ответа сервера
+        type: 'POST',
+        url: url,
+        data: data, // данные которые передаём  серверу
+        dataType: "html" //"json" // предполоижтельный формат ответа сервера
     }).done(function(res) { // если успешно
 //        hideLoaderIdenity(); // скрываем идентификатор загрузки
 
