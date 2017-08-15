@@ -19,8 +19,8 @@ class Controller
      * Создаёт экземпляр класса View для работы с представлениями
      */
     public function __construct() {
-        $this->view = new View();
-        // $this->view = new \ItForFree\PhpExamples\MVC\SimpleView();
+      //  $this->view = new View();
+         $this->view = new \ItForFree\PhpExamples\MVC\SimpleView();
        // \DebugPrinter::debug($this->view);
     }
     

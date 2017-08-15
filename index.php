@@ -1,13 +1,19 @@
 <?php
 
 
-require_once ("autoload.php"); // автозагрузка классов
+//require_once ("autoload.php"); // автозагрузка классов
+require __DIR__ . '/vendor/autoload.php';
 
 
-Config::debugReporting(); // включаем "строгое" отслеживание ошибок E_ALL
+echo('<pre>'); print_r(spl_autoload_functions()); echo('</pre>');
 
-$Sess = \core\Session::get();
+$view = new ItForFree\PhpExamples\MVC\SimpleView();
 
-$route = Url::getRoute();
-//    \DebugPrinter::debug($route, 'путь, найденный URL--ом, передаваемый в Router');
-$obj = new Router($route);
+echo 123;
+//Config::debugReporting(); // включаем "строгое" отслеживание ошибок E_ALL
+//
+//$Sess = \core\Session::get();
+//
+//$route = Url::getRoute();
+////    \DebugPrinter::debug($route, 'путь, найденный URL--ом, передаваемый в Router');
+//$obj = new Router($route);
