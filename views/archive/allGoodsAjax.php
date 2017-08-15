@@ -9,7 +9,7 @@ foreach ($archiveGood['results'] as $k => $v):?>
      В наличии: <?= $archiveGood['results'][$k]->available; ?> штук</p>
     
    <?= \core\User::get()->returnIfAllowed("order/index", 
-    "<form method='post' id='order-form' action='". \Url::link('order/manage'). "'>
+    "<form method='post' id='order-form'>
         <input type='hidden' name='id_goods' value='" . $archiveGood['results'][$k]->id . "'>
         <input type='hidden' name='id_users' value='" . (new \core\Model)->getUserId() . "'>
         Количество: <input type='text' name='number' placeholder='0'>

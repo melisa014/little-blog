@@ -35,11 +35,18 @@ class OrderController extends \core\Controller
             if (!empty($_POST['closeOrder'])) { // Отменяем заказ
                 $goodsId = $Correction->getGoodsIdByOrderId(); // получаем массив Id товаров, которые заказывал пользователь
                 foreach ($goodsId as $goodId) {
-                   $reserve = $Correction->getUsersGoodCount($goodId['id_goods']); // получаем значение резерва, который нужно списать
+//                   $reserve = $Correction->getUsersGoodCount($goodId['id_goods']); // получаем значение резерва, который нужно списать
                    $Good->closeUserGoodReserve($goodId['id_goods']);
                 }
             
                 $Order->closeUserOrder();
+                $this->header(\Url::link("order/index"));
+            }
+            if(!empty($_POST['deleteFromOrder'])){
+                $Good->closeUserGoodReserve($_POST['goodId']);
+                if ($Correction->getUsersAllGoodsCount() <= 0) {
+                    $Order->closeUserOrder();
+                }
                 $this->header(\Url::link("order/index"));
             }
         }

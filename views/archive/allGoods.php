@@ -23,9 +23,9 @@ foreach ($archiveGood['results'] as $k => $v):?>
         </a>
     </h4>
     <p>Цена товара: <?= $archiveGood['results'][$k]->price; ?> р.
-    В наличии: <?= $archiveGood['results'][$k]->available; ?> шт.</p>
+    <span class="available">В наличии: <?= $archiveGood['results'][$k]->available; ?> шт.</span></p>
     <?= \core\User::get()->returnIfAllowed("order/index", 
-    "<form method='post' id='order-form' action='". \Url::link('order/manage'). "'>
+    "<form method='post' id='order-form' >
         <input type='hidden' name='id_goods' value='" . $archiveGood['results'][$k]->id . "'>
         <input type='hidden' name='id_users' value='" . (new \core\Model)->getUserId() . "'>
         Количество: <input type='text' name='number' placeholder='0'>

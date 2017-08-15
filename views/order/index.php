@@ -26,7 +26,12 @@ if ( $allGoodsCount > 0) { ?>
             echo "$count";
         ?></td>
         <td><?= $cost = $price * $count ?></td>
-        <td><input type="submit" name="deleteFromOrder" value="X"></td>
+        <td>
+            <form method="post" action="<?= \Url::link('order/index')?>">
+                <input type="submit" name="deleteFromOrder" value="X">
+                <input type="hidden" name="goodId" value="<?= $good->id ?>">
+            </form>
+        </td>
     </tr>
     <?php 
     $total += $cost;

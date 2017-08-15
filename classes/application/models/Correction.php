@@ -135,4 +135,19 @@ class Correction extends \core\Model
         return count($goodsCountArray);
             
     }       
+    
+    /**
+     * Возвращает число товаров в наличии по ID
+     */
+    public function getAvailableGoodsById($goodId)
+    {
+        $sql = "SELECT available FROM $this->tableName WHERE id_goods = :id_goods";  
+        $st = $this->pdo->prepare ( $sql );
+        $st->bindValue( ":id_goods", $goodId, \PDO::PARAM_INT );
+        $st->execute();
+        $goodsCount = $st->fetch();
+//        \DebugPrinter::debug($goodsCount);
+//        die();
+        return $goodsCount;
+    }
 }

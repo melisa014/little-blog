@@ -4,23 +4,24 @@ $(function(){
 
 function addGoodToOrder() {
     $('input.order').on('click', function(){
-//        var data = $_GET;
-//        var id_goods = $('#id_goods').attr(data-id-goods);
-//        var id_users = $('#id_users').attr(data-id-users);
-//        var number = $('#number').attr(data-number);
         var formData = $('#order-form').serialize();
         $.ajax({
 //            type: 'POST',
             url: '/index.php?route=ajax/addGoodToOrder',
             data: formData,
-//            data: {id_goods : id_goods,
-//                    id_users : id_users,
-//                    number : number }, // данные которые передаём  серверу
-            dataType: "text", //"json
+            dataType: "json",
         })
         .done(function(obj){
+
+            
             console.log('ответ заказа: ' + obj);
-            $('#myOrder').text(obj);
+            console.log('ответ заказа: ' + obj.goodsAvailable);
+            if ('goodsAvaliable' in obj){
+                console.log('св-во существует');
+//                alert(obj.goodsAvailable);
+            }
+            $('#myOrder').text('(' + obj.goodsCount + ')');
+            $('span.available').text(obj.goodsAvailable);
         })
         .fail(function(xhr, status, error){
              $('.holder-loader').removeClass('open');
