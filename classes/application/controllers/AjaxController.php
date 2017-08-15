@@ -48,15 +48,16 @@ class AjaxController extends \core\Controller
     
     public function addGoodToOrderAction()
     {
-       $Order = new \application\models\Order();
+        $Order = new \application\models\Order();
         $Correction = new \application\models\Correction();
         $Good = new \application\models\Good();
         
         $newOrder = $Order->loadFromArray($_GET); 
 //        \DebugPrinter::debug($newOrder);
 //        die();
-
-//        if($_POST['number'] <= $Good->getAvailableGoodById($_POST['id_goods'])){
+//        \DebugPrinter::debug($_GET);
+//        die();
+        if($_GET['number'] <= $Good->getAvailableGoodById($_GET['id_goods'])){
             if (!$newOrder->isUserOrder()){
                 $newOrder->insert();
 
@@ -72,42 +73,13 @@ class AjaxController extends \core\Controller
             $result['goodsCount'] = $Correction->getUsersAllGoodsCount();
             $result['goodsAvaliable'] = $Good->getAvailableGoodById($_GET['id_goods']);
             $jsonResult = json_encode($result);
-            
-                        
-//           echo 'Декодируем: ' . $jsonResult;
-//            json_decode($jsonResult);
-//
-//            switch (json_last_error()) {
-//                case JSON_ERROR_NONE:
-//                    echo ' - Ошибок нет';
-//                break;
-//                case JSON_ERROR_DEPTH:
-//                    echo ' - Достигнута максимальная глубина стека';
-//                break;
-//                case JSON_ERROR_STATE_MISMATCH:
-//                    echo ' - Некорректные разряды или не совпадение режимов';
-//                break;
-//                case JSON_ERROR_CTRL_CHAR:
-//                    echo ' - Некорректный управляющий символ';
-//                break;
-//                case JSON_ERROR_SYNTAX:
-//                    echo ' - Синтаксическая ошибка, не корректный JSON';
-//                break;
-//                case JSON_ERROR_UTF8:
-//                    echo ' - Некорректные символы UTF-8, возможно неверная кодировка';
-//                break;
-//                default:
-//                    echo ' - Неизвестная ошибка';
-//                break;
-//            }
-//
-//            echo PHP_EOL;
-//            
-//            
-//            echo $jsonResult;
-//            echo $result['goodsAvaliable'];
-//        }
-//        else echo "Недостаточно товаров на складе!";
+            echo $jsonResult;
+        }
+        else {
+            $result['notAvaliable'] = "Недостаточно товаров на складе!";
+            $jsonResult = json_encode($result);
+            echo $jsonResult;
+        }
     }
           
 }

@@ -3,8 +3,9 @@ $(function(){
 });
 
 function addGoodToOrder() {
-    $('input.order').on('click', function(){
-        var formData = $('#order-form').serialize();
+    $(document).on('click', 'input.goods', function(){
+        var goodId = $(this).attr('data-good-id');
+        var formData = $('#form-' + goodId).serialize();
         $.ajax({
 //            type: 'POST',
             url: '/index.php?route=ajax/addGoodToOrder',
@@ -12,16 +13,23 @@ function addGoodToOrder() {
             dataType: "json",
         })
         .done(function(obj){
-
             
             console.log('ответ заказа: ' + obj);
-            console.log('ответ заказа: ' + obj.goodsAvailable);
-            if ('goodsAvaliable' in obj){
-                console.log('св-во существует');
-//                alert(obj.goodsAvailable);
+            console.log('obj.goodsCount: ' + obj.goodsCount);
+            console.log('obj.goodsAvaliable: ' + obj.goodsAvaliable);
+            console.log('obj.notAvaliable: ' + obj.notAvaliable);
+            
+            if ("notAvaliable" in obj){
+                if ($('#notAvaliable-' + goodId).html() == '') {
+                   $('#notAvaliable-' + goodId).append(obj.notAvaliable);
+                }
             }
-            $('#myOrder').text('(' + obj.goodsCount + ')');
-            $('span.available').text(obj.goodsAvailable);
+
+            if ("goodsAvaliable" in obj ){ 
+                $('#notAvaliable-' + goodId).empty(); 
+                $('#myOrder').text("(" + obj.goodsCount + ")");
+                $('#available-' + goodId).text(obj.goodsAvaliable);
+            }
         })
         .fail(function(xhr, status, error){
              $('.holder-loader').removeClass('open');

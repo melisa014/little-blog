@@ -110,6 +110,18 @@ class Correction extends \core\Model
     }
     
     /**
+     * Удаляет коррекцию товара по Id
+     */
+    public function deleteGoodCorrectionById($goodId)
+    {
+        $sql = "DELETE FROM $this->tableName WHERE id_goods = :id_goods";  
+        
+        $st = $this->pdo->prepare ( $sql );
+        $st->bindValue( ":id_goods", $goodId, \PDO::PARAM_INT );
+        $st->execute();
+    }
+
+        /**
      * Возвращает количество данного товара, заказанного пользователем
      * @param type $goodId
      */

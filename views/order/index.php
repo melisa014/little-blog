@@ -27,7 +27,7 @@ if ( $allGoodsCount > 0) { ?>
         ?></td>
         <td><?= $cost = $price * $count ?></td>
         <td>
-            <form method="post" action="<?= \Url::link('order/index')?>">
+            <form method="post" action="<?= \Url::link('order/deleteGood')?>">
                 <input type="submit" name="deleteFromOrder" value="X">
                 <input type="hidden" name="goodId" value="<?= $good->id ?>">
             </form>

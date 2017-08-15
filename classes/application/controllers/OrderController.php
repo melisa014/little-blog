@@ -42,13 +42,7 @@ class OrderController extends \core\Controller
                 $Order->closeUserOrder();
                 $this->header(\Url::link("order/index"));
             }
-            if(!empty($_POST['deleteFromOrder'])){
-                $Good->closeUserGoodReserve($_POST['goodId']);
-                if ($Correction->getUsersAllGoodsCount() <= 0) {
-                    $Order->closeUserOrder();
-                }
-                $this->header(\Url::link("order/index"));
-            }
+            
         }
         else {
             $goodsInOrder = $Correction->getGoodsIdByOrderId(); // Получаем все ID товаров, зафиксированных в данном заказе
@@ -69,29 +63,46 @@ class OrderController extends \core\Controller
         
     }
     
-    public function manageAction() 
+    public function deleteGoodAction()
     {
         $Order = new Order();
         $Correction = new Correction();
         $Good = new Good();
-        
-        $newOrder = $Order->loadFromArray($_POST); 
-        
-
-        if($_POST['number'] <= $Good->getAvailableGoodById($_POST['id_goods'])){
-            if (!$newOrder->isUserOrder()){
-                $newOrder->insert();
-
+        if(!empty($_POST['deleteFromOrder'])){
+            $Good->closeUserGoodReserve($_POST['goodId']); // Снимаем товары с резерва
+            $Correction->deleteGoodCorrectionById($_POST['goodId']); // Удаляем коррекцию только данного товара
+            $goodsInOrder = $Correction->getGoodsIdByOrderId(); // Получаем все ID товаров, зафиксированных в данном заказе
+    //                \DebugPrinter::debug($goodsInOrder);
+            if (empty($goodsInOrder)) {
+                $Order->closeUserOrder();
             }
-            $newCorrection = $Correction->loadFromArray($_POST);
-            $id_orders = $Order->getUserOrderId();
-            $newCorrection->id_orders = $id_orders;
-    //        
-            $newCorrection->updateGoodOrderTransaction();
-            $this->header(\Url::link("archive/allGoods"));
-        }
-        else echo "Недостаточно товаров на складе!";
-            
+            $this->header(\Url::link("order/index"));
+        } 
     }
+    
+//    public function manageAction() 
+//    {
+//        $Order = new Order();
+//        $Correction = new Correction();
+//        $Good = new Good();
+//        
+//        $newOrder = $Order->loadFromArray($_POST); 
+//        
+//
+//        if($_POST['number'] <= $Good->getAvailableGoodById($_POST['id_goods'])){
+//            if (!$newOrder->isUserOrder()){
+//                $newOrder->insert();
+//
+//            }
+//            $newCorrection = $Correction->loadFromArray($_POST);
+//            $id_orders = $Order->getUserOrderId();
+//            $newCorrection->id_orders = $id_orders;
+//    //        
+//            $newCorrection->updateGoodOrderTransaction();
+//            $this->header(\Url::link("archive/allGoods"));
+//        }
+//        else echo "Недостаточно товаров на складе!";
+//            
+//    }
     
 }
