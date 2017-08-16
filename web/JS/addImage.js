@@ -2,30 +2,32 @@ $(function(){
 //    showFormToAddImage();
     loadFormToAddImage();
 //    addImage();
+
 });
 
-//function showFormToAddImage()
-//{
-//    $('#addImageSubmit').onе('click', function(){
-//        $('#addImage').fadeIn(500);
-//        
-//        
-//        return false;
-//    });
-//}
+function showFormToAddImage()
+{
+    $('#addImageSubmit').on('click', function(){
+        $('#addImage').fadeIn(500);
+        return false;
+    });
+}
 
 function loadFormToAddImage()
 {
     $('#addImageSubmit').on('click', function(){
-//        console.log('on-click сработал');
-       $.ajax({
+        var imageIndex = $('#addImage').attr('data');
+        imageIndex++;
+        $.ajax({
             url: '/index.php?route=ajax/showFormToAddImage',
-//            data: ,
+//            data: {imageIndex : imageIndex},
             dataType: "html",
         })
         .done(function(res){
             console.log('ответ: ' + res);
-            $('#addImage').html(res);
+            $('#addImage').append(res);
+            $('#addedImage').attr('data', )
+            $('#addedImage').fadeIn(500);
         })
         .fail(function(xhr, status, error){
 

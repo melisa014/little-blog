@@ -105,7 +105,10 @@ class AjaxController extends \core\mvc\Controller
      */
     public function showFormToAddImageAction() 
     {
-         $this->view->renderPartition('good/addImageForm.php');
+//        $imageIndex = $_GET['imageIndex'];
+        
+//        $this->view->addVar('imageIndex', $imageIndex);
+        $this->view->renderPartition('good/addImageForm.php');
     }
     
     

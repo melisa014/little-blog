@@ -1,6 +1,5 @@
 <h2><?= $orderTitle ?></h2> 
 
-<!-- <?= \DebugPrinter::debug($viewOrder); ?> -->
 <?php
 $allGoodsCount = (new \application\models\Correction())->getUsersAllGoodsCount();
 if ( $allGoodsCount > 0) { ?>
