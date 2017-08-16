@@ -20,16 +20,25 @@ class AjaxController extends \core\Controller
         echo $Model->getModelLikes($_GET['id'], $_GET['tableName']);
     }
     
+    /**
+     * Возвращает число понравившихся записей пользователя в данной сессии
+     */
     public function sessionLikesCountAction()
     {
         echo \core\Session::get()->session['user']['userSessionLikesCount'];
     }
     
+    /**
+     * Поиск по товарам без перезагрузки страницы
+     */
     public function searchGoodsAction()
     {
         
     }
     
+    /**
+     * Подгрузка "ленты" при прокрутке страницы 
+     */
     public function showOnScrollingPageAction()
     {
         $Good = new \application\models\Good();
@@ -46,6 +55,9 @@ class AjaxController extends \core\Controller
         $this->view->renderPartition('archive/allGoodsAjax.php');
     }
     
+    /**
+     * Добавление товара в корзину
+    */
     public function addGoodToOrderAction()
     {
         $Order = new \application\models\Order();
@@ -53,8 +65,6 @@ class AjaxController extends \core\Controller
         $Good = new \application\models\Good();
         
         $newOrder = $Order->loadFromArray($_GET); 
-//        \DebugPrinter::debug($newOrder);
-//        die();
 //        \DebugPrinter::debug($_GET);
 //        die();
         if($_GET['number'] <= $Good->getAvailableGoodById($_GET['id_goods'])){
@@ -82,5 +92,22 @@ class AjaxController extends \core\Controller
         }
     }
           
+    /**
+     * Добавление изображений к товару
+     */
+    public function addImageAction() 
+    {
+        
+    }
+    
+    /**
+     * Показать форму для добавления изображения
+     */
+    public function showFormToAddImageAction() 
+    {
+         $this->view->renderPartition('good/addImageForm.php');
+    }
+    
+    
 }
 

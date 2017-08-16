@@ -7,8 +7,12 @@
         <script src="/web/JS/jquery-3.2.1.js"></script>
         <script src="/web/JS/jquery.validate.js"></script>
         <script src="web/JS/loaderIdentity.js"></script>
-        <script src="/web/JS/javascript.js"></script>
+        <script src="/web/JS/scrollingPage.js"></script>
         <script src="/web/JS/order.js"></script>
+        <script src="/web/JS/userAddValidation.js"></script>
+        <script src="/web/JS/addImage.js"></script>
+        <!--<script src="/web/JS/likes.js"></script>-->
+        <!--<script src="/web/JS/searchGoods.js"></script>-->
     </head>
     <body>
         <h1>Самый лучший сайт</h1>
