@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Класс, содержащий общие настройки проекта
  */
@@ -14,8 +13,7 @@ class Config
      * @var string
      */
     static public $db_username = "root";
-    
-    
+       
     /**
      * Пароль для соединения с Базой данных
      * @var mixed

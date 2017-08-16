@@ -1,4 +1,5 @@
 <?php
+namespace core\mvc\view;
 
 /**
  * Класс для разбора URL

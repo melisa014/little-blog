@@ -5,7 +5,7 @@ use \application\models\Adminusers as Adminusers;
 /**
  *
  */
-class AdminusersController extends \core\Controller
+class AdminusersController extends \core\mvc\Controller
 {
     
     protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
@@ -33,10 +33,10 @@ class AdminusersController extends \core\Controller
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->insert(); 
-                $this->header(\Url::link("archive/allUsers"));
+                $this->header(\core\mvc\view\Url::link("archive/allUsers"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\Url::link("archive/allUsers"));
+                $this->header(\core\mvc\view\Url::link("archive/allUsers"));
             }
         }
         else {
@@ -60,10 +60,10 @@ class AdminusersController extends \core\Controller
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->update();
-                $this->header(\Url::link("admin/adminusers/index&id=$id"));
+                $this->header(\core\mvc\view\Url::link("admin/adminusers/index&id=$id"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\Url::link("admin/adminusers/index&id=$id"));
+                $this->header(\core\mvc\view\Url::link("admin/adminusers/index&id=$id"));
             }
         }
         else {
@@ -93,11 +93,11 @@ class AdminusersController extends \core\Controller
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->delete();
                 
-                $this->header(\Url::link("archive/allUsers"));
+                $this->header(\core\mvc\view\Url::link("archive/allUsers"));
               
             }
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\Url::link("admin/adminusers/edit&id=$id"));
+                $this->header(\core\mvc\view\Url::link("admin/adminusers/edit&id=$id"));
             }
         }
         else {

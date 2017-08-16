@@ -2,7 +2,7 @@
 namespace application\controllers;
 use \application\models\Category as Category;
 
-class CategoryController extends \core\Controller
+class CategoryController extends \core\mvc\Controller
 { 
     /**
      * Список правил, ограничивающих доступ пользователей с разными ролями
@@ -42,11 +42,11 @@ class CategoryController extends \core\Controller
                 \DebugPrinter::debug($newCategory);
                 $newCategory->insert();
                 \DebugPrinter::debug($newCategory, 'после инсерта');
-                $this->header(\Url::link("homepage/index"));
+                $this->header(\core\mvc\view\Url::link("homepage/index"));
             
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\Url::link("homepage/index"));
+                $this->header(\core\mvc\view\Url::link("homepage/index"));
             }
         }
         else {
@@ -71,10 +71,10 @@ class CategoryController extends \core\Controller
                 $newCategory = $Category->loadFromArray($_POST);
                 $newCategory->update();
                 \DebugPrinter::debug($newCategory, 'после апдейта');
-                $this->header(\Url::link("category/index&id=$id"));
+                $this->header(\core\mvc\view\Url::link("category/index&id=$id"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\Url::link("category/index&id=$id"));
+                $this->header(\core\mvc\view\Url::link("category/index&id=$id"));
             }
         }
         else {
@@ -102,11 +102,11 @@ class CategoryController extends \core\Controller
                 $Category = new Category();
                 $newCategory = $Category->loadFromArray($_POST);
                 $newCategory->delete();
-                $this->header(\Url::link("homepage/index"));
+                $this->header(\core\mvc\view\Url::link("homepage/index"));
               
             }
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\Url::link("category/edit&id=$id"));
+                $this->header(\core\mvc\view\Url::link("category/edit&id=$id"));
             }
         }
         else {

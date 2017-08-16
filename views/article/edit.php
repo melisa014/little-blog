@@ -1,12 +1,12 @@
 <h2><?= $editArticleTitle ?>
     <span>
         <?= \core\User::get()->returnIfAllowed("article/delete", 
-            "<a href=" . \Url::link("article/delete&id=" . $_GET['id']) 
+            "<a href=" . \core\mvc\view\Url::link("article/delete&id=" . $_GET['id']) 
             . ">[Удалить]</a>");?>
     </span>
 </h2>
 
-<form method="post" action="<?= \Url::link("article/edit&id=" . $_GET['id'])?>">
+<form method="post" action="<?= \core\mvc\view\Url::link("article/edit&id=" . $_GET['id'])?>">
     <h5>Введите название статьи</h5>
     <input type="text" name="title" value="<?= $viewArticle->title ?>"><br>
     <h5>Выберите категорию статьи</h5>

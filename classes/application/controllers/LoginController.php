@@ -1,7 +1,7 @@
 <?php
 namespace application\controllers;
 
-class LoginController extends \core\Controller
+class LoginController extends \core\mvc\Controller
 {
     /** 
      * @var string Название страницы
@@ -18,10 +18,10 @@ class LoginController extends \core\Controller
             $pass = $_POST['password'];
             $user = \core\User::get();
             if($user->login($login, $pass)) {
-                $this->header(\Url::link("homepage/index"));
+                $this->header(\core\mvc\view\Url::link("homepage/index"));
             }
             else {
-                $this->header(\Url::link("login/index&auth=deny"));
+                $this->header(\core\mvc\view\Url::link("login/index&auth=deny"));
             }
         }
         else {
@@ -38,7 +38,7 @@ class LoginController extends \core\Controller
     {
         $user = \core\User::get();
         $user->logout();
-        $this->header(\Url::link("login/index"));
+        $this->header(\core\mvc\view\Url::link("login/index"));
     }
 }
 

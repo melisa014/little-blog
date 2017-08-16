@@ -7,7 +7,7 @@ namespace application\models;
  *
  * @author qwe
  */
-class Adminusers extends \core\Model
+class Adminusers extends \core\mvc\Model
 {
     /**
      * Имя таблицы пользователей

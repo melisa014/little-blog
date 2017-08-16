@@ -73,7 +73,7 @@ class User extends Session
      */
     private function getRoleByUserName($userName)
     {
-        $pdo = new Model();
+        $pdo = new mvc\Model();
         $sql = "SELECT role FROM users WHERE login = :login";
         $st = $pdo->pdo->prepare($sql);
         $st->bindValue( ":login", $userName, \PDO::PARAM_STR);
@@ -96,7 +96,7 @@ class User extends Session
     {
         $result = false;
         
-        $pdo = new Model();
+        $pdo = new mvc\Model();
         $sql = "SELECT salt, pass FROM users WHERE login = :login";
         $st = $pdo->pdo->prepare($sql);
         $st->bindValue( ":login", $login, \PDO::PARAM_STR);
@@ -138,7 +138,7 @@ class User extends Session
     public function isAllowed($route)
     {
         $result = false;
-        $controllerClassName = "application\\controllers\\" . \Router::getControllerClassName($route);
+        $controllerClassName = "\\application\\controllers\\" . Router::getControllerClassName($route);
         $controller = new $controllerClassName();
         $rules = $controller->getControllerRules();
         $action = $controller->getControllerActionName($route);

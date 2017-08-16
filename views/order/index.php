@@ -27,7 +27,7 @@ if ( $allGoodsCount > 0) { ?>
         ?></td>
         <td><?= $cost = $price * $count ?></td>
         <td>
-            <form method="post" action="<?= \Url::link('order/deleteGood')?>">
+            <form method="post" action="<?= \core\mvc\view\Url::link('order/deleteGood')?>">
                 <input type="submit" name="deleteFromOrder" value="X">
                 <input type="hidden" name="goodId" value="<?= $good->id ?>">
             </form>
@@ -39,7 +39,7 @@ if ( $allGoodsCount > 0) { ?>
         
     </table>
     <h4>Полная стоимость Вашего заказа: <?= $total ?> р.</h4>
-    <form method="post" action="<?= \Url::link('order/index')?>">
+    <form method="post" action="<?= \core\mvc\view\Url::link('order/index')?>">
         <input type="submit" name="approveOrder" value="Подтвердить">
         <input type="submit" name="closeOrder" value="Отменить заказ">
     </form>

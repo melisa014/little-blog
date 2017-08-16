@@ -1,7 +1,7 @@
 <?php
 namespace application\models;
 
-class Order extends \core\Model
+class Order extends \core\mvc\Model
 {
     /**
      * Имя таблицы заказов
@@ -64,7 +64,7 @@ class Order extends \core\Model
     {
         $sql = "SELECT id FROM $this->tableName WHERE id_users = :id_users ";  
         $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":id_users", (new \core\Model)->getUserId(), \PDO::PARAM_INT );
+        $st->bindValue( ":id_users", (new \core\mvc\Model)->getUserId(), \PDO::PARAM_INT );
         $st->execute();
         $id = $st->fetch();
         return $id['id'];
@@ -74,7 +74,7 @@ class Order extends \core\Model
     {
         $sql = "SELECT id FROM $this->tableName WHERE id_users = :id_users ";  
         $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":id_users", (new \core\Model)->getUserId(), \PDO::PARAM_INT );
+        $st->bindValue( ":id_users", (new \core\mvc\Model)->getUserId(), \PDO::PARAM_INT );
         $st->execute();
         $id = $st->fetch();
 //        \DebugPrinter::debug($id);
@@ -90,7 +90,7 @@ class Order extends \core\Model
     {
         $sql = "DELETE FROM $this->tableName WHERE id_users = :id_users ";  
         $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":id_users", (new \core\Model)->getUserId(), \PDO::PARAM_INT );
+        $st->bindValue( ":id_users", (new \core\mvc\Model)->getUserId(), \PDO::PARAM_INT );
         $st->execute();
     }
     

@@ -5,7 +5,7 @@ use \application\models\Good as Good;
 /**
  * Класс для управления поиском товаров
  */
-class GoodSearchController extends \core\Controller
+class GoodSearchController extends \core\mvc\Controller
 {
     
     public function indexAction()
@@ -27,7 +27,7 @@ class GoodSearchController extends \core\Controller
                 $this->view->addVar('searchPageTitle', $searchPageTitle);
                 $this->view->render('good/search.php');
             } else {
-                $this->header(\Url::link('goodSearch/index&total=ничего не найдено'));
+                $this->header(\core\mvc\view\Url::link('goodSearch/index&total=ничего не найдено'));
             }
         } 
         

@@ -6,7 +6,7 @@ use \application\models\Good as Good;
  * Контроллер для управления товарами
  * @author qwegram
  */
-class GoodController extends \core\Controller
+class GoodController extends \core\mvc\Controller
 {
     
         /**
@@ -46,11 +46,11 @@ class GoodController extends \core\Controller
 //                \DebugPrinter::debug($newGood);
                 $newGood->insert(); 
 //                \DebugPrinter::debug($newGood, 'после инсерта');
-                $this->header(\Url::link("archive/allGoods"));
+                $this->header(\core\mvc\view\Url::link("archive/allGoods"));
             
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\Url::link("arcive/allGoods"));
+                $this->header(\core\mvc\view\Url::link("arcive/allGoods"));
             }
         }
         else {
@@ -82,12 +82,12 @@ class GoodController extends \core\Controller
 //                \DebugPrinter::debug($id);
                 $newGood->update();
 //                \DebugPrinter::debug($newGood, 'после апдейт');
-                $this->header(\Url::link("admin/good/index&id=$id"));
+                $this->header(\core\mvc\view\Url::link("admin/good/index&id=$id"));
                  
             } 
             elseif (!empty($_POST['cancel'])) {
 //                \DebugPrinter::debug("Отмена операции");
-                $this->header(\Url::link("admin/good/index&id=$id"));
+                $this->header(\core\mvc\view\Url::link("admin/good/index&id=$id"));
             }
         }
         else {
@@ -121,12 +121,12 @@ class GoodController extends \core\Controller
                 $newGood = $Good->loadFromArray($_POST);
                 $newGood->delete();
                 
-                $this->header(\Url::link("archive/allGoods"));
+                $this->header(\core\mvc\view\Url::link("archive/allGoods"));
               
             }
             elseif (!empty($_POST['cancel'])) {
 //                \DebugPrinter::debug("Отмена операции");
-                $this->header(\Url::link("admin/good/edit&id=$id"));
+                $this->header(\core\mvc\view\Url::link("admin/good/edit&id=$id"));
             }
         }
         else {

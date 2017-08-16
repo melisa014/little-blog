@@ -4,7 +4,7 @@ namespace application\models;
 /**
  * Класс для работы с архивом заказов
  */
-class ApprovedOrders extends \core\Model
+class ApprovedOrders extends \core\mvc\Model
 {
     
     /**

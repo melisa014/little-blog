@@ -1,7 +1,7 @@
 
 <h2><?= $addAdminusersTitle ?></h2>
 
-<form id="addUser" method="post" action="<?= \Url::link("admin/adminusers/add")?>"> 
+<form id="addUser" method="post" action="<?= \core\mvc\view\Url::link("admin/adminusers/add")?>"> 
     <h5>Введите имя пользователя</h5>
     <input type="text" name="login" value="имя пользователя"><br>
     <h5>Введите пароль</h5>

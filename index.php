@@ -1,13 +1,14 @@
 <?php
 
-
 require_once ("autoload.php"); // автозагрузка классов
 
+//\core\DebugPrinter::debug(\core\Session::get());
+//\core\DebugPrinter::debug(\core\Config::debugReporting());
 
-Config::debugReporting(); // включаем "строгое" отслеживание ошибок E_ALL
+\Config::debugReporting(); // включаем "строгое" отслеживание ошибок E_ALL
 
 $Sess = \core\Session::get();
 
-$route = Url::getRoute();
-//    \DebugPrinter::debug($route, 'путь, найденный URL--ом, передаваемый в Router');
-$obj = new Router($route);
+$route = \core\mvc\view\Url::getRoute();
+//    \core\DebugPrinter::debug($route, 'путь, найденный URL--ом, передаваемый в Router');
+$obj = new \core\Router($route);

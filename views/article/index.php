@@ -1,7 +1,7 @@
 <h2><?= $viewArticle->title ?>
     <span>
         <?= \core\User::get()->returnIfAllowed("article/edit", 
-            "<a href=" . \Url::link("article/edit&id=". $viewArticle->id) 
+            "<a href=" . \core\mvc\view\Url::link("article/edit&id=". $viewArticle->id) 
             . ">[Редактировать]</a>");?>
     </span>
 </h2> 

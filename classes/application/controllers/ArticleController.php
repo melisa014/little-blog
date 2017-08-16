@@ -3,7 +3,7 @@ namespace application\controllers;
 use \application\models\Article as Article;
 use \application\models\Category as Category;
 
-class ArticleController extends \core\Controller
+class ArticleController extends \core\mvc\Controller
 {
     /**
      * @var string Название страницы
@@ -57,11 +57,11 @@ class ArticleController extends \core\Controller
 //                \DebugPrinter::debug($newArticle);
                 $newArticle->insert(); 
 //                \DebugPrinter::debug($newArticle, 'после инсерта');
-                $this->header(\Url::link("homepage/index"));
+                $this->header(\core\mvc\view\Url::link("homepage/index"));
             
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\Url::link("homepage/index"));
+                $this->header(\core\mvc\view\Url::link("homepage/index"));
             }
         }
         else {
@@ -96,12 +96,12 @@ class ArticleController extends \core\Controller
 //                \DebugPrinter::debug($id);
                 $newArticle->update();
 //                \DebugPrinter::debug($newArticle, 'после апдейт');
-                $this->header(\Url::link("article/index&id=$id"));
+                $this->header(\core\mvc\view\Url::link("article/index&id=$id"));
                  
             } 
             elseif (!empty($_POST['cancel'])) {
 //                \DebugPrinter::debug("Отмена операции");
-                $this->header(\Url::link("article/index&id=$id"));
+                $this->header(\core\mvc\view\Url::link("article/index&id=$id"));
             }
         }
         else {
@@ -132,12 +132,12 @@ class ArticleController extends \core\Controller
                 $newArticle = $Article->loadFromArray($_POST);
                 $newArticle->delete();
                 
-                $this->header(\Url::link("homepage/index"));
+                $this->header(\core\mvc\view\Url::link("homepage/index"));
               
             }
             elseif (!empty($_POST['cancel'])) {
 //                \DebugPrinter::debug("Отмена операции");
-                $this->header(\Url::link("article/edit&id=$id"));
+                $this->header(\core\mvc\view\Url::link("article/edit&id=$id"));
             }
         }
         else {

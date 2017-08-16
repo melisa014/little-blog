@@ -4,7 +4,7 @@ namespace application\controllers;
 /**
  * Класс для работы с ajax-запросами
  */
-class AjaxController extends \core\Controller 
+class AjaxController extends \core\mvc\Controller 
 {
     /**
      * Подгрузка "лайков" статей или товаров

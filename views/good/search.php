@@ -2,7 +2,7 @@
 
 
 
-<form action='<?= \Url::link("goodSearch/index")?>'>
+<form action='<?= \core\mvc\view\Url::link("goodSearch/index")?>'>
     <span>Наименование товара</span>
     <input type="text" name="name" placeholder="введите название товара">
     <span>Количество</span>
@@ -23,7 +23,7 @@ else {
 
     foreach ($searchGood['results'] as $k => $v):?>
         <h4>
-            <a href="<?= \Url::link("admin/good/index&id=". $searchGood['results'][$k]->id)?>">
+            <a href="<?= \core\mvc\view\Url::link("admin/good/index&id=". $searchGood['results'][$k]->id)?>">
                 <?= $searchGood['results'][$k]->name; ?>
             </a>
         </h4>

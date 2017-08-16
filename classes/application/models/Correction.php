@@ -1,7 +1,7 @@
 <?php
 namespace application\models;
 
-class Correction extends \core\Model
+class Correction extends \core\mvc\Model
 {
     /**
      * Имя таблицы заказов

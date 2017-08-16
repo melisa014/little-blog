@@ -8,7 +8,7 @@ use \application\models\Good as Good;
  *
  * @author qwegram
  */
-class OrderController extends \core\Controller
+class OrderController extends \core\mvc\Controller
 {
     
     protected $rules = [
@@ -30,7 +30,7 @@ class OrderController extends \core\Controller
                 }
             
                 $Order->closeUserOrder();
-                $this->header(\Url::link("order/index"));
+                $this->header(\core\mvc\view\Url::link("order/index"));
             }
             if (!empty($_POST['closeOrder'])) { // Отменяем заказ
                 $goodsId = $Correction->getGoodsIdByOrderId(); // получаем массив Id товаров, которые заказывал пользователь
@@ -40,7 +40,7 @@ class OrderController extends \core\Controller
                 }
             
                 $Order->closeUserOrder();
-                $this->header(\Url::link("order/index"));
+                $this->header(\core\mvc\view\Url::link("order/index"));
             }
             
         }
@@ -76,7 +76,7 @@ class OrderController extends \core\Controller
             if (empty($goodsInOrder)) {
                 $Order->closeUserOrder();
             }
-            $this->header(\Url::link("order/index"));
+            $this->header(\core\mvc\view\Url::link("order/index"));
         } 
     }
     
@@ -99,7 +99,7 @@ class OrderController extends \core\Controller
 //            $newCorrection->id_orders = $id_orders;
 //    //        
 //            $newCorrection->updateGoodOrderTransaction();
-//            $this->header(\Url::link("archive/allGoods"));
+//            $this->header(\core\mvc\view\Url::link("archive/allGoods"));
 //        }
 //        else echo "Недостаточно товаров на складе!";
 //            

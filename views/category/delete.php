@@ -1,6 +1,6 @@
 <h2><?= $deleteCategoryTitle ?></h2>
 
-<form method="post" action="<?= \Url::link("category/delete&id=". $_GET['id'])?>" >
+<form method="post" action="<?= \core\mvc\view\Url::link("category/delete&id=". $_GET['id'])?>" >
     Вы уверены, что хотите удалить категорию?
     
     <input type="hidden" name="id" value="<?= $_GET['id'] ?>">

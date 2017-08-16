@@ -81,7 +81,7 @@ trait AccessControl {
      */
     private function isRules($route)
     {
-        $controllerClassName = "\\application\\controllers\\" . \Router::getControllerClassName($route);
+        $controllerClassName = "\\application\\controllers\\" . \core\Router::getControllerClassName($route);
         $controller = new $controllerClassName();
         if (!empty($controller->rules)) {
             return true;

@@ -34,19 +34,19 @@ function actionLike()
 function sessionLikesScore()
 {
     setInterval(function(){
-        showLoaderIdentity();
+//        showLoaderIdentity();
         $.ajax({
             url: '/index.php?route=ajax/sessionLikesCount', 
             dataType: 'text',
         })
         .done (function(obj){
-            hideLoaderIdentity();    
+//            hideLoaderIdentity();    
             console.log('Ответ получен');
             $('#sessionLikesCount').text("Понравилось: " + obj); 
             
         })
         .fail(function(){
-            hideLoaderIdentity();
+//            hideLoaderIdentity();
             console.log('Ошибка соединения с сервером');
         });
     }, 5000);
