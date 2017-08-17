@@ -1,6 +1,8 @@
 <?php
 namespace application\controllers\admin;
 use \application\models\Good as Good;
+use \application\models\Image as Image;
+use \application\models\FileUploader as FileUploader;
 
 /**
  * Контроллер для управления товарами
@@ -47,14 +49,32 @@ class GoodController extends \core\mvc\Controller
             if (!empty($_POST['saveNewGood'])) {
                 $Good = new Good();
                 $newGood = $Good->loadFromArray($_POST);
-//                \DebugPrinter::debug($newGood);
                 $newGood->insert(); 
-//                \DebugPrinter::debug($newGood, 'после инсерта');
+//                \core\DebugPrinter::debug($newGood, 'товар после инсерта');
+                \core\DebugPrinter::debug($newGood->id);
+                die();
+                
+                $basePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'images';
+                $additionalPath = 'goodsImages/' . $newGood->id;
+                $uploader = new FileUploader();
+                $uploadedFiles = $uploader->uploadToRelativePath($_FILES, 
+                   $basePath, $additionalPath);
+                \core\DebugPrinter::debug($uploadedFiles ,'добавленные в папку файлы');
+                
+                $Image = new Image();
+                $newImage = $Image->loadFromArray($_POST);
+                $newImage->id_goods = $newGood->id;
+                $newImage->path = $uploadedFiles['filepath'];
+                \core\DebugPrinter::debug($newImage, 'объект изображения перед инсертом');
+                $newImage->insert();
+                \core\DebugPrinter::debug($newImage, 'объект изображения после инсерта');
+                die();
+                
                 $this->header(\core\mvc\view\Url::link("archive/allGoods"));
             
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\core\mvc\view\Url::link("arcive/allGoods"));
+                $this->header(\core\mvc\view\Url::link("archive/allGoods"));
             }
         }
         else {

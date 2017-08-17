@@ -52,7 +52,11 @@ class Good extends \core\mvc\Model
     * @var int Количество лайков)
     */
     public $likes = null;
-            
+    
+    /**
+     * @array Массив описаний прикрепляемых изображений
+     */
+    public $imageDescription = [];
 
     /**
     * Устанавливаем свойства с помощью значений в заданном массиве
@@ -98,7 +102,7 @@ class Good extends \core\mvc\Model
     */
     public function update()
     {
-        $sql = "UPDATE $this->tableName SET description=:description, price=:price, name=:name, available=:available, likes=:likes, WHERE id = :id";  
+        $sql = "UPDATE $this->tableName SET description=:description, price=:price, name=:name, available=:available, likes=:likes WHERE id = :id";  
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":description", $this->description, \PDO::PARAM_STR );
         $st->bindValue( ":price", $this->price, \PDO::PARAM_INT );

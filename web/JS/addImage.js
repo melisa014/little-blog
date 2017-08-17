@@ -16,11 +16,11 @@ function showFormToAddImage()
 function loadFormToAddImage()
 {
     $('#addImageSubmit').on('click', function(){
-        var previousIndex = $('#addImage :last-child').attr('data-index');
-        var index = +previousIndex + 1;
+//        var previousIndex = $('#addImage :last-child').attr('data-index');
+//        var index = +previousIndex + 1;
         $.ajax({
             url: '/index.php?route=ajax/showFormToAddImage',
-            data: {index : index},
+//            data: {index : index},
             dataType: "html",
         })
         .done(function(res){
