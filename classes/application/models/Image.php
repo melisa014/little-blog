@@ -64,11 +64,11 @@ class Image extends \core\mvc\Model
      */
     public function insert()
     {
-        foreach ($this->imageDescription as $description){
+        foreach ($this->imageDescription as $key => $description){
             $sql = "INSERT INTO $this->tableName (description, path, id_goods) VALUES ( :description, :path, :id_goods)"; 
             $st = $this->pdo->prepare ( $sql );
             $st->bindValue( ":description", $description, \PDO::PARAM_STR );
-            $st->bindValue( ":path", $this->path, \PDO::PARAM_STR );
+            $st->bindValue( ":path", $this->path[$key], \PDO::PARAM_STR );
             $st->bindValue( ":id_goods", $this->id_goods, \PDO::PARAM_INT );
             $st->execute();
             $this->id = $this->pdo->lastInsertId();

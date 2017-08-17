@@ -1,13 +1,11 @@
 <?php
 
-namespace application\models;
+namespace core;
 
 /**
- * Description of FileUploader
- *
- * @author qwe
+ * Класс для загрузки файлов
  */
-class FileUploader extends \core\mvc\Model
+class FileUploader
 {
     /**
      * Права доступа к папкам по умолчанию
@@ -21,21 +19,27 @@ class FileUploader extends \core\mvc\Model
      * @var type 
      */
     public $uploadedFileNames = []; 
+    
+    /**
+     * Путь к корневой директории
+     */
+    public $basePath = null;
  
     /**
      * Загрузит файлы в папку с адресом 
-     * $basePath + $addtionalPath
+     * $this->basePath + $addtionalPath
      *  --  и вернёт массив путей к файлам, начинающийся с $addtionalPath
      * 
      * @param type $files         -- массив в файлов как в $_FILES
-     * @param type $basePath      -- Базовый путь (до $addtionalPath)
+     * @param type $this->basePath      -- Базовый путь (до $addtionalPath)
      * @param type $addtionalPath -- без слэгэй в начале и конце. Пусть начаная с которого нужно вернуть путь к загруженному файлу
      * @return type
      * @throws \Exception
      */
-    public function uploadToRelativePath($files, $basePath, $addtionalPath)
+    public function uploadToRelativePath($files, $addtionalPath)
     {
-//        \core\DebugPrinter::debug($files); die();
+        \core\DebugPrinter::debug($files); die();
+        $this->basePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'uploads';
         
         $result = [];
         foreach ($files['imageFile']['tmp_name'] as $key => $tmpFileName)
@@ -44,21 +48,19 @@ class FileUploader extends \core\mvc\Model
             if (!empty($tmpFileName)) {
                 
                 $fileName = $files['imageFile']['name'][$key];
-                $path = $basePath . '/' . $addtionalPath . '/' . $fileName;
+                $path = $this->basePath . '/' . $addtionalPath . '/' . $fileName;
                  $this->uploadFile($tmpFileName, $fileName, 
-                         $basePath . '/' . $addtionalPath);
+                         $this->basePath . '/' . $addtionalPath);
                 $result[] = [
                      'filepath' => $addtionalPath . '/' . $fileName,
                      'filename' => $fileName
                 ];
 //                \core\DebugPrinter::debug($result);
-                
-                
             } else {
                 break;
             }
-              
         }
+        return $result;
     }
     
         /**

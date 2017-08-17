@@ -11,10 +11,9 @@
     <h5>Цена товара</h5>
     <input type="text" name="price"><br>
     
-    <div id='addImage'>
-        <div data-index='0'></div>
+    <div class='addImage'>
     </div>
-    <input id='addImageSubmit' type="submit" name="addImage" value="+ Изображение"><br><br>
+    <input class='addImageSubmit' type="submit" name="addImage" value="+ Изображение"><br><br>
     
     <input type="submit" name="saveNewGood" value="Сохранить">
     <input type="submit" name="cancel" value="Назад"><br>

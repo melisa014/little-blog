@@ -17,6 +17,10 @@
     <h5>Цена товара</h5>
     <input type="text" name="price" value="<?= $viewGood->price ?>"><br>
     
+    <div class='addImage'>
+    </div>
+    <input class='addImageSubmit' type="submit" name="addImage" value="+ Изображение"><br><br>
+    
     <input type="hidden" name="id" value="<?= $_GET['id']; ?>">
     <input type="submit" name="saveChanges" value="Сохранить">
     <input type="submit" name="cancel" value="Назад">
