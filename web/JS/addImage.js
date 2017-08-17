@@ -16,18 +16,18 @@ function showFormToAddImage()
 function loadFormToAddImage()
 {
     $('#addImageSubmit').on('click', function(){
-        var imageIndex = $('#addImage').attr('data');
-        imageIndex++;
+        var previousIndex = $('#addImage :last-child').attr('data-index');
+        var index = +previousIndex + 1;
         $.ajax({
             url: '/index.php?route=ajax/showFormToAddImage',
-//            data: {imageIndex : imageIndex},
+            data: {index : index},
             dataType: "html",
         })
         .done(function(res){
             console.log('ответ: ' + res);
             $('#addImage').append(res);
-            $('#addedImage').attr('data', )
-            $('#addedImage').fadeIn(500);
+//            $('#addedImage').attr('data', )
+            $('#addImage :last-child').fadeIn(500);
         })
         .fail(function(xhr, status, error){
 

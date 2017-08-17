@@ -1,6 +1,6 @@
-<div id='addedImage' style='display: none'>
-<input type='file' name='imageFile' placeholder='Выберите изображение'><br>
-<input type='text' name='description' placeholder='Введите описание изображения'><br>
+<div id='addedImage-<?= $index ?>' data-index='<?= $index ?>' style='display: none'>
+<input type='file' name='imageFile-<?= $index ?>' placeholder='Выберите изображение'><br>
+<input type='text' name='description-<?= $index ?>' placeholder='Введите описание изображения'><br>
 </div>
 
 

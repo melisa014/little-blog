@@ -39,6 +39,10 @@ class GoodController extends \core\mvc\Controller
      */
     public function addAction()
     {
+//        \core\DebugPrinter::debug($_POST, 'post');
+//        \core\DebugPrinter::debug($_FILES, 'files');
+//        die();
+        
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewGood'])) {
                 $Good = new Good();
