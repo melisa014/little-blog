@@ -38,7 +38,7 @@ class FileUploader
      */
     public function uploadToRelativePath($files, $addtionalPath)
     {
-        \core\DebugPrinter::debug($files); die();
+//        \core\DebugPrinter::debug($files); die();
         $this->basePath = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'uploads';
         
         $result = [];

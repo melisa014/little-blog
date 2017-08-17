@@ -1,4 +1,5 @@
 $(function(){
+    $('img').css('cursor', 'pointer');
     loadFormToAddImage();
 });
 

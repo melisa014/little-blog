@@ -93,7 +93,7 @@ class GoodController extends \core\mvc\Controller
 //        \DebugPrinter::debug($_POST); 
 //        \DebugPrinter::debug($id); 
         
-        if (!empty($_POST)) { // это выполняется нормально.
+        if (!empty($_POST)) { 
             
             if (!empty($_POST['saveChanges'])) {
 //                \DebugPrinter::debug('$_POST'); 

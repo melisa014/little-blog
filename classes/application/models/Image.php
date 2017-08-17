@@ -90,4 +90,19 @@ class Image extends \core\mvc\Model
         $st->bindValue( ":id", $this->id, \PDO::PARAM_INT );
         $st->execute();
     }
+    
+    /**
+     * 
+     */
+    public function getImagesPathByGoodId($goodId) 
+    {
+        $sql = "SELECT path FROM $this->tableName WHERE id_goods=:id_goods"; 
+        $st = $this->pdo->prepare ( $sql );
+        $st->bindValue( ":id_goods", $goodId, \PDO::PARAM_INT );
+        $st->execute();
+        $path = $st->fetchAll();
+//        \core\DebugPrinter::debug($path);
+//        die();
+        return $path;
+    }
 }

@@ -6,7 +6,7 @@
     </span>
 </h2>
 
-<form method="post" action="<?= \core\mvc\view\Url::link("admin/good/edit&id=" . $_GET['id'])?>">
+<form method="post" action="<?= \core\mvc\view\Url::link("admin/good/edit&id=" . $_GET['id'])?>" enctype="multipart/form-data" >
     
     <h5>Введите наименование товара</h5>
     <input type="text" name="name" value="<?= $viewGood->name ?>"><br>
@@ -17,7 +17,7 @@
     <h5>Цена товара</h5>
     <input type="text" name="price" value="<?= $viewGood->price ?>"><br>
     
-    <div class='addImage'>
+     <div class='addImage'>
     </div>
     <input class='addImageSubmit' type="submit" name="addImage" value="+ Изображение"><br><br>
     

@@ -6,10 +6,17 @@
     </span>
 </h2> 
 
+<!-- Вывод картинок-->
+    <?php
+    $images = (new \application\models\Image())->getImagesPathByGoodId($viewGood->id);
+    foreach ($images as $path) {
+        echo "<img src='uploads/" . $path['path'] ."' height='200px'>";
+    } ?>
+
 <p>Описание: <?= $viewGood->description; ?></p>
 <p>Цена: <?= $viewGood->price; ?>р.</p> 
 <p>В наличии:  <?= $viewGood->available; ?> шт.</p>
-<img src="/images/like1.png" height="20px" width="20px" data-modelId="<?= $viewGood->id ?>" data-tableName='goodss'>
+<img src="/images/like.png" height="20px" width="20px" data-modelId="<?= $viewGood->id ?>" data-tableName='goodss'>
 <span class="<?= $viewGood->id?>">
     <?= $viewGood->getModellikes($viewGood->id, 'goods') ?>
 </span>
