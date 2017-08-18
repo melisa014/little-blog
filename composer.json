@@ -1,12 +1,13 @@
 {
-
     "require": {
-        "it-for-free/php-examples": "dev-master"
+        "it-for-free/file-uploader": "dev-master"
+        
     },
     "repositories": [
         {
            "type": "vcs",
-           "url": "https://github.com/it-for-free/PhpExamples"
+           "url": "https://github.com/it-for-free/FileUploader"
         }
+        
     ]
 }

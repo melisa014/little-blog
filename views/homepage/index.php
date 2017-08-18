@@ -20,7 +20,7 @@
 
         <p><?= $homepageArticles['results'][$key]->summary; ?></p>
         <p class="pubDate"><?= $homepageArticles['results'][$key]->publicationDate; ?></p>
-        <img src="/images/like1.png" height="20px" width="20px" data-modelId="<?= $homepageArticles['results'][$key]->id?>" data-tableName='articles'>
+        <img src="/images/like.png" height="20px" width="20px" data-modelId="<?= $homepageArticles['results'][$key]->id?>" data-tableName='articles'>
         <span class="<?= $homepageArticles['results'][$key]->id?>">
                 <?= $homepageArticles['results'][$key]->getModelLikes($homepageArticles['results'][$key]->id, 'articles') ?>
         </span>

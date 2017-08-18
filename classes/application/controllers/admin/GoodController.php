@@ -2,7 +2,8 @@
 namespace application\controllers\admin;
 use \application\models\Good as Good;
 use \application\models\Image as Image;
-use \core\FileUploader as FileUploader;
+//use \core\FileUploader as FileUploader;
+use \ItForFree\FileUploader as FileUploader;
 
 /**
  * Контроллер для управления товарами

@@ -27,9 +27,17 @@ else {
                 <?= $searchGood['results'][$k]->name; ?>
             </a>
         </h4>
+
+        <!-- Вывод картинок-->
+        <?php
+        $images = (new \application\models\Image())->getImagesPathByGoodId($searchGood['results'][$k]->id);
+        foreach ($images as $path) {
+            echo "<img src='uploads/" . $path['path'] ."' height='200px'>";
+        } ?>
+        
         <p>Цена товара: <?= $searchGood['results'][$k]->price; ?> р.
          В наличии: <?= $searchGood['results'][$k]->available; ?> штук</p>
-        <img src="/images/like1.png" height="20px" width="20px" data-modelId="<?= $searchGood['results'][$k]->id?>" data-tableName='goods'>
+        <img src="/images/like.png" height="20px" width="20px" data-modelId="<?= $searchGood['results'][$k]->id?>" data-tableName='goods'>
         <span class="<?= $searchGood['results'][$k]->id?>">
             <?= $searchGood['results'][$k]->getModelLikes($searchGood['results'][$k]->id, 'goods') ?>
         </span>
