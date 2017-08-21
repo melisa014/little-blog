@@ -26,7 +26,8 @@ class OrderController extends \core\mvc\Controller
         if (!empty($_POST)){
             if (!empty($_POST['approveOrder'])) { // Подтверждаем заказ
                 \core\DebugPrinter::debug($_POST);
-                die();
+                die('Здесь нужно дописать сохранение подтверждённого заказа в БД, таблицу approve_orders');
+                // Здесь еужно дописать сохранение подтверждённого заказа в БД, таблицу approve_orders
                 
                 $newGood = $Good->loadFromArray($_POST);
                 $ApprovedOrder->insert();

@@ -44,7 +44,6 @@ class FileUploader
         $result = [];
         foreach ($files['imageFile']['tmp_name'] as $key => $tmpFileName)
         {
-            
             if (!empty($tmpFileName)) {
                 
                 $fileName = $files['imageFile']['name'][$key];

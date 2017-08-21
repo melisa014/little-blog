@@ -17,7 +17,8 @@
     <h5>Цена товара</h5>
     <input type="text" name="price" value="<?= $viewGood->price ?>"><br>
     
-     <div class='addImage'>
+    <div class='addImage'>
+        
     </div>
     <input class='addImageSubmit' type="submit" name="addImage" value="+ Изображение"><br><br>
     
@@ -25,3 +26,8 @@
     <input type="submit" name="saveChanges" value="Сохранить">
     <input type="submit" name="cancel" value="Назад">
 </form>
+
+<div id='formToAddFile' data-index='0' style='display: none'> <!--<?= $index ?>-->
+    <input type='file' name='imageFile[]' placeholder='Выберите изображение'><br> 
+    <input type='text' name='imageDescription[]' placeholder='Введите описание изображения'><br>
+</div>

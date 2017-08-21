@@ -1,8 +1,6 @@
 <?php
 
-
 require_once ("autoload.php"); // автозагрузка классов
-
 //\core\DebugPrinter::debug(\core\Session::get());
 //\core\DebugPrinter::debug(\core\Config::debugReporting());
 

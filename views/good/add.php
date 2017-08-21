@@ -12,10 +12,7 @@
     <input type="text" name="price"><br>
     
     <div class='addImage'>
-        <div id='addedImage' data-index='<?= $index ?>' style='display: none'>
-        <input type='file' name='imageFile[]' placeholder='Выберите изображение'><br> 
-        <input type='text' name='imageDescription[]' placeholder='Введите описание изображения'><br>
-        </div>
+        
     </div>
     <input class='addImageSubmit' type="submit" name="addImage" value="+ Изображение"><br><br>
     
@@ -23,3 +20,7 @@
     <input type="submit" name="cancel" value="Назад"><br>
 </form>
 
+<div id='formToAddFile' data-index='0' style='display: none'> <!--<?= $index ?>-->
+    <input type='file' name='imageFile[]' placeholder='Выберите изображение'><br> 
+    <input type='text' name='imageDescription[]' placeholder='Введите описание изображения'><br>
+</div>

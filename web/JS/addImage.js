@@ -1,7 +1,7 @@
 $(function(){
     $('img').css('cursor', 'pointer');
-    loadFormToAddImage();
-//    showFormToAddImage();
+//    loadFormToAddImage();
+    showFormToAddImage();
 });
 
 function loadFormToAddImage()
@@ -41,8 +41,13 @@ function loadFormToAddImage()
 function showFormToAddImage()
 {
     $('input.addImageSubmit').on('click', function(){
-        var form = $('addedImage').clone();
-        $('div.addImage').append(form);
+//        var index = $('div.addImage > div').attr('data-index');
+        
+        $('#formToAddFile').clone().appendTo('div.addImage');
+        
+        
+        
+        $('div.addImage :last-child').fadeIn(500);
         return false;
     });
 }

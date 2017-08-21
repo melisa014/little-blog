@@ -30,7 +30,7 @@ class GoodController extends \core\mvc\Controller
 
         $Good = new Good();
 
-        $viewGood = $Good->getById($_GET['id']);
+        $viewGood = $Good->getById($_GET['id'], 'goods');
         
         $this->view->addVar('viewGood', $viewGood);
         
@@ -63,7 +63,7 @@ class GoodController extends \core\mvc\Controller
                 }
                 $newImage->path = $pathArray;
 //                \core\DebugPrinter::debug($newImage, 'объект изображения перед инсертом');
-               
+//               die();
                 $newImage->insert();
 //                \core\DebugPrinter::debug($newImage, 'объект изображения после инсерта');
 //                die();
@@ -103,7 +103,7 @@ class GoodController extends \core\mvc\Controller
 //                \DebugPrinter::debug($newGood);
 //                \DebugPrinter::debug($id);
                 $newGood->update();
-//                \DebugPrinter::debug($newGood, 'после апдейт');
+//                \core\DebugPrinter::debug($newGood, 'после апдейт');
                 //--- добавить изображение
                 $additionalPath = 'goodsImages/' . $newGood->id;
                 $uploadedFiles = (new FileUploader())->uploadToRelativePath($_FILES, $additionalPath);
@@ -118,7 +118,7 @@ class GoodController extends \core\mvc\Controller
                 }
                 $newImage->path = $pathArray;
 //                \core\DebugPrinter::debug($newImage, 'объект изображения перед инсертом');
-               
+//               die();
                 $newImage->insert();
                 $this->header(\core\mvc\view\Url::link("admin/good/index&id=$id"));
                  

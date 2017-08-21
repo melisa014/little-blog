@@ -64,7 +64,10 @@ class Image extends \core\mvc\Model
      */
     public function insert()
     {
+//        unset($this->imageDescription[0]);
+//        \core\DebugPrinter::debug($this->imageDescription);
         foreach ($this->imageDescription as $key => $description){
+//           
             $sql = "INSERT INTO $this->tableName (description, path, id_goods) VALUES ( :description, :path, :id_goods)"; 
             $st = $this->pdo->prepare ( $sql );
             $st->bindValue( ":description", $description, \PDO::PARAM_STR );
