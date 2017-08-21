@@ -4,13 +4,13 @@ namespace application\models;
 /**
  * Класс для работы с архивом заказов
  */
-class ApprovedOrders extends \core\mvc\Model
+class ApprovedOrder extends \core\mvc\Model
 {
     
     /**
      * Имя таблицы заказов
      */
-    public $tableName = 'orders';
+    public $tableName = 'approve_orders';
     
     /**
     * @var int  ID заказа 

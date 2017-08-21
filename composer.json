@@ -1,12 +1,22 @@
 {
     "require": {
-        "it-for-free/file-uploader": "dev-master"
+        "it-for-free/file-uploader": "dev-master",
+        "melisa014/simple-mvc": "dev-master"
         
     },
+    "minimum-stability" : "dev",
     "repositories": [
         {
            "type": "vcs",
            "url": "https://github.com/it-for-free/FileUploader"
+        },
+        {
+           "type": "vcs",
+           "url": "https://github.com/melisa014/SimpleMVC"
+        },
+        {
+           "type": "vcs",
+           "url": "https://github.com/it-for-free/PhpExamples"
         }
         
     ]

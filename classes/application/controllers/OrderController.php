@@ -3,6 +3,7 @@ namespace application\controllers;
 use \application\models\Order as Order;
 use \application\models\Correction as Correction;
 use \application\models\Good as Good;
+use \application\models\ApprovedOrder as ApprovedOrder;
 
 /**
  *
@@ -20,9 +21,15 @@ class OrderController extends \core\mvc\Controller
         $Order = new Order();
         $Correction = new Correction();
         $Good = new Good();
+        $ApprovedOrder = new ApprovedOrder();
 
         if (!empty($_POST)){
             if (!empty($_POST['approveOrder'])) { // Подтверждаем заказ
+                \core\DebugPrinter::debug($_POST);
+                die();
+                
+                $newGood = $Good->loadFromArray($_POST);
+                $ApprovedOrder->insert();
                 $goodsId = $Correction->getGoodsIdByOrderId(); // получаем массив Id товаров, которые заказывал пользователь
                 foreach ($goodsId as $goodId) {
                    $reserve = $Correction->getUsersGoodCount($goodId['id_goods']); // получаем значение резерва, который нужно списать
@@ -80,29 +87,18 @@ class OrderController extends \core\mvc\Controller
         } 
     }
     
-//    public function manageAction() 
-//    {
-//        $Order = new Order();
-//        $Correction = new Correction();
-//        $Good = new Good();
-//        
-//        $newOrder = $Order->loadFromArray($_POST); 
-//        
-//
-//        if($_POST['number'] <= $Good->getAvailableGoodById($_POST['id_goods'])){
-//            if (!$newOrder->isUserOrder()){
-//                $newOrder->insert();
-//
-//            }
-//            $newCorrection = $Correction->loadFromArray($_POST);
-//            $id_orders = $Order->getUserOrderId();
-//            $newCorrection->id_orders = $id_orders;
-//    //        
-//            $newCorrection->updateGoodOrderTransaction();
-//            $this->header(\core\mvc\view\Url::link("archive/allGoods"));
-//        }
-//        else echo "Недостаточно товаров на складе!";
-//            
-//    }
-    
+    public function approveAction()
+    {
+        if (!empty($_POST)) {
+            
+            if (!empty($_POST['approveOrder'])) {
+                
+                
+                
+                
+                $this->header(\core\mvc\view\Url::link("archive/allGoods"));
+              
+            }
+        }
+    }
 }

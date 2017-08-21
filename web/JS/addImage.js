@@ -1,6 +1,7 @@
 $(function(){
     $('img').css('cursor', 'pointer');
     loadFormToAddImage();
+//    showFormToAddImage();
 });
 
 function loadFormToAddImage()
@@ -37,3 +38,11 @@ function loadFormToAddImage()
     });
 }
 
+function showFormToAddImage()
+{
+    $('input.addImageSubmit').on('click', function(){
+        var form = $('addedImage').clone();
+        $('div.addImage').append(form);
+        return false;
+    });
+}

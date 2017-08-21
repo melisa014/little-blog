@@ -3,7 +3,7 @@
 
 <div class="page">Страница
     <?php 
-    $pagesCount = $archiveGood['totalRows']/$limit;
+    $pagesCount = $archiveGood['totalRows'] / $limit;
     if ($pagesCount !== (int)$pagesCount) {
         $pagesCount++;
     }
