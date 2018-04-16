@@ -1,7 +1,7 @@
 {
     "require": {
         "it-for-free/file-uploader": "dev-master",
-        "melisa014/simple-mvc": "dev-master"
+        "it-for-free/simple-mvc": "dev-master"
         
     },
     "minimum-stability" : "dev",
