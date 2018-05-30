@@ -1,7 +1,8 @@
 {
     "require": {
         "it-for-free/file-uploader": "dev-master",
-        "it-for-free/simple-mvc": "dev-master"
+        "it-for-free/simple-mvc": "dev-master",
+        "it-for-free/rusphp": "*"
         
     },
     "minimum-stability" : "dev",
