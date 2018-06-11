@@ -3,6 +3,7 @@ use ItForFree\SimpleMVC\Application;
 
 require_once("autoload.php"); // автозагрузка классов
 
+//phpinfo(); die();
 
 //$route = \core\mvc\view\Url::getRoute();
 //$obj = new \core\Router($route);
