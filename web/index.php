@@ -14,5 +14,4 @@ $config = ItForFree\rusphp\PHP\ArrayLib\Merger::mergeRecursivelyWithReplace(
     require(__DIR__ . '/../application/config/web.php'), 
     $localConfig);
 
-(new yii\web\Application($config))->run();
-
+(new \ItForFree\SimpleMVC\Application($config))->run();
