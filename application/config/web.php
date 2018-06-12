@@ -12,6 +12,9 @@ $config = [
         ],
         'router' => [
             
+        ],
+        'url' => [ 
+            'class' => \ItForFree\SimpleMVC\Url::class
         ]
     ]    
 ];

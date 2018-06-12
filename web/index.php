@@ -1,5 +1,6 @@
 <?php
 use ItForFree\SimpleMVC\Application;
+use ItForFree\rusphp\Log\SimpleEchoLog;
 
 require_once("autoload.php"); // автозагрузка классов
 
@@ -14,4 +15,8 @@ $config = ItForFree\rusphp\PHP\ArrayLib\Merger::mergeRecursivelyWithReplace(
     require(__DIR__ . '/../application/config/web.php'), 
     $localConfig);
 
-(new \ItForFree\SimpleMVC\Application($config))->run();
+SimpleEchoLog::pre($config);
+
+\ItForFree\SimpleMVC\Application::get()
+    ->setConfiguration($config)
+    ->run();
