@@ -5,7 +5,7 @@ namespace application\models;
 /**
  * Класс для загрузки файлов 
  */
-class Image extends \core\mvc\Model
+class Image extends \ItForFree\SimpleMVC\mvc\Model
 {
     /**
      * @var string Имя обрабатываемой таблицы 
@@ -65,7 +65,7 @@ class Image extends \core\mvc\Model
     public function insert()
     {
 //        unset($this->imageDescription[0]);
-//        \core\DebugPrinter::debug($this->imageDescription);
+//        \ItForFree\SimpleMVC\DebugPrinter::debug($this->imageDescription);
         foreach ($this->imageDescription as $key => $description){
 //           
             $sql = "INSERT INTO $this->tableName (description, path, id_goods) VALUES ( :description, :path, :id_goods)"; 
@@ -104,7 +104,7 @@ class Image extends \core\mvc\Model
         $st->bindValue( ":id_goods", $goodId, \PDO::PARAM_INT );
         $st->execute();
         $path = $st->fetchAll();
-//        \core\DebugPrinter::debug($path);
+//        \ItForFree\SimpleMVC\DebugPrinter::debug($path);
 //        die();
         return $path;
     }

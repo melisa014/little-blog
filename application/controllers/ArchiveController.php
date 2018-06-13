@@ -5,7 +5,7 @@ use \application\models\Category as Category;
 use \application\models\Adminusers as Adminusers;
 use \application\models\Good as Good;
 
-class ArchiveController extends \core\mvc\Controller
+class ArchiveController extends \ItForFree\SimpleMVC\mvc\Controller
 {
     /**
      * Список правил, ограничивающих доступ пользователей с разными ролями

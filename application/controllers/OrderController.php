@@ -9,7 +9,7 @@ use \application\models\ApprovedOrder as ApprovedOrder;
  *
  * @author qwegram
  */
-class OrderController extends \core\mvc\Controller
+class OrderController extends \ItForFree\SimpleMVC\mvc\Controller
 {
     
     protected $rules = [
@@ -25,7 +25,7 @@ class OrderController extends \core\mvc\Controller
 
         if (!empty($_POST)){
             if (!empty($_POST['approveOrder'])) { // Подтверждаем заказ
-                \core\DebugPrinter::debug($_POST);
+                \ItForFree\SimpleMVC\DebugPrinter::debug($_POST);
                 die('Здесь нужно дописать сохранение подтверждённого заказа в БД, таблицу approve_orders');
                 // Здесь еужно дописать сохранение подтверждённого заказа в БД, таблицу approve_orders
                 
@@ -38,7 +38,7 @@ class OrderController extends \core\mvc\Controller
                 }
             
                 $Order->closeUserOrder();
-                $this->header(\core\mvc\view\Url::link("order/index"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("order/index"));
             }
             if (!empty($_POST['closeOrder'])) { // Отменяем заказ
                 $goodsId = $Correction->getGoodsIdByOrderId(); // получаем массив Id товаров, которые заказывал пользователь
@@ -48,7 +48,7 @@ class OrderController extends \core\mvc\Controller
                 }
             
                 $Order->closeUserOrder();
-                $this->header(\core\mvc\view\Url::link("order/index"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("order/index"));
             }
             
         }
@@ -84,7 +84,7 @@ class OrderController extends \core\mvc\Controller
             if (empty($goodsInOrder)) {
                 $Order->closeUserOrder();
             }
-            $this->header(\core\mvc\view\Url::link("order/index"));
+            $this->header(\ItForFree\SimpleMVC\Url::link("order/index"));
         } 
     }
     
@@ -97,7 +97,7 @@ class OrderController extends \core\mvc\Controller
                 
                 
                 
-                $this->header(\core\mvc\view\Url::link("archive/allGoods"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("archive/allGoods"));
               
             }
         }

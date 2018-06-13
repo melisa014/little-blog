@@ -5,7 +5,7 @@ use \application\models\Adminusers as Adminusers;
 /**
  *
  */
-class AdminusersController extends \core\mvc\Controller
+class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
 {
     
     protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
@@ -33,10 +33,10 @@ class AdminusersController extends \core\mvc\Controller
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->insert(); 
-                $this->header(\core\mvc\view\Url::link("archive/allUsers"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("archive/allUsers"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\core\mvc\view\Url::link("archive/allUsers"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("archive/allUsers"));
             }
         }
         else {
@@ -60,10 +60,10 @@ class AdminusersController extends \core\mvc\Controller
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->update();
-                $this->header(\core\mvc\view\Url::link("admin/adminusers/index&id=$id"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("admin/adminusers/index&id=$id"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\core\mvc\view\Url::link("admin/adminusers/index&id=$id"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("admin/adminusers/index&id=$id"));
             }
         }
         else {
@@ -93,11 +93,11 @@ class AdminusersController extends \core\mvc\Controller
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->delete();
                 
-                $this->header(\core\mvc\view\Url::link("archive/allUsers"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("archive/allUsers"));
               
             }
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\core\mvc\view\Url::link("admin/adminusers/edit&id=$id"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("admin/adminusers/edit&id=$id"));
             }
         }
         else {

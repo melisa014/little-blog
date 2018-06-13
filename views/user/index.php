@@ -1,7 +1,7 @@
 <h2><?= $viewAdminusers->login ?>
     <span>
-        <?= \core\User::get()->returnIfAllowed("admin/adminusers/edit", 
-            "<a href=" . \core\mvc\view\Url::link("admin/adminusers/edit&id=". $viewAdminusers->id) 
+        <?= \ItForFree\SimpleMVC\User::get()->returnIfAllowed("admin/adminusers/edit", 
+            "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/adminusers/edit&id=". $viewAdminusers->id) 
             . ">[Редактировать]</a>");?>
     </span>
 </h2> 

@@ -1,12 +1,12 @@
 <h2><?= $editAdminusersTitle ?>
     <span>
-        <?= \core\User::get()->returnIfAllowed("admin/adminusers/delete", 
-            "<a href=" . \core\mvc\view\Url::link("admin/adminusers/delete&id=" . $_GET['id']) 
+        <?= \ItForFree\SimpleMVC\User::get()->returnIfAllowed("admin/adminusers/delete", 
+            "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/adminusers/delete&id=" . $_GET['id']) 
             . ">[Удалить]</a>");?>
     </span>
 </h2>
 
-<form id="editUser" method="post" action="<?= \core\mvc\view\Url::link("admin/adminusers/edit&id=" . $_GET['id'])?>">
+<form id="editUser" method="post" action="<?= \ItForFree\SimpleMVC\Url::link("admin/adminusers/edit&id=" . $_GET['id'])?>">
     <h5>Введите имя пользователя</h5>
     <input type="text" name="login" value="<?= $viewAdminusers->login ?>"><br>
     <h5>Введите пароль</h5>

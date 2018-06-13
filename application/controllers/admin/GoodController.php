@@ -2,14 +2,14 @@
 namespace application\controllers\admin;
 use \application\models\Good as Good;
 use \application\models\Image as Image;
-//use \core\FileUploader as FileUploader;
+//use \ItForFree\SimpleMVC\FileUploader as FileUploader;
 use \ItForFree\FileUploader as FileUploader;
 
 /**
  * Контроллер для управления товарами
  * @author qwegram
  */
-class GoodController extends \core\mvc\Controller
+class GoodController extends \ItForFree\SimpleMVC\mvc\Controller
 {
     
         /**
@@ -46,13 +46,13 @@ class GoodController extends \core\mvc\Controller
             if (!empty($_POST['saveNewGood'])) {
                 $newGood = (new Good())->loadFromArray($_POST);
                 $newGood->insert(); 
-//                \core\DebugPrinter::debug($newGood, 'товар после инсерта');
-//                \core\DebugPrinter::debug($newGood->id);
+//                \ItForFree\SimpleMVC\DebugPrinter::debug($newGood, 'товар после инсерта');
+//                \ItForFree\SimpleMVC\DebugPrinter::debug($newGood->id);
 //                die();
                 //--- добавить изображение
                 $additionalPath = 'goodsImages/' . $newGood->id;
                 $uploadedFiles = (new FileUploader())->uploadToRelativePath($_FILES, $additionalPath);
-//                \core\DebugPrinter::debug($uploadedFiles ,'добавленные в папку файлы');
+//                \ItForFree\SimpleMVC\DebugPrinter::debug($uploadedFiles ,'добавленные в папку файлы');
                 
                 $newImage = (new Image())->loadFromArray($_POST);
                 $newImage->id_goods = $newGood->id;
@@ -62,17 +62,17 @@ class GoodController extends \core\mvc\Controller
                     $pathArray[] = $image['filepath'];
                 }
                 $newImage->path = $pathArray;
-//                \core\DebugPrinter::debug($newImage, 'объект изображения перед инсертом');
+//                \ItForFree\SimpleMVC\DebugPrinter::debug($newImage, 'объект изображения перед инсертом');
 //               die();
                 $newImage->insert();
-//                \core\DebugPrinter::debug($newImage, 'объект изображения после инсерта');
+//                \ItForFree\SimpleMVC\DebugPrinter::debug($newImage, 'объект изображения после инсерта');
 //                die();
                 
-                $this->header(\core\mvc\view\Url::link("archive/allGoods"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("archive/allGoods"));
             
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\core\mvc\view\Url::link("archive/allGoods"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("archive/allGoods"));
             }
         }
         else {
@@ -103,11 +103,11 @@ class GoodController extends \core\mvc\Controller
 //                \DebugPrinter::debug($newGood);
 //                \DebugPrinter::debug($id);
                 $newGood->update();
-//                \core\DebugPrinter::debug($newGood, 'после апдейт');
+//                \ItForFree\SimpleMVC\DebugPrinter::debug($newGood, 'после апдейт');
                 //--- добавить изображение
                 $additionalPath = 'goodsImages/' . $newGood->id;
                 $uploadedFiles = (new FileUploader())->uploadToRelativePath($_FILES, $additionalPath);
-//                \core\DebugPrinter::debug($uploadedFiles ,'добавленные в папку файлы');
+//                \ItForFree\SimpleMVC\DebugPrinter::debug($uploadedFiles ,'добавленные в папку файлы');
                 
                 $newImage = (new Image())->loadFromArray($_POST);
                 $newImage->id_goods = $newGood->id;
@@ -117,15 +117,15 @@ class GoodController extends \core\mvc\Controller
                     $pathArray[] = $image['filepath'];
                 }
                 $newImage->path = $pathArray;
-//                \core\DebugPrinter::debug($newImage, 'объект изображения перед инсертом');
+//                \ItForFree\SimpleMVC\DebugPrinter::debug($newImage, 'объект изображения перед инсертом');
 //               die();
                 $newImage->insert();
-                $this->header(\core\mvc\view\Url::link("admin/good/index&id=$id"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("admin/good/index&id=$id"));
                  
             } 
             elseif (!empty($_POST['cancel'])) {
 //                \DebugPrinter::debug("Отмена операции");
-                $this->header(\core\mvc\view\Url::link("admin/good/index&id=$id"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("admin/good/index&id=$id"));
             }
         }
         else {
@@ -159,12 +159,12 @@ class GoodController extends \core\mvc\Controller
                 $newGood = $Good->loadFromArray($_POST);
                 $newGood->delete();
                 
-                $this->header(\core\mvc\view\Url::link("archive/allGoods"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("archive/allGoods"));
               
             }
             elseif (!empty($_POST['cancel'])) {
 //                \DebugPrinter::debug("Отмена операции");
-                $this->header(\core\mvc\view\Url::link("admin/good/edit&id=$id"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("admin/good/edit&id=$id"));
             }
         }
         else {

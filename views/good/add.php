@@ -1,7 +1,7 @@
 
 <h2><?= $addGoodTitle ?></h2>
 
-<form  method="post" action="<?= \core\mvc\view\Url::link("admin/good/add")?>" enctype="multipart/form-data"> 
+<form  method="post" action="<?= \ItForFree\SimpleMVC\Url::link("admin/good/add")?>" enctype="multipart/form-data"> 
     <h5>Введите наименование товара</h5>
     <input type="text" name="name" value="наименование товара"><br>
     <h5>Введите описание товара</h5>

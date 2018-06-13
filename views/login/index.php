@@ -1,6 +1,6 @@
 <h2><?= $loginTitle ?></h2>
 
-<form method="post" action="<?= \core\mvc\view\Url::link('login/index')?>">
+<form method="post" action="<?= \ItForFree\SimpleMVC\Url::link('login/index')?>">
     
     <?php 
     if (!empty($_GET['auth'])) {

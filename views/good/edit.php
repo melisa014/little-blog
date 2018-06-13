@@ -1,12 +1,12 @@
 <h2><?= $editGoodTitle ?>
     <span>
-        <?= \core\User::get()->returnIfAllowed("admin/good/delete", 
-            "<a href=" . \core\mvc\view\Url::link("admin/good/delete&id=" . $_GET['id']) 
+        <?= \ItForFree\SimpleMVC\User::get()->returnIfAllowed("admin/good/delete", 
+            "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/good/delete&id=" . $_GET['id']) 
             . ">[Удалить]</a>");?>
     </span>
 </h2>
 
-<form method="post" action="<?= \core\mvc\view\Url::link("admin/good/edit&id=" . $_GET['id'])?>" enctype="multipart/form-data" >
+<form method="post" action="<?= \ItForFree\SimpleMVC\Url::link("admin/good/edit&id=" . $_GET['id'])?>" enctype="multipart/form-data" >
     
     <h5>Введите наименование товара</h5>
     <input type="text" name="name" value="<?= $viewGood->name ?>"><br>

@@ -1,7 +1,7 @@
 <?php
 namespace application\models;
 
-class Article extends \core\mvc\Model
+class Article extends \ItForFree\SimpleMVC\mvc\Model
 {
     /**
      * @var string Имя обрабатываемой таблицы 

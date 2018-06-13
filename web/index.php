@@ -6,8 +6,8 @@ require_once("autoload.php"); // автозагрузка классов
 
 //phpinfo(); die();
 
-//$route = \core\mvc\view\Url::getRoute();
-//$obj = new \core\Router($route);
+//$route = \ItForFree\SimpleMVC\Url::getRoute();
+//$obj = new \ItForFree\SimpleMVC\Router($route);
 
 
 $localConfig = require(__DIR__ . '/../application/config/web-local.php');

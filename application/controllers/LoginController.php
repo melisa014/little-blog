@@ -1,7 +1,7 @@
 <?php
 namespace application\controllers;
 
-class LoginController extends \core\mvc\Controller
+class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
 {
     /** 
      * @var string Название страницы
@@ -16,12 +16,12 @@ class LoginController extends \core\mvc\Controller
         if (!empty($_POST)) {
             $login = $_POST['userName'];
             $pass = $_POST['password'];
-            $user = \core\User::get();
+            $user = \ItForFree\SimpleMVC\User::get();
             if($user->login($login, $pass)) {
-                $this->header(\core\mvc\view\Url::link("homepage/index"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("homepage/index"));
             }
             else {
-                $this->header(\core\mvc\view\Url::link("login/index&auth=deny"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("login/index&auth=deny"));
             }
         }
         else {
@@ -36,9 +36,9 @@ class LoginController extends \core\mvc\Controller
      */
     public function logoutAction()
     {
-        $user = \core\User::get();
+        $user = \ItForFree\SimpleMVC\User::get();
         $user->logout();
-        $this->header(\core\mvc\view\Url::link("login/index"));
+        $this->header(\ItForFree\SimpleMVC\Url::link("login/index"));
     }
 }
 

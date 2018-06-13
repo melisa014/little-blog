@@ -4,7 +4,7 @@ namespace application\controllers;
 /**
  * Класс для работы с ajax-запросами
  */
-class AjaxController extends \core\mvc\Controller 
+class AjaxController extends \ItForFree\SimpleMVC\mvc\Controller 
 {
     /**
      * Подгрузка "лайков" статей или товаров
@@ -15,7 +15,7 @@ class AjaxController extends \core\mvc\Controller
         
         $Model = new $modelClassName();
         $Model->likesUpper($_GET['id'], $_GET['tableName']);
-        \core\Session::get()->session['user']['userSessionLikesCount']++;
+        \ItForFree\SimpleMVC\Session::get()->session['user']['userSessionLikesCount']++;
          
         echo $Model->getModelLikes($_GET['id'], $_GET['tableName']);
     }
@@ -25,7 +25,7 @@ class AjaxController extends \core\mvc\Controller
      */
     public function sessionLikesCountAction()
     {
-        echo \core\Session::get()->session['user']['userSessionLikesCount'];
+        echo \ItForFree\SimpleMVC\Session::get()->session['user']['userSessionLikesCount'];
     }
     
     /**

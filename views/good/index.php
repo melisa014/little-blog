@@ -1,7 +1,7 @@
 <h2><?= $viewGood->name ?>
     <span>
-        <?= \core\User::get()->returnIfAllowed("admin/good/edit", 
-            "<a href=" . \core\mvc\view\Url::link("admin/good/edit&id=". $viewGood->id) 
+        <?= \ItForFree\SimpleMVC\User::get()->returnIfAllowed("admin/good/edit", 
+            "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/good/edit&id=". $viewGood->id) 
             . ">[Редактировать]</a>");?>
     </span>
 </h2> 

@@ -1,6 +1,6 @@
 <h2><?= $addCategoryTitle ?></h2>
 
-<form method="post" action="<?= \core\mvc\view\Url::link("category/add")?>"> <!--&id=<?php echo $_GET['id']; ?>-->
+<form method="post" action="<?= \ItForFree\SimpleMVC\Url::link("category/add")?>"> <!--&id=<?php echo $_GET['id']; ?>-->
     <h5>Введите название категории</h5>
     <input type="text" name="name" value="*название категории*"><br>
     <h5>Краткое описание категории</h5>

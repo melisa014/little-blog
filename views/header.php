@@ -21,43 +21,43 @@
 <!-- Это блок навигации по сайту -->
         <p>
             <a href="/index.php">На домашнюю страницу</a>
-            <a href="<?= \core\mvc\view\Url::link("archive/index")?>">В архив</a>
-            <a href="<?= \core\mvc\view\Url::link("login/index")?>">Войти под своим именем</a>
+            <a href="<?= \ItForFree\SimpleMVC\Url::link("archive/index")?>">В архив</a>
+            <a href="<?= \ItForFree\SimpleMVC\Url::link("login/index")?>">Войти под своим именем</a>
 
 
-            <?= \core\User::get()->returnIfAllowed("article/add", 
-                   "<a href=" . \core\mvc\view\Url::link("article/add") . ">+ Добавить статью</a>");
-                \core\User::get()->returnIfAllowed("archive/allCategories", 
-                   "<a href=" . \core\mvc\view\Url::link("archive/allCategories") . ">В архив(Категории)</a>");
-                \core\User::get()->returnIfAllowed("archive/allUsers", 
-                   "<a href=" . \core\mvc\view\Url::link("archive/allUsers") . ">В архив(Пользователи)</a>");
-                \core\User::get()->returnIfAllowed("category/add", 
-                   "<a href=" . \core\mvc\view\Url::link("category/add") . ">+ Добавить категорию</a>");
-                \core\User::get()->returnIfAllowed("admin/adminusers/add", 
-                   "<a href=" . \core\mvc\view\Url::link("admin/adminusers/add") . ">+ Добавить пользователя</a>");
-                \core\User::get()->returnIfAllowed("archive/allGoods", 
-                   "<a href=" . \core\mvc\view\Url::link("archive/allGoods") . ">В архив(Товары)</a>");
-                \core\User::get()->returnIfAllowed("admin/good/add", 
-                   "<a href=" . \core\mvc\view\Url::link("admin/good/add") . ">+ Добавить товар</a>");
-                \core\User::get()->returnIfAllowed("goodSearch/index", 
-                   "<a href=" . \core\mvc\view\Url::link("goodSearch/index") . ">Поиск по товарам</a>");
+            <?= \ItForFree\SimpleMVC\User::get()->returnIfAllowed("article/add", 
+                   "<a href=" . \ItForFree\SimpleMVC\Url::link("article/add") . ">+ Добавить статью</a>");
+                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("archive/allCategories", 
+                   "<a href=" . \ItForFree\SimpleMVC\Url::link("archive/allCategories") . ">В архив(Категории)</a>");
+                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("archive/allUsers", 
+                   "<a href=" . \ItForFree\SimpleMVC\Url::link("archive/allUsers") . ">В архив(Пользователи)</a>");
+                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("category/add", 
+                   "<a href=" . \ItForFree\SimpleMVC\Url::link("category/add") . ">+ Добавить категорию</a>");
+                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("admin/adminusers/add", 
+                   "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/adminusers/add") . ">+ Добавить пользователя</a>");
+                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("archive/allGoods", 
+                   "<a href=" . \ItForFree\SimpleMVC\Url::link("archive/allGoods") . ">В архив(Товары)</a>");
+                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("admin/good/add", 
+                   "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/good/add") . ">+ Добавить товар</a>");
+                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("goodSearch/index", 
+                   "<a href=" . \ItForFree\SimpleMVC\Url::link("goodSearch/index") . ">Поиск по товарам</a>");
 
             ?>
         </p>
        
 <!-- Это блок данных о пользователе и для пользователя-->
         <p>
-            <?= \core\User::get()->userName . ' ' ?><br>
-            <span id="sessionLikesCount">Понравилось: <?= \core\Session::get()->session['user']['userSessionLikesCount']?></span><br>
+            <?= \ItForFree\SimpleMVC\User::get()->userName . ' ' ?><br>
+            <span id="sessionLikesCount">Понравилось: <?= \ItForFree\SimpleMVC\Session::get()->session['user']['userSessionLikesCount']?></span><br>
 
     <!-- Выводим на экран ссылку на "Мой заказ" для просмотра и подтверждения, и в скобках кол-во заказанных товаров-->
             <span>
-                <?= \core\User::get()->returnIfAllowed("order/index", 
-                        "<a href=" . \core\mvc\view\Url::link("order/index") 
+                <?= \ItForFree\SimpleMVC\User::get()->returnIfAllowed("order/index", 
+                        "<a href=" . \ItForFree\SimpleMVC\Url::link("order/index") 
                         . ">Мой заказ</a> <span  id='myOrder'>(" . (new \application\models\Correction())->getUsersAllGoodsCount() . ")</span>");?>
             </span><br>
 
-            <a href="<?= \core\mvc\view\Url::link("login/logout")?>">Выйти</a>
+            <a href="<?= \ItForFree\SimpleMVC\Url::link("login/logout")?>">Выйти</a>
         </p>
         
 <!-- Это начало страницы сайта-->
