@@ -4,7 +4,7 @@ function autoload($className)
 {
 // echo '-- '  . $className;   
     // базовая диретория, которая является корнем автозагрузки
-    $baseDir = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR;
+    $baseDir = $_SERVER['DOCUMENT_ROOT'] . '..' . DIRECTORY_SEPARATOR;
     
     $className = ltrim($className, '\\');
     $fileName  = '';

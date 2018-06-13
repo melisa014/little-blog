@@ -3,7 +3,7 @@ namespace application\controllers;
 use \application\models\Article as Article;
 use \application\models\Category as Category;
 
-class HomepageController extends \core\mvc\Controller
+class HomepageController extends \ItForFree\SimpleMVC\mvc\Controller
 {
     /**
      * @var string Название страницы

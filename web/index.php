@@ -15,7 +15,6 @@ $config = ItForFree\rusphp\PHP\ArrayLib\Merger::mergeRecursivelyWithReplace(
     require(__DIR__ . '/../application/config/web.php'), 
     $localConfig);
 
-SimpleEchoLog::pre($config);
 
 \ItForFree\SimpleMVC\Application::get()
     ->setConfiguration($config)
