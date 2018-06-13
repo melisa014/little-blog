@@ -15,6 +15,13 @@ $config = [
         ],
         'url' => [ 
             'class' => \ItForFree\SimpleMVC\Url::class
+        ],
+        'mvc' => [
+            'views' => [
+                'base-template-path' => '../application/views',
+                'footer-path' => '',
+                'header-path' => ''
+            ]
         ]
     ]    
 ];
