@@ -3,16 +3,16 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=windows-1251" />
         <title>Little-blog</title>
-        <link rel="stylesheet" type="text/css" href="/web/style.css">
-        <script src="/web/JS/jquery-3.2.1.js"></script>
-        <script src="/web/JS/jquery.validate.js"></script>
-        <script src="web/JS/loaderIdentity.js"></script>
-        <script src="/web/JS/scrollingPage.js"></script>
-        <script src="/web/JS/order.js"></script>
-        <script src="/web/JS/userAddValidation.js"></script>
-        <script src="/web/JS/addImage.js"></script>
-        <!--<script src="/web/JS/likes.js"></script>-->
-        <!--<script src="/web/JS/searchGoods.js"></script>-->
+        <link rel="stylesheet" type="text/css" href="/style.css">
+        <script src="/JS/jquery-3.2.1.js"></script>
+        <script src="/JS/jquery.validate.js"></script>
+        <script src="/JS/loaderIdentity.js"></script>
+        <script src="/JS/scrollingPage.js"></script>
+        <script src="/JS/order.js"></script>
+        <script src="/JS/userAddValidation.js"></script>
+        <script src="/JS/addImage.js"></script>
+        <!--<script src="/JS/likes.js"></script>-->
+        <!--<script src="/JS/searchGoods.js"></script>-->
     </head>
     <body>
         <h1>Самый лучший сайт</h1>
