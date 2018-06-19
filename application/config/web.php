@@ -18,7 +18,7 @@ $config = [
         ],
         'mvc' => [
             'views' => [
-                'base-template-path' => '../application/views',
+                'base-template-path' => '../application/views/',
                 'footer-path' => '',
                 'header-path' => ''
             ]
