@@ -22,6 +22,9 @@ $config = [
                 'footer-path' => '',
                 'header-path' => ''
             ]
+        ],
+        'user' => [
+            'class' => \ItForFree\SimpleMVC\User::class
         ]
     ]    
 ];
