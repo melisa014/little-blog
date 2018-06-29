@@ -1,3 +1,4 @@
+<?php use ItForFree\SimpleMVC\Config; ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,22 +25,22 @@
             <a href="<?= \ItForFree\SimpleMVC\Url::link("archive/index")?>">В архив</a>
             <a href="<?= \ItForFree\SimpleMVC\Url::link("login/index")?>">Войти под своим именем</a>
 
-
-            <?= \ItForFree\SimpleMVC\User::get()->returnIfAllowed("article/add", 
+            <?php $User = Config::getObject('core.user.class');  ?>
+            <?= $User->returnIfAllowed("article/add", 
                    "<a href=" . \ItForFree\SimpleMVC\Url::link("article/add") . ">+ Добавить статью</a>");
-                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("archive/allCategories", 
+                $User->returnIfAllowed("archive/allCategories", 
                    "<a href=" . \ItForFree\SimpleMVC\Url::link("archive/allCategories") . ">В архив(Категории)</a>");
-                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("archive/allUsers", 
+                $User->returnIfAllowed("archive/allUsers", 
                    "<a href=" . \ItForFree\SimpleMVC\Url::link("archive/allUsers") . ">В архив(Пользователи)</a>");
-                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("category/add", 
+                $User->returnIfAllowed("category/add", 
                    "<a href=" . \ItForFree\SimpleMVC\Url::link("category/add") . ">+ Добавить категорию</a>");
-                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("admin/adminusers/add", 
+                $User->returnIfAllowed("admin/adminusers/add", 
                    "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/adminusers/add") . ">+ Добавить пользователя</a>");
-                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("archive/allGoods", 
+                $User->returnIfAllowed("archive/allGoods", 
                    "<a href=" . \ItForFree\SimpleMVC\Url::link("archive/allGoods") . ">В архив(Товары)</a>");
-                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("admin/good/add", 
+                $User->returnIfAllowed("admin/good/add", 
                    "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/good/add") . ">+ Добавить товар</a>");
-                \ItForFree\SimpleMVC\User::get()->returnIfAllowed("goodSearch/index", 
+                $User->returnIfAllowed("goodSearch/index", 
                    "<a href=" . \ItForFree\SimpleMVC\Url::link("goodSearch/index") . ">Поиск по товарам</a>");
 
             ?>
@@ -47,12 +48,12 @@
        
 <!-- Это блок данных о пользователе и для пользователя-->
         <p>
-            <?= \ItForFree\SimpleMVC\User::get()->userName . ' ' ?><br>
+            <?= $User->userName . ' ' ?><br>
             <span id="sessionLikesCount">Понравилось: <?= \ItForFree\SimpleMVC\Session::get()->session['user']['userSessionLikesCount']?></span><br>
 
     <!-- Выводим на экран ссылку на "Мой заказ" для просмотра и подтверждения, и в скобках кол-во заказанных товаров-->
             <span>
-                <?= \ItForFree\SimpleMVC\User::get()->returnIfAllowed("order/index", 
+                <?= $User->returnIfAllowed("order/index", 
                         "<a href=" . \ItForFree\SimpleMVC\Url::link("order/index") 
                         . ">Мой заказ</a> <span  id='myOrder'>(" . (new \application\models\Correction())->getUsersAllGoodsCount() . ")</span>");?>
             </span><br>
