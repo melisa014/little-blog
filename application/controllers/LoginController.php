@@ -8,6 +8,8 @@ class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public $loginTitle = "Регистрация/Вход в систему";
     
+    
+    
     /**
      * Вход в систему / Выводит на экран форму для входа в систему
      */
