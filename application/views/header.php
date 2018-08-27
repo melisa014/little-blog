@@ -1,4 +1,9 @@
-<?php use ItForFree\SimpleMVC\Config; ?>
+<?php 
+use ItForFree\SimpleMVC\Config;
+use ItForFree\SimpleMVC\Url;
+
+$User = Config::getObject('core.user.class');
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,26 +27,28 @@
 <!-- Это блок навигации по сайту -->
         <p>
             <a href="/index.php">На домашнюю страницу</a>
-            <a href="<?= \ItForFree\SimpleMVC\Url::link("archive/index")?>">В архив</a>
-            <a href="<?= \ItForFree\SimpleMVC\Url::link("login/index")?>">Войти под своим именем</a>
+            <a href="<?= Url::link("archive/index")?>">В архив</a>
+            
+            <?php  if ($User->isAllowed("login/login")): ?>
+                <a href="<?= Url::link("login/login")?>">[Вход]</a>
+            <?php endif; ?>
 
-            <?php $User = Config::getObject('core.user.class');  ?>
             <?= $User->returnIfAllowed("article/add", 
-                   "<a href=" . \ItForFree\SimpleMVC\Url::link("article/add") . ">+ Добавить статью</a>");
+                   "<a href=" . Url::link("article/add") . ">+ Добавить статью</a>");
                 $User->returnIfAllowed("archive/allCategories", 
-                   "<a href=" . \ItForFree\SimpleMVC\Url::link("archive/allCategories") . ">В архив(Категории)</a>");
+                   "<a href=" . Url::link("archive/allCategories") . ">В архив(Категории)</a>");
                 $User->returnIfAllowed("archive/allUsers", 
-                   "<a href=" . \ItForFree\SimpleMVC\Url::link("archive/allUsers") . ">В архив(Пользователи)</a>");
+                   "<a href=" . Url::link("archive/allUsers") . ">В архив(Пользователи)</a>");
                 $User->returnIfAllowed("category/add", 
-                   "<a href=" . \ItForFree\SimpleMVC\Url::link("category/add") . ">+ Добавить категорию</a>");
+                   "<a href=" . Url::link("category/add") . ">+ Добавить категорию</a>");
                 $User->returnIfAllowed("admin/adminusers/add", 
-                   "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/adminusers/add") . ">+ Добавить пользователя</a>");
+                   "<a href=" . Url::link("admin/adminusers/add") . ">+ Добавить пользователя</a>");
                 $User->returnIfAllowed("archive/allGoods", 
-                   "<a href=" . \ItForFree\SimpleMVC\Url::link("archive/allGoods") . ">В архив(Товары)</a>");
+                   "<a href=" . Url::link("archive/allGoods") . ">В архив(Товары)</a>");
                 $User->returnIfAllowed("admin/good/add", 
-                   "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/good/add") . ">+ Добавить товар</a>");
+                   "<a href=" . Url::link("admin/good/add") . ">+ Добавить товар</a>");
                 $User->returnIfAllowed("goodSearch/index", 
-                   "<a href=" . \ItForFree\SimpleMVC\Url::link("goodSearch/index") . ">Поиск по товарам</a>");
+                   "<a href=" . Url::link("goodSearch/index") . ">Поиск по товарам</a>");
 
             ?>
         </p>
@@ -52,13 +59,20 @@
             <span id="sessionLikesCount">Понравилось: <?= \ItForFree\SimpleMVC\Session::get()->session['user']['userSessionLikesCount']?></span><br>
 
     <!-- Выводим на экран ссылку на "Мой заказ" для просмотра и подтверждения, и в скобках кол-во заказанных товаров-->
-            <span>
-                <?= $User->returnIfAllowed("order/index", 
-                        "<a href=" . \ItForFree\SimpleMVC\Url::link("order/index") 
-                        . ">Мой заказ</a> <span  id='myOrder'>(" . (new \application\models\Correction())->getUsersAllGoodsCount() . ")</span>");?>
-            </span><br>
-
-            <a href="<?= \ItForFree\SimpleMVC\Url::link("login/logout")?>">Выйти</a>
+        <span>
+            <?php if ($User->isAllowed("order/index")): ?> 
+                    <a href="<?= Url::link("order/index") ?>">
+                        Мой заказ</a> 
+                    <span  id='myOrder'>
+                        (<?=  (new \application\models\Correction())->getUsersAllGoodsCount() ?>)
+                    </span>
+            <?php endif; ?>
+        </span><br>
+        
+        <?php  if ($User->isAllowed("login/logout")): ?>
+            <a href="<?= Url::link("login/logout")?>">Выйти</a>
+         <?php endif; ?>   
+            
         </p>
         
 <!-- Это начало страницы сайта-->

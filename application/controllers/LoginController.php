@@ -8,12 +8,18 @@ class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public $loginTitle = "Регистрация/Вход в систему";
     
-    
+    protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
+        'all' => ['allow' => ['logout'], 'deny' => ['login']], // общее правило
+        //исключения далее отдельно для каждого метода
+        'login' => ['allow' => ['guest']],  
+        'logout' => ['deny' => ['guest']],
+        
+    ];
     
     /**
      * Вход в систему / Выводит на экран форму для входа в систему
      */
-    public function indexAction()
+    public function loginAction()
     {
         if (!empty($_POST)) {
             $login = $_POST['userName'];
@@ -23,7 +29,7 @@ class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
                 $this->header(\ItForFree\SimpleMVC\Url::link("homepage/index"));
             }
             else {
-                $this->header(\ItForFree\SimpleMVC\Url::link("login/index&auth=deny"));
+                $this->header(\ItForFree\SimpleMVC\Url::link("login/login&auth=deny"));
             }
         }
         else {
@@ -40,7 +46,7 @@ class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
     {
         $user = \ItForFree\SimpleMVC\User::get();
         $user->logout();
-        $this->header(\ItForFree\SimpleMVC\Url::link("login/index"));
+        $this->header(\ItForFree\SimpleMVC\Url::link("login/login"));
     }
 }
 
