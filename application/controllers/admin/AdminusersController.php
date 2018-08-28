@@ -9,8 +9,8 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
 {
     
     protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
-        'all' => ['allow' => ['admin'], 'deny' => ['auth_user', 'guest']] // общее правило , 'deny' => ['guest']
-//         'all' => ['allow' => ['guest'], 'deny' => []] // общее правило , 'deny' => ['guest']
+         ['allow' => true, 'roles' => ['admin']],
+         ['allow' => false, 'roles' => ['?', '@']],
     ];
     
     public function indexAction()

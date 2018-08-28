@@ -23,10 +23,8 @@ class ArticleController extends \ItForFree\SimpleMVC\mvc\Controller
      * @var type array
      */
     protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
-        'all' => ['allow' => ['admin', 'auth_user', 'guest']], // общее правило , 'deny' => ['guest']
-        'delete' => ['deny' => ['auth_user', 'guest']], //исключения
-        'edit' => ['allow' => ['auth_user'], 'deny' => ['guest']], 
-        'add' => ['allow' => ['auth_user'], 'deny' => ['guest']],
+        ['allow' => true, 'roles' => ['?'], 'actions' => ['index']],
+        ['allow' => false, 'roles' => ['?']], // запрещаем гостю всё вроме просмотра
         
     ];
     

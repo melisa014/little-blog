@@ -8,12 +8,11 @@ class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public $loginTitle = "Регистрация/Вход в систему";
     
-    protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
-        'all' => ['allow' => ['logout'], 'deny' => ['login']], // общее правило
-        //исключения далее отдельно для каждого метода
-        'login' => ['allow' => ['guest']],  
-        'logout' => ['deny' => ['guest']],
-        
+    protected $rules = [ 
+        ['allow' => true, 'roles' => ['?'], 'actions' => ['login']],
+        ['allow' => false, 'roles' => ['@'], 'actions' => ['login']],
+        ['allow' => false, 'roles' => ['?'], 'actions' => ['logout']],
+        ['allow' => true, 'roles' => ['@'], 'actions' => ['logout']],
     ];
     
     /**
