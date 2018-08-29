@@ -1,7 +1,7 @@
 <?php
 namespace application\models;
 
-class Good extends \ItForFree\SimpleMVC\mvc\Model
+class Good extends BaseExampleModel
 {
     /**
      * @var string Имя обрабатываемой таблицы 
@@ -184,18 +184,6 @@ class Good extends \ItForFree\SimpleMVC\mvc\Model
         else return false;
     }
     
-//        public function likesUpper($id)
-//    {
-//        $goodData = $this->getById($id);
-//        $goodData->likes++;
-//        $goodData->update();
-//    }
-//    
-//    public function getGoodLikes($id)
-//    {
-//        $goodData = $this->getById($id);
-//        return $goodData->likes;
-//    }
     
     /**
      * Возвращает число товаров с данным Id, находящихся в наличии

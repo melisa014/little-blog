@@ -7,7 +7,7 @@ namespace application\models;
  *
  * @author qwe
  */
-class Adminusers extends \ItForFree\SimpleMVC\mvc\Model
+class Adminusers extends BaseExampleModel
 {
     /**
      * Имя таблицы пользователей

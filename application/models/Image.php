@@ -5,7 +5,7 @@ namespace application\models;
 /**
  * Класс для загрузки файлов 
  */
-class Image extends \ItForFree\SimpleMVC\mvc\Model
+class Image extends BaseExampleModel
 {
     /**
      * @var string Имя обрабатываемой таблицы 

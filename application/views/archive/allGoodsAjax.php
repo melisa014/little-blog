@@ -1,4 +1,9 @@
 <?php
+
+use ItForFree\SimpleMVC\Config;
+
+$User = Config::getObject('core.user.class');
+
 foreach ($archiveGood['results'] as $k => $v):?>
     <h4>
         <a href="<?= \ItForFree\SimpleMVC\Url::link("admin/good/index&id=". $archiveGood['results'][$k]->id)?>">
@@ -20,7 +25,7 @@ foreach ($archiveGood['results'] as $k => $v):?>
     <?= \ItForFree\SimpleMVC\User::get()->returnIfAllowed("order/index", 
     "<form method='post' id='form-" . $archiveGood['results'][$k]->id . "'>
         <input type='hidden' name='id_goods' value='" . $archiveGood['results'][$k]->id . "'>
-        <input type='hidden' name='id_users' value='" . (new \ItForFree\SimpleMVC\mvc\Model)->getUserId() . "'>
+        <input type='hidden' name='id_users' value='" . $User->getId() . "'>
         Количество: <input type='text' name='number' placeholder='0'>
         <input type='submit' name='addToTheOrder' value='Добавить в корзину' class='goods' data-good-id='" . $archiveGood['results'][$k]->id . "'>
     </form>");?>

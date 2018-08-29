@@ -1,7 +1,7 @@
 <?php
 namespace application\models;
 
-class Category extends \ItForFree\SimpleMVC\mvc\Model
+class Category extends BaseExampleModel
 {
     /**
      * @var string Имя обрабатываемой таблицы 

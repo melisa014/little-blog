@@ -5,11 +5,14 @@ namespace application\models;
 
 /**
  * Пример реализации класса пользователя (реализуем требующие этого методы абстрактные методы)
+ * Эту модель наследуем от специального класа-модели User из ядра SimpleMVC
  *
  */
-class ExampleUser extends \ItForFree\SimpleMVC\User {
-    
-    protected function checkAuthData($login, $pass) {
+class ExampleUser extends \ItForFree\SimpleMVC\User 
+{
+
+    protected function checkAuthData($login, $pass) 
+    {
         $result = false;
         
         $pdo = new mvc\Model();
@@ -30,6 +33,25 @@ class ExampleUser extends \ItForFree\SimpleMVC\User {
         }
         return $result;
         
+    }
+    
+    /**
+     * Вернёт id пользователя
+     * 
+     * @return int
+     */
+    public function getId()
+    {
+        if ($this->userName !== 'guest'){
+            $sql = "SELECT id FROM users where login = :userName";
+            $st = $this->pdo->prepare($sql); 
+            $st -> bindValue( ":userName", $this->userName, \PDO::PARAM_STR );
+            $st -> execute();
+            $row = $st->fetch();
+            return $row['id']; 
+        } else  {
+            return null;
+        }  
     }
     
 }

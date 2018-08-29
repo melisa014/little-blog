@@ -1,7 +1,7 @@
 <?php
 namespace application\models;
 
-class Article extends \ItForFree\SimpleMVC\mvc\Model
+class Article extends BaseExampleModel
 {
     /**
      * @var string Имя обрабатываемой таблицы 
@@ -114,33 +114,6 @@ class Article extends \ItForFree\SimpleMVC\mvc\Model
         $st->bindValue( ":likes", $this->likes, \PDO::PARAM_INT );
         $st->execute();
     }
-    
-//    public function likesUpper($id)
-//    {
-//        $articleData = $this->getById($id);
-//        $articleData->likes++;
-//        $articleData->update();
-//    }
-//    
-//    public function getArticleLikes($id)
-//    {
-//        $articleData = $this->getById($id);
-//        return $articleData->likes;
-//    }
-    
-    /**
-     * Получить сумму всех лайков форума с помощью метода getList()
-     * @return type
-     */
-//    public function getAllLikesCount() // переписать 1 SQL запросом
-//    {
-//        $articles = $this->getList();
-//        $likesCount = 0;
-//        foreach ($articles['results'] as $k =>$v) {
-//            $likesCount += $articles['results'][$k]->likes;
-//        }
-//        return $likesCount;
-//    }
     
     /**
      * Получить сумму всех лайков форума напрямую из базы

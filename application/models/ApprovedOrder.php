@@ -4,7 +4,7 @@ namespace application\models;
 /**
  * Класс для работы с архивом заказов
  */
-class ApprovedOrder extends \ItForFree\SimpleMVC\mvc\Model
+class ApprovedOrder extends BaseExampleModel
 {
     
     /**

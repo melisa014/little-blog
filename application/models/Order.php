@@ -1,7 +1,8 @@
 <?php
 namespace application\models;
+use ItForFree\SimpleMVC\Config;
 
-class Order extends \ItForFree\SimpleMVC\mvc\Model
+class Order extends BaseExampleModel
 {
     /**
      * Имя таблицы заказов
@@ -18,6 +19,12 @@ class Order extends \ItForFree\SimpleMVC\mvc\Model
      */
     public $id_users = null;
     
+    /**
+     * Для хранения объекта текущего пользоватея
+     * @var object 
+     */
+    public $User = null;
+    
     
     /**
     * Устанавливаем свойства с помощью значений в заданном массиве
@@ -28,6 +35,7 @@ class Order extends \ItForFree\SimpleMVC\mvc\Model
     {
         parent::__construct();
         $this->set_object_vars($this, $data);
+        $this->User = Config::getObject('core.user.class');
     }
     
     /**
@@ -64,7 +72,7 @@ class Order extends \ItForFree\SimpleMVC\mvc\Model
     {
         $sql = "SELECT id FROM $this->tableName WHERE id_users = :id_users ";  
         $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":id_users", (new \ItForFree\SimpleMVC\mvc\Model)->getUserId(), \PDO::PARAM_INT );
+        $st->bindValue( ":id_users",  $this->User->getId(), \PDO::PARAM_INT );
         $st->execute();
         $id = $st->fetch();
         return $id['id'];
@@ -74,7 +82,7 @@ class Order extends \ItForFree\SimpleMVC\mvc\Model
     {
         $sql = "SELECT id FROM $this->tableName WHERE id_users = :id_users ";  
         $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":id_users", (new \ItForFree\SimpleMVC\mvc\Model)->getUserId(), \PDO::PARAM_INT );
+        $st->bindValue( ":id_users", $this->User->getId(), \PDO::PARAM_INT );
         $st->execute();
         $id = $st->fetch();
 //        \DebugPrinter::debug($id);
@@ -90,7 +98,7 @@ class Order extends \ItForFree\SimpleMVC\mvc\Model
     {
         $sql = "DELETE FROM $this->tableName WHERE id_users = :id_users ";  
         $st = $this->pdo->prepare ( $sql );
-        $st->bindValue( ":id_users", (new \ItForFree\SimpleMVC\mvc\Model)->getUserId(), \PDO::PARAM_INT );
+        $st->bindValue( ":id_users", $this->User->getId(), \PDO::PARAM_INT );
         $st->execute();
     }
     

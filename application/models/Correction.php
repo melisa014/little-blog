@@ -1,7 +1,7 @@
 <?php
 namespace application\models;
 
-class Correction extends \ItForFree\SimpleMVC\mvc\Model
+class Correction extends BaseExampleModel
 {
     /**
      * Имя таблицы заказов
