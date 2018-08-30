@@ -1,5 +1,6 @@
 <?php
 namespace application\controllers;
+use ItForFree\SimpleMVC\Config;
 
 class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
 {
@@ -10,8 +11,6 @@ class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
     
     protected $rules = [ 
         ['allow' => true, 'roles' => ['?'], 'actions' => ['login']],
-        ['allow' => false, 'roles' => ['@'], 'actions' => ['login']],
-        ['allow' => false, 'roles' => ['?'], 'actions' => ['logout']],
         ['allow' => true, 'roles' => ['@'], 'actions' => ['logout']],
     ];
     
@@ -23,7 +22,7 @@ class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
         if (!empty($_POST)) {
             $login = $_POST['userName'];
             $pass = $_POST['password'];
-            $user = \ItForFree\SimpleMVC\User::get();
+            $user = Config::getObject('core.user.class');
             if($user->login($login, $pass)) {
                 $this->header(\ItForFree\SimpleMVC\Url::link("homepage/index"));
             }

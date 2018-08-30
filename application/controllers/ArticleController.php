@@ -23,8 +23,8 @@ class ArticleController extends \ItForFree\SimpleMVC\mvc\Controller
      * @var type array
      */
     protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
-        ['allow' => true, 'roles' => ['?'], 'actions' => ['index']],
-        ['allow' => false, 'roles' => ['?']], // запрещаем гостю всё вроме просмотра
+        ['allow' => true, 'roles' => ['?'], 'actions' => ['index']], // запрещаем/ гостю всё вроме просмотра
+        ['allow' => true, 'roles' => ['@']],
         
     ];
     

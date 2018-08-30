@@ -15,9 +15,8 @@ class ExampleUser extends \ItForFree\SimpleMVC\User
     {
         $result = false;
         
-        $pdo = new mvc\Model();
         $sql = "SELECT salt, pass FROM users WHERE login = :login";
-        $st = $pdo->pdo->prepare($sql);
+        $st = $this->pdo->prepare($sql);
         $st->bindValue( ":login", $login, \PDO::PARAM_STR);
         $st->execute();
         $siteAuthData = $st->fetch();

@@ -13,7 +13,7 @@ class OrderController extends \ItForFree\SimpleMVC\mvc\Controller
 {
     
     protected $rules = [
-        'all' => ['allow' => ['admin', 'auth_user'], 'deny' => ['guest']]
+        ['allow' => true, 'roles' => ['@']],
     ];
             
     public function indexAction() 

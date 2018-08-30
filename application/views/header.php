@@ -4,7 +4,7 @@ use ItForFree\SimpleMVC\Url;
 
 $User = Config::getObject('core.user.class');
 
-//pdie($User->explainAccess("admin/adminusers/add"));
+//vpre($User->explainAccess("archive/index"));
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +30,9 @@ $User = Config::getObject('core.user.class');
 <!-- Это блок навигации по сайту -->
         <p>
             <a href="/index.php">Главная</a>
-            <a href="<?= Url::link("archive/index")?>">В архив</a>
+            <?php  if ($User->isAllowed("login/login")): ?>
+                <a href="<?= Url::link("login/login")?>">В архив</a>
+            <?php endif; ?>
             
             <?php  if ($User->isAllowed("login/login")): ?>
                 <a href="<?= Url::link("login/login")?>">[Вход]</a>

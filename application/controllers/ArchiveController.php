@@ -11,10 +11,8 @@ class ArchiveController extends \ItForFree\SimpleMVC\mvc\Controller
      * Список правил, ограничивающих доступ пользователей с разными ролями
      * @var type array
      */
-     protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
-        'all' => ['allow' => ['admin', 'auth_user', 'guest']], // общее правило
-        'allCategories' => ['deny' => ['guest']], //исключения
-        'allUsers' => ['deny' => ['guest', 'auth_user']], //исключения
+    protected $rules = [
+        ['allow' => true, 'roles' => ['@']],
     ];
     
     /**
