@@ -4,6 +4,7 @@ use ItForFree\SimpleMVC\Url;
 
 $User = Config::getObject('core.user.class');
 
+
 //vpre($User->explainAccess("archive/index"));
 
 ?>

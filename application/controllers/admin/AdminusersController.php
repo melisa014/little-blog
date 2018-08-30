@@ -1,6 +1,7 @@
 <?php
 namespace application\controllers\admin;
 use \application\models\Adminusers as Adminusers;
+use ItForFree\SimpleMVC\Config;
 
 /**
  *
@@ -17,11 +18,18 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
     {
         $Adminusers = new Adminusers();
 
-        $viewAdminusers = $Adminusers->getById($_GET['id']);
+        $userId = $_GET['id'];
         
-        $this->view->addVar('viewAdminusers', $viewAdminusers);
-        
-        $this->view->render('user/index.php');
+        if ($userId) { // если указан конктреный пользователь
+            $viewAdminusers = $Adminusers->getById($_GET['id']);
+            $this->view->addVar('viewAdminusers', $viewAdminusers);
+            $this->view->render('user/view-item.php');
+        } else { // выводим полный список
+            
+            $users = $Adminusers->getList()['results'];
+            $this->view->addVar('users', $users);
+            $this->view->render('user/index.php');
+        }
     }
 
     /**
@@ -29,15 +37,16 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public function addAction()
     {
+        $Url = Config::get('core.url.class');
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewUser'])) {
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->insert(); 
-                $this->header(\ItForFree\SimpleMVC\Url::link("archive/allUsers"));
+                $this->header($Url::link("archive/allUsers"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\ItForFree\SimpleMVC\Url::link("archive/allUsers"));
+                $this->header($Url::link("archive/allUsers"));
             }
         }
         else {
@@ -54,6 +63,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
     public function editAction()
     {
         $id = $_GET['id'];
+        $Url = Config::get('core.url.class');
         
         if (!empty($_POST)) { // это выполняется нормально.
             
@@ -61,10 +71,10 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->update();
-                $this->header(\ItForFree\SimpleMVC\Url::link("admin/adminusers/index&id=$id"));
+                $this->header($Url::link("admin/adminusers/index&id=$id"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\ItForFree\SimpleMVC\Url::link("admin/adminusers/index&id=$id"));
+                $this->header($Url::link("admin/adminusers/index&id=$id"));
             }
         }
         else {
@@ -87,6 +97,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
     public function deleteAction()
     {
         $id = $_GET['id'];
+        $Url = Config::get('core.url.class');
         
         if (!empty($_POST)) {
             if (!empty($_POST['deleteUser'])) {
@@ -94,11 +105,11 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->delete();
                 
-                $this->header(\ItForFree\SimpleMVC\Url::link("archive/allUsers"));
+                $this->header($Url::link("archive/allUsers"));
               
             }
             elseif (!empty($_POST['cancel'])) {
-                $this->header(\ItForFree\SimpleMVC\Url::link("admin/adminusers/edit&id=$id"));
+                $this->header($Url::link("admin/adminusers/edit&id=$id"));
             }
         }
         else {

@@ -81,7 +81,6 @@ class Adminusers extends BaseExampleModel
      */
     public function insert()
     {
-        
         $sql = "INSERT INTO $this->tableName (timestamp, login, salt, pass, role, email) VALUES (:timestamp, :login, :salt, :pass, :role, :email)"; 
         $st = $this->pdo->prepare ( $sql );
         $st->bindValue( ":timestamp", (new \DateTime('NOW'))->format('Y-m-d H:i:s'), \PDO::PARAM_STMT);
