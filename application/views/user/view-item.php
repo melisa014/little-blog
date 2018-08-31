@@ -1,6 +1,12 @@
+<?php 
+use ItForFree\SimpleMVC\Config;
+
+$User = Config::getObject('core.user.class');
+?>
+
 <h2><?= $viewAdminusers->login ?>
     <span>
-        <?= \ItForFree\SimpleMVC\User::get()->returnIfAllowed("admin/adminusers/edit", 
+        <?= $User->returnIfAllowed("admin/adminusers/edit", 
             "<a href=" . \ItForFree\SimpleMVC\Url::link("admin/adminusers/edit&id=". $viewAdminusers->id) 
             . ">[Редактировать]</a>");?>
     </span>
