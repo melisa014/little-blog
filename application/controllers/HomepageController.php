@@ -16,19 +16,11 @@ class HomepageController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public function indexAction()
     {
-        $Article = new Article();
-        
-        $Category = new Category();
-        $homepageArticles = $Article->getList();
-        $homepageCategories = $Category->getList();
-        
-        $this->view->addVar('homepageArticles', $homepageArticles);
-        $this->view->addVar('homepageCategories', $homepageCategories);
-        $this->view->addVar('homepageTitle', $this->homepageTitle);
+
+        $this->view->addVar('homepageTitle', $this->homepageTitle); // передаём переменную по view
         
         $this->view->render('homepage/index.php');
-        
-        
+  
     }
     
    

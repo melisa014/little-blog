@@ -42,7 +42,7 @@ class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public function logoutAction()
     {
-        $user = \ItForFree\SimpleMVC\User::get();
+        $user = Config::getObject('core.user.class');
         $user->logout();
         $this->header(\ItForFree\SimpleMVC\Url::link("login/login"));
     }
