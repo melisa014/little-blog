@@ -12,15 +12,14 @@ $User = Config::getObject('core.user.class');
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=windows-1251" />
-        <title>Little-blog</title>
-        <link rel="stylesheet" type="text/css" href="/style.css">
+        <title>SimpleMVC | Учебный проект</title>
+        
+        <link rel="stylesheet" type="text/css" href="/CSS/bootstrap.css">
+        
         <script src="/JS/jquery-3.2.1.js"></script>
-        <script src="/JS/jquery.validate.js"></script>
-        <script src="/JS/loaderIdentity.js"></script>
-        <script src="/JS/scrollingPage.js"></script>
-        <script src="/JS/order.js"></script>
-        <script src="/JS/userAddValidation.js"></script>
-        <script src="/JS/addImage.js"></script>
+        <script src="/JS/popper.js"></script>
+        <script src="/JS/bootstrap.js"></script>
+
         <!--<script src="/JS/likes.js"></script>-->
         <!--<script src="/JS/searchGoods.js"></script>-->
     </head>
