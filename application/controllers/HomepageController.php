@@ -10,6 +10,8 @@ class HomepageController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public $homepageTitle = "Домашняя страница";
     
+    public $layoutPath = 'main.php';
+    
         
     /**
      * Выводит на экран страницу "Домашняя страница"
@@ -18,7 +20,6 @@ class HomepageController extends \ItForFree\SimpleMVC\mvc\Controller
     {
 
         $this->view->addVar('homepageTitle', $this->homepageTitle); // передаём переменную по view
-        
         $this->view->render('homepage/index.php');
   
     }

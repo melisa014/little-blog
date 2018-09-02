@@ -4,6 +4,12 @@ use ItForFree\SimpleMVC\Config;
 
 class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
 {
+    
+    /**
+     * {@inheritDoc}
+     */
+    public $layoutPath = 'main.php';
+        
     /** 
      * @var string Название страницы
      */

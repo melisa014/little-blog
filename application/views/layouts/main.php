@@ -46,15 +46,21 @@ $User = Config::getObject('core.user.class');
             </ul>
            </div>
         </nav>
-         <div id="container">
-        <h1>si</h1>
-        <hr><hr>
+        <div id="container">
+
         <div class="row justify-content-md-center">
             
        <h1>si</h1>
   
         </div>
+            <?= $CONTENT_DATA ?>
         
 <!-- Это начало страницы сайта-->
 
-        
+                    <div id="footer">
+                2017. All rights reserved. I will find you.
+            </div>
+        </div>
+    </body>
+</html>
+
