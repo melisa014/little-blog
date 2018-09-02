@@ -5,7 +5,7 @@ use ItForFree\SimpleMVC\Url;
 $User = Config::getObject('core.user.class');
 
 
-//vpre($User->explainAccess("homepage/index"));
+//vpre($User->explainAccess("admin/adminusers/index"));
 ?>
 
 <ul class="nav">

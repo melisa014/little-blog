@@ -1,16 +1,11 @@
 {
     "require": {
-        "it-for-free/file-uploader": "dev-master",
         "it-for-free/simple-mvc": "dev-master",
         "it-for-free/rusphp": "*"
         
     },
     "minimum-stability" : "dev",
     "repositories": [
-        {
-           "type": "vcs",
-           "url": "https://github.com/it-for-free/FileUploader"
-        },
         {
            "type": "vcs",
            "url": "https://github.com/it-for-free/SimpleMVC"

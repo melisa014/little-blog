@@ -45,10 +45,10 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->insert(); 
-                $this->header($Url::link("archive/allUsers"));
+                $this->header($Url::link("admin/adminusers/index"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header($Url::link("archive/allUsers"));
+                $this->header($Url::link("admin/adminusers/index"));
             }
         }
         else {
