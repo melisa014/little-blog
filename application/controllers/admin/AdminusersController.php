@@ -9,6 +9,8 @@ use ItForFree\SimpleMVC\Config;
 class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
 {
     
+    public $layoutPath = 'admin-main.php';
+    
     protected $rules = [ //вариант 2:  здесь всё гибче, проще развивать в дальнешем
          ['allow' => true, 'roles' => ['admin']],
          ['allow' => false, 'roles' => ['?', '@']],
@@ -18,7 +20,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
     {
         $Adminusers = new Adminusers();
 
-        $userId = $_GET['id'];
+        $userId = $_GET['id'] ?? null;
         
         if ($userId) { // если указан конктреный пользователь
             $viewAdminusers = $Adminusers->getById($_GET['id']);

@@ -1,4 +1,4 @@
-
+<?php include('includes/admin-users-nav.php'); ?>
 <h2><?= $addAdminusersTitle ?></h2>
 
 <form id="addUser" method="post" action="<?= \ItForFree\SimpleMVC\Url::link("admin/adminusers/add")?>"> 

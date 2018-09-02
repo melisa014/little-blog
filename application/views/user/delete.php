@@ -4,6 +4,8 @@ use ItForFree\SimpleMVC\Config;
 $Url = Config::getObject('core.url.class');
 ?>
 
+<?php include('includes/admin-users-nav.php'); ?>
+
 <h2><?= $deleteAdminusersTitle ?></h2>
 
 <form method="post" action="<?= $Url::link("admin/adminusers/delete&id=". $_GET['id'])?>" >

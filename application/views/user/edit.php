@@ -5,6 +5,8 @@ $Url = Config::getObject('core.url.class');
 $User = Config::getObject('core.user.class');
 ?>
 
+<?php include('includes/admin-users-nav.php'); ?>
+
 
 <h2><?= $editAdminusersTitle ?>
     <span>
