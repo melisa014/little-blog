@@ -12,7 +12,7 @@
 ``` 
 composer install
 ```
-4. Разворачиваем  приложенный дамп
+4. Разворачиваем  приложенный дамп `basedump.sql`.
 5. Создаём копию `application/config/web-local-example.php` в той же папке с названием `application/config/web-local.php` 
   и прописываем туда доступы к базе данных.
 
