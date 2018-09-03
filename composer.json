@@ -9,11 +9,6 @@
         {
            "type": "vcs",
            "url": "https://github.com/it-for-free/SimpleMVC"
-        },
-        {
-           "type": "vcs",
-           "url": "https://github.com/it-for-free/PhpExamples"
-        }
-        
+        } 
     ]
 }
