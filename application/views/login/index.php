@@ -7,11 +7,15 @@
         echo "Неверное имя пользователя или пароль";
     }
     ?>
-    
-    <h5>Введите имя пользователя</h5>
-    <input type="text" name="userName" value=""><br>
-    <h5>Введите пароль</h5>
-    <input type="password" name="password" value=""><br>
-    <input type="submit" name="login" value="Войти">
+    <div class="form-group">
+        <label for="userName" >Введите имя пользователя</label>
+        <input type="text"  class="form-control" id="userName"  name="userName" >
+    </div>
+    <div class="form-group">
+        <label for="password" >Введите пароль</label>
+        <input type="password" name="password"  class="form-control" id="userName"  name="userName" >
+    </div>
+    <input type="submit" class="btn btn-primary" name="login" value="Сохранить">
+   
 </form>
 
