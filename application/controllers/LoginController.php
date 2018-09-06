@@ -1,6 +1,7 @@
 <?php
 namespace application\controllers;
 use ItForFree\SimpleMVC\Config;
+use ItForFree\SimpleMVC\Url;
 
 class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
 {
@@ -28,17 +29,16 @@ class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
         if (!empty($_POST)) {
             $login = $_POST['userName'];
             $pass = $_POST['password'];
-            $user = Config::getObject('core.user.class');
-            if($user->login($login, $pass)) {
-                $this->header(\ItForFree\SimpleMVC\Url::link("homepage/index"));
+            $User = Config::getObject('core.user.class');
+            if($User->login($login, $pass)) {
+                $this->redirect(Url::link("homepage/index"));
             }
             else {
-                $this->header(\ItForFree\SimpleMVC\Url::link("login/login&auth=deny"));
+                $this->redirect(Url::link("login/login&auth=deny"));
             }
         }
         else {
             $this->view->addVar('loginTitle', $this->loginTitle);
-            
             $this->view->render('login/index.php');
         }
     }
@@ -48,9 +48,9 @@ class LoginController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public function logoutAction()
     {
-        $user = Config::getObject('core.user.class');
-        $user->logout();
-        $this->header(\ItForFree\SimpleMVC\Url::link("login/login"));
+        $User = Config::getObject('core.user.class');
+        $User->logout();
+        $this->redirect(Url::link("login/login"));
     }
 }
 

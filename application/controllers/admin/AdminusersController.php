@@ -45,10 +45,10 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->insert(); 
-                $this->header($Url::link("admin/adminusers/index"));
+                $this->redirect($Url::link("admin/adminusers/index"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header($Url::link("admin/adminusers/index"));
+                $this->redirect($Url::link("admin/adminusers/index"));
             }
         }
         else {
@@ -73,10 +73,10 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
                 $Adminusers = new Adminusers();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->update();
-                $this->header($Url::link("admin/adminusers/index&id=$id"));
+                $this->redirect($Url::link("admin/adminusers/index&id=$id"));
             } 
             elseif (!empty($_POST['cancel'])) {
-                $this->header($Url::link("admin/adminusers/index&id=$id"));
+                $this->redirect($Url::link("admin/adminusers/index&id=$id"));
             }
         }
         else {
@@ -107,11 +107,11 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->delete();
                 
-                $this->header($Url::link("archive/allUsers"));
+                $this->redirect($Url::link("archive/allUsers"));
               
             }
             elseif (!empty($_POST['cancel'])) {
-                $this->header($Url::link("admin/adminusers/edit&id=$id"));
+                $this->redirect($Url::link("admin/adminusers/edit&id=$id"));
             }
         }
         else {
