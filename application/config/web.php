@@ -10,7 +10,7 @@ $config = [
             'password' => '1234'
         ],
         'router' => [
-            'class' => ItForFree\SimpleMVC\Router::class    
+            'class' => \ItForFree\SimpleMVC\Router::class    
         ],
         'url' => [ 
             'class' => \ItForFree\SimpleMVC\Url::class
