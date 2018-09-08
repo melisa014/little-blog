@@ -60,12 +60,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "5c7a5c524e556113e7f8685e6880cbc4090c798d"
+                "reference": "05f9f3b9f928c7fe051382b26102b4c4e41fb61c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/5c7a5c524e556113e7f8685e6880cbc4090c798d",
-                "reference": "5c7a5c524e556113e7f8685e6880cbc4090c798d",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/05f9f3b9f928c7fe051382b26102b4c4e41fb61c",
+                "reference": "05f9f3b9f928c7fe051382b26102b4c4e41fb61c",
                 "shasum": ""
             },
             "require": {
@@ -117,7 +117,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2018-08-08T04:37:00+00:00"
+            "time": "2018-09-07T17:54:47+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -294,12 +294,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/SimpleMVC.git",
-                "reference": "26b07777a1488f3ba5b5f529da776145a266e7df"
+                "reference": "246a6d5a1b41685e165916fe500b0740cfee42c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/26b07777a1488f3ba5b5f529da776145a266e7df",
-                "reference": "26b07777a1488f3ba5b5f529da776145a266e7df",
+                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/246a6d5a1b41685e165916fe500b0740cfee42c3",
+                "reference": "246a6d5a1b41685e165916fe500b0740cfee42c3",
                 "shasum": ""
             },
             "require": {
@@ -324,7 +324,7 @@
                 "source": "https://github.com/it-for-free/SimpleMVC/tree/master",
                 "issues": "https://github.com/it-for-free/SimpleMVC/issues"
             },
-            "time": "2018-09-06T17:01:27+00:00"
+            "time": "2018-09-08T08:59:32+00:00"
         },
         {
             "name": "psr/http-message",

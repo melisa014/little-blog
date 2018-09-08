@@ -53,4 +53,23 @@ class ExampleUser extends \ItForFree\SimpleMVC\User
         }  
     }
     
+    /**
+     * Получить роль по имени пользователя
+     * 
+     * @param string $userName
+     * @return string
+     */
+    protected function getRoleByUserName($userName)
+    {
+        $sql = "SELECT role FROM users WHERE login = :login";
+        $st = $this->pdo->prepare($sql);
+        $st->bindValue( ":login", $userName, \PDO::PARAM_STR);
+        $st->execute();
+        
+        $siteAuthData = $st->fetch();
+        if (isset($siteAuthData['role'])) {
+            return $siteAuthData['role'];
+        }
+    }
+    
 }
