@@ -6,7 +6,7 @@ use ItForFree\SimpleMVC\Url;
 $User = Config::getObject('core.user.class');
 
 
-//vpre($User->explainAccess("admin/adminusers/index"));
+//ppre($User->explainAccess("admin/adminusers/index"));
 
 ?>
 
@@ -36,7 +36,6 @@ $User = Config::getObject('core.user.class');
             <a class="nav-link" href="<?= Url::link("login/logout") ?>">Выход (<?= $User->userName ?>)</a>
         </li>
         <?php endif; ?>
-        
     </ul>
    </div>
 </nav>
