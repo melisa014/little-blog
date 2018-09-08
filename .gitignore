@@ -1,6 +1,5 @@
 /nbproject/*
 /vendor/*
-composer.lock
 
 /uploads/*
 #кроме конкретного файла:

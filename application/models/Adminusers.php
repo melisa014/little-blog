@@ -55,27 +55,8 @@ class Adminusers extends BaseExampleModel
      */
     public $role = null;
     
-     /**
-    * Устанавливаем свойства с помощью значений в заданном массиве
-    *
-    * @param assoc Значения свойств
-    */
-    public function __construct( $data=array() ) 
-    {
-        parent::__construct();
-        $this->set_object_vars($this, $data);
-    }
+
     
-    /**
-    * Присваивает объекту свойства, соответствующие полям массива
-    */
-    private function set_object_vars($object, array $vars) 
-    {
-        $has = get_object_vars($object);
-        foreach ($has as $name => $oldValue) {
-            $object->$name = isset($vars[$name]) ? $vars[$name] : $object->$name; 
-        }
-    } 
     /**
      * Добавляем нового пользователя
      */
