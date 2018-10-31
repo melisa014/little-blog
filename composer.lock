@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a95edc00b29d7a8dbf2e5c662b9310c2",
+    "content-hash": "d32593520b4f87072ddb2d36ce761d24",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -60,12 +60,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "05f9f3b9f928c7fe051382b26102b4c4e41fb61c"
+                "reference": "9547a358c87e2c75c2a7c569414dc2ba8033e3ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/05f9f3b9f928c7fe051382b26102b4c4e41fb61c",
-                "reference": "05f9f3b9f928c7fe051382b26102b4c4e41fb61c",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/9547a358c87e2c75c2a7c569414dc2ba8033e3ae",
+                "reference": "9547a358c87e2c75c2a7c569414dc2ba8033e3ae",
                 "shasum": ""
             },
             "require": {
@@ -117,7 +117,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2018-09-07T17:54:47+00:00"
+            "time": "2018-10-29T15:58:45+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -125,12 +125,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "136531aa4e42f9b1971a47fb0faf60da00d2fefa"
+                "reference": "926eaa3ff73cde2becf652b785831bcb7618568a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/136531aa4e42f9b1971a47fb0faf60da00d2fefa",
-                "reference": "136531aa4e42f9b1971a47fb0faf60da00d2fefa",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/926eaa3ff73cde2becf652b785831bcb7618568a",
+                "reference": "926eaa3ff73cde2becf652b785831bcb7618568a",
                 "shasum": ""
             },
             "require": {
@@ -168,7 +168,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2018-03-25T01:26:01+00:00"
+            "time": "2018-10-30T00:20:04+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -176,12 +176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "4b981cdeb8c13d22a6c193554f8c686f53d5c958"
+                "reference": "c6b946d841044e9e4d5b19f446f0f4d765657835"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/4b981cdeb8c13d22a6c193554f8c686f53d5c958",
-                "reference": "4b981cdeb8c13d22a6c193554f8c686f53d5c958",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/c6b946d841044e9e4d5b19f446f0f4d765657835",
+                "reference": "c6b946d841044e9e4d5b19f446f0f4d765657835",
                 "shasum": ""
             },
             "require": {
@@ -234,7 +234,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-07-29T08:09:46+00:00"
+            "time": "2018-10-30T00:20:22+00:00"
         },
         {
             "name": "it-for-free/rusphp",
@@ -242,12 +242,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/rusphp.git",
-                "reference": "465ada7f8fecda67cccc122b70cb9b9ef3390f58"
+                "reference": "208c54be6050a530136e2a96d5cf6f6d66aefd6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/rusphp/zipball/465ada7f8fecda67cccc122b70cb9b9ef3390f58",
-                "reference": "465ada7f8fecda67cccc122b70cb9b9ef3390f58",
+                "url": "https://api.github.com/repos/it-for-free/rusphp/zipball/208c54be6050a530136e2a96d5cf6f6d66aefd6c",
+                "reference": "208c54be6050a530136e2a96d5cf6f6d66aefd6c",
                 "shasum": ""
             },
             "require": {
@@ -257,6 +257,12 @@
                 "ralouphie/mimey": "v1.0.*",
                 "ramsey/array_column": "*"
             },
+            "require-dev": {
+                "codeception/codeception": "~2.0"
+            },
+            "bin": [
+                "src/Documentaion/FileCreator/create-source-code-file.php"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -266,7 +272,6 @@
                     "src/functions.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -274,19 +279,24 @@
             "homepage": "http://fkn.ktu10.com/?q=node/8592",
             "keywords": [
                 "archive",
-                "crop",
-                "email",
+                "codeception log echo write into console addon",
+                "create html file with source code of all project files for documentation",
                 "email verify",
-                "html",
-                "image",
+                "html table",
+                "image crop resize on the fly",
                 "memory",
+                "phone number info class inner short",
                 "php",
                 "ram",
-                "resize",
+                "security tocken with timestamp",
                 "ssh",
-                "table"
+                "yandex maps goole maps center zoom for point coords set"
             ],
-            "time": "2018-09-01T11:38:32+00:00"
+            "support": {
+                "source": "https://github.com/it-for-free/rusphp/tree/master",
+                "issues": "https://github.com/it-for-free/rusphp/issues"
+            },
+            "time": "2018-10-31T10:12:12+00:00"
         },
         {
             "name": "it-for-free/simple-mvc",
@@ -506,7 +516,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "it-for-free/simple-mvc": 20
+        "it-for-free/simple-mvc": 20,
+        "it-for-free/rusphp": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

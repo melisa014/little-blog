@@ -1,14 +1,17 @@
 {
     "require": {
         "it-for-free/simple-mvc": "dev-master",
-        "it-for-free/rusphp": "*"
-        
+        "it-for-free/rusphp": "dev-master"      
     },
     "minimum-stability" : "dev",
     "repositories": [
         {
            "type": "vcs",
            "url": "https://github.com/it-for-free/SimpleMVC"
+        },
+        {
+           "type": "vcs",
+           "url": "https://github.com/it-for-free/rusphp"
         } 
     ]
 }

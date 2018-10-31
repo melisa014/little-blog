@@ -1,10 +1,11 @@
 <?php
+use ItForFree\rusphp\File\Path;
 
 function autoload($className)
 {
 // echo '-- '  . $className;   
     // базовая диретория, которая является корнем автозагрузки
-    $baseDir = $_SERVER['DOCUMENT_ROOT'] . '..' . DIRECTORY_SEPARATOR;
+    $baseDir = Path::addToDocumentRoot('..' . DIRECTORY_SEPARATOR);
     
     $className = ltrim($className, '\\');
     $fileName  = '';
