@@ -60,12 +60,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "9547a358c87e2c75c2a7c569414dc2ba8033e3ae"
+                "reference": "35b2c9f2a91f9ad4e6a5210ee800a6a05edaeef3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/9547a358c87e2c75c2a7c569414dc2ba8033e3ae",
-                "reference": "9547a358c87e2c75c2a7c569414dc2ba8033e3ae",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/35b2c9f2a91f9ad4e6a5210ee800a6a05edaeef3",
+                "reference": "35b2c9f2a91f9ad4e6a5210ee800a6a05edaeef3",
                 "shasum": ""
             },
             "require": {
@@ -117,7 +117,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2018-10-29T15:58:45+00:00"
+            "time": "2018-10-31T23:06:20+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -176,12 +176,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "c6b946d841044e9e4d5b19f446f0f4d765657835"
+                "reference": "23e7d3812a82bdbff4a5cb8e4628bcc06eec5d68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/c6b946d841044e9e4d5b19f446f0f4d765657835",
-                "reference": "c6b946d841044e9e4d5b19f446f0f4d765657835",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/23e7d3812a82bdbff4a5cb8e4628bcc06eec5d68",
+                "reference": "23e7d3812a82bdbff4a5cb8e4628bcc06eec5d68",
                 "shasum": ""
             },
             "require": {
@@ -228,13 +228,14 @@
             "keywords": [
                 "http",
                 "message",
+                "psr-7",
                 "request",
                 "response",
                 "stream",
                 "uri",
                 "url"
             ],
-            "time": "2018-10-30T00:20:22+00:00"
+            "time": "2018-11-01T01:48:29+00:00"
         },
         {
             "name": "it-for-free/rusphp",
@@ -304,16 +305,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/SimpleMVC.git",
-                "reference": "f060fff3eef73bf8c5188ffb2f686713a141d2ee"
+                "reference": "c369ef080b63ae7e3df48ab5a576c51b73aa25d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/f060fff3eef73bf8c5188ffb2f686713a141d2ee",
-                "reference": "f060fff3eef73bf8c5188ffb2f686713a141d2ee",
+                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/c369ef080b63ae7e3df48ab5a576c51b73aa25d9",
+                "reference": "c369ef080b63ae7e3df48ab5a576c51b73aa25d9",
                 "shasum": ""
             },
             "require": {
-                "it-for-free/rusphp": "dev-master"
+                "it-for-free/rusphp": "dev-master",
+                "php": ">=7.2"
             },
             "type": "cms",
             "autoload": {
@@ -334,7 +336,7 @@
                 "source": "https://github.com/it-for-free/SimpleMVC/tree/master",
                 "issues": "https://github.com/it-for-free/SimpleMVC/issues"
             },
-            "time": "2018-09-08T10:22:42+00:00"
+            "time": "2018-11-01T12:27:34+00:00"
         },
         {
             "name": "psr/http-message",
