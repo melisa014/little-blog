@@ -14,6 +14,7 @@ use ItForFree\SimpleMVC\components\SimpleAsset\SimpleAsset;
  */
 class TestAsset extends SimpleAsset
 {
+    public $basePath = 'JS/';
     public $js = [
         'myjs/test1.js',
         'myjs/test2222.js'
