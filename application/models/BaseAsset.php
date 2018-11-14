@@ -6,24 +6,20 @@
 namespace application\models;
 
 use ItForFree\SimpleMVC\components\SimpleAsset\SimpleAsset;
-use application\models\BaseAsset;
 
 /**
  *  TestAsset -- пример описания пакета ресурсов (ассета)
  *
  * @author vedro-compota
  */
-class TestAsset extends SimpleAsset
+class BaseAsset extends SimpleAsset
 {
     public $basePath = 'JS/';
     public $js = [
-        'myjs/test1.js',
-        'myjs/test2222.js'
+        'myjs/basejs.js'
     ];
     
     public $css = [
-        'myjs/css/my.css'
+        'myjs/css/basecss.css'
     ];
-    
-    public $needs = [BaseAsset::class];
 }

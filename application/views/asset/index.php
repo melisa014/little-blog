@@ -12,6 +12,9 @@ TestAsset::add();
 <div class="row">
     <div class="col ">
       <p class="lead"> Тестируем... </p>
+      Js:
       <pre><?php SimpleAssetManager::printJs()  ?></pre>
+      Css:
+      <pre><?php SimpleAssetManager::printCss()  ?></pre>
     </div>
 </div>
