@@ -12,6 +12,10 @@
         {
            "type": "vcs",
            "url": "https://github.com/it-for-free/rusphp"
-        } 
+        },
+        {
+           "type": "vcs",
+           "url": "https://github.com/it-for-free/php-simple-assets"
+        }
     ]
 }

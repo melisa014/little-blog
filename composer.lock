@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d32593520b4f87072ddb2d36ce761d24",
+    "content-hash": "a9bd025ecc2337a614e6029b6a67168d",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -238,17 +238,61 @@
             "time": "2018-11-01 01:48:29"
         },
         {
+            "name": "it-for-free/php-simple-assets",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/it-for-free/php-simple-assets.git",
+                "reference": "603e9f1129839197d8d7898d88f7dd7257aa4e6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/it-for-free/php-simple-assets/zipball/603e9f1129839197d8d7898d88f7dd7257aa4e6b",
+                "reference": "603e9f1129839197d8d7898d88f7dd7257aa4e6b",
+                "shasum": ""
+            },
+            "require": {
+                "it-for-free/rusphp": "dev-master",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ItForFree\\SimpleAsset\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "copy assets (js, css etc) from vendor, support dependencies",
+            "homepage": "http://fkn.ktu10.com/?q=node/10559",
+            "keywords": [
+                "assets",
+                "assets manager",
+                "clone",
+                "copy",
+                "copy assets (js, css etc) from vendor, support dependencies",
+                "php",
+                "vendor"
+            ],
+            "support": {
+                "source": "https://github.com/it-for-free/php-simple-assets/tree/master",
+                "issues": "https://github.com/it-for-free/php-simple-assets/issues"
+            },
+            "time": "2018-11-14 16:46:56"
+        },
+        {
             "name": "it-for-free/rusphp",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/rusphp.git",
-                "reference": "393064a281056de545677057a61653ae15fce6c9"
+                "reference": "017a1ec3e14109d354af1e12e08963404d8c3d43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/rusphp/zipball/393064a281056de545677057a61653ae15fce6c9",
-                "reference": "393064a281056de545677057a61653ae15fce6c9",
+                "url": "https://api.github.com/repos/it-for-free/rusphp/zipball/017a1ec3e14109d354af1e12e08963404d8c3d43",
+                "reference": "017a1ec3e14109d354af1e12e08963404d8c3d43",
                 "shasum": ""
             },
             "require": {
@@ -297,7 +341,7 @@
                 "source": "https://github.com/it-for-free/rusphp/tree/master",
                 "issues": "https://github.com/it-for-free/rusphp/issues"
             },
-            "time": "2018-11-13 17:26:27"
+            "time": "2018-11-14 16:03:48"
         },
         {
             "name": "it-for-free/simple-mvc",
@@ -305,16 +349,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/SimpleMVC.git",
-                "reference": "1fe0b58cecb7f536d3b4979225c78e585f008ba0"
+                "reference": "334ef45240f0d070a593f5b71c375afb8f04eb3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/1fe0b58cecb7f536d3b4979225c78e585f008ba0",
-                "reference": "1fe0b58cecb7f536d3b4979225c78e585f008ba0",
+                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/334ef45240f0d070a593f5b71c375afb8f04eb3f",
+                "reference": "334ef45240f0d070a593f5b71c375afb8f04eb3f",
                 "shasum": ""
             },
             "require": {
                 "ext-pdo_mysql": "*",
+                "it-for-free/php-simple-assets": "dev-master",
                 "it-for-free/rusphp": "dev-master",
                 "php": ">=7.2"
             },
@@ -337,7 +382,7 @@
                 "source": "https://github.com/it-for-free/SimpleMVC/tree/master",
                 "issues": "https://github.com/it-for-free/SimpleMVC/issues"
             },
-            "time": "2018-11-13 17:27:22"
+            "time": "2018-11-14 16:50:24"
         },
         {
             "name": "psr/http-message",
