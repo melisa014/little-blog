@@ -1,5 +1,6 @@
 <?php
 use application\models\TestAsset;
+use ItForFree\SimpleMVC\components\SimpleAsset\SimpleAssetManager;
 
 TestAsset::add();
 ?>
@@ -11,5 +12,6 @@ TestAsset::add();
 <div class="row">
     <div class="col ">
       <p class="lead"> Тестируем... </p>
+      <pre><?php SimpleAssetManager::printJs()  ?></pre>
     </div>
 </div>

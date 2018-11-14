@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "d32593520b4f87072ddb2d36ce761d24",
@@ -52,7 +52,7 @@
                 "ArrayAccess",
                 "dotnotation"
             ],
-            "time": "2018-07-22T12:33:53+00:00"
+            "time": "2018-07-22 12:33:53"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -117,7 +117,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2018-11-03T10:47:53+00:00"
+            "time": "2018-11-03 10:47:53"
         },
         {
             "name": "guzzlehttp/promises",
@@ -168,7 +168,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2018-10-30T00:20:04+00:00"
+            "time": "2018-10-30 00:20:04"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -235,7 +235,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-11-01T01:48:29+00:00"
+            "time": "2018-11-01 01:48:29"
         },
         {
             "name": "it-for-free/rusphp",
@@ -297,7 +297,7 @@
                 "source": "https://github.com/it-for-free/rusphp/tree/master",
                 "issues": "https://github.com/it-for-free/rusphp/issues"
             },
-            "time": "2018-11-13T17:26:27+00:00"
+            "time": "2018-11-13 17:26:27"
         },
         {
             "name": "it-for-free/simple-mvc",
@@ -337,7 +337,7 @@
                 "source": "https://github.com/it-for-free/SimpleMVC/tree/master",
                 "issues": "https://github.com/it-for-free/SimpleMVC/issues"
             },
-            "time": "2018-11-13T17:27:22+00:00"
+            "time": "2018-11-13 17:27:22"
         },
         {
             "name": "psr/http-message",
@@ -387,7 +387,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06T14:39:51+00:00"
+            "time": "2016-08-06 14:39:51"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -512,7 +512,7 @@
                 "array_column",
                 "column"
             ],
-            "time": "2016-01-31T17:57:38+00:00"
+            "time": "2016-01-31 17:57:38"
         }
     ],
     "packages-dev": [],
