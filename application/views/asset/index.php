@@ -1,6 +1,7 @@
 <?php
 use application\models\TestAsset;
-use ItForFree\SimpleMVC\components\SimpleAsset\SimpleAssetManager;
+use ItForFree\SimpleAsset\SimpleAssetManager;
+//use  ItForFree\SimpleMVC\components\SimpleAsset\SimpleAssetManager;
 
 TestAsset::add();
 ?>

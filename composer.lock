@@ -349,12 +349,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/SimpleMVC.git",
-                "reference": "334ef45240f0d070a593f5b71c375afb8f04eb3f"
+                "reference": "57f5a550a38d6474de314e3da16ab366e4ec735e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/334ef45240f0d070a593f5b71c375afb8f04eb3f",
-                "reference": "334ef45240f0d070a593f5b71c375afb8f04eb3f",
+                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/57f5a550a38d6474de314e3da16ab366e4ec735e",
+                "reference": "57f5a550a38d6474de314e3da16ab366e4ec735e",
                 "shasum": ""
             },
             "require": {
@@ -382,7 +382,7 @@
                 "source": "https://github.com/it-for-free/SimpleMVC/tree/master",
                 "issues": "https://github.com/it-for-free/SimpleMVC/issues"
             },
-            "time": "2018-11-14 16:50:24"
+            "time": "2018-11-14 17:10:18"
         },
         {
             "name": "psr/http-message",

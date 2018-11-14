@@ -5,7 +5,7 @@
  */
 namespace application\models;
 
-use ItForFree\SimpleMVC\components\SimpleAsset\SimpleAsset;
+use ItForFree\SimpleAsset\SimpleAsset;
 use application\models\BaseAsset;
 
 /**
