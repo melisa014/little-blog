@@ -243,12 +243,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/php-simple-assets.git",
-                "reference": "3b3a01c93d386bbcd815f5278e3a49798f882302"
+                "reference": "4015aafa69ed09fb203c0f74d085e71e6e51b482"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/php-simple-assets/zipball/3b3a01c93d386bbcd815f5278e3a49798f882302",
-                "reference": "3b3a01c93d386bbcd815f5278e3a49798f882302",
+                "url": "https://api.github.com/repos/it-for-free/php-simple-assets/zipball/4015aafa69ed09fb203c0f74d085e71e6e51b482",
+                "reference": "4015aafa69ed09fb203c0f74d085e71e6e51b482",
                 "shasum": ""
             },
             "require": {
@@ -271,7 +271,8 @@
                 "assets manager",
                 "clone",
                 "copy",
-                "copy assets (js, css etc) from vendor, support dependencies",
+                "copy assets js css etc from vendor support dependencies",
+                "like in yii yii2",
                 "php",
                 "vendor"
             ],
@@ -279,7 +280,7 @@
                 "source": "https://github.com/it-for-free/php-simple-assets/tree/master",
                 "issues": "https://github.com/it-for-free/php-simple-assets/issues"
             },
-            "time": "2018-11-14 17:11:48"
+            "time": "2018-11-14 18:01:50"
         },
         {
             "name": "it-for-free/rusphp",
