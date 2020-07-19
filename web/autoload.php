@@ -1,10 +1,12 @@
 <?php
 use ItForFree\rusphp\File\Path;
+use ItForFree\SimpleMVC\ExceptionHandler;
 
 function autoload($className)
 {
 // echo '-- '  . $className;   
     // базовая диретория, которая является корнем автозагрузки
+    $exceptionHandler = new ExceptionHandler();
     $baseDir = Path::addToDocumentRoot('..' . DIRECTORY_SEPARATOR);
     
     $className = ltrim($className, '\\');
@@ -20,8 +22,16 @@ function autoload($className)
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
      
     //echo $fileName;
-  
-    require $fileName;
+    try {
+        if(file_exists($fileName)) {
+                require_once $fileName;
+        } else {
+            throw new Exception('goto');
+        }
+    } catch (Exception $e) {
+        $exceptionHandler->displayException($e);
+    }
+
 }
 
 // регистрируем функцию автозагрузки
