@@ -2,7 +2,6 @@
 
 use ItForFree\rusphp\PHP\ArrayLib\Merger;
 use ItForFree\SimpleMVC\Application;
-use ItForFree\SimpleMVC\ExceptionHandler;
 /**
  * Запуск приложения
  */
@@ -16,14 +15,7 @@ $config = Merger::mergeRecursivelyWithReplace(
     require(__DIR__ . '/../application/config/web.php'), 
     $localConfig);
 
-$exceptionHandler = new ExceptionHandler();
-
-try {
 Application::get()
     ->setConfiguration($config)
     ->run();    
-} catch (Exception $exc) {
-    $exceptionHandler->displayException($exc);
-//    throw $exc;
-}
 
