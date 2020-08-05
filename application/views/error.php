@@ -1,7 +1,5 @@
 
 <?php
-use ItForFree\SimpleMVC\DebugPrinter;
-header("HTTP/1.0 $status Not Found");
 
 ?>
 <div class="card-header"><h1><?= $status?></h1> <?=$message?></div>

@@ -2,12 +2,12 @@
 namespace application\handlers;
 
 use ItForFree\SimpleMVC\Config;
-use ItForFree\SimpleMVC\interfaces\ExceptionsHandler;
+use ItForFree\SimpleMVC\interfaces\ExceptionHandlerInterface;
 
 /**
  * Пример пользовательского класса для перехвата исключений
  */
-class UserExceptionHandler implements ExceptionsHandler
+class UserExceptionHandler implements ExceptionHandlerInterface
 {
     public function handleException(\Exception $exception): void
     {
