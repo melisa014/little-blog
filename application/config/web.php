@@ -24,7 +24,7 @@ $config = [
             ]
         ],
         'handlers' => [
-            'ItForFree\SimpleMVC\exceptions\SmvcAccessExeption' => \application\handlers\UserExceptionHandler::class,
+            'ItForFree\SimpleMVC\exceptions\SmvcAccessException' => \application\handlers\UserExceptionHandler::class,
             'ItForFree\SimpleMVC\exceptions\SmvcRoutingException' => \application\handlers\UserExceptionHandler::class
         ],
         'user' => [
