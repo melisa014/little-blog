@@ -8,6 +8,7 @@ $config = ItForFree\rusphp\PHP\ArrayLib\Merger::mergeRecursivelyWithReplace(
     $localConfig);
 
 
+
 \ItForFree\SimpleMVC\Application::get()
     ->setConfiguration($config)
     ->run();
