@@ -20,7 +20,8 @@ function autoload($className)
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
      
     //echo $fileName;
-    require_once $fileName;
+    
+    require $fileName;
 }
 
 // регистрируем функцию автозагрузки
