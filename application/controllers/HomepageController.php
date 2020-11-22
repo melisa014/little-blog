@@ -1,6 +1,10 @@
 <?php
+
 namespace application\controllers;
 
+/**
+ * Контроллер для домашней страницы
+ */
 class HomepageController extends \ItForFree\SimpleMVC\mvc\Controller
 {
     /**
@@ -8,6 +12,9 @@ class HomepageController extends \ItForFree\SimpleMVC\mvc\Controller
      */
     public $homepageTitle = "Домашняя страница";
     
+    /**
+     * @var string Пусть к файлу шаблона 
+     */
     public $layoutPath = 'main.php';
     
         
