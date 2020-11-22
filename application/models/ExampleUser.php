@@ -6,11 +6,16 @@ namespace application\models;
 /**
  * Пример реализации класса пользователя (реализуем требующие этого методы абстрактные методы)
  * Эту модель наследуем от специального класа-модели User из ядра SimpleMVC
- *
  */
 class ExampleUser extends \ItForFree\SimpleMVC\User 
 {
-
+    /**
+     * Проверка авторизационных данных пользователя
+     * 
+     * @param string $login логин
+     * @param string $pass  пароль
+     * @return boolean      признак успешности
+     */
     protected function checkAuthData($login, $pass) 
     {
         $result = false;
@@ -24,14 +29,13 @@ class ExampleUser extends \ItForFree\SimpleMVC\User
         $pass .= $siteAuthData['salt'];
         $passForCheck = password_verify($pass, $siteAuthData['pass']);
 
-        
         if (isset($siteAuthData['pass'])) {
             if ($passForCheck) {
                 $result = true;
             }
         }
+	
         return $result;
-        
     }
     
     /**
@@ -56,7 +60,7 @@ class ExampleUser extends \ItForFree\SimpleMVC\User
     /**
      * Получить роль по имени пользователя
      * 
-     * @param string $userName
+     * @param string $userName имя пользователя
      * @return string
      */
     protected function getRoleByUserName($userName)
@@ -70,6 +74,5 @@ class ExampleUser extends \ItForFree\SimpleMVC\User
         if (isset($siteAuthData['role'])) {
             return $siteAuthData['role'];
         }
-    }
-    
+    } 
 }
