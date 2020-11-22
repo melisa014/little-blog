@@ -16,8 +16,7 @@ class HomepageController extends \ItForFree\SimpleMVC\mvc\Controller
      * @var string Пусть к файлу шаблона 
      */
     public $layoutPath = 'main.php';
-    
-        
+      
     /**
      * Выводит на экран страницу "Домашняя страница"
      */
