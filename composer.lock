@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9bd025ecc2337a614e6029b6a67168d",
+    "content-hash": "ed111a5d9de1cdcef42ae9364c627cf3",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -12,21 +12,23 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/adbario/php-dot-notation.git",
-                "reference": "895fe4bb153ac875c61a6fba658ded45405e73a4"
+                "reference": "84da820f12be2a504c9612757ffb7850eceb34fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/adbario/php-dot-notation/zipball/895fe4bb153ac875c61a6fba658ded45405e73a4",
-                "reference": "895fe4bb153ac875c61a6fba658ded45405e73a4",
+                "url": "https://api.github.com/repos/adbario/php-dot-notation/zipball/84da820f12be2a504c9612757ffb7850eceb34fe",
+                "reference": "84da820f12be2a504c9612757ffb7850eceb34fe",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
                 "php": ">=5.5"
             },
             "require-dev": {
-                "phpunit/phpunit": "^4.0|^5.0|^6.0",
+                "phpunit/phpunit": "^4|^5|^6|^7|^8",
                 "squizlabs/php_codesniffer": "^3.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -52,105 +54,37 @@
                 "ArrayAccess",
                 "dotnotation"
             ],
-            "time": "2018-07-22 12:33:53"
+            "support": {
+                "issues": "https://github.com/adbario/php-dot-notation/issues",
+                "source": "https://github.com/adbario/php-dot-notation/tree/2.x"
+            },
+            "time": "2020-04-04T01:24:44+00:00"
         },
         {
-            "name": "guzzlehttp/guzzle",
+            "name": "it-for-free/array_column",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "51cb9063b8e07c2aa1e52f343de63ed08d822135"
+                "url": "https://github.com/it-for-free/array_column.git",
+                "reference": "39bea7424d7ca846d094aa6811d8156bf807263e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/51cb9063b8e07c2aa1e52f343de63ed08d822135",
-                "reference": "51cb9063b8e07c2aa1e52f343de63ed08d822135",
+                "url": "https://api.github.com/repos/it-for-free/array_column/zipball/39bea7424d7ca846d094aa6811d8156bf807263e",
+                "reference": "39bea7424d7ca846d094aa6811d8156bf807263e",
                 "shasum": ""
             },
-            "require": {
-                "guzzlehttp/promises": "^1.0",
-                "guzzlehttp/psr7": "^1.4",
-                "php": ">=5.5"
-            },
             "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
-                "psr/log": "^1.0"
+                "jakub-onderka/php-parallel-lint": "0.8.*",
+                "phpunit/phpunit": "~4.5",
+                "satooshi/php-coveralls": "0.6.*",
+                "squizlabs/php_codesniffer": "~2.2"
             },
-            "suggest": {
-                "psr/log": "Required for using the Log middleware"
-            },
+            "default-branch": true,
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "6.3-dev"
-                }
-            },
             "autoload": {
                 "files": [
-                    "src/functions_include.php"
-                ],
-                "psr-4": {
-                    "GuzzleHttp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                }
-            ],
-            "description": "Guzzle is a PHP HTTP client library",
-            "homepage": "http://guzzlephp.org/",
-            "keywords": [
-                "client",
-                "curl",
-                "framework",
-                "http",
-                "http client",
-                "rest",
-                "web service"
-            ],
-            "time": "2018-11-03 10:47:53"
-        },
-        {
-            "name": "guzzlehttp/promises",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/promises.git",
-                "reference": "926eaa3ff73cde2becf652b785831bcb7618568a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/926eaa3ff73cde2becf652b785831bcb7618568a",
-                "reference": "926eaa3ff73cde2becf652b785831bcb7618568a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.36"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Promise\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
+                    "src/array_column.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -159,83 +93,23 @@
             ],
             "authors": [
                 {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
+                    "name": "Ben Ramsey",
+                    "homepage": "http://benramsey.com"
                 }
             ],
-            "description": "Guzzle promises library",
+            "description": "Replacement for ramsey's array_column package: array_column() for projects using PHP earlier than version 5.5.",
+            "homepage": "https://github.com/ramsey/array_column",
             "keywords": [
-                "promise"
+                "array",
+                "array_column",
+                "column",
+                "replacement for ramsey array_column"
             ],
-            "time": "2018-10-30 00:20:04"
-        },
-        {
-            "name": "guzzlehttp/psr7",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/psr7.git",
-                "reference": "23e7d3812a82bdbff4a5cb8e4628bcc06eec5d68"
+            "support": {
+                "issues": "https://github.com/it-for-free/array_column/issues",
+                "source": "https://github.com/it-for-free/array_column"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/23e7d3812a82bdbff4a5cb8e4628bcc06eec5d68",
-                "reference": "23e7d3812a82bdbff4a5cb8e4628bcc06eec5d68",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0",
-                "psr/http-message": "~1.0",
-                "ralouphie/getallheaders": "^2.0.5"
-            },
-            "provide": {
-                "psr/http-message-implementation": "1.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.8.36 || ^5.7.27 || ^6.5.8"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.5-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Psr7\\": "src/"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                },
-                {
-                    "name": "Tobias Schultze",
-                    "homepage": "https://github.com/Tobion"
-                }
-            ],
-            "description": "PSR-7 message implementation that also provides common utility methods",
-            "keywords": [
-                "http",
-                "message",
-                "psr-7",
-                "request",
-                "response",
-                "stream",
-                "uri",
-                "url"
-            ],
-            "time": "2018-11-01 01:48:29"
+            "time": "2019-02-22T13:53:49+00:00"
         },
         {
             "name": "it-for-free/php-simple-assets",
@@ -243,18 +117,25 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/php-simple-assets.git",
-                "reference": "4015aafa69ed09fb203c0f74d085e71e6e51b482"
+                "reference": "0961e497406854036b415ad719502987b4d4e715"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/php-simple-assets/zipball/4015aafa69ed09fb203c0f74d085e71e6e51b482",
-                "reference": "4015aafa69ed09fb203c0f74d085e71e6e51b482",
+                "url": "https://api.github.com/repos/it-for-free/php-simple-assets/zipball/0961e497406854036b415ad719502987b4d4e715",
+                "reference": "0961e497406854036b415ad719502987b4d4e715",
                 "shasum": ""
             },
             "require": {
-                "it-for-free/rusphp": "dev-master",
-                "php": ">=5.3.0"
+                "it-for-free/rusphp": "v2.*",
+                "php": ">=5.5"
             },
+            "require-dev": {
+                "codeception/codeception": "^4.1",
+                "codeception/module-asserts": "^1.0.0",
+                "codeception/module-filesystem": "^1.0",
+                "codeception/module-phpbrowser": "^1.0.0"
+            },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -264,7 +145,7 @@
             "license": [
                 "MIT"
             ],
-            "description": "copy assets (js, css etc) from vendor, support dependencies",
+            "description": "simple php asset management: copy assets (js, css etc) from vendor, support dependencies",
             "homepage": "http://fkn.ktu10.com/?q=node/10559",
             "keywords": [
                 "assets",
@@ -274,41 +155,40 @@
                 "copy assets js css etc from vendor support dependencies",
                 "like in yii yii2",
                 "php",
+                "simple php asset management",
+                "source map",
                 "vendor"
             ],
             "support": {
                 "source": "https://github.com/it-for-free/php-simple-assets/tree/master",
                 "issues": "https://github.com/it-for-free/php-simple-assets/issues"
             },
-            "time": "2018-11-14 18:01:50"
+            "time": "2020-03-17T18:16:06+00:00"
         },
         {
             "name": "it-for-free/rusphp",
-            "version": "dev-master",
+            "version": "v2.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/rusphp.git",
-                "reference": "017a1ec3e14109d354af1e12e08963404d8c3d43"
+                "reference": "b8f7705fba74d355bec1b992cbf09ef182402d44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/rusphp/zipball/017a1ec3e14109d354af1e12e08963404d8c3d43",
-                "reference": "017a1ec3e14109d354af1e12e08963404d8c3d43",
+                "url": "https://api.github.com/repos/it-for-free/rusphp/zipball/b8f7705fba74d355bec1b992cbf09ef182402d44",
+                "reference": "b8f7705fba74d355bec1b992cbf09ef182402d44",
                 "shasum": ""
             },
             "require": {
                 "adbario/php-dot-notation": "*",
-                "guzzlehttp/guzzle": "~6.0",
-                "php": ">=5.3.0",
-                "ralouphie/mimey": "v1.0.*",
-                "ramsey/array_column": "*"
+                "it-for-free/array_column": "*",
+                "jmoati/mimey": "3.0.*",
+                "php": ">=5.3.0"
             },
             "require-dev": {
-                "codeception/codeception": "~2.0"
+                "codeception/codeception": "^4.0.0",
+                "codeception/module-asserts": "^1.3"
             },
-            "bin": [
-                "src/Documentaion/FileCreator/create-source-code-file.php"
-            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -321,10 +201,13 @@
             "license": [
                 "MIT"
             ],
-            "description": "PHP fucntions library for different perposis",
+            "description": "Universal PHP library for different perposis",
             "homepage": "http://fkn.ktu10.com/?q=node/8592",
             "keywords": [
                 "archive",
+                "array",
+                "array filter only elements",
+                "breadcrumbs",
                 "codeception log echo write into console addon",
                 "create html file with source code of all project files for documentation",
                 "email verify",
@@ -333,16 +216,21 @@
                 "memory",
                 "phone number info class inner short",
                 "php",
+                "php universal package",
                 "ram",
-                "security tocken with timestamp",
+                "regexp",
+                "security token with timestamp",
                 "ssh",
+                "string filter html tags and url protocols",
+                "time interval for wait sleep between api requests",
+                "ui",
                 "yandex maps goole maps center zoom for point coords set"
             ],
             "support": {
-                "source": "https://github.com/it-for-free/rusphp/tree/master",
+                "source": "https://github.com/it-for-free/rusphp/tree/v2.1.9",
                 "issues": "https://github.com/it-for-free/rusphp/issues"
             },
-            "time": "2018-11-14 16:03:48"
+            "time": "2021-01-18T15:00:36+00:00"
         },
         {
             "name": "it-for-free/simple-mvc",
@@ -350,20 +238,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/SimpleMVC.git",
-                "reference": "57f5a550a38d6474de314e3da16ab366e4ec735e"
+                "reference": "f759f7af8644f44799b0982126bed5e25041cdb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/57f5a550a38d6474de314e3da16ab366e4ec735e",
-                "reference": "57f5a550a38d6474de314e3da16ab366e4ec735e",
+                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/f759f7af8644f44799b0982126bed5e25041cdb3",
+                "reference": "f759f7af8644f44799b0982126bed5e25041cdb3",
                 "shasum": ""
             },
             "require": {
                 "ext-pdo_mysql": "*",
                 "it-for-free/php-simple-assets": "dev-master",
-                "it-for-free/rusphp": "dev-master",
+                "it-for-free/rusphp": "v2.*",
                 "php": ">=7.2"
             },
+            "default-branch": true,
             "type": "cms",
             "autoload": {
                 "psr-4": {
@@ -383,118 +272,29 @@
                 "source": "https://github.com/it-for-free/SimpleMVC/tree/master",
                 "issues": "https://github.com/it-for-free/SimpleMVC/issues"
             },
-            "time": "2018-11-14 17:10:18"
+            "time": "2020-11-22T10:50:29+00:00"
         },
         {
-            "name": "psr/http-message",
-            "version": "dev-master",
+            "name": "jmoati/mimey",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-fig/http-message.git",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+                "url": "https://github.com/Jmoati/mimey.git",
+                "reference": "0551e7a4fdbeb970abe78eccdc3fd3712a6daa4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "url": "https://api.github.com/repos/Jmoati/mimey/zipball/0551e7a4fdbeb970abe78eccdc3fd3712a6daa4a",
+                "reference": "0551e7a4fdbeb970abe78eccdc3fd3712a6daa4a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Http\\Message\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for HTTP messages",
-            "homepage": "https://github.com/php-fig/http-message",
-            "keywords": [
-                "http",
-                "http-message",
-                "psr",
-                "psr-7",
-                "request",
-                "response"
-            ],
-            "time": "2016-08-06 14:39:51"
-        },
-        {
-            "name": "ralouphie/getallheaders",
-            "version": "2.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ralouphie/getallheaders.git",
-                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
-                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
+                "php": "^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~3.7.0",
-                "satooshi/php-coveralls": ">=1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/getallheaders.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ralph Khattar",
-                    "email": "ralph.khattar@gmail.com"
-                }
-            ],
-            "description": "A polyfill for getallheaders.",
-            "time": "2016-02-11T07:05:27+00:00"
-        },
-        {
-            "name": "ralouphie/mimey",
-            "version": "1.0.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ralouphie/mimey.git",
-                "reference": "d69688d4856daa13a9124c819d148ccc2235dea2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ralouphie/mimey/zipball/d69688d4856daa13a9124c819d148ccc2235dea2",
-                "reference": "d69688d4856daa13a9124c819d148ccc2235dea2",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.3|^7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~3.7.0",
-                "satooshi/php-coveralls": ">=1.0"
+                "friendsofphp/php-cs-fixer": "^2.17",
+                "phpstan/phpstan": "^0.12.64",
+                "phpunit/phpunit": "^9.5"
             },
             "type": "library",
             "autoload": {
@@ -510,66 +310,28 @@
                 {
                     "name": "Ralph Khattar",
                     "email": "ralph.khattar@gmail.com"
+                },
+                {
+                    "name": "Jacques Moati",
+                    "email": "jacques@moati.net"
                 }
             ],
             "description": "PHP package for converting file extensions to MIME types and vice versa.",
-            "time": "2017-01-27T20:57:22+00:00"
-        },
-        {
-            "name": "ramsey/array_column",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ramsey/array_column.git",
-                "reference": "cf233e3f351db20ad6bb6a56722bec083af23aa7"
+            "support": {
+                "source": "https://github.com/Jmoati/mimey/tree/3.0.1"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/array_column/zipball/cf233e3f351db20ad6bb6a56722bec083af23aa7",
-                "reference": "cf233e3f351db20ad6bb6a56722bec083af23aa7",
-                "shasum": ""
-            },
-            "require-dev": {
-                "jakub-onderka/php-parallel-lint": "0.8.*",
-                "phpunit/phpunit": "~4.5",
-                "satooshi/php-coveralls": "0.6.*",
-                "squizlabs/php_codesniffer": "~2.2"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/array_column.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ben Ramsey",
-                    "homepage": "http://benramsey.com"
-                }
-            ],
-            "description": "Provides functionality for array_column() to projects using PHP earlier than version 5.5.",
-            "homepage": "https://github.com/ramsey/array_column",
-            "keywords": [
-                "array",
-                "array_column",
-                "column"
-            ],
-            "time": "2016-01-31 17:57:38"
+            "time": "2021-01-11T07:44:57+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "it-for-free/simple-mvc": 20,
-        "it-for-free/rusphp": 20
+        "it-for-free/simple-mvc": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
 }
