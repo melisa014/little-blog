@@ -238,12 +238,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/SimpleMVC.git",
-                "reference": "f759f7af8644f44799b0982126bed5e25041cdb3"
+                "reference": "62ff81e9a8aef3468388cd0caf8bd12741904b11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/f759f7af8644f44799b0982126bed5e25041cdb3",
-                "reference": "f759f7af8644f44799b0982126bed5e25041cdb3",
+                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/62ff81e9a8aef3468388cd0caf8bd12741904b11",
+                "reference": "62ff81e9a8aef3468388cd0caf8bd12741904b11",
                 "shasum": ""
             },
             "require": {
@@ -272,7 +272,7 @@
                 "source": "https://github.com/it-for-free/SimpleMVC/tree/master",
                 "issues": "https://github.com/it-for-free/SimpleMVC/issues"
             },
-            "time": "2020-11-22T10:50:29+00:00"
+            "time": "2021-01-21T12:08:46+00:00"
         },
         {
             "name": "jmoati/mimey",
