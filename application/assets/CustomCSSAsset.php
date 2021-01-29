@@ -9,7 +9,7 @@ use application\assets\BootstrapAsset;
  * 
  */
 
-class CustomAssetCSS extends SimpleAsset {
+class CustomCSSAsset extends SimpleAsset {
     
     public $basePath = '/';
     

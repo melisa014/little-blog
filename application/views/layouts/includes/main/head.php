@@ -1,9 +1,9 @@
 <?php 
 use ItForFree\SimpleAsset\SimpleAssetManager;
-use application\assets\CustomAssetCSS;
+use application\assets\CustomCSSAsset;
 
 
-CustomAssetCSS::add();
+CustomCSSAsset::add();
 SimpleAssetManager::printCss();
 ?>
 <head>
