@@ -31,7 +31,7 @@ composer install
 
 ## Документация разработчика
 
-1. [Система работы с JS и CSS и управления локальными зависимостями между файлами (Asset-ы)](docs/WorkingWithAssets.m)
+1. [Система работы с JS и CSS и управления локальными зависимостями между файлами (Asset-ы)](docs/WorkingWithAssets.md)
 2. [Обработка исключений](docs/ExeptionsHandling.md)
 
 
