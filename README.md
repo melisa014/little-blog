@@ -36,7 +36,7 @@ composer install
 системы обратитесь к [специальному разделу на сайте (там есть ссылки на видео)](http://fkn.ktu10.com/?q=node/9429)_.
 
 1. [Введение](docs/Start.md)
-2. [Маршрутизация](docs/Start.md)
+2. [Маршрутизация](docs/Routing.md)
 3. [Система работы с JS и CSS и управления локальными зависимостями между файлами (Asset-ы)](docs/WorkingWithAssets.md)
 4. [Обработка исключений](docs/ExeptionsHandling.md)
 
