@@ -37,8 +37,8 @@ composer install
 
 1. [Введение](docs/Start.md)
 2. [Маршрутизация](docs/Routing.md)
-3. [Система работы с JS и CSS и управления локальными зависимостями между файлами (Asset-ы)](docs/WorkingWithAssets.md)
-4. [Обработка исключений](docs/ExeptionsHandling.md)
+3. (черновик) [Система работы с JS и CSS и управления локальными зависимостями между файлами (Asset-ы)](docs/WorkingWithAssets.md)
+4. (черновик) [Обработка исключений](docs/ExeptionsHandling.md)
 
 
 ### Использование данных конфигурационного файла
