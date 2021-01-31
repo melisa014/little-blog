@@ -117,12 +117,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/php-simple-assets.git",
-                "reference": "0961e497406854036b415ad719502987b4d4e715"
+                "reference": "93cce82c87fd2ceea1cd449a84fabe645374819e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/php-simple-assets/zipball/0961e497406854036b415ad719502987b4d4e715",
-                "reference": "0961e497406854036b415ad719502987b4d4e715",
+                "url": "https://api.github.com/repos/it-for-free/php-simple-assets/zipball/93cce82c87fd2ceea1cd449a84fabe645374819e",
+                "reference": "93cce82c87fd2ceea1cd449a84fabe645374819e",
                 "shasum": ""
             },
             "require": {
@@ -163,7 +163,7 @@
                 "source": "https://github.com/it-for-free/php-simple-assets/tree/master",
                 "issues": "https://github.com/it-for-free/php-simple-assets/issues"
             },
-            "time": "2020-03-17T18:16:06+00:00"
+            "time": "2021-01-26T10:07:51+00:00"
         },
         {
             "name": "it-for-free/rusphp",
@@ -238,12 +238,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/it-for-free/SimpleMVC.git",
-                "reference": "62ff81e9a8aef3468388cd0caf8bd12741904b11"
+                "reference": "d53c681136aef2fd86c0ff16e33bb5f3ef7d8d5e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/62ff81e9a8aef3468388cd0caf8bd12741904b11",
-                "reference": "62ff81e9a8aef3468388cd0caf8bd12741904b11",
+                "url": "https://api.github.com/repos/it-for-free/SimpleMVC/zipball/d53c681136aef2fd86c0ff16e33bb5f3ef7d8d5e",
+                "reference": "d53c681136aef2fd86c0ff16e33bb5f3ef7d8d5e",
                 "shasum": ""
             },
             "require": {
@@ -272,7 +272,7 @@
                 "source": "https://github.com/it-for-free/SimpleMVC/tree/master",
                 "issues": "https://github.com/it-for-free/SimpleMVC/issues"
             },
-            "time": "2021-01-21T12:08:46+00:00"
+            "time": "2021-01-30T17:34:42+00:00"
         },
         {
             "name": "jmoati/mimey",

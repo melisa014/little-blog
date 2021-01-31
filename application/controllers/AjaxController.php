@@ -12,9 +12,6 @@ class AjaxController extends \ItForFree\SimpleMVC\mvc\Controller
     public function likeAction()
     {
        echo 'привет!';
-    }
-    
-   
-    
+    }   
 }
 
