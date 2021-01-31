@@ -22,7 +22,8 @@ $User = Config::getObject('core.user.class');
     <?php foreach($users as $user): ?>
     <tr>
         <td> <?= $user->id ?> </td>
-        <td> <?= $user->login ?> </td>
+        <td> <?= "<a href=" . \ItForFree\SimpleMVC\Url::link('admin/adminusers/index&id=' 
+		. $user->id . ">{$user->login}</a>" ) ?> </td>
         <td>  <?= $user->email ?> </td>
         <td>  <?= $user->timestamp ?> </td>
         <td>  <?= $User->returnIfAllowed("admin/adminusers/edit", 
