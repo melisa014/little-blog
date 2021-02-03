@@ -31,6 +31,12 @@ $User = Config::getObject('core.user.class');
         </li>
         <?php endif; ?>
         
+        <?php  if ($User->isAllowed("admin/notes/index")): ?>
+        <li class="nav-item ">
+            <a class="nav-link" href="<?= Url::link("admin/notes/index") ?>"> Заметки </a>
+        </li>
+        <?php endif; ?>
+        
         <?php  if ($User->isAllowed("login/logout")): ?>
         <li class="nav-item ">
             <a class="nav-link" href="<?= Url::link("login/logout") ?>">Выход (<?= $User->userName ?>)</a>

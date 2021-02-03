@@ -1,7 +1,7 @@
 <?php
 namespace application\controllers\admin;
-use \application\models\Adminusers as Adminusers;
 use ItForFree\SimpleMVC\Config;
+use \application\models\ExampleUser;
 
 /**
  *
@@ -18,7 +18,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
     
     public function indexAction()
     {
-        $Adminusers = new Adminusers();
+        $Adminusers = new ExampleUser();
 
         $userId = $_GET['id'] ?? null;
         
@@ -42,7 +42,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
         $Url = Config::get('core.url.class');
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewUser'])) {
-                $Adminusers = new Adminusers();
+                $Adminusers = new ExampleUser();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->insert(); 
                 $this->redirect($Url::link("admin/adminusers/index"));
@@ -70,7 +70,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
         if (!empty($_POST)) { // это выполняется нормально.
             
             if (!empty($_POST['saveChanges'] )) {
-                $Adminusers = new Adminusers();
+                $Adminusers = new ExampleUser();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->update();
                 $this->redirect($Url::link("admin/adminusers/index&id=$id"));
@@ -80,7 +80,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
             }
         }
         else {
-            $Adminusers = new Adminusers();
+            $Adminusers = new ExampleUser();
             $viewAdminusers = $Adminusers->getById($id);
             
             $editAdminusersTitle = "Редактирование данных пользователя";
@@ -103,11 +103,11 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
         
         if (!empty($_POST)) {
             if (!empty($_POST['deleteUser'])) {
-                $Adminusers = new Adminusers();
+                $Adminusers = new ExampleUser();
                 $newAdminusers = $Adminusers->loadFromArray($_POST);
                 $newAdminusers->delete();
                 
-                $this->redirect($Url::link("archive/allUsers"));
+                $this->redirect($Url::link("admin/adminusers/index"));
               
             }
             elseif (!empty($_POST['cancel'])) {
@@ -116,7 +116,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
         }
         else {
             
-            $Adminusers = new Adminusers();
+            $Adminusers = new ExampleUser();
             $deletedAdminusers = $Adminusers->getById($id);
             $deleteAdminusersTitle = "Удаление статьи";
             
