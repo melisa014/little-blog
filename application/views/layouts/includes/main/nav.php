@@ -33,7 +33,7 @@ $User = Config::getObject('core.user.class');
         
         <?php  if ($User->isAllowed("admin/adminusers/index")): ?>
         <li class="nav-item ">
-            <a class="nav-link" href="<?= Url::link("admin/notes/index") ?>"> Notes </a>
+            <a class="nav-link" href="<?= Url::link("admin/notes/index") ?>"> Заметки </a>
         </li>
         <?php endif; ?>
         
