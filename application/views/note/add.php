@@ -9,7 +9,7 @@
 </style>
 
 <?php include('includes/admin-notes-nav.php'); ?>
-<h2><?= $addNotesTitle ?></h2>
+<h2><?= $addNoteTitle ?></h2>
 
 <form id="addNote" method="post" action="<?= \ItForFree\SimpleMVC\Url::link("admin/notes/add")?>"> 
     <div class="form-group">

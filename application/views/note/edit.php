@@ -17,7 +17,7 @@ $User = Config::getObject('core.user.class');
 
 <?php include('includes/admin-notes-nav.php'); ?>
 
-<h2><?= $editNotesTitle ?></h2>
+<h2><?= $editNoteTitle ?></h2>
 
 <form id="editNote" method="post" action="<?= $Url::link("admin/notes/edit&id=" . $_GET['id'])?>">
     <h5>Note title</h5> 
