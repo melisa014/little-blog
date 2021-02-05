@@ -1,6 +1,6 @@
 <?php
 namespace application\controllers\admin;
-use application\models\Notes;
+use application\models\Note;
 use ItForFree\SimpleMVC\Config;
 
 /* 
@@ -17,17 +17,17 @@ class NotesController extends \ItForFree\SimpleMVC\mvc\Controller
     
     public function indexAction()
     {
-        $Notes = new Notes();
+        $Note = new Note();
 
         $noteId = $_GET['id'] ?? null;
         
         if ($noteId) { // если указан конктреный пользователь
-            $viewNotes = $Notes->getById($_GET['id']);
+            $viewNotes = $Note->getById($_GET['id']);
             $this->view->addVar('viewNotes', $viewNotes);
             $this->view->render('note/view-item.php');
         } else { // выводим полный список
             
-            $notes = $Notes->getList()['results'];
+            $notes = $Note->getList()['results'];
             $this->view->addVar('notes', $notes);
             $this->view->render('note/index.php');
         }
@@ -41,8 +41,8 @@ class NotesController extends \ItForFree\SimpleMVC\mvc\Controller
         $Url = Config::get('core.url.class');
         if (!empty($_POST)) {
             if (!empty($_POST['saveNewNote'])) {
-                $Notes = new Notes();
-                $newNotes = $Notes->loadFromArray($_POST);
+                $Note = new Note();
+                $newNotes = $Note->loadFromArray($_POST);
                 $newNotes->insert(); 
                 $this->redirect($Url::link("admin/notes/index"));
             } 
@@ -51,8 +51,8 @@ class NotesController extends \ItForFree\SimpleMVC\mvc\Controller
             }
         }
         else {
-            $addNotesTitle = "Добавление новой заметки";
-            $this->view->addVar('addNotesTitle', $addNotesTitle);
+            $addNoteTitle = "Добавление новой заметки";
+            $this->view->addVar('addNoteTitle', $addNoteTitle);
             
             $this->view->render('note/add.php');
         }
@@ -69,8 +69,8 @@ class NotesController extends \ItForFree\SimpleMVC\mvc\Controller
         if (!empty($_POST)) { // это выполняется нормально.
             
             if (!empty($_POST['saveChanges'] )) {
-                $Notes = new Notes();
-                $newNotes = $Notes->loadFromArray($_POST);
+                $Note = new Note();
+                $newNotes = $Note->loadFromArray($_POST);
                 $newNotes->update();
                 $this->redirect($Url::link("admin/notes/index&id=$id"));
             } 
@@ -79,13 +79,13 @@ class NotesController extends \ItForFree\SimpleMVC\mvc\Controller
             }
         }
         else {
-            $Notes = new Notes();
-            $viewNotes = $Notes->getById($id);
+            $Note = new Note();
+            $viewNotes = $Note->getById($id);
             
-            $editNotesTitle = "Редактирование заметки";
+            $editNoteTitle = "Редактирование заметки";
             
             $this->view->addVar('viewNotes', $viewNotes);
-            $this->view->addVar('editNotesTitle', $editNotesTitle);
+            $this->view->addVar('editNoteTitle', $editNoteTitle);
             
             $this->view->render('note/edit.php');   
         }
@@ -102,8 +102,8 @@ class NotesController extends \ItForFree\SimpleMVC\mvc\Controller
         
         if (!empty($_POST)) {
             if (!empty($_POST['deleteNote'])) {
-                $Notes = new Notes();
-                $newNotes = $Notes->loadFromArray($_POST);
+                $Note = new Note();
+                $newNotes = $Note->loadFromArray($_POST);
                 $newNotes->delete();
                 
                 $this->redirect($Url::link("admin/notes/index"));
@@ -115,12 +115,12 @@ class NotesController extends \ItForFree\SimpleMVC\mvc\Controller
         }
         else {
             
-            $Notes = new Notes();
-            $deletedNotes = $Notes->getById($id);
-            $deleteNotesTitle = "Удалить заметку?";
+            $Note = new Note();
+            $deletedNote = $Note->getById($id);
+            $deleteNoteTitle = "Удалить заметку?";
             
-            $this->view->addVar('deleteNotesTitle', $deleteNotesTitle);
-            $this->view->addVar('deletedNotes', $deletedNotes);
+            $this->view->addVar('deleteNoteTitle', $deleteNoteTitle);
+            $this->view->addVar('deletedNote', $deletedNote);
             
             $this->view->render('note/delete.php');
         }
