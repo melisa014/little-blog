@@ -41,7 +41,7 @@ composer install
 4. [Контроллеры](docs/Controllers.md)
 5. [Модели](docs/Models.md)
 6. [Представления](docs/Views.md)
-7. [Макеты страниц для представлений](docs/Layouts.md)
+7. [Макеты (Layouts) представлений](docs/Layouts.md)
 8. (черновик) [Система работы с JS и CSS и управления локальными зависимостями между файлами (Asset-ы)](docs/WorkingWithAssets.md)
 9. (черновик) [Обработка исключений](docs/ExeptionsHandling.md)
 
