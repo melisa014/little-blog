@@ -36,13 +36,14 @@ composer install
 системы обратитесь к [специальному разделу на сайте (там есть ссылки на видео)](http://fkn.ktu10.com/?q=node/9429)_.
 
 1. [Введение](docs/Start.md)
-2. [Маршрутизация](docs/Routing.md)
-3. [Контроллеры](docs/Controllers.md)
-4. [Модели](docs/Models.md)
-5. [Представления](docs/Views.md)
-6. [Шаблоны представлений](docs/Templates.md)
-7. (черновик) [Система работы с JS и CSS и управления локальными зависимостями между файлами (Asset-ы)](docs/WorkingWithAssets.md)
-8. (черновик) [Обработка исключений](docs/ExeptionsHandling.md)
+2. [Конфигурация приложения](docs/Config.md)
+3. [Маршрутизация](docs/Routing.md)
+4. [Контроллеры](docs/Controllers.md)
+5. [Модели](docs/Models.md)
+6. [Представления](docs/Views.md)
+7. [Макеты страниц для представлений](docs/Layouts.md)
+8. (черновик) [Система работы с JS и CSS и управления локальными зависимостями между файлами (Asset-ы)](docs/WorkingWithAssets.md)
+9. (черновик) [Обработка исключений](docs/ExeptionsHandling.md)
 
 
 ### Использование данных конфигурационного файла
