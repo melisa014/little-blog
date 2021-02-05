@@ -13,7 +13,7 @@ class HomepageController extends \ItForFree\SimpleMVC\mvc\Controller
     public $homepageTitle = "Домашняя страница";
     
     /**
-     * @var string Пусть к файлу шаблона 
+     * @var string Пусть к файлу макета 
      */
     public $layoutPath = 'main.php';
       
