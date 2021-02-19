@@ -4,7 +4,7 @@ use ItForFree\SimpleMVC\Config;
 use \application\models\ExampleUser;
 
 /**
- *
+ * Администрирование пользователей
  */
 class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
 {
@@ -16,10 +16,12 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
          ['allow' => false, 'roles' => ['?', '@']],
     ];
     
+    /**
+     * Основное действие контроллера
+     */
     public function indexAction()
     {
         $Adminusers = new ExampleUser();
-
         $userId = $_GET['id'] ?? null;
         
         if ($userId) { // если указан конктреный пользователь
@@ -35,7 +37,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
     }
 
     /**
-     * Выводит на экран форму для создания новой статьи (только для Администратора)
+     * Создание нового пользователя
      */
     public function addAction()
     {
@@ -50,8 +52,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
             elseif (!empty($_POST['cancel'])) {
                 $this->redirect($Url::link("admin/adminusers/index"));
             }
-        }
-        else {
+        } else {
             $addAdminusersTitle = "Регистрация пользователя";
             $this->view->addVar('addAdminusersTitle', $addAdminusersTitle);
             
@@ -60,7 +61,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
     }
     
     /**
-     * Выводит на экран форму для редактирования статьи (только для Администратора)
+     * Редактирование пользователя
      */
     public function editAction()
     {
@@ -78,8 +79,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
             elseif (!empty($_POST['cancel'])) {
                 $this->redirect($Url::link("admin/adminusers/index&id=$id"));
             }
-        }
-        else {
+        } else {
             $Adminusers = new ExampleUser();
             $viewAdminusers = $Adminusers->getById($id);
             
@@ -94,7 +94,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
     }
     
     /**
-     * Выводит на экран предупреждение об удалении данных (только для Администратора)
+     * Удаление пользователя
      */
     public function deleteAction()
     {
@@ -113,8 +113,7 @@ class AdminusersController extends \ItForFree\SimpleMVC\mvc\Controller
             elseif (!empty($_POST['cancel'])) {
                 $this->redirect($Url::link("admin/adminusers/edit&id=$id"));
             }
-        }
-        else {
+        } else {
             
             $Adminusers = new ExampleUser();
             $deletedAdminusers = $Adminusers->getById($id);
