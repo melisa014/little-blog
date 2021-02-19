@@ -42,8 +42,9 @@ composer install
 5. [Модели](docs/Models.md)
 6. [Представления](docs/Views.md)
 7. [Макеты (Layouts) представлений](docs/Layouts.md)
-8. (черновик) [Система работы с JS и CSS и управления локальными зависимостями между файлами (Asset-ы)](docs/WorkingWithAssets.md)
-9. (черновик) [Обработка исключений](docs/ExeptionsHandling.md)
+8. [Авторзиация и работа с текущим пользователем](docs/Auth.md)
+9. (черновик) [Система работы с JS и CSS и управления локальными зависимостями между файлами (Asset-ы)](docs/WorkingWithAssets.md)
+10. (черновик) [Обработка исключений](docs/ExeptionsHandling.md)
 
 
 ### Использование данных конфигурационного файла
