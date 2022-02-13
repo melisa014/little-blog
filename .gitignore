@@ -1,7 +1,14 @@
 /nbproject/*
 /vendor/*
-composer.lock
 
 /uploads/*
 #кроме конкретного файла:
 !uploads/.gitkeep
+
+
+/web/assets/*
+!/web/assets/.gitkeep
+/.idea/*
+
+#игнорируем локальные конфигурационные файлы
+/application/config/*-local.php

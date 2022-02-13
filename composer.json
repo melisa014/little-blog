@@ -1,23 +1,21 @@
 {
     "require": {
-        "it-for-free/file-uploader": "dev-master",
-        "melisa014/simple-mvc": "dev-master"
-        
+        "it-for-free/simple-mvc": "dev-master",
+        "it-for-free/rusphp": "v2.*"      
     },
     "minimum-stability" : "dev",
     "repositories": [
         {
            "type": "vcs",
-           "url": "https://github.com/it-for-free/FileUploader"
+           "url": "https://github.com/it-for-free/SimpleMVC"
         },
         {
            "type": "vcs",
-           "url": "https://github.com/melisa014/SimpleMVC"
+           "url": "https://github.com/it-for-free/rusphp"
         },
         {
            "type": "vcs",
-           "url": "https://github.com/it-for-free/PhpExamples"
+           "url": "https://github.com/it-for-free/php-simple-assets"
         }
-        
     ]
 }
